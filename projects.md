@@ -14,7 +14,7 @@ Below are some of my key projects in AI, machine learning, and data science. Eac
 
 These projects showcase my work with large language models, transformer architectures, and natural language processing:
 
-* [**Custom RAG Engine for Enterprise Document QA**](/projects/rag-engine-project/) - Containerized document QA system with hybrid embedding models and self-hosted inference
+* [**Custom RAG Engine for Enterprise Document QA**](/projects/rag-engine-project/) - Containerized document QA system with hybrid embedding models and self-hosted inference ([Read the blog post](/ai/nlp/rag/2025/05/12/building-effective-rag-systems.html))
 * [**LLM-Powered Query Generator**](/projects/rag-engine-project/) - Information extraction engine using DSPy and Langfuse for structured data insights
 * [**Sentiment Analysis of YouTube Comments**](/projects/sentiment-analysis/) - Hybrid labeling system combining rule-based and transformer approaches
 
@@ -23,8 +23,8 @@ These projects showcase my work with large language models, transformer architec
 Projects demonstrating various ML techniques and domain applications:
 
 * [**AI-Powered Robo Advisor**](/projects/robo-advisor-project/) - Portfolio optimization using reinforcement learning and risk profiling
-* [**HDB Resale Price Prediction**](/projects/hdb-resale-prices/) - Advanced regression modeling for Singapore's housing market
-* [**Wet-Bulb Temperature Analysis**](/projects/wet-bulb-temperature/) - Climate data modeling for heat stress prediction
+* [**HDB Resale Price Prediction**](/projects/hdb-resale-prices/) - Advanced regression modeling for Singapore's housing market ([Read the blog post](/data-science/machine-learning/real-estate/2023/06/18/predicting-hdb-resale-prices.html))
+* [**Wet-Bulb Temperature Analysis**](/projects/wet-bulb-temperature/) - Climate data modeling for heat stress prediction ([Read the blog post](/data-science/climate/public-health/2023/05/15/predicting-heat-stress-with-wet-bulb-temperature.html))
 
 ## Data Science & Business Analytics
 
