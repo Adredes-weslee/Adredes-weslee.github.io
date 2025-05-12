@@ -28,6 +28,117 @@ h1, h2, h3 {
   box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
+/* Home page specific styling */
+.home-section {
+  margin-bottom: 3.5rem;
+}
+
+.home-section h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.home-intro {
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+
+.home-intro p {
+  margin-bottom: 1.2rem;
+  font-size: 1.1rem;
+}
+
+.feature-list {
+  margin-bottom: 2rem;
+}
+
+.feature-list li {
+  margin-bottom: 0.8rem;
+  padding-left: 0.5rem;
+}
+
+.feature-list li strong {
+  color: #2a7ae2;
+}
+
+.feature-list ul {
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  margin-left: 1.5rem;
+  list-style-type: disc;
+}
+
+.feature-list ul li {
+  margin-bottom: 0.5rem;
+  padding-left: 0;
+}
+
+.project-item {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.project-item:last-child {
+  border-bottom: none;
+}
+
+.project-item p {
+  margin-top: 0.5rem;
+}
+
+.read-more {
+  margin-top: 1rem;
+  margin-bottom: 2.5rem;
+  text-align: right;
+}
+
+/* Improve spacing in list items */
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* Nested list styling */
+ul ul {
+  margin-top: 0.5rem;
+  margin-left: 1.5rem;
+}
+
+/* Better spacing for section headers */
+h2 {
+  margin-top: 2.5rem;
+}
+
+/* Improve paragraph spacing */
+p {
+  margin-bottom: 1.2rem;
+}
+
+/* Featured project styling */
+.project-feature {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.project-feature:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.project-feature h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.project-feature p {
+  margin-bottom: 0.8rem;
+}
+
 /* Tech tags styling */
 .tech-tag {
   display: inline-block;
