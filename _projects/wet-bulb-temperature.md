@@ -1,62 +1,87 @@
 ---
 layout: project
-title: "Predicting Heat Stress: Wet-Bulb Temperature Analysis"
-categories: climate-science machine-learning time-series
+title: "Predicting Wet-Bulb Temperature for Heat Stress Analysis"
+categories: climate-science machine-learning data-analysis
 image: /assets/images/placeholder.svg
-technologies: [Python, Scikit-Learn, Time Series Analysis, GIS, Pandas, Matplotlib]
+technologies: [Python, Pandas, Scikit-Learn, Matplotlib, Seaborn, Time Series Analysis]
 github: https://github.com/Adredes-weslee/wet-bulb-temperature-analysis
+blog_post: /data-science/climate/public-health/2023/05/15/predicting-heat-stress-with-wet-bulb-temperature.html
 ---
 
 ## Project Overview
 
-Developed a predictive model for wet-bulb temperature estimation using machine learning techniques and climate data. The project aims to help identify regions at risk of dangerous heat stress conditions by analyzing historical weather patterns and climate change projections.
+Commissioned as a hypothetical policy study for the Singapore government, this project investigates the relationship between wet-bulb temperature (WBT)—a crucial indicator of heat stress—and climate change drivers such as greenhouse gases and meteorological factors. Using regression modeling and time series analysis, I aimed to identify key contributors to extreme heat conditions in tropical environments and provide actionable insights for public health planning.
+
+> Read my detailed blog post: [Predicting Heat Stress with Wet-Bulb Temperature Analysis](/data-science/climate/public-health/2023/05/15/predicting-heat-stress-with-wet-bulb-temperature.html)
 
 ## Background & Significance
 
-Wet-bulb temperature (TW) combines heat and humidity into a single value measuring heat stress on the human body. At wet-bulb temperatures above 35°C, even healthy humans cannot survive extended exposure as the body cannot cool itself through sweating.
+Wet-bulb temperature (WBT) combines heat and humidity into a single value measuring heat stress on the human body. At wet-bulb temperatures above 35°C, even healthy humans cannot survive extended exposure as the body cannot cool itself through sweating.
 
 With climate change accelerating, identifying regions approaching critical wet-bulb thresholds has significant public health implications:
 
-- At TW > 31°C: Most physical labor becomes dangerous
-- At TW > 35°C: Even resting humans cannot thermoregulate effectively
+- At WBT > 31°C: Most physical labor becomes dangerous
+- At WBT > 35°C: Even resting humans cannot thermoregulate effectively
+- Even at lower WBT values (28°C), vulnerable populations face significant health risks
 
-This project contributes to climate resilience by providing data-driven forecasts of when and where dangerous heat stress conditions might emerge.
+As Minister for Sustainability and Environment Grace Fu noted, Singapore could experience days with peak temperatures of 40°C as early as 2045, making WBT assessment crucial for future planning.
+
+## Data Integration
+
+This study integrated data from multiple authoritative sources:
+
+| Data Source | Variables | Period |
+|-------------|-----------|--------|
+| Data.gov.sg | Wet-bulb temperature (hourly) | 1982-2023 |
+| Data.gov.sg | Surface air temperature (monthly) | 1982-2023 |
+| SingStat | Rainfall, sunshine hours, humidity | 1975-2023 |
+| NOAA | CO₂ concentration (ppm) | 1958-2023 |
+| NOAA | CH₄ concentration (ppb) | 1983-2023 |
+| NOAA | N₂O concentration (ppb) | 2001-2023 |
+| NOAA | SF₆ concentration (ppt) | 1997-2023 |
 
 ## Methodology
 
-### Data Sources
-- World Bank Climate Change Knowledge Portal (40+ years of historical data)
-- ERA5 reanalysis dataset from the European Centre for Medium-Range Weather Forecasts
-- Local meteorological station readings from high-risk regions (South Asia, Persian Gulf)
+### Exploratory Data Analysis
+- Performed correlation analysis between WBT and all climate variables
+- Conducted time series decomposition to identify seasonal patterns
+- Created visualizations to understand variable relationships and trends
+- Examined multicollinearity among greenhouse gases
 
 ### Data Processing
-- Extracted and harmonized temperature, humidity, pressure, and wind data across sources
-- Applied quality control filters to identify and handle anomalous readings
-- Calculated historical wet-bulb temperatures using Stull's formula and psychrometric equations
-- Aligned spatial data using Geographic Information System (GIS) techniques
+- Aggregated hourly WBT readings to monthly averages
+- Aligned timestamps across datasets for proper integration
+- Applied quality control filters to handle anomalous readings
+- Standardized units across different measurement systems
 
 ### Model Development
-The model employed a two-stage approach:
+- Built multiple linear regression models to predict WBT
+- Assessed feature importance to understand key drivers
+- Validated models using cross-validation techniques
+- Evaluated performance using R², RMSE, and residual analysis
 
-1. **Regional-Temporal Classification**:
-   - Random Forest classifier to identify potential heat stress regions and seasons
-   - Area Under ROC = 0.89 for identifying high-risk zones
+## Key Findings
 
-2. **Wet-bulb Temperature Prediction**:
-   - Gradient Boosting Regressor trained on historical climate data
-   - RMSE = 0.72°C compared to psychrometric equations
-   - Fine-tuned through 5-fold cross-validation
+1. **Critical Variables**: Mean air temperature showed the strongest positive correlation with WBT, followed by several greenhouse gases
+2. **Negative Correlation**: Relative humidity surprisingly showed negative correlation with WBT in Singapore's context
+3. **Greenhouse Gas Impact**: Nitrous oxide (N₂O) and sulfur hexafluoride (SF₆) displayed significant positive correlations with WBT
+4. **Multicollinearity**: Strong correlations between greenhouse gases reflect their shared anthropogenic sources
+5. **Extreme Values**: While no clear year-over-year WBT trend was observed, there's evidence of increasing extreme values
 
-## Code Sample
+## Policy Implications
+
+The findings suggest several actionable policy recommendations:
+
+1. **Heat Monitoring**: Integrate WBT into Singapore's heat advisory systems rather than relying solely on conventional temperature metrics
+2. **Public Education**: Develop education campaigns on heat stress risks, particularly for vulnerable populations
+3. **Urban Planning**: Design future infrastructure with heat resilience in mind
+4. **Labor Regulations**: Consider WBT thresholds for outdoor work safety guidelines
+5. **Climate Action**: Continue efforts to reduce greenhouse gas emissions as part of heat stress mitigation
+
+## Technical Implementation
 
 ```python
-import numpy as np
-import pandas as pd
-from sklearn.ensemble import GradientBoostingRegressor
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
-
-# Function to calculate wet-bulb temperature using Stull's formula
+# Sample code for wet-bulb temperature calculation using Stull's formula
 def calculate_wetbulb(temperature, relative_humidity):
     """
     Calculate wet-bulb temperature using Stull's formula (2011)
@@ -69,90 +94,22 @@ def calculate_wetbulb(temperature, relative_humidity):
          0.00391838 * np.power(relative_humidity, 1.5) * np.arctan(0.023101 * relative_humidity) - \
          4.686035
     return tw
-
-# Feature engineering
-def engineer_features(df):
-    # Time-based features
-    df['month'] = df['date'].dt.month
-    df['day_of_year'] = df['date'].dt.dayofyear
-    
-    # Calculate pressure-adjusted temperature
-    df['adjusted_temp'] = df['temperature'] * (1013.25 / df['pressure'])
-    
-    # Calculate dew point
-    df['dew_point'] = df['temperature'] - ((100 - df['relative_humidity']) / 5)
-    
-    # Calculate heat index for extreme conditions
-    df['heat_index'] = calculate_heat_index(df['temperature'], df['relative_humidity'])
-    
-    return df
-
-# Model training
-features = ['temperature', 'relative_humidity', 'pressure', 'month', 'day_of_year', 
-            'adjusted_temp', 'dew_point', 'heat_index']
-X = climate_data[features]
-y = climate_data['wetbulb_temperature']  # Pre-calculated using psychrometric equations
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Train Gradient Boosting model
-model = GradientBoostingRegressor(
-    n_estimators=200, 
-    learning_rate=0.1,
-    max_depth=5,
-    min_samples_split=4,
-    min_samples_leaf=2,
-    random_state=42
-)
-model.fit(X_train, y_train)
-
-# Evaluate
-y_pred = model.predict(X_test)
-rmse = np.sqrt(mean_squared_error(y_test, y_pred))
-print(f'RMSE: {rmse:.2f}°C')
 ```
 
-## Results & Findings
+## Future Work
 
-The project successfully built a predictive model with key findings:
+- Expand the analysis with additional data sources including wind patterns and urbanization metrics
+- Implement more sophisticated models including non-linear approaches (Random Forest, XGBoost)
+- Develop real-time WBT monitoring tools for public health applications
+- Integrate public health data to correlate WBT with health outcomes
+- Create detailed heat risk maps for urban planning
 
-1. **Current Risk Assessment**:
-   - Identified three primary global regions that routinely experience wet-bulb temperatures above 30°C
-   - Persian Gulf, South Asia (Northern India, Pakistan, Bangladesh), and parts of Southeast Asia
+## References
 
-2. **Future Projections**:
-   - Under RCP 8.5 scenario (high emissions), the model projects expanding risk zones where:
-     - 31°C wet-bulb events increase from 1% to 4.4% of summer days by 2050
-     - Risk zones expand to include southern Europe, central China, and eastern United States
+This project drew on extensive research from scientific literature, including studies from:
+- NASA's Jet Propulsion Laboratory
+- National Institute of Health
+- Journal of Applied Physiology
+- Singapore's National Climate Change Study
 
-3. **Seasonal Analysis**:
-   - Critical wet-bulb events show increased frequency and duration
-   - The average dangerous heat wave duration projected to increase by 73% by 2050
-
-4. **Validation Against Historical Events**:
-   - Model accuracy verified against recorded heat waves from 1995-2020
-   - Correctly identified 92% of documented extreme heat events where heat-related fatalities occurred
-
-## Impact & Applications
-
-This project provides several practical applications:
-
-### Public Health Planning
-- Heat-vulnerability maps for public health officials to prioritize cooling centers and heat-wave response
-- Long-term infrastructure planning recommendations for at-risk regions
-
-### Urban Planning
-- Identification of urban heat islands requiring targeted mitigation
-- Design recommendations for built environments in increasingly at-risk zones
-
-### Climate Adaptation
-- Specific agricultural recommendations for regions projected to experience critical wet-bulb increases
-- Worker safety guideline adjustments based on regional wet-bulb forecasts
-
-## Technologies Used
-- **Python** - Core programming language
-- **Pandas & NumPy** - Data processing and numerical analysis
-- **Scikit-learn** - Machine learning implementation (Random Forest, Gradient Boosting)
-- **Matplotlib & Seaborn** - Data visualization
-- **Cartopy & GeoPandas** - Geospatial analysis and mapping
-- **Xarray** - Multi-dimensional climate data analysis
+For a comprehensive bibliography, please visit the project repository.
