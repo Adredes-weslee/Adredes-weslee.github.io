@@ -101,6 +101,16 @@ Led the Chemistry department at a premier tuition centre, specializing in A-Leve
 - **Fall 25:** ISYE 6740: Computational Data Analytics
 - **Fall 25:** ISYE 6644: Simulation
 
+### BCG RISE 2.0
+**Business and Data Analytics Programme (Data Analyst Track)** | *Feb 2024 - Aug 2024*
+- Completed a competitive, consultant-led program by Boston Consulting Group focused on data analytics and business problem-solving
+- **Technical Skills Gained:**
+  - Developed proficiency in SQL for data querying, joins, and transformations on relational databases (MySQL)
+  - Built end-to-end BI dashboards in Power BI using DAX, data modeling, and custom measures
+  - Applied Python (Pandas, NumPy, Seaborn, Matplotlib) for data wrangling, visualization, and statistical analysis
+  - Gained hands-on experience in machine learning pipelines, including model evaluation and deployment
+  - Capstone project involved customer segmentation (RFM + K-Means) and price elasticity modeling with Gurobi for revenue optimization
+ 
 ### General Assembly
 **Data Science Immersive** | *Jun 2023 - Sep 2023*
 - Completed a 12-week full-time bootcamp focused on Python programming, data analytics, statistical modeling, and machine learning
@@ -111,16 +121,6 @@ Led the Chemistry department at a premier tuition centre, specializing in A-Leve
   - Development of an AI-powered robo advisor for dynamic portfolio allocation
   - Analysis of climate data to predict wet-bulb temperatures
 - Acquired skills in Python, Pandas, NumPy, Scikit-learn, SQL, Google BigQuery, and data visualization tools like Matplotlib and Seaborn
-
-### BCG RISE 2.0
-**Business and Data Analytics Programme (Data Analyst Track)** | *Feb 2023 - Aug 2023*
-- Completed a competitive, consultant-led program by Boston Consulting Group focused on data analytics and business problem-solving
-- **Technical Skills Gained:**
-  - Developed proficiency in SQL for data querying, joins, and transformations on relational databases (MySQL)
-  - Built end-to-end BI dashboards in Power BI using DAX, data modeling, and custom measures
-  - Applied Python (Pandas, NumPy, Seaborn, Matplotlib) for data wrangling, visualization, and statistical analysis
-  - Gained hands-on experience in machine learning pipelines, including model evaluation and deployment
-  - Capstone project involved customer segmentation (RFM + K-Means) and price elasticity modeling with Gurobi for revenue optimization
 
 ### Bangor University
 **Bachelor of Science - BSc (Honours), Business Studies and Finance** | *First Class Honours*
