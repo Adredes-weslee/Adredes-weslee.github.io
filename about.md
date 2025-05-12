@@ -82,7 +82,7 @@ Led the Chemistry department at a premier tuition centre, specializing in A-Leve
 ## Education
 
 ### Georgia Institute of Technology
-**Master of Science - MS, Analytics** | *Aug 2023 - Dec 2025 (Expected)*
+**Master of Science - MS, Analytics** | *Aug 2024 - Dec 2026 (Expected)*
 - **Grade:** 4.0/4.0
 - Interdisciplinary data science and analytics masters degree program
 
@@ -91,15 +91,15 @@ Led the Chemistry department at a premier tuition centre, specializing in A-Leve
 - Deep understanding of big data—including how to acquire, preprocess, store, manage, analyze, and visualize large datasets
 
 **Modules Completed:**
-- **Fall 23:** CSE 6040: Computing for Data Analytics - A
-- **Spring 24:** MGT 6033: Analysis of Unstructured Data - A
-- **Spring 24:** CS 7646: Machine Learning for Trading - A
+- **Fall 24:** CSE 6040: Computing for Data Analytics - A
+- **Spring 25:** MGT 6033: Analysis of Unstructured Data - A
+- **Spring 25:** CS 7646: Machine Learning for Trading - A
 
 **Modules Pending:**
-- **Summer 24:** ISYE 6525: High-Dimensional Data Analytics
-- **Summer 24:** MGT 6203: Data Analytics in Business
-- **Fall 24:** ISYE 6740: Computational Data Analytics
-- **Fall 24:** ISYE 6644: Simulation
+- **Summer 25:** ISYE 6525: High-Dimensional Data Analytics
+- **Summer 25:** MGT 6203: Data Analytics in Business
+- **Fall 25:** ISYE 6740: Computational Data Analytics
+- **Fall 25:** ISYE 6644: Simulation
 
 ### General Assembly
 **Data Science Immersive** | *Jun 2023 - Sep 2023*
