@@ -18,6 +18,10 @@ Explore key insights from implementing Retrieval-Augmented Generation systems in
 
 Learn how to combine multiple sentiment analysis models to create a hybrid labeling system that accurately classifies YouTube comments for digital reputation management.
 
+### [Forecasting Dengue Cases and Conducting Cost-Benefit Analysis](/time-series/public-health/economics/2023/08/15/forecasting-dengue-cases-and-cost-benefit-analysis.html)
+
+Discover how advanced time series forecasting combined with health economic analysis can guide public health interventions for dengue fever in Singapore.
+
 ### [Predicting HDB Resale Prices in Singapore](/data-science/machine-learning/real-estate/2023/06/18/predicting-hdb-resale-prices.html)
 
 Explore how machine learning can decode Singapore's unique public housing market, revealing key price drivers and providing practical insights for homebuyers and policymakers.

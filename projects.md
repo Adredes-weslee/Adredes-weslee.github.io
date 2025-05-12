@@ -31,7 +31,7 @@ Projects demonstrating various ML techniques and domain applications:
 Projects focused on extracting insights and delivering business value:
 
 * [**Customer Segmentation & Price Optimization**](/projects/customer-segmentation/) - RFM analysis and revenue optimization for frozen food distributor
-* [**Forecasting Dengue Cases**](/projects/dengue-forecasting/) - Time series analysis with health intervention cost-benefit analysis
+* [**Forecasting Dengue Cases with Time Series Analysis**](/projects/dengue-forecasting/) - Time series analysis with health intervention cost-benefit analysis ([Read the blog post](/time-series/public-health/economics/2023/08/15/forecasting-dengue-cases-and-cost-benefit-analysis.html))
 
 ## Technical Skills Demonstrated
 
