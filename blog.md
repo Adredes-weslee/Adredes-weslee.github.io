@@ -22,6 +22,10 @@ Learn how different machine learning approaches can be applied to algorithmic tr
 
 Discover how advanced natural language processing techniques can extract valuable insights from financial earnings reports, combining traditional methods with transformer models for improved analysis and prediction.
 
+### [Transforming Commercial Strategy with Data Science: Customer Segmentation and Price Optimization](/data-science/pricing-strategy/business-analytics/commercial-strategy/2024/08/15/customer-segmentation-price-optimization.html)
+
+Learn how advanced clustering techniques, price elasticity modeling, and revenue optimization can transform commercial strategy and deliver tangible business impact for a distribution company.
+
 ### [Building an AI-Powered Robo Advisor: Risk Profiling and Portfolio Optimization](/ai/finance/machine-learning/reinforcement-learning/2023/10/25/robo-advisor-risk-profiling-portfolio-optimization.html)
 
 Learn how I combined machine learning for investor risk profiling with both traditional optimization and reinforcement learning to create a dynamic, personalized portfolio management system.
