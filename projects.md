@@ -6,8 +6,6 @@ permalink: /projects/
 show_collection: projects
 ---
 
-# Projects
-
 Below are some of my key projects in AI, machine learning, and data science. Each project demonstrates different aspects of my technical skills and problem-solving approach.
 
 ## LLM & NLP Projects

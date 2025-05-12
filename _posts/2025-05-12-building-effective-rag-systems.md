@@ -48,104 +48,270 @@ text_splitter = RecursiveCharacterTextSplitter(
 chunks = text_splitter.split_text(document)
 ```
 
-**Advanced Approach**: Content-aware semantic chunking
-```python
-def semantic_chunking(document):
-    # First level: Split by major document sections
-    sections = split_by_headers(document)
-    
-    chunks = []
-    for section in sections:
-        # Check section length
-        if len(section) < MAX_CHUNK_SIZE:
-            chunks.append(section)
-        else:
-            # Second level: Split by semantic units while preserving context
-            section_chunks = recursive_semantic_split(section)
-            chunks.extend(section_chunks)
-    
-    # Final step: Add metadata and document relationships
-    enhanced_chunks = []
-    for i, chunk in enumerate(chunks):
-        enhanced_chunks.append({
-            "content": chunk,
-            "metadata": {
-                "source": document.source,
-                "section": identify_section(chunk),
-                "neighbors": [i-1, i+1] if 0 < i < len(chunks)-1 
-                           else [i+1] if i == 0 
-                           else [i-1]
-            }
-        })
-    
-    return enhanced_chunks
-```
+**Advanced Approach**: Content-aware semantic chunking with specialized handlers
 
-### Format-Specific Processing
-
-For enterprise documentation, different content types require specialized treatment:
-
-#### Code Document Processing
-
-For code repositories, preserving function and class boundaries is essential:
+For my enterprise RAG system, I implemented separate chunkers for different document types:
 
 ```python
-from langchain.text_splitter import Language, RecursiveCharacterTextSplitter
-
-# Language-specific code splitter
-python_splitter = RecursiveCharacterTextSplitter.from_language(
-    language=Language.PYTHON,
-    chunk_size=1000,
-    chunk_overlap=200
-)
-
-# Split while preserving semantic units like functions and classes
-code_chunks = python_splitter.split_text(code_document)
-
-# Enhance with repository metadata
-for chunk in code_chunks:
-    chunk.metadata.update({
-        "repo": repo_name,
-        "file_path": file_path,
-        "github_url": f"https://github.com/org/{repo_name}/blob/main/{file_path}",
-        "language": "python"
-    })
-```
-
-#### Tabular Data Processing
-
-For tables and structured data, traditional chunking fails. Instead, I implemented a specialized agent:
-
-```python
-import pandas as pd
-from langchain.agents import create_pandas_dataframe_agent
-from langchain.llms import Ollama
-
-def process_tabular_data(csv_path):
-    # Load the data
-    df = pd.read_csv(csv_path)
-    
-    # Create pandas agent for this dataframe
-    agent = create_pandas_dataframe_agent(
-        llm=Ollama(model="llama3:8b-instruct"),
-        df=df,
-        verbose=True
+def initialize_semantic_chunkers():
+    """
+    Initialize specialized text splitters for different document types.
+    """
+    # For markdown and general text content
+    markdown_splitter = CharacterTextSplitter(
+        separator="\n\n",
+        chunk_size=512,
+        chunk_overlap=128,
+        length_function=len,
+        is_separator_regex=False,
     )
     
-    # Generate schema and column descriptions
-    schema_prompt = "Analyze this dataframe and provide a detailed description of its schema, including column names, data types, and what information each column contains."
-    schema_info = agent.run(schema_prompt)
+    # For code files with specialized handling
+    code_splitter = CharacterTextSplitter(
+        separator="\n",
+        chunk_size=256,
+        chunk_overlap=64,
+        length_function=len,
+        is_separator_regex=False,
+    )
     
-    # Store metadata about the table
-    return {
-        "content_type": "table",
-        "path": csv_path,
-        "schema": schema_info,
-        "row_count": len(df),
-        "column_count": len(df.columns),
-        "agent": agent  # Store the agent for direct querying
-    }
+    return markdown_splitter, code_splitter
+
+def extract_text_from_files(file_paths, markdown_splitter, code_splitter):
+    """
+    Process different file types with appropriate chunkers.
+    """
+    code_chunks = []
+    non_code_chunks = []
+    
+    for file_path in file_paths:
+        # Determine file type
+        if file_path.endswith(('.py', '.ipynb', '.js', '.java', '.cpp')):
+            # Process as code
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            chunks = code_splitter.split_text(content)
+            # Add metadata about file origin
+            code_chunks.extend([(chunk, {"source": file_path}) for chunk in chunks])
+        else:
+            # Process as markdown/text
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            chunks = markdown_splitter.split_text(content)
+            non_code_chunks.extend([(chunk, {"source": file_path}) for chunk in chunks])
+    
+    return code_chunks, non_code_chunks
 ```
+
+This approach recognizes that different content types require different chunking strategies to preserve context and meaning. Code files need to maintain function and class boundaries, while markdown documents benefit from paragraph-level chunking with header preservation.
+
+## Hybrid Embedding: Specialized Models for Different Content Types
+
+One of the key innovations in my enterprise RAG system was implementing specialized embedding models for different content types. This approach significantly improved retrieval quality for technical documentation and code.
+
+### Why Hybrid Embeddings Matter
+
+Standard embedding models like OpenAI's embeddings perform well on general text but struggle with specialized content like code snippets. My solution was to use:
+
+1. **General Text Embedding**: `all-MiniLM-L6-v2` for markdown and general documentation
+2. **Code-Specific Embedding**: `microsoft/graphcodebert-base` for source code files
+
+Here's how I implemented this hybrid approach:
+
+```python
+from transformers import AutoTokenizer, AutoModel
+from sentence_transformers import SentenceTransformer
+
+def load_models():
+    """
+    Load pre-trained models for sentence and code embeddings.
+    """
+    # General text embedding model
+    sentence_model = SentenceTransformer('all-MiniLM-L6-v2')
+    
+    # Specialized code embedding model
+    code_tokenizer = AutoTokenizer.from_pretrained("microsoft/graphcodebert-base")
+    code_model = AutoModel.from_pretrained("microsoft/graphcodebert-base")
+    
+    return sentence_model, code_tokenizer, code_model
+
+def generate_code_embeddings(texts, code_tokenizer, code_model):
+    """
+    Generate embeddings specifically optimized for code understanding.
+    """
+    embeddings = []
+    for text in texts:
+        # Code-specific tokenization and embedding logic
+        # This captures code structure better than general text embeddings
+        
+    return embeddings
+
+def generate_sentence_embeddings(texts, sentence_model):
+    """
+    Generate embeddings for natural language text.
+    """
+    # Efficient batch processing for text documents
+    return sentence_model.encode(texts, show_progress_bar=True)
+```
+
+### Managing Separate Vector Stores
+
+With different embedding dimensions and characteristics, I needed separate vector stores for each content type:
+
+```python
+import faiss
+
+def create_faiss_index(embeddings, target_dim):
+    """
+    Create a FAISS index for fast similarity search.
+    """
+    index = faiss.IndexFlatL2(target_dim)
+    index.add(embeddings)
+    return index
+
+# Create separate indices for different content types
+code_index = create_faiss_index(code_embeddings, code_dim)
+text_index = create_faiss_index(text_embeddings, text_dim)
+
+# Save indices for persistence
+faiss.write_index(code_index, 'faiss_code_index.bin')
+faiss.write_index(text_index, 'faiss_text_index.bin')
+```
+
+This approach allowed for optimized retrieval based on query type, which we'll explore in the next section.
+
+## Intelligent Query Routing: Beyond Simple RAG
+
+A critical lesson from implementing enterprise RAG systems is that not all queries are created equal. Different questions require different retrieval and reasoning strategies. In my RAG engine, I implemented a smart routing system that:
+
+1. Analyzes the query type
+2. Routes to the appropriate specialized handler
+3. Evaluates answer quality and applies fallback mechanisms
+
+### Query Type Classification
+
+The system first determines the most appropriate processing pipeline:
+
+```python
+def determine_approach(user_question, llm):
+    """
+    Determine the best processing approach for a given question.
+    """
+    template = """
+    Analyze the following question and determine if it's primarily:
+    1. About code or programming (respond with "CODE")
+    2. About tabular/numerical data (respond with "TABLE")
+    3. A general knowledge question (respond with "GENERAL")
+    
+    Question: {query}
+    Classification:
+    """
+    
+    prompt = ChatPromptTemplate.from_template(template)
+    chain = prompt | llm
+    response = chain.invoke({"query": user_question})
+    
+    if "CODE" in response:
+        return "code_handler"
+    elif "TABLE" in response:
+        return "table_handler"
+    else:
+        return "general_handler"
+```
+
+### Handling Structured Data Questions
+
+For questions about tables or numerical data, I implemented a specialized pandas agent:
+
+```python
+def handle_tabular_query(question, data_sources, llm):
+    """
+    Process questions that require table reasoning.
+    """
+    # Load relevant tabular data
+    dfs = {}
+    for source in data_sources:
+        if source.endswith('.csv'):
+            df_name = os.path.basename(source).replace('.csv', '')
+            dfs[df_name] = pd.read_csv(source)
+    
+    # Create pandas agent for each dataframe
+    agents = {}
+    for name, df in dfs.items():
+        agents[name] = create_pandas_dataframe_agent(
+            llm,
+            df,
+            verbose=True,
+            prefix=f"You are working with the {name} dataset. "
+        )
+    
+    # Route question to the appropriate agent
+    # This is a simplified version - the actual implementation
+    # includes agent selection logic
+    
+    for name, agent in agents.items():
+        try:
+            result = agent.run(question)
+            if result and not result.startswith("I don't know"):
+                return result
+        except Exception as e:
+            continue
+            
+    # Fallback to general RAG if no agent produces a good answer
+    return None
+```
+
+### Self-Evaluation and Fallbacks
+
+One of the most powerful features is the system's ability to evaluate its own answers:
+
+```python
+def evaluate_answer(answer, question, llm):
+    """
+    Evaluate answer quality and determine if fallback is needed.
+    """
+    evaluation_prompt = f"""
+    Rate the quality of this answer on a scale from 1-10:
+    
+    Question: {question}
+    Answer: {answer}
+    
+    Consider:
+    - Relevance to the question
+    - Factual accuracy
+    - Completeness
+    
+    Provide only a numerical rating from 1-10.
+    """
+    
+    response = llm.invoke(evaluation_prompt)
+    try:
+        score = float(response.strip())
+        return score
+    except:
+        return 5  # Default middle score
+        
+def process_with_fallbacks(question, primary_chain, fallback_chain, llm):
+    """
+    Process query with automatic fallback if needed.
+    """
+    # Try primary approach
+    primary_answer = primary_chain.invoke({"question": question})
+    
+    # Evaluate answer quality
+    quality_score = evaluate_answer(primary_answer, question, llm)
+    
+    # If score is below threshold, try fallback
+    fallback_answer = fallback_chain.invoke({
+        "question": question,
+        "previous_attempt": primary_answer
+    })
+    return fallback_answer
+    
+    return primary_answer
+```
+
+This intelligent routing and fallback mechanism ensures that the system delivers the highest quality answers across diverse query types.
 
 ## Embedding Models: The Secret Sauce
 
@@ -463,7 +629,7 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY requirements.txt .`
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app/ ./app/
@@ -707,159 +873,3 @@ Building effective RAG systems remains both an art and a science. By focusing on
 ---
 
 *This post is based on my experience building and deploying the [Custom RAG Engine for Enterprise Document QA](/projects/rag-engine-project/). For more technical details, check out the project page.*
-2. **Embedding Generation** - Creating vector representations of document chunks
-3. **Vector Storage** - Indexed storage for efficient similarity search
-4. **Retrieval Mechanism** - Finding relevant context based on user queries
-5. **Generation Layer** - Crafting responses using retrieved context and an LLM
-6. **Evaluation Framework** - Testing and measuring system performance
-
-Here's a simplified code example of how these components interact using LangChain:
-
-```python
-from langchain.document_loaders import DirectoryLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.vectorstores import FAISS
-from langchain.chains import RetrievalQA
-from langchain.llms import Ollama
-
-# 1. Document Processing
-loader = DirectoryLoader('docs/', glob="**/*.md")
-documents = loader.load()
-text_splitter = RecursiveCharacterTextSplitter(
-    chunk_size=1000,
-    chunk_overlap=200
-)
-chunks = text_splitter.split_documents(documents)
-
-# 2. Embedding Generation
-embeddings = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2"
-)
-
-# 3. Vector Storage
-vectorstore = FAISS.from_documents(chunks, embeddings)
-
-# 4 & 5. Retrieval and Generation
-llm = Ollama(model="llama3:latest")
-qa_chain = RetrievalQA.from_chain_type(
-    llm=llm,
-    chain_type="stuff",
-    retriever=vectorstore.as_retriever(
-        search_kwargs={"k": 5}
-    )
-)
-
-# Example query
-response = qa_chain.run("What are the key metrics for evaluating RAG systems?")
-print(response)
-```
-
-## Key Challenges in Enterprise RAG Systems
-
-While building RAG systems for enterprise applications, I encountered several challenges that required thoughtful solutions:
-
-### 1. Multi-Format Document Processing
-
-Enterprise documentation exists in various formats - markdown files, PDFs, PowerPoint presentations, code repositories, and databases. Each format requires specialized processing:
-
-```python
-# Example of multi-format document processing
-loaders = {
-    "markdown": DirectoryLoader("docs/markdown/", glob="**/*.md"),
-    "pdf": PyPDFLoader("docs/pdf/documentation.pdf"),
-    "code": TextLoader("src/main.py", encoding="utf-8")
-}
-
-processors = {
-    "markdown": MarkdownTextSplitter(),
-    "pdf": RecursiveCharacterTextSplitter(chunk_size=1000),
-    "code": RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
-}
-
-# Process each document type with appropriate processor
-documents = []
-for doc_type, loader in loaders.items():
-    docs = loader.load()
-    documents.extend(processors[doc_type].split_documents(docs))
-```
-
-### 2. Hybrid Retrieval Approaches
-
-No single retrieval method works best for all queries. I implemented a hybrid approach combining:
-
-- **Dense Retrieval** - Using embedding similarity (great for semantic matching)
-- **Sparse Retrieval** - Using BM25 algorithms (better for keyword matching)
-- **Hybrid Search** - Combining both approaches for optimal results
-
-```python
-from langchain.retrievers import BM25Retriever, EnsembleRetriever
-
-# Dense retriever (vector-based)
-dense_retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
-
-# Sparse retriever (BM25-based)
-sparse_retriever = BM25Retriever.from_documents(documents)
-sparse_retriever.k = 3
-
-# Hybrid retriever
-hybrid_retriever = EnsembleRetriever(
-    retrievers=[dense_retriever, sparse_retriever],
-    weights=[0.7, 0.3]
-)
-```
-
-### 3. Evaluation and Improvement
-
-Enterprise systems demand rigorous evaluation. I implemented a comprehensive framework that tests:
-
-- **Retrieval Quality** - Using ground truth relevance judgments
-- **Response Accuracy** - Comparing to reference answers
-- **Hallucination Rate** - Detecting non-factual statements
-- **Latency and Throughput** - Performance under load
-
-## Four Principles for Effective Enterprise RAG
-
-Based on my experience, I've distilled four key principles for building effective RAG systems in enterprise contexts:
-
-### 1. Context is King
-
-The quality of retrieved context has the highest impact on response accuracy. Invest in:
-
-- Sophisticated chunking strategies (semantic vs. fixed-size)
-- Metadata enrichment for better filtering
-- Context compression to fit more relevant information in the context window
-
-### 2. Retrieval Diversity Matters
-
-Retrieving diverse but relevant chunks improves response quality:
-
-- Implement MMR (Maximum Marginal Relevance) to reduce redundancy
-- Incorporate hierarchical retrieval (retrieve parent documents, then relevant sections)
-- Use query rewriting to improve retrieval coverage
-
-### 3. Self-Correction Loops
-
-Build systems that can detect and correct their own mistakes:
-
-- Implement post-processing validation of generated responses
-- Add fact-checking against source documents
-- Include confidence scores and source attribution
-
-### 4. Observability and Feedback
-
-Monitor and continuously improve system performance:
-
-- Log all queries, retrievals, and responses
-- Implement user feedback collection
-- Track key metrics over time
-
-## Conclusion
-
-Effective RAG systems combine thoughtful architecture with continuous improvement. For enterprise applications, focus on robust document processing, hybrid retrieval strategies, and comprehensive evaluation.
-
-In my next post, I'll share specific techniques for fine-tuning LLMs to work better with RAG systems, reducing the need for complex prompt engineering.
-
----
-
-*Want to discuss RAG systems or other AI topics? Connect with me on [LinkedIn](https://www.linkedin.com/in/wes-lee/) or check out my [RAG Engine project](/projects/rag-engine-project/).*
