@@ -12,7 +12,7 @@ blog_post: /ai/finance/machine-learning/reinforcement-learning/2025/05/20/ml-tra
 
 Developed a modular machine learning framework for algorithmic trading strategy development, testing, and comparison. This comprehensive platform enables traders and researchers to experiment with different approaches to market prediction, including manual rule-based strategies, decision tree ensembles, and reinforcement learning (Q-learning) techniques, all with realistic backtesting that accounts for trading costs and market impact.
 
-> Read my detailed blog post: [ML Trading Strategist: Comparing Machine Learning Approaches for Algorithmic Trading](/ai/finance/machine-learning/reinforcement-learning/2025/05/20/ml-trading-strategist-comparing-learning-approaches.html)
+> Read my detailed blog post: [ML Trading Strategist: Comparing Machine Learning Approaches for Algorithmic Trading](/ai/finance/machine-learning/reinforcement-learning/2025/05/12/ml-trading-strategist-comparing-learning-approaches.html)
 
 ## Business Problem & Context
 

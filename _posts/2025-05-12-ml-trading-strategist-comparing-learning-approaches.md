@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "ML Trading Strategist: Comparing Machine Learning Approaches for Algorithmic Trading"
-date: 2025-05-20 10:15:00 +0800
+date: 2025-05-12 09:30:00 +0800
 categories: [ai, finance, machine-learning, reinforcement-learning]
 tags: [algorithmic-trading, decision-trees, q-learning, technical-analysis, backtesting]
 author: Wes Lee
