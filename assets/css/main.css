@@ -1,0 +1,216 @@
+/* Main CSS file for Wes Lee's Portfolio */
+
+/* Include theme styles */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+@import "custom.css";
+
+/* Global styles */
+:root {
+  --accent-color: #4fb1ba;
+  --text-color: #333;
+  --heading-color: #222;
+  --background-color: #fff;
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --light-bg: #f8f9fa;
+  --dark-bg: #343a40;
+  --border-radius: 5px;
+  --transition-speed: 0.3s;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.7;
+  color: var(--text-color);
+}
+
+/* Hero section */
+.hero-section {
+  text-align: center;
+  padding: 5rem 1rem;
+  margin-bottom: 3rem;
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.07), rgba(0, 102, 204, 0.13));
+  border-radius: var(--border-radius);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.tagline {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: #6c757d;
+}
+
+.hero-buttons {
+  margin-top: 2rem;
+}
+
+/* Project cards */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  border: 1px solid #eee;
+  border-radius: var(--border-radius);
+  padding: 0;
+  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: white;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.project-image-container {
+  height: 200px;
+  overflow: hidden;
+}
+
+.project-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-speed) ease;
+}
+
+.project-card:hover .project-thumbnail {
+  transform: scale(1.05);
+}
+
+.project-info {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.project-excerpt {
+  flex-grow: 1;
+  margin-bottom: 1rem;
+}
+
+.project-card h3 {
+  margin-top: 0;
+}
+
+.tech-stack {
+  margin: 1rem 0;
+}
+
+.tech-tag {
+  display: inline-block;
+  background-color: #e9ecef;
+  padding: 0.25rem 0.5rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.project-links {
+  margin-top: 1.5rem;
+}
+
+/* Skills section */
+.skill-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.skill-category {
+  border-left: 3px solid #007bff;
+  padding-left: 1rem;
+}
+
+.skill-category h3 {
+  color: #007bff;
+}
+
+.skill-category ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.skill-category li {
+  margin-bottom: 0.5rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  margin-right: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #0069d9;
+  color: white;
+  text-decoration: none;
+}
+
+.btn.github {
+  background-color: #333;
+}
+
+.btn.github:hover {
+  background-color: #222;
+}
+
+/* Sections spacing */
+section {
+  margin-bottom: 4rem;
+  padding-top: 1rem;
+}
+
+/* About page */
+.about-image {
+  float: right;
+  margin: 0 0 1rem 1rem;
+  border-radius: 50%;
+  max-width: 250px;
+}
+
+@media (max-width: 768px) {
+  .about-image {
+    float: none;
+    margin: 0 auto 1rem;
+    display: block;
+  }
+}
+
+/* Project detail page */
+.project-header {
+  margin-bottom: 2rem;
+}
+
+.project-image {
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+}
+
+.project-meta {
+  margin-bottom: 1.5rem;
+  color: #6c757d;
+}

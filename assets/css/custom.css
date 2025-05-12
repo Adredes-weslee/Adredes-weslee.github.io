@@ -1,0 +1,114 @@
+/* Custom styles for Wes Lee's portfolio */
+
+/* Enhance typography */
+h1, h2, h3 {
+  font-weight: 700;
+}
+
+/* Site title styling to match the original but without link behavior */
+.site-title {
+  font-size: 1.625rem;
+  font-weight: 300;
+  line-height: 3.375rem;
+  letter-spacing: -1px;
+  margin-bottom: 0;
+  color: #424242;
+  display: block;
+}
+
+/* Project cards on projects page */
+.projects-list .project-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.projects-list .project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Tech tags styling */
+.tech-tag {
+  display: inline-block;
+  background: #f0f0f0;
+  padding: 3px 8px;
+  border-radius: 3px;
+  font-size: 0.8em;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+/* Contact page styling */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.contact-method {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-method:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.contact-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--accent-color);
+}
+
+/* Skills page styling */
+.skill-section {
+  margin-bottom: 2rem;
+}
+
+.skill-level {
+  height: 8px;
+  background: #eee;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+  overflow: hidden;
+}
+
+.skill-level-fill {
+  height: 100%;
+  background: var(--accent-color);
+}
+
+/* Blog post styling */
+.post-meta {
+  color: #777;
+  font-size: 0.9em;
+  margin-bottom: 1rem;
+}
+
+.post-thumbnail {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+/* Button styling */
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
