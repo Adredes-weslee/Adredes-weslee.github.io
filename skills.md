@@ -10,6 +10,7 @@ permalink: /skills/
 
 ### Natural Language Processing (NLP)
 - **Large Language Models (LLMs)** - Fine-tuning and deployment of models like LLaMA 3.1, DeBERTa, Phi-3
+- **LLM Applications** - RAG systems, instruction tuning, retrieval optimization
 - **Transformer Architecture** - Understanding and application of attention mechanisms
 - **Text Processing** - Tokenization, lemmatization, embeddings, vector search
 - **Sentiment Analysis** - Classification of text sentiment using hybrid labeling approaches
@@ -53,7 +54,7 @@ permalink: /skills/
 ### Visualization
 - **Static Visualization** - Matplotlib, Seaborn for publication-quality charts
 - **Interactive Dashboards** - Plotly Dash, Streamlit for web applications
-- **BI Tools** - Power BI with DAX
+- **BI Tools** - Power BI with DAX for business intelligence
 
 ### Web Development
 - **API Development** - FastAPI, Pydantic for schema validation
@@ -94,3 +95,17 @@ permalink: /skills/
 - **Curriculum Development** - Creating structured learning materials
 - **Assessment Design** - Evaluation methods and metrics
 - **Chemistry Expertise** - A-Level and IB curriculum knowledge
+
+## Business Tools
+
+- **Project Management** - Agile methodologies, task tracking
+- **Presentation Tools** - Advanced PowerPoint, Google Slides
+- **Automation** - Google Apps Script for workflow automation
+- **Collaboration** - Git, GitHub, GitLab for version control
+- **Documentation** - Technical writing, Markdown, Google Workspace
+
+## Certifications
+
+- **AWS Certified Cloud Practitioner** (Expires Dec 2026)
+- **BCG RISE 2.0** (Python Expert, ML Expert, Data Analytics)
+- **AI Singapore AIAP** - Completion of National AI Apprenticeship Program

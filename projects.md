@@ -10,27 +10,45 @@ show_collection: projects
 
 Below are some of my key projects in AI, machine learning, and data science. Each project demonstrates different aspects of my technical skills and problem-solving approach.
 
-## Machine Learning & AI
+## LLM & NLP Projects
 
-These projects showcase my work with various machine learning algorithms, deep learning models, and AI applications:
+These projects showcase my work with large language models, transformer architectures, and natural language processing:
 
-* Custom RAG Engine - Containerized document QA system
-* LLM-Powered Query Generator - Information extraction from natural language 
-* AI-Powered Robo Advisor - Portfolio optimization using reinforcement learning
-* Sentiment Analysis - Hybrid labeling system for YouTube comments
+* [**Custom RAG Engine for Enterprise Document QA**](/projects/rag-engine-project/) - Containerized document QA system with hybrid embedding models and self-hosted inference
+* [**LLM-Powered Query Generator**](/projects/rag-engine-project/) - Information extraction engine using DSPy and Langfuse for structured data insights
+* [**Sentiment Analysis of YouTube Comments**](/projects/sentiment-analysis/) - Hybrid labeling system combining rule-based and transformer approaches
 
-## Data Analysis & Forecasting
+## Machine Learning & AI Applications
 
-Projects focusing on extracting insights from data and making predictions:
+Projects demonstrating various ML techniques and domain applications:
 
-* Customer Segmentation - RFM analysis and price optimization
-* Dengue Forecasting - Time series analysis with health interventions
-* HDB Resale Price Prediction - Regression modeling with feature engineering
-* Wet-Bulb Temperature Analysis - Climate data modeling and risk assessment
+* [**AI-Powered Robo Advisor**](/projects/robo-advisor-project/) - Portfolio optimization using reinforcement learning and risk profiling
+* [**HDB Resale Price Prediction**](/projects/hdb-resale-prices/) - Advanced regression modeling for Singapore's housing market
+* [**Wet-Bulb Temperature Analysis**](/projects/wet-bulb-temperature/) - Climate data modeling for heat stress prediction
 
-## Key Skills Demonstrated
+## Data Science & Business Analytics
 
-* **Machine Learning:** Classification, regression, clustering, time series
-* **NLP & LLMs:** RAG systems, fine-tuning, embedding techniques
-* **Data Science:** Feature engineering, statistical modeling, visualization
-* **MLOps:** Containerization, model tracking, deployment pipelines
+Projects focused on extracting insights and delivering business value:
+
+* [**Customer Segmentation & Price Optimization**](/projects/customer-segmentation/) - RFM analysis and revenue optimization for frozen food distributor
+* [**Forecasting Dengue Cases**](/projects/dengue-forecasting/) - Time series analysis with health intervention cost-benefit analysis
+
+## Technical Skills Demonstrated
+
+* **Machine Learning:** Classification, regression, clustering, time series forecasting
+* **NLP & LLMs:** RAG systems, fine-tuning, embedding techniques, sentiment analysis
+* **MLOps:** Docker, Kubernetes, MLflow, observability, deployment pipelines
+* **Data Analysis:** Feature engineering, statistical modeling, visualization
+* **Business Impact:** Cost-benefit analysis, revenue optimization, actionable insights
+
+## Project Methodology
+
+All projects follow a structured development approach:
+
+1. **Problem Definition** - Clear objectives and success metrics
+2. **Data Collection & Processing** - Rigorous cleaning, transformation, and feature engineering
+3. **Model Development** - Iterative training, validation, and hyperparameter tuning
+4. **Evaluation** - Comprehensive testing using appropriate metrics
+5. **Deployment & Documentation** - Production-ready code with clear documentation
+
+Interested in collaborating on a project? Feel free to [contact me](/contact/) to discuss potential opportunities.

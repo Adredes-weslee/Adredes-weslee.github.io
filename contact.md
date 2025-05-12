@@ -6,7 +6,7 @@ permalink: /contact/
 
 # Get In Touch
 
-I'm always interested in new opportunities, collaborations, or just chatting about data science, AI, and machine learning. Feel free to reach out through any of the channels below.
+I'm always interested in new opportunities, collaborations, or just chatting about AI, machine learning, and data science. Feel free to reach out through any of the channels below.
 
 ## Connect With Me
 
@@ -49,20 +49,25 @@ I'm always interested in new opportunities, collaborations, or just chatting abo
 
 ## Work Opportunities
 
-I'm currently open to:
+I'm particularly interested in opportunities in these areas:
 
-- Full-time positions in AI Engineering and Data Science
-- Consulting projects involving NLP, LLMs, and ML implementations
-- Collaborative research in applied machine learning
-- Speaking engagements on AI and data science topics
+- **AI Engineering** - Building production-grade ML and LLM applications
+- **NLP & LLM Development** - RAG systems, fine-tuning, and production deployment
+- **Data Science Consulting** - Solving business problems through data and ML
+- **MLOps & Infrastructure** - Designing robust ML infrastructure and pipelines
 
-## Response Policy
+## Collaboration
 
-I aim to respond to all inquiries within 48 hours. For urgent matters, please indicate so in your message subject line.
+Open to collaboration on:
 
-## Location
+- **Open Source Projects** - Contributing to ML/AI libraries and frameworks
+- **Research Initiatives** - Exploring cutting-edge techniques in NLP and ML
+- **Technical Writing** - Creating educational content about AI and data science
+- **Community Events** - Speaking opportunities and knowledge sharing
 
-Based in Singapore, but open to remote work and international opportunities.
+## Let's Connect
+
+Whether you have a specific project in mind or just want to discuss the latest developments in AI and machine learning, I'm always happy to chat. Drop me a line through any of the channels above.
 
 <style>
 .contact-grid {

@@ -8,39 +8,40 @@ permalink: /blog/
 
 Welcome to my blog where I share insights, tutorials, and thoughts about AI, machine learning, data science, and software engineering.
 
-## Coming Soon
+## Featured Post
 
-I'm in the process of developing content for this section. Soon you'll find articles on:
+### [Building Effective RAG Systems: Lessons from Enterprise Applications](/ai/nlp/rag/2025/05/12/building-effective-rag-systems.html)
 
-- LLM fine-tuning techniques and best practices
-- Building RAG systems for enterprise applications
-- Time series forecasting approaches
-- Portfolio optimization using reinforcement learning
-- NLP techniques for sentiment analysis
-- And much more!
+Explore key insights from implementing Retrieval-Augmented Generation systems in enterprise environments, focusing on practical implementation strategies and lessons learned.
+
+## Upcoming Topics
+
+I'll be regularly sharing content on:
+
+### LLM Engineering
+- Production-grade RAG system architecture
+- Optimization techniques for retrieval quality
+- Fine-tuning approaches for domain-specific performance
+- Evaluation frameworks for LLM systems
+
+### MLOps & Deployment
+- Containerizing ML applications with Docker and Kubernetes
+- Observability patterns for LLM applications
+- CI/CD pipelines for ML models
+- Cost-effective inference strategies
+
+### Data Science & Machine Learning
+- Time series forecasting techniques
+- Feature engineering best practices
+- Hybrid modeling approaches
+- Evaluation metrics and validation strategies
+
+### AI Applications
+- Portfolio optimization with reinforcement learning
+- NLP for sentiment analysis and text classification
+- Business analytics and customer segmentation
+- Climate data modeling and prediction
 
 ## Subscribe
 
-Want to be notified when new content is available? Subscribe to updates:
-
-<div class="subscription-form">
-  <p>This subscription feature is currently under development. Please check back soon!</p>
-  <!-- Form will be added here later -->
-</div>
-
-## Recent Talks & Presentations
-
-While I prepare the blog content, you might be interested in some of my recent presentations:
-
-1. **Agentic AI Frameworks** - Presentation on ReAct, Reflexion, and CrewAI during the AIAP deep-skilling phase
-2. **RAG System Architecture** - Technical breakdown of retrieval-augmented generation for enterprise document QA
-3. **LLM Instruction Tuning with DSPy** - Approaches to fine-tuning language models for structured information extraction
-
-<style>
-.subscription-form {
-  background: #f8f9fa;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin: 2rem 0;
-}
-</style>
+Stay updated with my latest posts by [subscribing to the RSS feed](/feed.xml) or connecting with me on [LinkedIn](https://www.linkedin.com/in/wes-lee/).

@@ -10,7 +10,7 @@ permalink: /about/
 
 ## Professional Summary
 
-Former educator turned AI Engineer with a proven track record in stakeholder engagement, business storytelling, and deploying real-world machine learning solutions. Selected for Singapore's National AI Apprenticeship Programme (AIAP) and currently building a large language model (LLM)-powered information extraction engine for a global HR analytics platform. Experienced in NLP, MLOps, and data science consulting, with strong cross-domain capabilities in business analytics, finance, and education.
+Former educator turned AI Engineer with a proven track record in stakeholder engagement, business storytelling, and deploying real-world machine learning solutions. Selected for Singapore's National AI Apprenticeship Programme (AIAP) and building a large language model (LLM)-powered information extraction engine for a global HR analytics platform. Experienced in NLP, MLOps, and data science consulting, with strong cross-domain capabilities in business analytics, finance, and education.
 
 ## Experience
 
@@ -82,7 +82,7 @@ Led the Chemistry department at a premier tuition centre, specializing in A-Leve
 ## Education
 
 ### Georgia Institute of Technology
-**Master of Science - MS, Analytics** | *Aug 2024 - Dec 2026 (Expected)*
+**Master of Science - MS, Analytics** | *Aug 2023 - Dec 2025 (Expected)*
 - **Grade:** 4.0/4.0
 - Interdisciplinary data science and analytics masters degree program
 
@@ -91,15 +91,15 @@ Led the Chemistry department at a premier tuition centre, specializing in A-Leve
 - Deep understanding of big data—including how to acquire, preprocess, store, manage, analyze, and visualize large datasets
 
 **Modules Completed:**
-- **Fall 24:** CSE 6040: Computing for Data Analytics - A
-- **Spring 25:** MGT 6033: Analysis of Unstructured Data - A
-- **Spring 25:** CS 7646: Machine Learning for Trading - A
+- **Fall 23:** CSE 6040: Computing for Data Analytics - A
+- **Spring 24:** MGT 6033: Analysis of Unstructured Data - A
+- **Spring 24:** CS 7646: Machine Learning for Trading - A
 
 **Modules Pending:**
-- **Summer 25:** ISYE 6525: High-Dimensional Data Analytics
-- **Summer 25:** MGT 6203: Data Analytics in Business
-- **Fall 25:** ISYE 6740: Computational Data Analytics
-- **Fall 25:** ISYE 6644: Simulation
+- **Summer 24:** ISYE 6525: High-Dimensional Data Analytics
+- **Summer 24:** MGT 6203: Data Analytics in Business
+- **Fall 24:** ISYE 6740: Computational Data Analytics
+- **Fall 24:** ISYE 6644: Simulation
 
 ### General Assembly
 **Data Science Immersive** | *Jun 2023 - Sep 2023*
@@ -113,7 +113,7 @@ Led the Chemistry department at a premier tuition centre, specializing in A-Leve
 - Acquired skills in Python, Pandas, NumPy, Scikit-learn, SQL, Google BigQuery, and data visualization tools like Matplotlib and Seaborn
 
 ### BCG RISE 2.0
-**Business and Data Analytics Programme (Data Analyst Track)** | *Feb 2024 - Aug 2024*
+**Business and Data Analytics Programme (Data Analyst Track)** | *Feb 2023 - Aug 2023*
 - Completed a competitive, consultant-led program by Boston Consulting Group focused on data analytics and business problem-solving
 - **Technical Skills Gained:**
   - Developed proficiency in SQL for data querying, joins, and transformations on relational databases (MySQL)
