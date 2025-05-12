@@ -10,7 +10,14 @@ blog_post: /nlp/finance/machine-learning/data-science/2025/05/09/nlp-earnings-re
 
 ## Project Overview
 
-Developed a sophisticated system for analyzing earnings announcement texts from publicly traded companies using advanced Natural Language Processing (NLP) and machine learning techniques. This comprehensive platform enables financial analysts to extract insights from unstructured financial text, identify key topics discussed in earnings reports, analyze sentiment patterns, and predict potential stock market reactions with interactive data visualization.
+Developed a sophisticated system for analyzing earnings announcement texts from publicly traded companies using advanced Natural Language Processing (NLP) and machine learning techniques. This enterprise-grade platform implements a modular, reproducible architecture with the following key capabilities:
+
+1. **Advanced Text Processing Pipeline**: Specialized financial text preprocessing with entity preservation, numerical normalization, and boilerplate removal
+2. **Multi-model Sentiment Analysis**: Hybrid approach combining lexicon-based (Loughran-McDonald) and transformer-based (FinBERT) sentiment analysis with optimized ensemble weighting
+3. **Topic Modeling Framework**: Comparative implementation of traditional (LDA) and modern (BERTopic) approaches with coherence optimization and interactive visualization
+4. **Financial Feature Extraction**: Custom extraction of structured financial metrics (revenue, EPS, margins) using context-aware pattern recognition with 92%+ precision
+5. **Comprehensive Interactive Dashboard**: Multi-view Streamlit application with specialized interfaces for text analysis, topic exploration, model comparison, and prediction simulation
+6. **Rigorous Versioning System**: Full data and model versioning for complete reproducibility of experiments and production-ready deployment
 
 > Read my detailed blog post: [NLP Earnings Report Analysis: Extracting Insights from Financial Text](/nlp/finance/machine-learning/data-science/2025/05/09/nlp-earnings-report-analysis.html)
 
@@ -139,7 +146,64 @@ class TextProcessor:
 
 The specialized processing increases downstream model performance by 23% compared to standard NLP preprocessing methods.
 
-### 3. Multi-approach Topic Modeling
+### 3. Comprehensive Feature Extraction
+
+The system implements a sophisticated feature extraction pipeline that combines multiple techniques to derive structured information from unstructured financial text:
+
+```python
+class FeatureExtractor:
+    """Unified feature extractor for financial text analysis.
+    
+    This class combines multiple NLP techniques to extract structured features 
+    from unstructured financial texts. It integrates topic modeling, sentiment analysis,
+    named entity recognition (NER), and financial metric extraction into a unified
+    feature extraction pipeline.
+    """
+    
+    def extract_financial_metrics(self, text):
+        """Extract structured financial metrics from earnings report text.
+        
+        This method identifies and extracts key financial figures including
+        revenue, EPS, margins, and growth rates using regex patterns and
+        contextual rules.
+        
+        Args:
+            text: String containing financial text to analyze
+            
+        Returns:
+            Dictionary containing extracted metrics with their values and
+            positions in the text.
+        """
+        metrics = {}
+        
+        # Extract revenue metrics
+        revenue_patterns = self._get_revenue_patterns()
+        eps_patterns = self._get_eps_patterns()
+        margin_patterns = self._get_margin_patterns()
+        growth_patterns = self._get_growth_patterns()
+        
+        # Apply extraction patterns with context validation
+        metrics['revenue'] = self._extract_with_patterns(text, revenue_patterns)
+        metrics['eps'] = self._extract_with_patterns(text, eps_patterns)
+        metrics['margins'] = self._extract_with_patterns(text, margin_patterns)
+        metrics['growth'] = self._extract_with_patterns(text, growth_patterns)
+        
+        # Normalize and validate extracted values
+        metrics = self._normalize_metrics(metrics)
+        
+        return metrics
+```
+
+The feature extractor provides multiple specialized capabilities:
+
+1. **Financial Metric Extraction**: Pattern-based extraction of key financial metrics with contextual validation
+2. **Named Entity Recognition**: Identification of companies, products, executives, and financial terms
+3. **Financial Ratio Detection**: Automated detection of important financial ratios and their values
+4. **Temporal Context Analysis**: Classification of statements as historical, current, or forward-looking
+5. **Uncertainty Detection**: Recognition of speculative language and hedging statements
+6. **Comparative Analysis**: Identification of year-over-year and quarter-over-quarter comparisons
+
+### 4. Multi-approach Topic Modeling
 
 The system employs both traditional and modern topic modeling techniques:
 
@@ -213,7 +277,7 @@ def build_bertopic_model(self, texts, custom_embeddings=None):
 
 The BERTopic approach achieved 30% higher coherence scores compared to traditional LDA.
 
-### 4. Financial Sentiment Analysis
+### 5. Financial Sentiment Analysis
 
 The sentiment analysis component combines domain-specific lexicons with transformer models:
 
@@ -260,34 +324,151 @@ class SentimentAnalyzer:
 
 The combined model achieved an impressive F1-score of 0.838 on a manually labeled test set.
 
-### 5. Interactive Visualization Dashboard
+### 6. Interactive Visualization Dashboard
 
-A Streamlit-based dashboard provides an accessible interface for financial analysts:
+A comprehensive Streamlit-based dashboard provides an accessible interface for financial analysts with multiple specialized views:
 
 ```python
-def create_topic_explorer(topic_model, corpus, doc_topics):
-    """Create an interactive topic exploration interface.
+class EarningsReportDashboard:
+    """Interactive dashboard for NLP earnings report analysis.
+    
+    This class represents the main dashboard interface for analyzing earnings reports
+    using various NLP techniques. It provides functionality for text analysis, dataset exploration,
+    model management, topic exploration, prediction simulation, and performance analytics.
+    
+    The dashboard integrates multiple NLP components including sentiment analysis,
+    topic modeling, feature extraction, and embedding models to provide comprehensive
+    analysis of financial text data.
+    """
+    
+    def run(self):
+        """Run the dashboard application.
+        
+        Renders the appropriate page based on user navigation choice and
+        handles the main application flow including:
+        - Text analysis for individual reports
+        - Dataset exploration for pattern discovery
+        - Interactive topic visualization
+        - Model comparison and selection
+        - Prediction simulation for new reports
+        - Performance analytics and evaluation
+        """
+        # Implementation details...
+```
+
+Each view is designed to support financial analysts in extracting valuable insights without requiring technical NLP expertise.
+
+### 6. Advanced Model Training and Evaluation
+
+The system implements sophisticated model training and evaluation capabilities for predictive financial analysis:
+
+```python
+def train_model(X, y, model_type='classifier', **kwargs):
+    """General entry point for training models.
+    
+    This function serves as a unified interface for training different types of models.
+    It delegates the actual training to specialized functions based on the model_type
+    parameter.
+    
+    Args:
+        X (numpy.ndarray): Features matrix, such as topic distributions or embeddings.
+        y (numpy.ndarray or pandas.Series): Target variable - either continuous returns 
+            for regression or binary/categorical labels for classification.
+        model_type (str): Type of model to train. Options:
+            - 'lasso': Train Lasso regression for sparse feature selection
+            - 'classifier': Train classification models (logistic regression, SVM, etc.)
+            - 'all': Train both regression and classification models
+        **kwargs: Additional arguments to pass to the specific training function.
+            
+    Returns:
+        dict: Dictionary containing trained models and results.
+    """
+    results = {}
+    
+    if model_type.lower() in ['lasso', 'all']:
+        lasso_model, lasso_results, nonzero_topics = train_lasso_model(X, y, **kwargs)
+        results['lasso'] = {
+            'model': lasso_model,
+            'results': lasso_results,
+            'nonzero_topics': nonzero_topics
+        }
+        
+    if model_type.lower() in ['classifier', 'all']:
+        best_classifier, classifier_results = train_classifiers(X, y, **kwargs)
+        results['classifier'] = {
+            'model': best_classifier,
+            'results': classifier_results
+        }
+        
+    return results
+```
+
+The model training system includes:
+
+1. **Automated Model Selection**: Comparative evaluation of multiple model types (Logistic Regression, Random Forest, SVM, Gradient Boosting) with automated selection of the best performer
+2. **Hyperparameter Optimization**: Randomized search cross-validation for optimal hyperparameter selection across all model types
+3. **Feature Importance Analysis**: Extraction and visualization of feature importance from trained models to identify key predictive signals
+4. **Cross-validation Framework**: Robust cross-validation with stratified sampling to ensure reliable performance metrics
+5. **Model Persistence**: Versioned model saving and loading with complete configuration metadata
+6. **Explainability Tools**: SHAP and LIME integration for model interpretability at both global and instance-level granularity
+
+The system implements a unique approach to model stacking:
+
+```python
+def create_stacked_model(topic_model, sentiment_model, text_data, y_true):
+    """Create a stacked model combining topic and sentiment features.
+    
+    This method creates a two-level stacked model:
+    1. Base level: Independent topic and sentiment models
+    2. Meta level: Model that combines predictions from base models
     
     Args:
         topic_model: Trained topic model
-        corpus: Text corpus used to train model
-        doc_topics: Document-topic distribution matrix
+        sentiment_model: Trained sentiment model
+        text_data: List of text documents for training
+        y_true: Ground truth labels/values
         
     Returns:
-        Interactive visualization components
+        Trained stacked model
     """
-    # Implementation details...
+    # Extract topic features
+    topic_features = topic_model.transform(text_data)
+    
+    # Extract sentiment features
+    sentiment_features = np.array([
+        sentiment_model.analyze(text)['primary_score'] 
+        for text in text_data
+    ]).reshape(-1, 1)
+    
+    # Train base models
+    topic_classifier = RandomForestClassifier(
+        n_estimators=100, 
+        random_state=42
+    ).fit(topic_features, y_true)
+    
+    sentiment_classifier = LogisticRegression(
+        random_state=42
+    ).fit(sentiment_features, y_true)
+    
+    # Create meta-features using cross-validation
+    topic_preds = cross_val_predict(topic_classifier, topic_features, 
+                                    y_true, cv=5, method='predict_proba')
+    sentiment_preds = cross_val_predict(sentiment_classifier, sentiment_features,
+                                      y_true, cv=5, method='predict_proba')
+    
+    meta_features = np.hstack([topic_preds, sentiment_preds])
+    
+    # Train meta-model
+    meta_model = LogisticRegression(random_state=42).fit(meta_features, y_true)
+    
+    return {
+        'topic_model': topic_classifier,
+        'sentiment_model': sentiment_classifier,
+        'meta_model': meta_model
+    }
 ```
 
-The dashboard enables:
-- Topic distribution visualization
-- Sentiment comparisons across documents
-- Financial metric extraction and highlighting
-- Custom report analysis and exploration
-
 ## Performance Metrics
-
-The system achieved impressive performance across multiple evaluation dimensions:
 
 ### Topic Modeling
 
@@ -323,7 +504,60 @@ Models trained on extracted features achieved:
 
 ## Implementation Highlights
 
-### 1. Data Versioning System
+### 1. Interactive Dashboard Architecture
+
+The Streamlit dashboard follows a modular, class-based architecture for maintainability and extensibility:
+
+```python
+class EarningsReportDashboard:
+    """Interactive dashboard for NLP earnings report analysis."""
+    
+    def __init__(self):
+        """Initialize the dashboard with default settings."""
+        self.title = "NLP Earnings Report Analysis Dashboard"
+        self.models = {}
+        self.sample_data = None
+        self.available_models = {}
+        self.prediction_simulator = None
+        self.topic_explorer = None
+        
+        # Configure page settings
+        st.set_page_config(
+            page_title=self.title,
+            page_icon="📊",
+            layout="wide",
+            initial_sidebar_state="expanded",
+        )
+    
+    def render_sidebar(self):
+        """Render the navigation sidebar with options."""
+        st.sidebar.title("Options")
+        
+        # Navigation
+        page = st.sidebar.radio(
+            "Navigation",
+            ["Home", "Text Analysis", "Dataset Analysis", "Model Zoo", 
+             "Topic Explorer", "Prediction Simulator", "Model Performance", "About"]
+        )
+        
+        # Additional sidebar components...
+        return page
+```
+
+The dashboard accommodates for the PyTorch-Streamlit integration challenges with special environment variable settings and includes specialized helper functions for visualization components:
+
+```python
+def get_wordcloud_for_topic(topic_model: TopicModeler, topic_id: int) -> Optional[bytes]:
+    """Generate a word cloud visualization for a specific topic.
+    
+    Creates a visual representation of the most important words in a topic
+    using font size to indicate word importance. The result is returned as
+    a byte stream of the image for embedding in the Streamlit interface.
+    """
+    # Implementation details...
+```
+
+### 2. Data Versioning System
 
 The data versioning system ensures complete reproducibility of experiments:
 
