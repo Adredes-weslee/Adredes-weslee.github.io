@@ -5,7 +5,7 @@ categories: machine-learning finance reinforcement-learning data-science
 image: /assets/images/placeholder.svg
 technologies: [Python, Pandas, Scikit-learn, Streamlit, NumPy, YAML, Reinforcement Learning]
 github: https://github.com/Adredes-weslee/ML-Trading-Strategist
-blog_post: /ai/finance/machine-learning/reinforcement-learning/2025/05/20/ml-trading-strategist-comparing-learning-approaches.html
+blog_post: /ai/finance/machine-learning/reinforcement-learning/2025/05/12/ml-trading-strategist-comparing-learning-approaches.html
 ---
 
 ## Project Overview
