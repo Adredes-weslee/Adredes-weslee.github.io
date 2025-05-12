@@ -14,6 +14,10 @@ Welcome to my blog where I share insights, tutorials, and thoughts about AI, mac
 
 Explore key insights from implementing Retrieval-Augmented Generation systems in enterprise environments, focusing on practical implementation strategies and lessons learned.
 
+### [Building a Robust YouTube Comment Sentiment Analyzer](/nlp/machine-learning/sentiment-analysis/2023/07/10/building-youtube-comment-sentiment-analyzer.html)
+
+Learn how to combine multiple sentiment analysis models to create a hybrid labeling system that accurately classifies YouTube comments for digital reputation management.
+
 ### [Predicting HDB Resale Prices in Singapore](/data-science/machine-learning/real-estate/2023/06/18/predicting-hdb-resale-prices.html)
 
 Explore how machine learning can decode Singapore's unique public housing market, revealing key price drivers and providing practical insights for homebuyers and policymakers.
