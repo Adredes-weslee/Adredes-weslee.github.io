@@ -1,0 +1,59 @@
+---
+permalink: /404.html
+layout: page
+title: Page Not Found
+description: "Sorry, the page you were looking for doesn't exist."
+hide_description: true
+sitemap: false
+---
+
+<div class="page-not-found">
+  <h1 class="error-code">404</h1>
+  
+  <p class="lead">Sorry, we've misplaced that URL or it's pointing to something that doesn't exist anymore.</p>
+  
+  <hr class="divider">
+  
+  <p>Here are some helpful links instead:</p>
+  
+  <div class="helpful-links">
+    <a href="{{ '/' | relative_url }}" class="btn">Home</a>
+    <a href="{{ '/projects/' | relative_url }}" class="btn">Projects</a>
+    <a href="{{ '/about/' | relative_url }}" class="btn">About Me</a>
+    <a href="{{ '/contact/' | relative_url }}" class="btn">Contact</a>
+  </div>
+</div>
+
+<style>
+.page-not-found {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.error-code {
+  font-size: 8rem;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(135deg, var(--accent-color) 0%, #4fb1ba 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.divider {
+  margin: 2rem auto;
+  width: 60px;
+  border-top: 4px solid var(--accent-color);
+}
+
+.helpful-links {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.helpful-links .btn {
+  min-width: 120px;
+}
+</style>

@@ -1,0 +1,83 @@
+---
+layout: base
+---
+
+<article class="page" role="article">
+  <header>
+    <h1 class="page-title">{{ page.title }}</h1>
+    {% if page.description %}<p class="lead">{{ page.description }}</p>{% endif %}
+  </header>
+  
+  {{ content }}
+  
+  {% if page.show_collection %}
+    <div class="projects-container">
+      {% assign collection = site[page.show_collection] | sort: "date" | reverse %}
+      {% for project in collection %}
+        <a href="{{ project.url | relative_url }}" class="project-card">
+          <h3>{{ project.title }}</h3>
+          {% if project.image %}
+            <div class="thumbnail">
+              <img src="{{ project.image | relative_url }}" alt="{{ project.title }}">
+            </div>
+          {% endif %}
+          <p class="description">{{ project.content | strip_html | truncatewords: 30 }}</p>
+          <span class="more">Read more →</span>
+        </a>
+      {% endfor %}
+    </div>
+  {% endif %}
+</article>
+
+<style>
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 2rem;
+  margin-top: 2rem;
+}
+
+.project-card {
+  display: block;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background: var(--card-bg, #fff);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: inherit;
+  text-decoration: none;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  text-decoration: none;
+}
+
+.project-card h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.project-card .thumbnail {
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.project-card .thumbnail img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.project-card .description {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.project-card .more {
+  font-weight: 500;
+  color: var(--accent-color);
+}
+</style>

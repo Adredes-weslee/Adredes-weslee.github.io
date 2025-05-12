@@ -1,0 +1,74 @@
+---
+layout: page
+---
+
+<div class="project-page">
+  <!-- Technology tags -->
+  {% if page.technologies %}
+  <p class="tech-stack">
+    {% for tech in page.technologies %}
+      <span class="tech-tag">{{ tech }}</span>
+    {% endfor %}
+  </p>
+  {% endif %}
+  
+  <!-- Featured image -->
+  {% if page.image %}
+  <div class="lead">
+    <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="lead" width="1920" height="1080">
+  </div>
+  {% endif %}
+  
+  <!-- GitHub link -->
+  {% if page.github %}
+  <p class="github-link">
+    <a href="{{ page.github }}" class="btn" target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-github"></i> View on GitHub
+    </a>
+  </p>
+  {% endif %}
+  
+  <!-- Main content -->
+  {{ content }}
+  
+  <!-- Project navigation -->
+  <div class="page-control">
+    <div>
+      <a class="btn btn-primary" href="{{ '/projects/' | relative_url }}">
+        ← All Projects
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+.tech-stack {
+  margin-bottom: 1rem;
+}
+
+.tech-tag {
+  display: inline-block;
+  background: rgba(0,0,0,0.05);
+  color: var(--body-color);
+  padding: 0.2rem 0.6rem;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.github-link {
+  margin: 1.5rem 0;
+}
+
+.project-page h2 {
+  margin-top: 2.5rem;
+}
+
+code {
+  background: rgba(0,0,0,0.05);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}
+</style>

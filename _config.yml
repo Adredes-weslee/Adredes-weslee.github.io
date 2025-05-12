@@ -1,0 +1,116 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+#
+# If you need help with YAML syntax, here are some quick references for you:
+# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
+# https://learnxinyminutes.com/docs/yaml/
+#
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+
+title: Wes Lee
+email: weslee.qb@gmail.com 
+description: >- # this means to ignore newlines until "baseurl:"
+  Portfolio website showcasing Wes Lee's projects and expertise in AI Engineering, 
+  Machine Learning, and Data Science with Python and SQL.
+tagline: AI Engineer
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://adredes-weslee.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+
+# Hydejack specific configurations
+accent_image: /assets/images/sidebar-bg.jpg
+accent_color: '#4fb1ba'
+theme_color: '#4fb1ba'
+logo: /assets/images/logo.png
+
+# Social accounts
+github_username: Adredes-weslee
+linkedin_username: in/wes-lee
+twitter_username: 
+
+# Sidebar configuration
+menu:
+  - title: About
+    url: /about/
+  - title: Projects
+    url: /projects/
+  - title: Skills
+    url: /skills/
+  - title: Blog
+    url: /blog/
+  - title: Contact
+    url: /contact/
+
+# Author information - used in about page
+author:
+  name: Wes Lee
+  email: weslee.qb@gmail.com
+  picture: /assets/images/profile.jpg
+  about: AI Engineer | Python & SQL Developer | Data Analyst
+  social:
+    linkedin: https://www.linkedin.com/in/wes-lee/
+    github: Adredes-weslee
+
+# Build settings
+# theme: jekyll-theme-hydejack
+remote_theme: hydecorp/hydejack@v9.1.6
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-remote-theme
+
+# Add custom CSS
+hydejack:
+  no_page_style: false
+  no_mark_external: false
+  no_push_state: false
+  no_drawer: false
+  no_navbar: false
+  no_search: false
+  no_inline_css: false
+  no_touch_icons: false
+  no_large_headings: false
+  no_third_party: false
+  offline: false
+  
+# Custom CSS files
+css:
+  - /assets/css/custom.css
+
+# Collections
+collections:
+  projects:
+    output: true
+    permalink: /projects/:path/
+
+# Exclude from processing.
+# The following items will not be processed, by default.
+# Any item listed under the `exclude:` key here will be automatically added to
+# the internal "default list".
+#
+# Excluded items can be processed by explicitly listing the directories or
+# their entries' file path in the `include:` list.
+#
+# exclude:
+#   - .sass-cache/
+#   - .jekyll-cache/
+#   - gemfiles/
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules/
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
