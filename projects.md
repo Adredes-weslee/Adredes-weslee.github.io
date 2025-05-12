@@ -22,7 +22,7 @@ These projects showcase my work with large language models, transformer architec
 
 Projects demonstrating various ML techniques and domain applications:
 
-* [**AI-Powered Robo Advisor**](/projects/robo-advisor-project/) - Portfolio optimization using reinforcement learning and risk profiling
+* [**AI-Powered Robo Advisor**](/projects/robo-advisor-project/) - Portfolio optimization using reinforcement learning and risk profiling ([Read the blog post](/ai/finance/machine-learning/reinforcement-learning/2023/10/25/robo-advisor-risk-profiling-portfolio-optimization.html))
 * [**HDB Resale Price Prediction**](/projects/hdb-resale-prices/) - Advanced regression modeling for Singapore's housing market ([Read the blog post](/data-science/machine-learning/real-estate/2023/06/18/predicting-hdb-resale-prices.html))
 * [**Wet-Bulb Temperature Analysis**](/projects/wet-bulb-temperature/) - Climate data modeling for heat stress prediction ([Read the blog post](/data-science/climate/public-health/2023/05/15/predicting-heat-stress-with-wet-bulb-temperature.html))
 

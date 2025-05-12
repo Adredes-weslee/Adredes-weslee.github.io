@@ -5,11 +5,12 @@ categories: machine-learning finance reinforcement-learning
 image: /assets/images/placeholder.svg
 technologies: [Python, Reinforcement Learning, Plotly Dash, Scikit-Learn, Deep Learning]
 github: https://github.com/Adredes-weslee/Using_Artificial_Intelligence_to_Develop_a_Robo_Advisor
+blog_post: /ai/finance/machine-learning/reinforcement-learning/2023/10/25/robo-advisor-risk-profiling-portfolio-optimization.html
 ---
 
 ## Project Overview
 
-Developed a full-stack, intelligent robo advisor using supervised learning, reinforcement learning, and convex optimization. This system predicts investor risk tolerance and dynamically optimizes investment portfolios to maximize returns based on individual risk profiles.
+Developed a full-stack, intelligent robo advisor using supervised learning, reinforcement learning, and convex optimization. This system predicts investor risk tolerance and dynamically optimizes investment portfolios to maximize returns based on individual risk profiles. [Read the detailed blog post](/ai/finance/machine-learning/reinforcement-learning/2023/10/25/robo-advisor-risk-profiling-portfolio-optimization.html) for a comprehensive breakdown of the methodology and results.
 
 ## Business Context & Market Need
 
@@ -22,13 +23,30 @@ This project addresses several limitations of current robo-advisors:
 3. **Lack of Adaptability**: Few solutions dynamically adjust to changing market conditions
 4. **Limited Personalization**: Most systems offer only a handful of portfolio templates
 
+## Data Sources
+
+The project utilizes two primary data sources:
+
+1. **2019 Survey of Consumer Finances (SCF)** from the Federal Reserve - Contains detailed information on households' demographics, finances, assets, and investment behaviors. This dataset was used to train the risk tolerance prediction models.
+
+2. **S&P 500 Historical Stock Price Data (2000-2023)** - Retrieved using the yfinance library by scraping tickers from Wikipedia and downloading adjusted closing prices. This data was used to train the reinforcement learning models and test portfolio optimization strategies.
+
 ## System Architecture
 
 The robo advisor consists of three integrated components:
 
-1. **Risk Profile Predictor**: Predicts an investor's risk tolerance based on demographic and financial data
-2. **Portfolio Optimizer**: Allocates assets using both traditional methods and reinforcement learning
-3. **Interactive Dashboard**: Allows users to input their information and receive personalized recommendations
+1. **Risk Profile Predictor**: Predicts an investor's risk tolerance based on demographic and financial data using supervised machine learning
+2. **Portfolio Optimizer**: Allocates assets using both traditional Modern Portfolio Theory (via convex optimization) and Deep Q-Network reinforcement learning
+3. **Interactive Dashboard**: Allows users to input their information and receive personalized recommendations through a Plotly Dash interface with OpenAI-powered chatbot assistance
+
+The system follows this workflow:
+1. User inputs demographic and financial information
+2. Extra Trees Regressor model predicts risk tolerance on a 0-1 scale
+3. Based on risk tolerance and selected stocks, parallel optimization occurs:
+   - Classical MVO using CVXOPT
+   - Reinforcement learning allocation using trained DQN
+4. Results are displayed with interactive visualizations
+5. AI chatbot provides additional guidance and answers financial questions
 
 ![System Architecture](/assets/images/robo-advisor-architecture.png)
 
