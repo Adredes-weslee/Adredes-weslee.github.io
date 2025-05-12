@@ -10,10 +10,6 @@ Welcome to my blog where I share insights, tutorials, and thoughts about AI, mac
 
 ## Featured Posts
 
-### [Building an AI-Powered Robo Advisor: Risk Profiling and Portfolio Optimization](/ai/finance/machine-learning/reinforcement-learning/2023/10/25/robo-advisor-risk-profiling-portfolio-optimization.html)
-
-Learn how I combined machine learning for investor risk profiling with both traditional optimization and reinforcement learning to create a dynamic, personalized portfolio management system.
-
 ### [Building Effective RAG Systems: Lessons from Enterprise Applications](/ai/nlp/rag/2025/05/12/building-effective-rag-systems.html)
 
 Explore key insights from implementing Retrieval-Augmented Generation systems in enterprise environments, focusing on practical implementation strategies and lessons learned.
@@ -22,13 +18,21 @@ Explore key insights from implementing Retrieval-Augmented Generation systems in
 
 Learn how different machine learning approaches can be applied to algorithmic trading, with a systematic comparison of traditional rule-based methods, supervised learning, and reinforcement learning strategies.
 
-### [Building a Robust YouTube Comment Sentiment Analyzer](/nlp/machine-learning/sentiment-analysis/2023/07/10/building-youtube-comment-sentiment-analyzer.html)
+### [NLP Earnings Report Analysis: Extracting Insights from Financial Text](/nlp/finance/machine-learning/data-science/2025/05/09/nlp-earnings-report-analysis.html)
 
-Learn how to combine multiple sentiment analysis models to create a hybrid labeling system that accurately classifies YouTube comments for digital reputation management.
+Discover how advanced natural language processing techniques can extract valuable insights from financial earnings reports, combining traditional methods with transformer models for improved analysis and prediction.
+
+### [Building an AI-Powered Robo Advisor: Risk Profiling and Portfolio Optimization](/ai/finance/machine-learning/reinforcement-learning/2023/10/25/robo-advisor-risk-profiling-portfolio-optimization.html)
+
+Learn how I combined machine learning for investor risk profiling with both traditional optimization and reinforcement learning to create a dynamic, personalized portfolio management system.
 
 ### [Forecasting Dengue Cases and Conducting Cost-Benefit Analysis](/time-series/public-health/economics/2023/08/15/forecasting-dengue-cases-and-cost-benefit-analysis.html)
 
 Discover how advanced time series forecasting combined with health economic analysis can guide public health interventions for dengue fever in Singapore.
+
+### [Building a Robust YouTube Comment Sentiment Analyzer](/nlp/machine-learning/sentiment-analysis/2023/07/10/building-youtube-comment-sentiment-analyzer.html)
+
+Learn how to combine multiple sentiment analysis models to create a hybrid labeling system that accurately classifies YouTube comments for digital reputation management.
 
 ### [Predicting HDB Resale Prices in Singapore](/data-science/machine-learning/real-estate/2023/06/18/predicting-hdb-resale-prices.html)
 
