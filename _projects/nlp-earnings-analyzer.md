@@ -19,8 +19,6 @@ Developed a sophisticated system for analyzing earnings announcement texts from 
 5. **Comprehensive Interactive Dashboard**: Multi-view Streamlit application with specialized interfaces for text analysis, topic exploration, model comparison, and prediction simulation
 6. **Rigorous Versioning System**: Full data and model versioning for complete reproducibility of experiments and production-ready deployment
 
-> Read my detailed blog post: [NLP Earnings Report Analysis: Extracting Insights from Financial Text](/nlp/finance/machine-learning/data-science/2025/05/09/nlp-earnings-report-analysis.html)
-
 ## Business Problem & Context
 
 Financial earnings reports contain critical information that impacts investment decisions, but traditional manual analysis faces several challenges:

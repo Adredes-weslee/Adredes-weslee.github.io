@@ -10,7 +10,7 @@ blog_post: /ai/finance/machine-learning/reinforcement-learning/2023/10/25/robo-a
 
 ## Project Overview
 
-Developed a full-stack, intelligent robo advisor using supervised learning, reinforcement learning, and convex optimization. This system predicts investor risk tolerance and dynamically optimizes investment portfolios to maximize returns based on individual risk profiles. [Read the detailed blog post](/ai/finance/machine-learning/reinforcement-learning/2023/10/25/robo-advisor-risk-profiling-portfolio-optimization.html) for a comprehensive breakdown of the methodology and results.
+Developed a full-stack, intelligent robo advisor using supervised learning, reinforcement learning, and convex optimization. This system predicts investor risk tolerance and dynamically optimizes investment portfolios to maximize returns based on individual risk profiles.
 
 ## Business Context & Market Need
 

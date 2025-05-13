@@ -12,8 +12,6 @@ blog_post: /ai/nlp/rag/2025/05/12/building-effective-rag-systems.html
 
 Designed and deployed a modular, containerized Retrieval-Augmented Generation (RAG) system to support structured QA over enterprise documentation — including markdowns, tables, and code files — using self-hosted open-source LLMs. This secure, production-grade RAG system parses internal documentation, retrieves semantically relevant chunks using hybrid embeddings, and answers queries via local LLMs with advanced features like table reasoning and fallback agents.
 
-> Read my detailed blog post: [Building Effective RAG Systems: Lessons from Enterprise Applications](/ai/nlp/rag/2025/05/12/building-effective-rag-systems.html)
-
 ## Business Problem & Context
 
 Enterprise knowledge management often struggles with information silos, where valuable insights are trapped in disparate documents, code repositories, and tabular data. This project addresses several critical challenges:

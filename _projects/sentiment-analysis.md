@@ -11,8 +11,6 @@ github: https://github.com/Adredes-weslee/Sentiment-Analysis-and-NLP-for-a-Youtu
 
 Built a binary sentiment classifier on 63,000+ YouTube comments using multiple NLP techniques and hybrid labeling approaches. The goal was to accurately identify negative sentiment in user comments to help content creators better understand audience reception and engagement patterns.
 
-> Read my detailed blog post: [Building a Robust YouTube Comment Sentiment Analyzer](/nlp/machine-learning/sentiment-analysis/2023/07/10/building-youtube-comment-sentiment-analyzer.html)
-
 ## Business Context
 
 Content creators and digital marketers face significant challenges in processing and understanding audience reactions at scale. With thousands of comments on popular videos, manually reviewing sentiment becomes impractical. This project addresses several key needs:

@@ -13,8 +13,6 @@ blog_post: /data-science/pricing-strategy/business-analytics/commercial-strategy
 
 Led a full-cycle data science project for CS Tay, a leading frozen food distributor in Singapore, as part of the BCG RISE 2.0 program capstone. Our team delivered a data-driven commercial strategy to address stagnating revenue growth and declining profit margins in a competitive market environment.
 
-> Read my detailed blog post: [Transforming Commercial Strategy with Data Science: Customer Segmentation and Price Optimization](/data-science/pricing-strategy/business-analytics/commercial-strategy/2024/08/15/customer-segmentation-price-optimization.html)
-
 The project followed a systematic approach combining advanced analytics and business strategy:
 
 1. **Comprehensive Market Analysis:** Examined market trends and competitive forces in Singapore's frozen food distribution sector

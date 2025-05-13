@@ -12,8 +12,6 @@ blog_post: /data-science/machine-learning/real-estate/2023/06/18/predicting-hdb-
 
 Built a machine learning model to forecast HDB flat resale prices in Singapore, where over 80% of residents live in public housing. Using a dataset of 60,000+ transactions, this project combined Singapore's unique property characteristics with advanced regression techniques to achieve highly accurate price predictions.
 
-> Read my detailed blog post: [Predicting HDB Resale Prices in Singapore](/data-science/machine-learning/real-estate/2023/06/18/predicting-hdb-resale-prices.html)
-
 ## Background & Significance
 
 In Singapore, public housing (HDB flats) forms the backbone of the residential property market, with homeownership rates around 90% - one of the highest in the world. Housing affordability and price prediction are crucial topics affecting citizens' financial planning, investment decisions, and quality of life.

@@ -19,8 +19,6 @@ Developed a modular machine learning framework for algorithmic trading strategy 
   </a>
 </div>
 
-> Read my detailed blog post: [ML Trading Strategist: Comparing Machine Learning Approaches for Algorithmic Trading](/ai/finance/machine-learning/reinforcement-learning/2025/05/12/ml-trading-strategist-comparing-learning-approaches.html)
-
 ## Business Problem & Context
 
 Traditional algorithmic trading faces several key challenges that this project addresses:

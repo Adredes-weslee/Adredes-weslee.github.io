@@ -12,8 +12,6 @@ blog_post: /time-series/public-health/economics/2023/08/15/forecasting-dengue-ca
 
 Built a comprehensive time series forecasting model and conducted a detailed health economics analysis to support evidence-based dengue intervention planning in Singapore. This project combines advanced predictive modeling with rigorous cost-benefit analysis to provide actionable public health recommendations for dengue prevention and control strategies.
 
-> Read my detailed blog post: [Forecasting Dengue Cases and Conducting Cost-Benefit Analysis](/time-series/public-health/economics/2023/08/15/forecasting-dengue-cases-and-cost-benefit-analysis.html)
-
 ## Public Health Context
 
 Dengue fever poses a significant public health challenge in tropical urban environments, including Singapore. With rising temperatures and evolving viral serotypes, predicting case loads and evaluating intervention strategies have become critical to public health planning.

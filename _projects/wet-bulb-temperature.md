@@ -12,8 +12,6 @@ blog_post: /data-science/climate/public-health/2023/05/15/predicting-heat-stress
 
 Commissioned as a hypothetical policy study for the Singapore government, this project investigates the relationship between wet-bulb temperature (WBT)—a crucial indicator of heat stress—and climate change drivers such as greenhouse gases and meteorological factors. Using regression modeling and time series analysis, I aimed to identify key contributors to extreme heat conditions in tropical environments and provide actionable insights for public health planning.
 
-> Read my detailed blog post: [Predicting Heat Stress with Wet-Bulb Temperature Analysis](/data-science/climate/public-health/2023/05/15/predicting-heat-stress-with-wet-bulb-temperature.html)
-
 ## Background & Significance
 
 Wet-bulb temperature (WBT) combines heat and humidity into a single value measuring heat stress on the human body. At wet-bulb temperatures above 35°C, even healthy humans cannot survive extended exposure as the body cannot cool itself through sweating.
