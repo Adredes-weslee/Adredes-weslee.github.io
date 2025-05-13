@@ -5,7 +5,7 @@ date: 2025-05-09 09:45:00 +0800
 categories: [nlp, finance, machine-learning, data-science]
 tags: [sentiment-analysis, topic-modeling, fintech, financial-nlp, earnings-reports]
 author: Wes Lee
-feature_image: /assets/images/nlp-earnings-report-analysis.jpg
+feature_image: /assets/images/2025-05-09-nlp-earnings-report-analysis.jpg
 ---
 
 ## The Challenge of Financial Text Analysis

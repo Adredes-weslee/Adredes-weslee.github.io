@@ -1,8 +1,11 @@
 ---
 layout: post
 title: "Building an AI-Powered Robo Advisor: Risk Profiling and Portfolio Optimization"
-date: 2023-10-25
-categories: ai finance machine-learning reinforcement-learning
+date: 2023-10-25 09:30:00 +0800
+categories: [ai, finance, machine-learning, reinforcement-learning]
+tags: [robo-advisor, portfolio-optimization, risk-profiling, supervised-learning, deep-q-network]
+author: Wes Lee
+feature_image: /assets/images/2023-10-25-robo-advisor-risk-profiling-portfolio-optimization.jpg
 ---
 
 In today's financial landscape, personalized investment advice has traditionally been reserved for those with substantial assets. Robo-advisors aim to democratize wealth management through automated, algorithm-driven financial planning services with minimal human supervision. This blog post details my approach to building a sophisticated robo-advisor that combines machine learning for risk profiling with both traditional and reinforcement learning techniques for portfolio optimization.

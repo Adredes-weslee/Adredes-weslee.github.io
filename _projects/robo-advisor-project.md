@@ -2,7 +2,7 @@
 layout: project
 title: "AI-Powered Robo Advisor for Portfolio Optimization"
 categories: machine-learning finance reinforcement-learning
-image: /assets/images/placeholder.svg
+image: /assets/images/robo-advisor-project.jpg
 technologies: [Python, Reinforcement Learning, Plotly Dash, Scikit-Learn, Deep Learning]
 github: https://github.com/Adredes-weslee/Using_Artificial_Intelligence_to_Develop_a_Robo_Advisor
 blog_post: /ai/finance/machine-learning/reinforcement-learning/2023/10/25/robo-advisor-risk-profiling-portfolio-optimization.html
