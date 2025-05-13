@@ -5,7 +5,7 @@ date: 2023-06-18 14:45:00 +0800
 categories: [data-science, machine-learning, real-estate]
 tags: [housing, singapore, regression, feature-engineering, price-prediction]
 author: Wes Lee
-feature_image: /assets/images/placeholder.svg
+feature_image: /assets/images/2023-06-18-predicting-hdb-resale-prices.jpg
 ---
 
 ## The Unique Singapore Housing Market

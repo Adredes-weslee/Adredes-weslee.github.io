@@ -2,7 +2,7 @@
 layout: project
 title: "Forecasting Dengue Cases with Time Series Analysis"
 categories: time-series public-health machine-learning
-image: /assets/images/placeholder.svg
+image: /assets/images/dengue-forecasting.jpg
 technologies: [Python, Time Series, Prophet, ARIMA, SARIMA, SARIMAX, BATS, TBATS, Health Economics, Cost-Benefit Analysis]
 github: https://github.com/Adredes-weslee/Dengue-Case-Prediction-and-Cost-Benefits-Analysis
 blog_post: /time-series/public-health/economics/2023/08/15/forecasting-dengue-cases-and-cost-benefit-analysis.html

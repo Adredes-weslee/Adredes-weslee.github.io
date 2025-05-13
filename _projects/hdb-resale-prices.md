@@ -2,7 +2,7 @@
 layout: project
 title: "Predicting HDB Resale Prices in Singapore"
 categories: machine-learning regression real-estate
-image: /assets/images/placeholder.svg
+image: /assets/images/hdb-resale-prices.jpg
 technologies: [Python, Linear Regression, Regularization, Scikit-Learn, Pandas, Feature Engineering]
 github: https://github.com/Adredes-weslee/Making-Predictions-on-HDB-Resale-Price
 blog_post: /data-science/machine-learning/real-estate/2023/06/18/predicting-hdb-resale-prices.html

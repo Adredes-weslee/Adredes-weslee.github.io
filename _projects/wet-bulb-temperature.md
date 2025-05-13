@@ -2,7 +2,7 @@
 layout: project
 title: "Predicting Wet-Bulb Temperature for Heat Stress Analysis"
 categories: climate-science machine-learning data-analysis
-image: /assets/images/placeholder.svg
+image: /assets/images/wet-bulb-temperature.jpg
 technologies: [Python, Pandas, Scikit-Learn, Matplotlib, Seaborn, Time Series Analysis]
 github: https://github.com/Adredes-weslee/wet-bulb-temperature-analysis
 blog_post: /data-science/climate/public-health/2023/05/15/predicting-heat-stress-with-wet-bulb-temperature.html

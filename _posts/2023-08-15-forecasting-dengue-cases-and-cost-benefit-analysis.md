@@ -5,7 +5,7 @@ date: 2023-08-15 10:00:00 +0800
 categories: [time-series, public-health, economics]
 tags: [forecasting, prophet, arima, health-economics, cost-benefit-analysis, singapore, dengue]
 author: Wes Lee
-feature_image: /assets/images/placeholder.svg
+feature_image: /assets/images/2023-08-15-forecasting-dengue-cases-and-cost-benefit-analysis.jpg
 ---
 
 ## Tackling a Growing Public Health Challenge

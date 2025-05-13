@@ -5,7 +5,7 @@ date: 2023-05-15 10:30:00 +0800
 categories: [data-science, climate, public-health]
 tags: [wet-bulb-temperature, climate-change, regression-analysis, singapore]
 author: Wes Lee
-feature_image: /assets/images/placeholder.svg
+feature_image: /assets/images/2023-05-15-predicting-heat-stress-with-wet-bulb-temperature.jpg
 ---
 
 ## The Hidden Danger of Heat Stress
