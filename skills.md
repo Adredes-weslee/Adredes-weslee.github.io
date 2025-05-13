@@ -10,7 +10,7 @@ permalink: /skills/
 
 ### Natural Language Processing (NLP)
 - **Large Language Models (LLMs)** - Fine-tuning and deployment of models like LLaMA 3.1, DeBERTa, Phi-3
-- **LLM Applications** - RAG systems, instruction tuning, retrieval optimization
+- **LLM Applications** - RAG systems, prompt tuning and prompt engineering
 - **Transformer Architecture** - Understanding and application of attention mechanisms
 - **Text Processing** - Tokenization, lemmatization, embeddings, vector search
 - **Sentiment Analysis** - Classification of text sentiment using hybrid labeling approaches
@@ -40,10 +40,10 @@ permalink: /skills/
 ## Programming & Development
 
 ### Languages
-- **Python** (Advanced) - Primary language for data science and ML implementation
-- **SQL** (Intermediate) - Complex queries, joins, window functions, stored procedures
-- **Java** (Basic) - Understanding of core concepts and syntax
-- **HTML/CSS** (Basic) - Web development fundamentals
+- **Python** - Primary language for data science and ML implementation
+- **SQL** - Complex queries, joins, window functions, stored procedures
+- **Java** - Understanding of core concepts and syntax (Google Apps Script)
+- **HTML/CSS** - Web development fundamentals (my website!)
 
 ### Data Manipulation & Analysis
 - **Pandas** - Advanced data manipulation, cleaning, and transformation
@@ -54,11 +54,11 @@ permalink: /skills/
 ### Visualization
 - **Static Visualization** - Matplotlib, Seaborn for publication-quality charts
 - **Interactive Dashboards** - Plotly Dash, Streamlit for web applications
-- **BI Tools** - Power BI with DAX for business intelligence
+- **BI Tools** - Power BI for business intelligence
 
 ### Web Development
 - **API Development** - FastAPI, Pydantic for schema validation
-- **Frontend** - Basic Streamlit, Dash applications
+- **Frontend** - Streamlit, Dash applications
 - **CMS** - WordPress site management and customization
 
 ## DevOps & MLOps

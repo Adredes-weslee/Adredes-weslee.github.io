@@ -44,7 +44,7 @@ I'm always interested in new opportunities, collaborations, or just chatting abo
 I'm particularly interested in opportunities in these areas:
 
 - **AI Engineering** - Building production-grade ML and LLM applications
-- **NLP & LLM Development** - RAG systems, fine-tuning, and production deployment
+- **NLP & LLM Development** - Prompt tuning, fine-tuning, and production deployment
 - **Data Science Consulting** - Solving business problems through data and ML
 - **MLOps & Infrastructure** - Designing robust ML infrastructure and pipelines
 

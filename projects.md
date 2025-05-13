@@ -14,7 +14,6 @@ These projects showcase my work with large language models, transformer architec
 
 * [**NLP Earnings Report Analyzer**](/projects/nlp-earnings-analyzer/) - Financial text analysis combining traditional NLP and transformer models for earnings reports ([Read the blog post](/nlp/finance/machine-learning/data-science/2025/05/09/nlp-earnings-report-analysis.html))
 * [**Custom RAG Engine for Enterprise Document QA**](/projects/rag-engine-project/) - Containerized document QA system with hybrid embedding models and self-hosted inference ([Read the blog post](/ai/nlp/rag/2025/05/12/building-effective-rag-systems.html))
-* [**LLM-Powered Query Generator**](/projects/prompt-tuning/) - Information extraction engine using DSPy and Langfuse for structured data insights
 * [**Sentiment Analysis of YouTube Comments**](/projects/sentiment-analysis/) - Hybrid labeling system combining rule-based and transformer approaches ([Read the blog post](/nlp/machine-learning/sentiment-analysis/2023/07/10/building-youtube-comment-sentiment-analyzer.html))
 
 ## Machine Learning & AI Applications
@@ -35,8 +34,8 @@ Projects focused on extracting insights and delivering business value:
 
 ## Technical Skills Demonstrated
 
-* **Machine Learning:** Classification, regression, clustering, time series forecasting
-* **NLP & LLMs:** RAG systems, fine-tuning, embedding techniques, sentiment analysis
+* **Machine Learning:** Classification, regression, clustering, time series forecasting, deep learning
+* **NLP & LLMs:** RAG systems, prompt tuning/optimization, fine-tuning, embedding techniques, sentiment analysis
 * **MLOps:** Docker, Kubernetes, MLflow, observability, deployment pipelines
 * **Data Analysis:** Feature engineering, statistical modeling, visualization
 * **Business Impact:** Cost-benefit analysis, revenue optimization, actionable insights
