@@ -3,7 +3,7 @@ layout: project
 title: "Customer Segmentation & Price Optimization"
 date: 2024-08-15
 categories: [data-science, business-analytics, pricing-strategy, commercial-strategy]
-image: /assets/images/placeholder.svg
+image: /assets/images/customer-segmentation.jpg
 technologies: [Python, Pandas, Scikit-Learn, Matplotlib, Seaborn, Yellowbrick, Squarify, RobustScaler, Gurobi, RFM Analysis, K-Means, Silhouette Analysis, Log-Log Regression, Constrained Optimization]
 github: https://github.com/Adredes-weslee/BCG-RISE-2.0/tree/main/capstone
 blog_post: /data-science/pricing-strategy/business-analytics/commercial-strategy/2024/08/15/customer-segmentation-price-optimization.html

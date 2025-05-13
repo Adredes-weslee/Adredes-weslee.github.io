@@ -16,10 +16,9 @@
 </head>
 <body>
   <div class="page-content">
-    <div class="wrapper">
-      <header class="site-header">
+    <div class="wrapper">      <header class="site-header">
         <div class="wrapper">
-          <div class="site-title">{{ site.title }}</div>
+          <a class="site-title" href="{{ '/' | relative_url }}">{{ site.title }}</a>
           <nav class="site-nav">
             <input type="checkbox" id="nav-trigger" class="nav-trigger" />
             <label for="nav-trigger">

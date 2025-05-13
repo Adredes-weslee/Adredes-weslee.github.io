@@ -6,8 +6,6 @@ permalink: /about/
 
 # Wes Lee
 
-**AI Engineer**
-
 ## Professional Summary
 
 Former educator turned AI Engineer with a proven track record in stakeholder engagement, business storytelling, and deploying real-world machine learning solutions. Selected for Singapore's National AI Apprenticeship Programme (AIAP) and building a large language model (LLM)-powered information extraction engine for a global HR analytics platform. Experienced in NLP, MLOps, and data science consulting, with strong cross-domain capabilities in business analytics, finance, and education.

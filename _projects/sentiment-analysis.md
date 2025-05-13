@@ -2,7 +2,7 @@
 layout: project
 title: "Sentiment Analysis of YouTube Comments using NLP"
 categories: nlp machine-learning text-classification
-image: /assets/images/placeholder.svg
+image: /assets/images/sentiment-analysis.jpg
 technologies: [Python, NLP, Scikit-Learn, VADER, Flair, HuggingFace]
 github: https://github.com/Adredes-weslee/Sentiment-Analysis-and-NLP-for-a-Youtube-Video
 ---

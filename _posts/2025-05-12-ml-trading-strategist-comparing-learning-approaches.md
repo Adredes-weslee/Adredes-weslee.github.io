@@ -5,7 +5,7 @@ date: 2025-05-12 09:30:00 +0800
 categories: [ai, finance, machine-learning, reinforcement-learning]
 tags: [algorithmic-trading, decision-trees, q-learning, technical-analysis, backtesting]
 author: Wes Lee
-feature_image: /assets/images/placeholder.svg
+feature_image: /assets/images/2025-05-12-ml-trading-strategist-comparing-learning-approaches.jpg
 ---
 
 ## Introduction to Algorithmic Trading
@@ -226,7 +226,7 @@ One of the most valuable aspects of the ML Trading Strategist framework is its a
 
 Here's how the different strategies performed:
 
-![Strategy Performance Comparison](/assets/images/placeholder.svg)
+![Strategy Performance Comparison](/assets/images/Strategy Performance Comparison.jpg)
 
 | Strategy | Cum. Return | Sharpe Ratio | Max Drawdown | # Trades |
 |----------|-------------|--------------|--------------|----------|

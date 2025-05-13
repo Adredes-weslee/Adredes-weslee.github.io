@@ -2,7 +2,7 @@
 layout: project
 title: "Custom RAG Engine for Enterprise Document QA"
 categories: nlp machine-learning rag
-image: /assets/images/placeholder.svg
+image: /assets/images/rag-engine-project.jpg
 technologies: [Python, LangChain, Streamlit, Docker, Kubernetes, Ollama, HuggingFace]
 github: https://github.com/Adredes-weslee/Custom-RAG-Engine-for-Enterprise-Document-QA
 blog_post: /ai/nlp/rag/2025/05/12/building-effective-rag-systems.html
@@ -26,7 +26,7 @@ Enterprise knowledge management often struggles with information silos, where va
 
 ## Architecture
 
-![RAG System Architecture](/assets/images/rag-architecture.png)
+![RAG System Architecture](/assets/images/RAG System Architecture.jpg)
 
 The system follows a modular architecture with specialized components for different document types and processing needs:
 

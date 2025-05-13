@@ -5,7 +5,7 @@ date: 2024-08-15 10:30:00 +0800
 categories: [data-science, pricing-strategy, business-analytics, commercial-strategy]
 tags: [rfm-analysis, k-means-clustering, price-elasticity, revenue-optimization, commercial-strategy]
 author: Wes Lee
-feature_image: /assets/images/placeholder.svg
+feature_image: /assets/images/2024-08-15-customer-segmentation-price-optimization.jpg
 ---
 
 # Transforming Commercial Strategy with Data Science
@@ -52,7 +52,7 @@ Our analysis revealed a more nuanced segmentation than initially expected. Using
 
 Visualization of the segmentation revealed clear distinctions between clusters:
 
-![Customer Segment Distribution](/assets/images/placeholder.svg)
+![Customer Segment Distribution](/assets/images/Customer Segment Distribution.jpg)
 
 Importantly, we identified distinct customer category distributions across segments:
 - **Cafes** made up the largest portion of our New Customers segment (240 businesses)

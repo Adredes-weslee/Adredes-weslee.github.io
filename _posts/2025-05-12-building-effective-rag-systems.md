@@ -5,7 +5,7 @@ date: 2025-05-12 14:33:46 +0800
 categories: [ai, nlp, rag]
 tags: [llms, retrieval, vector-databases, langchain]
 author: Wes Lee
-feature_image: /assets/images/placeholder.svg
+feature_image: /assets/images/2025-05-12-building-effective-rag-systems.jpg
 ---
 
 ## Introduction to Retrieval-Augmented Generation

@@ -37,14 +37,6 @@ I'm always interested in new opportunities, collaborations, or just chatting abo
     <p class="contact-desc">Explore my code repositories and technical projects</p>
   </div>
   
-  <div class="contact-method">
-    <div class="contact-icon">
-      <i class="fas fa-phone"></i>
-    </div>
-    <h3>Phone</h3>
-    <p>(65) 8776 2740</p>
-    <p class="contact-desc">Available during Singapore business hours (GMT+8)</p>
-  </div>
 </div>
 
 ## Work Opportunities

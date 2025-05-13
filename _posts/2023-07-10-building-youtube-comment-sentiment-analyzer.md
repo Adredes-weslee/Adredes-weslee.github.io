@@ -5,7 +5,7 @@ date: 2023-07-10 09:30:00 +0800
 categories: [nlp, machine-learning, sentiment-analysis]
 tags: [youtube, nlp, classification, vader, flair, hybrid-labeling]
 author: Wes Lee
-feature_image: /assets/images/placeholder.svg
+feature_image: /assets/images/2023-07-10-building-youtube-comment-sentiment-analyzer.jpg
 ---
 
 ## The Need for Digital Reputation Management

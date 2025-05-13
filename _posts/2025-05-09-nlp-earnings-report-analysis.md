@@ -5,7 +5,7 @@ date: 2025-05-09 09:45:00 +0800
 categories: [nlp, finance, machine-learning, data-science]
 tags: [sentiment-analysis, topic-modeling, fintech, financial-nlp, earnings-reports]
 author: Wes Lee
-feature_image: /assets/images/placeholder.svg
+feature_image: /assets/images/nlp-earnings-report-analysis.jpg
 ---
 
 ## The Challenge of Financial Text Analysis
@@ -255,7 +255,7 @@ This suggests that not just the sentiment but the actual subject matter of earni
 
 The combined sentiment model significantly outperformed both lexicon-based and pure transformer approaches:
 
-![Sentiment Model Performance](/assets/images/placeholder.svg)
+![Sentiment Model Performance](/assets/images/sentiment_performance_table.jpg)
 
 The transformer-based model excelled at capturing implicit sentiment and context, while the lexicon-based approach provided domain-specific interpretation particularly valuable for financial terminology.
 
