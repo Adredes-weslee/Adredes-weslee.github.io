@@ -170,16 +170,6 @@ Led the Chemistry department at a premier tuition centre, specializing in A-Leve
 
 I've worked on various data science, machine learning, and AI projects across different domains. You can view my featured projects [here](/projects/) or visit my [GitHub profile](https://github.com/Adredes-weslee).
 
-### Featured Projects
-
-- **Custom RAG Engine for Enterprise Document QA** - Containerized LLM-powered QA system for enterprise documentation
-- **AI-Powered Robo Advisor** - Portfolio optimization using reinforcement learning and risk profiling
-- **Customer Segmentation & Price Optimization** - RFM analysis and revenue optimization for frozen food distributor
-- **Forecasting Dengue Cases** - Time series modeling and public health intervention analysis
-- **Predicting HDB Resale Prices** - Machine learning for Singapore housing market prediction
-- **Sentiment Analysis of YouTube Comments** - NLP and hybrid labeling for comment sentiment classification
-- **Predicting Wet-Bulb Temperature** - Climate data analysis for heat stress prediction
-
 ## Certifications & Awards
 
 - **AWS Certified Cloud Practitioner** (Expires Dec 2026)
@@ -197,5 +187,4 @@ Feel free to reach out:
 - **Email:** [weslee.qb@gmail.com](mailto:weslee.qb@gmail.com)
 - **LinkedIn:** [linkedin.com/in/wes-lee](https://www.linkedin.com/in/wes-lee/)
 - **GitHub:** [github.com/Adredes-weslee](https://github.com/Adredes-weslee)
-- **Phone:** (65) 8776 2740
 - **Languages:** English, Mandarin
