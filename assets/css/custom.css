@@ -22,6 +22,104 @@ h1, h2, h3 {
   color: var(--accent-color);
 }
 
+/* Streamlit Demo Button Styles */
+.demo-link-container {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.demo-button {
+  display: inline-block;
+  background-color: #ff4b4b; /* Streamlit's red color */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.demo-button:hover {
+  background-color: #e03b3b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  text-decoration: none;
+  color: white;
+}
+
+.demo-button i {
+  margin-right: 5px;
+}
+
+/* Callout box for interactive demo */
+.callout.interactive-demo {
+  background-color: #f0f7ff;
+  border-left: 5px solid #0068c9;
+  padding: 15px 20px;
+  margin: 20px 0;
+  border-radius: 0 5px 5px 0;
+}
+
+.callout.interactive-demo h4 {
+  color: #0068c9;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.callout.interactive-demo .callout-button {
+  display: inline-block;
+  background-color: #ff4b4b;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-decoration: none;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+.callout.interactive-demo .callout-button:hover {
+  background-color: #e03b3b;
+  text-decoration: none;
+  color: white;
+}
+
+/* Project badge for home page */
+.project-badge {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 0.8rem;
+  vertical-align: middle;
+}
+
+.demo-badge a {
+  background-color: #ff4b4b;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: normal;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.demo-badge a:hover {
+  background-color: #e03b3b;
+  text-decoration: none;
+  color: white;
+}
+
+/* Button styles in project layout */
+.btn-streamlit {
+  background-color: #ff4b4b;
+  color: white;
+}
+
+.btn-streamlit:hover {
+  background-color: #e03b3b;
+  color: white;
+}
+
 /* Project cards on projects page */
 .projects-list .project-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;

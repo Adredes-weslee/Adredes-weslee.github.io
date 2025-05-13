@@ -6,11 +6,18 @@ image: /assets/images/ml-trading-strategist.jpg
 technologies: [Python, Pandas, Scikit-learn, Streamlit, NumPy, YAML, Reinforcement Learning]
 github: https://github.com/Adredes-weslee/ML-Trading-Strategist
 blog_post: /ai/finance/machine-learning/reinforcement-learning/2025/05/12/ml-trading-strategist-comparing-learning-approaches.html
+streamlit_app: https://adredes-weslee-ml-trading-strategist-app-pu7qym.streamlit.app/
 ---
 
 ## Project Overview
 
 Developed a modular machine learning framework for algorithmic trading strategy development, testing, and comparison. This comprehensive platform enables traders and researchers to experiment with different approaches to market prediction, including manual rule-based strategies, decision tree ensembles, and reinforcement learning (Q-learning) techniques, all with realistic backtesting that accounts for trading costs and market impact.
+
+<div class="demo-link-container">
+  <a href="https://adredes-weslee-ml-trading-strategist-app-pu7qym.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
+    <i class="fas fa-play-circle"></i> Try the Live Demo
+  </a>
+</div>
 
 > Read my detailed blog post: [ML Trading Strategist: Comparing Machine Learning Approaches for Algorithmic Trading](/ai/finance/machine-learning/reinforcement-learning/2025/05/12/ml-trading-strategist-comparing-learning-approaches.html)
 
@@ -158,7 +165,7 @@ def bollinger_indicator(self, prices, window=20, num_std=2):
     Calculate Bollinger Bands indicator.
     
     Parameters:
-    -----------
+    -----------    
     prices : pd.DataFrame
         Price data
     window : int
@@ -197,7 +204,7 @@ def compute_portvals(orders, start_val=100000.0, commission=9.95, impact=0.005):
     Simulate trading with realistic costs.
     
     Parameters:
-    -----------
+    -----------    
     orders : pd.DataFrame
         Trading orders with dates as index and symbols as columns
     start_val : float

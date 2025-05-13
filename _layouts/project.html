@@ -19,14 +19,20 @@ layout: page
   </div>
   {% endif %}
   
-  <!-- GitHub link -->
-  {% if page.github %}
-  <p class="github-link">
+  <!-- GitHub and Streamlit links -->
+  <p class="project-links">
+    {% if page.github %}
     <a href="{{ page.github }}" class="btn" target="_blank" rel="noopener noreferrer">
       <i class="fab fa-github"></i> View on GitHub
     </a>
+    {% endif %}
+    
+    {% if page.streamlit_app %}
+    <a href="{{ page.streamlit_app }}" class="btn btn-streamlit" target="_blank" rel="noopener noreferrer">
+      <i class="fas fa-play-circle"></i> Live Demo
+    </a>
+    {% endif %}
   </p>
-  {% endif %}
   
   <!-- Main content -->
   {{ content }}
@@ -62,6 +68,10 @@ layout: page
   margin: 1.5rem 0;
 }
 
+.project-links a {
+  margin-right: 1rem;
+}
+
 .project-page h2 {
   margin-top: 2.5rem;
 }
@@ -70,5 +80,10 @@ code {
   background: rgba(0,0,0,0.05);
   padding: 0.2em 0.4em;
   border-radius: 3px;
+}
+
+.btn-streamlit {
+  background-color: #FF4B4B;
+  color: white;
 }
 </style>

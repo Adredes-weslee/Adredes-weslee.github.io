@@ -12,6 +12,14 @@ feature_image: /assets/images/2025-05-12-ml-trading-strategist-comparing-learnin
 
 Algorithmic trading has revolutionized financial markets, with automated systems now responsible for over 70% of trading volume on major exchanges. Yet many traders continue to rely on traditional rule-based systems or struggle to effectively implement machine learning approaches that can adapt to changing market conditions. This post explores my journey building the ML Trading Strategist framework, which enables the development, testing, and comparison of various trading strategies using both traditional and machine learning techniques.
 
+<div class="callout interactive-demo">
+  <h4><i class="fas fa-rocket"></i> Try It Yourself!</h4>
+  <p>Want to experiment with different trading strategies and see the results in real-time? Check out the interactive Streamlit application:</p>
+  <a href="https://adredes-weslee-ml-trading-strategist-app-pu7qym.streamlit.app/" class="callout-button" target="_blank" rel="noopener noreferrer">
+    <i class="fas fa-play-circle"></i> Launch Interactive Demo
+  </a>
+</div>
+
 > Want to explore the implementation details? Check out my [ML Trading Strategist project page](/projects/ml-trading-strategist/)
 
 ## The Challenge: Moving Beyond Rule-Based Trading
