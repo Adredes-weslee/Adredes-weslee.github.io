@@ -1,182 +1,251 @@
 ---
 layout: post
-title: "Forecasting Dengue Cases and Conducting Cost-Benefit Analysis of Public Health Interventions"
-date: 2023-08-15 10:00:00 +0800
-categories: [time-series, public-health, economics]
-tags: [forecasting, prophet, arima, health-economics, cost-benefit-analysis, singapore, dengue]
+title: "Dengue Outbreak Prediction: A Technical Guide to Time Series Forecasting and Health Economic Analysis"
+date: 2023-08-15 10:00:00 +0800 # Retaining original date
+categories: [time-series, public-health, economics, data-science, tutorial]
+tags: [forecasting, prophet, arima, sarimax, bats, tbats, health-economics, cost-benefit-analysis, python, pandas, statsmodels, singapore, dengue]
 author: Wes Lee
-feature_image: /assets/images/2023-08-15-forecasting-dengue-cases-and-cost-benefit-analysis.jpg
+feature_image: /assets/images/2023-08-15-forecasting-dengue-cases-and-cost-benefit-analysis.jpg # Or a new, more technical image
 ---
 
-## Tackling a Growing Public Health Challenge
+## Introduction: The Dual Challenge of Dengue Prediction and Policy
 
-Dengue fever represents one of the most significant mosquito-borne viral diseases globally, with dramatic increases in incidence over the past 20 years. In Singapore, where I conducted this analysis, the disease poses a persistent public health challenge despite the country's advanced healthcare system and mosquito control efforts.
+Dengue fever is a persistent and escalating public health concern in many tropical regions, including Singapore. The 2020 outbreak, with over 30,000 cases, underscored the urgent need for robust predictive tools and economically sound intervention strategies. This post offers a technical walkthrough of a project that tackled this dual challenge by combining advanced time series forecasting of dengue cases with a detailed health economic cost-benefit analysis of control interventions.
 
-The record-breaking outbreak in 2020 with over 30,000 cases served as a stark reminder that we need better predictive tools and cost-effective intervention strategies. This project emerged from that need, combining advanced time series forecasting with health economic analysis to provide evidence-based recommendations for dengue management.
+> For a higher-level overview of this project's public health context, strategic findings, and policy recommendations for Singapore, please see the [Strategic Dengue Control Project Page](/projects/dengue-forecasting-project-page/).
 
-## A Multi-faceted Forecasting Approach
+## Phase 1: Building the Foundation - Data Integration and Preparation
 
-### Comprehensive Data Integration
+Effective forecasting starts with comprehensive and well-prepared data. Our approach involved several key steps:
 
-Building effective forecasting models requires rich, multi-dimensional datasets. For this project, I integrated several data streams:
+### 1. Sourcing Diverse Data Streams
+To capture the multifaceted nature of dengue transmission, we integrated data from various sources:
+-   **Epidemiological Data:** Weekly dengue case counts from the Ministry of Health, Singapore (2012-2022).
+-   **Meteorological Data:** Weekly averages/totals for temperature, relative humidity, and rainfall from the Meteorological Service Singapore.
+-   **Demographic Data:** Population statistics from the Department of Statistics Singapore (used for context and potential rate calculations).
+-   **Digital Behavioral Data:** Google Trends data for dengue-related search terms, as a proxy for public awareness or early symptom reporting.
 
-- **Epidemiological data**: Weekly dengue case counts spanning 10 years (2012-2022)
-- **Meteorological variables**: Temperature, relative humidity, and rainfall patterns
-- **Demographic information**: Population statistics and density metrics
-- **Digital signals**: Google Trends data for dengue-related search terms
+### 2. Data Preprocessing and Harmonization
+The raw data required significant preprocessing:
+-   **Aggregation & Resampling:** All data was converted to a unified weekly time series.
+-   **Timestamp Alignment:** Ensured consistent indexing across all datasets.
+-   **Missing Value Imputation:** Handled missing data points using appropriate techniques (e.g., interpolation, forward/backward fill).
+-   **Feature Engineering:** Created lagged variables for weather data, as their impact on mosquito breeding cycles and viral incubation is often delayed.
+-   **Dataset Splitting:** The final dataset (152 weekly data points) was split into a training set (114 points) and a test set (38 points) for model evaluation.
 
-This integrated dataset provided a foundation for examining relationships between environmental factors and dengue incidence, while also capturing seasonal patterns and long-term trends.
+## Phase 2: Understanding Dengue Dynamics - Time Series Analysis
 
-### Time Series Characteristics and Challenges
+Before modeling, we thoroughly analyzed the time series properties of dengue cases in Singapore.
 
-Analyzing dengue case data presented several interesting challenges:
+### 1. Identifying Seasonality and Trends
+Dengue incidence exhibits complex seasonality:
+-   **Annual Cycles:** Peaks often occur in the warmer, wetter months (typically June-October).
+-   **Multi-year Epidemic Cycles:** Larger outbreaks tend to occur every 5-6 years, potentially driven by shifts in dominant dengue virus serotypes and population immunity.
+-   **Weekly Patterns:** Minor fluctuations can be related to reporting artifacts.
 
-**1. Complex Seasonality**: Dengue in Singapore shows multiple seasonal patterns:
-   - Annual cycles with peaks typically in June-October
-   - Multi-year epidemic cycles with large outbreaks every 5-6 years
-   - Weekly variations related to reporting patterns
+Correlation analysis revealed lagged relationships: temperature showed significant correlation with a 3-4 week lag, while rainfall's impact was more complex with 1-3 week lags.
 
-**2. Environmental Drivers**: Correlation analysis revealed lag relationships between weather variables and case counts:
-   - Temperature showed significant correlation with a 3-4 week lag
-   - Rainfall exhibited complex relationships with 1-3 week lags
-   - Relative humidity had more immediate associations with case increases
-
-**3. Stationarity Considerations**: The series exhibited difference stationarity rather than trend stationarity, informing our modeling decisions:
+### 2. Stationarity Testing: A Critical Step
+Most time series models assume stationarity (i.e., statistical properties like mean and variance are constant over time). We used two common tests:
+-   **Augmented Dickey-Fuller (ADF) Test:** Null hypothesis (H0) is that the series is non-stationary.
+-   **Kwiatkowski-Phillips-Schmidt-Shin (KPSS) Test:** Null hypothesis (H0) is that the series is stationary around a deterministic trend.
 
 ```python
-# Testing for stationarity
+# Python code for stationarity testing
 from statsmodels.tsa.stattools import adfuller, kpss
+import pandas as pd # Assuming df is your DataFrame with a 'cases' column
 
-# Augmented Dickey-Fuller test (H0: non-stationary)
-result = adfuller(df['cases'])
-print(f'ADF Statistic: {result[0]:.4f}')
-print(f'p-value: {result[1]:.4f}')
-# Result: p-value 0.0037 - reject null hypothesis, indicating stationarity
+# Load your weekly dengue cases data into df['cases']
+# df = pd.read_csv('your_dengue_data.csv', parse_dates=['date_column'], index_col='date_column')
+# df_weekly_cases = df['cases'].resample('W').sum() # Example resampling
 
-# KPSS test (H0: stationary)
-result = kpss(df['cases'])
-print(f'KPSS Statistic: {result[0]:.4f}')
-print(f'p-value: {result[1]:.4f}')
-# Result: p-value 0.10 - fail to reject null hypothesis, also indicating stationarity
+# Augmented Dickey-Fuller Test
+# print("Results of Dickey-Fuller Test:")
+# adf_result = adfuller(df_weekly_cases, autolag='AIC')
+# adf_output = pd.Series(adf_result[0:4], index=['Test Statistic','p-value','#Lags Used','Number of Observations Used'])
+# for key,value in adf_result[4].items():
+#    adf_output['Critical Value (%s)'%key] = value
+# print(adf_output)
+# If p-value < 0.05, reject H0 (series is stationary). Original p=0.0037.
+
+# KPSS Test
+# print("\nResults of KPSS Test:")
+# kpss_result = kpss(df_weekly_cases, regression='c', nlags="auto") # 'c' for constant trend
+# kpss_output = pd.Series(kpss_result[0:3], index=['Test Statistic','p-value','Lags Used'])
+# for key,value in kpss_result[3].items():
+#    kpss_output['Critical Value (%s)'%key] = value
+# print(kpss_output)
+# If p-value > 0.05, fail to reject H0 (series is stationary). Original p=0.1.
+```
+Our data (ADF p=0.0037, KPSS p=0.1) suggested difference stationarity, meaning differencing the series could make it stationary. This informed the choice of `d` or `D` parameters in ARIMA/SARIMA models.
+
+### 3. Autocorrelation Analysis (ACF and PACF)
+Autocorrelation Function (ACF) and Partial Autocorrelation Function (PACF) plots helped identify the order of AR (p) and MA (q) terms for ARIMA models. Strong weekly dependence (ACF at lag 1 = 0.9768) was observed, diminishing over time.
+
+## Phase 3: Developing and Evaluating Forecasting Models
+
+We developed and compared seven different time series models to find the best predictor for dengue cases.
+
+### 1. Overview of Models Tested:
+-   **ARIMA (AutoRegressive Integrated Moving Average):** A classic model for univariate time series.
+-   **SARIMA (Seasonal ARIMA):** Extends ARIMA to handle seasonality.
+-   **SARIMAX (SARIMA with eXogenous variables):** Allows inclusion of external predictors like weather data.
+-   **Holt-Winters Exponential Smoothing:** A method that explicitly models level, trend, and seasonality.
+-   **BATS (Box-Cox transform, ARMA errors, Trend, and Seasonal components):** Handles complex seasonalities and other components.
+-   **TBATS (Trigonometric BATS):** An extension of BATS that can model multiple complex seasonalities using trigonometric functions.
+-   **Prophet (by Facebook):** A decomposable model that explicitly models trend, multiple seasonalities (yearly, weekly), and holidays/special events. It's robust to missing data and shifts in trend.
+
+### 2. Spotlight on Prophet: The Best Performing Model
+The Prophet model demonstrated the best performance in our evaluations.
+
+**Implementation with Prophet:**
+```python
+# Python code for Prophet model implementation
+from prophet import Prophet
+import pandas as pd # Ensure pandas is imported
+
+# Assume 'df_train' is the training DataFrame with 'ds' (datetime) and 'y' (cases) columns,
+# and potentially other regressor columns like 'temperature', 'relative_humidity', 'rainfall'.
+# df_train = pd.DataFrame({
+#     'ds': pd.to_datetime(['2022-01-01', '2022-01-08', ...]),
+#     'y': [10, 12, ...],
+#     'temperature': [28, 29, ...],
+#     # ... other regressors
+# })
+
+
+# Initialize Prophet model
+# Seasonality_mode can be 'additive' or 'multiplicative'
+# Changepoint_prior_scale controls flexibility of trend changes
+model = Prophet(
+    yearly_seasonality=True,
+    weekly_seasonality=True, # Captures weekly reporting patterns if any
+    daily_seasonality=False, # Not applicable for weekly data
+    seasonality_mode='multiplicative', # Assumes seasonal effects multiply the trend
+    changepoint_prior_scale=0.05 # Default is 0.05; adjusts trend flexibility
+)
+
+# Add exogenous regressors (e.g., weather variables)
+# These regressors must be known for future periods as well for forecasting
+# model.add_regressor('temperature')
+# model.add_regressor('relative_humidity')
+# model.add_regressor('rainfall')
+# model.add_regressor('google_trends_dengue') # Example
+
+# Fit the model to the training data
+# model.fit(df_train)
+
+# Create a future DataFrame for forecasting (e.g., 16 weeks ahead)
+# future_periods = 16
+# future_df = model.make_future_dataframe(periods=future_periods, freq='W') # 'W' for weekly frequency
+
+# Add future values for regressors to future_df
+# This is crucial: you need forecasts or actual future values for your regressors.
+# For example, if using weather forecasts:
+# future_df['temperature'] = future_weather_forecasts['temperature'] 
+# ... and so on for other regressors.
+# If regressors are not available for the future, they cannot be used directly in this way,
+# or you might need to forecast them separately.
+
+# Generate forecast
+# forecast_df = model.predict(future_df)
+
+# Display key forecast components
+# print(forecast_df[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail(future_periods))
+
+# Plotting the forecast
+# fig1 = model.plot(forecast_df)
+# plt.show()
+
+# Plotting components (trend, yearly seasonality, weekly seasonality)
+# fig2 = model.plot_components(forecast_df)
+# plt.show()
 ```
 
-The contrasting results from ADF and KPSS tests suggested different characteristics at various time scales, requiring models that could handle both short-term fluctuations and longer-term patterns.
-
-### Model Development and Selection
-
-I implemented and evaluated seven distinct time series forecasting approaches:
-
-1. **ARIMA (AutoRegressive Integrated Moving Average)**: Baseline performance with simple temporal dependencies
-2. **SARIMA (Seasonal ARIMA)**: Extension with explicit seasonal components
-3. **SARIMAX**: Incorporating exogenous variables (weather data) for improved predictions
-4. **Holt-Winters Exponential Smoothing**: Triple exponential smoothing for level, trend, and seasonal components
-5. **BATS (Box-Cox transform, ARMA errors, Trend, and Seasonal components)**: Handling complex seasonality
-6. **TBATS**: Extension that accommodates multiple seasonal periods
-7. **Prophet**: Facebook's decomposable time series model with trend, multiple seasonality components, and holiday effects
-
-After rigorous cross-validation and performance comparison, Prophet emerged as the superior model for several reasons:
-
-- **Lower MAPE** (Mean Absolute Percentage Error): 9.52% on the test set
-- **Superior handling of multiple seasonalities** without overfitting
-- **Effective incorporation of external regressors** like temperature and rainfall
-- **Interpretable components** allowing for insights into trend and seasonal effects
-- **Reliable uncertainty intervals** for forecasting
-
-The model selection process highlighted the importance of balancing statistical performance with practical interpretability when building forecasting tools for public health applications.
-
-## From Prediction to Action: Cost-Benefit Analysis
-
-Accurate forecasting provides the foundation for evidence-based decision making, but translating predictions into policy requires economic evaluation. I conducted a comprehensive cost-benefit analysis of two major dengue control strategies:
-
-### Evaluating Intervention Options
-
-**1. Project Wolbachia**
-   - A biocontrol strategy using *Wolbachia*-infected mosquitoes that reduce transmission
-   - Successfully piloted in Singapore since 2016 with demonstrated effectiveness
-   - Requires ongoing releases but creates sustained population reduction
-
-**2. Dengvaxia® Vaccination Program**
-   - First licensed dengue vaccine with demonstrated efficacy
-   - Requires individual serological screening due to risks in seronegative individuals
-   - Implementation complexity in mass vaccination scenarios
-
-The analysis incorporated:
-- Implementation costs (scaling estimates from pilot programs)
-- Hospitalization costs averted
-- Productivity losses prevented
-- Disease burden reduction (calculated in Disability-Adjusted Life Years)
-
-### Economic Findings and Implications
-
-The results revealed substantial differences in cost-effectiveness between the two interventions:
+### 3. Model Evaluation and Cross-Validation
+We used Mean Absolute Percentage Error (MAPE), Root Mean Square Error (RMSE), and Mean Absolute Error (MAE) for evaluation. Prophet's built-in cross-validation tools were also utilized.
 
 ```python
-# Simplified cost-effectiveness calculation
-def calculate_cost_effectiveness(intervention_cost, dalys_averted):
-    cost_per_daly = intervention_cost / dalys_averted
-    return cost_per_daly
+# Prophet's cross-validation and performance metrics
+from prophet.diagnostics import cross_validation, performance_metrics
 
-# Project Wolbachia
-wolbachia_cost_per_daly = calculate_cost_effectiveness(27000000, 449.7)  # USD 60,039
+# Perform cross-validation
+# 'initial': size of the initial training period
+# 'period': spacing between cutoff dates
+# 'horizon': forecast horizon
+# df_cv = cross_validation(model, initial='730 days', period='90 days', horizon = '112 days') # Example parameters
 
-# Dengvaxia vaccination program
-dengvaxia_cost_per_daly = calculate_cost_effectiveness(36320000, 100.6)  # USD 360,876
+# Calculate performance metrics
+# performance_metrics_df = performance_metrics(df_cv)
+# print("Prophet Model Performance Metrics (from CV):")
+# print(performance_metrics_df.head())
+# print(f"Mean MAPE from CV: {performance_metrics_df['mape'].mean():.4f}") # Target MAPE was 0.0952
+```
+The Prophet model achieved a MAPE of 0.0952 on the test set, outperforming other models, particularly in handling multiple seasonalities and incorporating external regressors.
+
+## Phase 4: Health Economic Analysis - The "How To"
+
+Beyond prediction, the project aimed to evaluate the economic viability of dengue control interventions.
+
+### 1. Defining Interventions for Comparison:
+-   **Project Wolbachia:** A biocontrol method using *Wolbachia*-infected mosquitoes.
+-   **Dengvaxia® Vaccination:** A population-level immunization campaign.
+
+### 2. Calculating Key Health Economic Metrics:
+The core of the cost-benefit analysis involved:
+-   **Estimating Implementation Costs:** Gathering data on the costs associated with rolling out each intervention (e.g., mosquito rearing and release, vaccine procurement, administration, public awareness campaigns, serological screening for Dengvaxia®).
+-   **Calculating DALYs (Disability-Adjusted Life Years) Averted:** This involved estimating the reduction in disease burden (morbidity and mortality) due to each intervention. DALYs = Years of Life Lost (YLL) due to premature mortality + Years Lived with Disability (YLD).
+-   **Cost per DALY Averted:** Calculated as: `Total Intervention Cost / Total DALYs Averted`. This is a standard metric for comparing the cost-effectiveness of health interventions.
+-   **Benefit-Cost Ratio (BCR):** Calculated as: `Total Monetized Benefits / Total Intervention Costs`. Benefits include averted healthcare costs, productivity losses prevented, etc.
+
+```python
+# Python snippet for simplified cost-effectiveness calculation
+
+def calculate_cost_per_daly(total_intervention_cost, total_dalys_averted):
+    """Calculates the cost per DALY averted."""
+    if total_dalys_averted == 0:
+        return float('inf') # Avoid division by zero
+    return total_intervention_cost / total_dalys_averted
+
+# Example data (replace with actuals from the study)
+# For Project Wolbachia in Singapore (annualized)
+wolbachia_annual_cost_usd = 27000000 
+wolbachia_annual_dalys_averted = 449.7 # Example value
+
+cost_per_daly_wolbachia = calculate_cost_per_daly(wolbachia_annual_cost_usd, wolbachia_annual_dalys_averted)
+# print(f"Project Wolbachia - Cost per DALY averted: USD {cost_per_daly_wolbachia:,.0f}")
+# Expected: USD 60,039
+
+# For Dengvaxia® Vaccination in Singapore (annualized, hypothetical campaign)
+dengvaxia_annual_cost_usd = 36320000 
+dengvaxia_annual_dalys_averted = 100.6 # Example value
+
+cost_per_daly_dengvaxia = calculate_cost_per_daly(dengvaxia_annual_cost_usd, dengvaxia_annual_dalys_averted)
+# print(f"Dengvaxia Vaccination - Cost per DALY averted: USD {cost_per_daly_dengvaxia:,.0f}")
+# Expected: USD 360,876
 ```
 
-The key findings:
+### 3. Comparing with WHO Cost-Effectiveness Thresholds
+The calculated cost per DALY averted was then compared against WHO-recommended thresholds (e.g., <1x GDP per capita is highly cost-effective, 1-3x GDP per capita is cost-effective).
 
-1. **Project Wolbachia** showed dramatically better cost-effectiveness:
-   - Cost per DALY averted: USD 60,039
-   - Benefit-Cost Ratio: 2.90 (every dollar spent returns $2.90 in benefits)
+## Technical Lessons and Future Directions
 
-2. **Dengvaxia® vaccination** was substantially less cost-effective:
-   - Cost per DALY averted: USD 360,876 (six times higher than Wolbachia)
-   - Additional screening costs and administrative complexity
-   
-3. **WHO Cost-Effectiveness Thresholds**:
-   - The conservative threshold (0.5× GDP per capita): USD 30,364
-   - Standard threshold for developed nations (3× GNI): USD 166,255
-   - Wolbachia falls between these thresholds, representing reasonable value for a high-income country
+**Key Technical Learnings:**
+-   **Multi-Model Evaluation:** Testing a diverse suite of time series models is crucial, as no single model is universally superior.
+-   **Feature Engineering for Time Series:** Incorporating relevant exogenous variables (weather, search trends) and their appropriate lags significantly improves forecast accuracy.
+-   **Robustness of Prophet:** Prophet's ability to handle multiple seasonalities and trend changes made it particularly suitable for complex epidemiological data.
+-   **Economic Modeling Complements Forecasting:** Combining predictive analytics with economic evaluation provides a much richer basis for policy decisions.
 
-The analysis demonstrated that while Project Wolbachia exceeds the most conservative cost-effectiveness threshold, it falls well within acceptable ranges for high Human Development Index countries like Singapore, especially when considering additional benefits not captured in the primary analysis.
+**Future Technical Enhancements:**
+-   **Spatio-temporal Modeling:** Incorporating geographical data to predict localized outbreaks.
+-   **Genomic Surveillance Data:** Integrating viral serotype information to improve accuracy during serotype shifts.
+-   **Real-time Model Updating:** Developing a pipeline for continuous model retraining and forecast generation as new data becomes available.
+-   **Ensemble Forecasting:** Combining predictions from multiple top-performing models to potentially achieve even greater accuracy and robustness.
 
-## Practical Applications and Future Directions
+## Conclusion: The Power of Integrated Analytics
 
-The combined forecasting and economic analysis yielded several actionable recommendations:
-
-1. **Epidemic Preparedness**: Using the 16-week forecast horizon to calibrate resource allocation for upcoming outbreaks
-2. **Targeted Interventions**: Concentrating Wolbachia releases in high-risk areas identified through spatio-temporal analysis
-3. **Vaccination Policy**: Reserving vaccination for specific high-risk populations rather than universal implementation
-4. **Integration with Public Health Systems**: Embedding forecasting tools in routine surveillance activities
-5. **Ongoing Monitoring**: Continuous evaluation of intervention effectiveness with model recalibration
-
-### Technical Lessons Learned
-
-From a data science perspective, this project reinforced several key insights:
-
-- **Multi-model approach**: The value of implementing multiple models rather than assuming one methodology fits all problems
-- **Feature engineering importance**: How domain knowledge can improve model performance through targeted feature creation
-- **Uncertainty quantification**: The critical nature of providing prediction intervals rather than point estimates for public health planning
-- **Economics + Data Science**: The power of combining predictive analytics with economic evaluation for decision support
-
-### Future Enhancements
-
-As I continue refining this work, several extensions are planned:
-
-1. **Spatio-temporal modeling**: Incorporating geographic variation to identify localized outbreak patterns
-2. **Genomic surveillance integration**: Adding viral serotype data to improve prediction accuracy during serotype shifts
-3. **Real-time updating**: Developing a pipeline for continuous model updating as new case data becomes available
-4. **Ensemble methods**: Combining forecasts from multiple models to further improve accuracy
-5. **Extended cost modeling**: Incorporating additional economic factors including tourism impacts and property value effects
-
-## Conclusion
-
-Dengue fever remains a formidable public health challenge in Singapore and across tropical regions worldwide. This project demonstrates how combining advanced time series forecasting with rigorous economic analysis can provide evidence-based guidance for intervention strategies.
-
-By quantifying both the predictive power of various models and the economic implications of different control strategies, we create a powerful decision-support framework that balances statistical rigor with practical applicability. The resulting recommendations not only address immediate public health needs but also provide a sustainable roadmap for long-term dengue management.
-
-As climate change potentially expands the geographic range of dengue and other mosquito-borne diseases, such integrated analytical approaches will become increasingly valuable for public health planners and policymakers worldwide.
+This project demonstrated a comprehensive workflow for tackling a complex public health issue like dengue. By meticulously integrating diverse data, applying a range of time series forecasting techniques, and performing a rigorous health economic analysis, we were able to generate actionable, evidence-based recommendations. The journey from raw data to policy insights highlights the power of a multi-disciplinary data science approach.
 
 ---
 
-*For a more detailed look at the methodology and implementation, check out the [complete project page](/projects/dengue-forecasting/) or view the [source code on GitHub](https://github.com/Adredes-weslee/Dengue-Case-Prediction-and-Cost-Benefits-Analysis).*
+*For a deeper dive into the specific findings, policy recommendations, and overall impact of this work, please visit the [project page](/projects/dengue-forecasting-project-page/). The source code and datasets are available on [GitHub](https://github.com/Adredes-weslee/Dengue-Case-Prediction-and-Cost-Benefits-Analysis).*

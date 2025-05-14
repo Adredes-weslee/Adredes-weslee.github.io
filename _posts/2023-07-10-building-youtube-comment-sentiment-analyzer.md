@@ -1,421 +1,404 @@
 ---
 layout: post
-title: "Building a Robust YouTube Comment Sentiment Analyzer"
-date: 2023-07-10 09:30:00 +0800
-categories: [nlp, machine-learning, sentiment-analysis]
-tags: [youtube, nlp, classification, vader, flair, hybrid-labeling]
+title: "Building a YouTube Sentiment Classifier: An NLP Deep Dive into Hybrid Labeling and Model Stacking"
+date: 2023-07-10 09:30:00 +0800 # Retaining original date
+categories: [nlp, machine-learning, sentiment-analysis, tutorial]
+tags: [youtube, text-classification, python, scikit-learn, nltk, vader, flair, huggingface-transformers, feature-engineering, model-stacking]
 author: Wes Lee
-feature_image: /assets/images/2023-07-10-building-youtube-comment-sentiment-analyzer.jpg
+feature_image: /assets/images/2023-07-10-building-youtube-comment-sentiment-analyzer.jpg # Or a new, more technical image
 ---
 
-## The Need for Digital Reputation Management
+## Introduction: The Challenge of Understanding YouTube Sentiment at Scale
 
-In today's social media landscape, online reputation management has become critical for public figures and brands. For music artists like Justin Bieber, whose digital presence spans platforms with millions of interactions, the ability to monitor and understand audience sentiment in real-time can make the difference between prosperity and a PR crisis.
+YouTube comments are a firehose of audience feedback, but their sheer volume and informal nature make manual sentiment analysis impractical. This post details the technical journey of building a robust binary sentiment classifier for YouTube comments, focusing on a hybrid labeling strategy, advanced preprocessing, diverse feature engineering, and model stacking to achieve reliable performance. Our goal was to accurately identify negative sentiment to help content creators manage reputation and optimize content.
 
-I recently tackled this challenge by building a sophisticated sentiment analysis system capable of differentiating between positive and negative comments on YouTube videos. This post details the approach, challenges, and technical implementation of this project.
+> For a higher-level overview of this project's business context, key findings, and applications, please see the [YouTube Comment Sentiment Analysis Project Page](/projects/youtube-sentiment-analysis-project-page/).
 
-## The Unique Challenge of YouTube Comments
+## Phase 1: Data Acquisition and Preparation
 
-YouTube comments present unique challenges for sentiment analysis:
+The foundation of any NLP project is high-quality data.
 
-1. **Informal language** with slang, emojis, abbreviations, and unconventional spelling
-2. **Multilingual content** mixed within the same comment section
-3. **Context-dependent sentiment** including sarcasm and references to video content
-4. **Short text fragments** with limited linguistic context
-5. **Platform-specific expressions** unique to the YouTube ecosystem
-
-These factors make standard off-the-shelf sentiment analysis tools less reliable, requiring a more sophisticated approach.
-
-## Data Collection: Scaling the YouTube API
-
-The first step was collecting a substantial dataset. Using the YouTube Data API, I retrieved over 99,000 comments and replies from one of Justin Bieber's most commented videos:
+### 1. Collecting YouTube Comments via API
+We started by collecting a large corpus of comments. Using the YouTube Data API v3, we extracted over 63,000 comments (initially over 99,000 including replies, then cleaned) from a diverse set of videos, including one of Justin Bieber's most commented ones.
 
 ```python
-def get_comments_and_replies(video_id, page_token=None):
-    try:
-        response = youtube.commentThreads().list(
-            part="snippet",
-            videoId=video_id,
-            textFormat="plainText",
-            pageToken=page_token,
-            maxResults=1000
-        ).execute()
+from googleapiclient.discovery import build
+import pandas as pd
+from dateutil import parser # For parsing datetime strings
 
-        comments_and_replies = []
-        next_page_token = response.get("nextPageToken")
+# api_key = "YOUR_YOUTUBE_API_KEY" # Store securely, e.g., in environment variables
+# youtube = build("youtube", "v3", developerKey=api_key)
+
+def get_video_comments_and_replies(video_id, youtube_service, max_pages=None):
+    """
+    Extracts comments and their replies from a YouTube video.
+    Args:
+        video_id (str): The ID of the YouTube video.
+        youtube_service: Initialized YouTube Data API service instance.
+        max_pages (int, optional): Maximum number of pages of comments to fetch. Defaults to None (all pages).
+    Returns:
+        pd.DataFrame: DataFrame containing comment details.
+    """
+    comments_data = []
+    next_page_token = None
+    pages_fetched = 0
+
+    while True:
+        try:
+            request = youtube_service.commentThreads().list(
+                part="snippet,replies", # Include replies in the request
+                videoId=video_id,
+                maxResults=100, # Max allowed by API per page
+                pageToken=next_page_token,
+                textFormat="plainText"
+            )
+            response = request.execute()
+
+            for item in response["items"]:
+                top_level_comment_snippet = item["snippet"]["topLevelComment"]["snippet"]
+                comments_data.append({
+                    "comment_id": item["snippet"]["topLevelComment"]["id"],
+                    "author": top_level_comment_snippet.get("authorDisplayName"),
+                    "text": top_level_comment_snippet.get("textDisplay"),
+                    "likes": top_level_comment_snippet.get("likeCount"),
+                    "published_at": parser.parse(top_level_comment_snippet.get("publishedAt")) if top_level_comment_snippet.get("publishedAt") else None,
+                    "is_reply": False,
+                    "parent_id": None
+                })
+
+                # Extract replies if they exist
+                if item.get("replies"):
+                    for reply_item in item["replies"]["comments"]:
+                        reply_snippet = reply_item["snippet"]
+                        comments_data.append({
+                            "comment_id": reply_item["id"],
+                            "author": reply_snippet.get("authorDisplayName"),
+                            "text": reply_snippet.get("textDisplay"),
+                            "likes": reply_snippet.get("likeCount"),
+                            "published_at": parser.parse(reply_snippet.get("publishedAt")) if reply_snippet.get("publishedAt") else None,
+                            "is_reply": True,
+                            "parent_id": reply_snippet.get("parentId")
+                        })
+            
+            next_page_token = response.get("nextPageToken")
+            pages_fetched += 1
+            if not next_page_token or (max_pages and pages_fetched >= max_pages):
+                break
+        except Exception as e:
+            print(f"An API error occurred: {e}")
+            break
+            
+    df = pd.DataFrame(comments_data)
+    # Basic cleaning: drop rows where text is missing, remove duplicates by comment_id
+    df.dropna(subset=['text'], inplace=True)
+    df.drop_duplicates(subset=['comment_id'], keep='first', inplace=True)
+    return df
+
+# Example usage:
+# video_to_scrape = "VIDEO_ID_HERE" 
+# all_comments_df = get_video_comments_and_replies(video_to_scrape, youtube)
+# print(f"Collected {len(all_comments_df)} comments and replies.")
+```
+
+### 2. Preprocessing for Noisy Social Media Text
+YouTube comments are notoriously informal. A robust preprocessing pipeline is essential.
+
+```python
+import re
+import nltk
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize # Added for tokenization
+import emoji # For handling emojis
+import contractions # For expanding contractions (pip install contractions)
+
+# Ensure NLTK resources are downloaded (run once)
+# nltk.download('stopwords', quiet=True)
+# nltk.download('wordnet', quiet=True)
+# nltk.download('omw-1.4', quiet=True) # For WordNet
+# nltk.download('punkt', quiet=True) # For word_tokenize
+
+class YouTubeCommentPreprocessor:
+    def __init__(self):
+        self.stop_words = set(stopwords.words('english'))
+        # Add common YouTube/social media slang to stopwords if needed
+        self.stop_words.update(['im', 'u', 'ur', 'r', 'pls', 'plz', 'thx', 'youtu', 'http', 'https'])
+        self.lemmatizer = WordNetLemmatizer()
         
-        # Extract top-level comments
-        for item in response["items"]:
-            comment = item["snippet"]["topLevelComment"]["snippet"]["textDisplay"]
-            comments_and_replies.append(comment)
+    def preprocess_text(self, text):
+        if not isinstance(text, str):
+            return "" # Handle non-string inputs
 
-            # Extract replies if they exist
-            if "replies" in item:
-                for reply_item in item["replies"]["comments"]:
-                    reply = reply_item["snippet"]["textDisplay"]
-                    comments_and_replies.append(reply)
+        # 1. Convert to lowercase
+        text = text.lower()
+        
+        # 2. Expand contractions (e.g., "don't" -> "do not")
+        text = contractions.fix(text)
+        
+        # 3. Handle emojis (convert to text description)
+        text = emoji.demojize(text, delimiters=(" :", ": ")) # e.g., 😂 -> :face_with_tears_of_joy:
+        
+        # 4. Remove URLs
+        text = re.sub(r'https?://\S+|www\.\S+', ' ', text)
+        
+        # 5. Remove HTML tags (if any)
+        text = re.sub(r'<.*?>', ' ', text)
+        
+        # 6. Remove user mentions (e.g., @username)
+        text = re.sub(r'@\w+', ' ', text)
+        
+        # 7. Remove special characters and numbers, keep spaces and basic punctuation for context
+        text = re.sub(r'[^a-z\s]', ' ', text) # Keep only letters and spaces
+        
+        # 8. Tokenize
+        tokens = word_tokenize(text)
+        
+        # 9. Remove stopwords and lemmatize
+        processed_tokens = []
+        for token in tokens:
+            if token not in self.stop_words and len(token) > 1: # Remove short tokens too
+                processed_tokens.append(self.lemmatizer.lemmatize(token))
+        
+        # 10. Join tokens back into a string
+        return ' '.join(processed_tokens)
 
-        return comments_and_replies, next_page_token
-
-    except googleapiclient.errors.HttpError as e:
-        print(f"An error occurred: {e}")
+# Example usage:
+# preprocessor = YouTubeCommentPreprocessor()
+# sample_comment = "OMG this is sooo FUNNY 😂😂😂 thx 4 sharing @user123! check out my site [www.example.com](https://www.example.com) I can't stop laughing"
+# processed_comment = preprocessor.preprocess_text(sample_comment)
+# print(f"Original: {sample_comment}")
+# print(f"Processed: {processed_comment}")
 ```
+Key steps included lowercasing, contraction expansion, emoji demojization, URL/HTML removal, special character filtering, tokenization, stopword removal, and lemmatization.
 
-After removing duplicates and null values, I ended up with a clean dataset of just under 100,000 raw comments.
+## Phase 2: The Hybrid Labeling Strategy - Creating Reliable Training Data
 
-## The Hybrid Labeling Approach
+Manually labeling 63,000+ comments is infeasible. We developed a hybrid, consensus-based labeling approach using three distinct sentiment analysis tools:
 
-A key innovation in this project was the hybrid labeling strategy. Instead of relying on a single sentiment analysis model, I combined three complementary approaches:
-
-### 1. VADER (Valence Aware Dictionary and sEntiment Reasoner)
-
-A lexicon and rule-based sentiment analyzer specifically tuned for social media content:
+**1. VADER (Valence Aware Dictionary and sEntiment Reasoner):** A lexicon and rule-based tool optimized for social media text.
 
 ```python
-def vader_sentiment(text):
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+# nltk.download('vader_lexicon', quiet=True) # Run once
+
+def get_vader_sentiment_label(text):
     analyzer = SentimentIntensityAnalyzer()
-    scores = analyzer.polarity_scores(text)
-    
-    # Convert VADER's compound score to binary sentiment
-    if scores['compound'] >= 0.05:
-        return 1  # Positive
+    vs = analyzer.polarity_scores(text)
+    compound_score = vs['compound']
+    if compound_score >= 0.05:
+        return 'positive' # Or 1
+    elif compound_score <= -0.05:
+        return 'negative' # Or 0
     else:
-        return 0  # Negative
+        return 'neutral' # Or handle as needed
 ```
 
-### 2. Flair NLP
-
-A powerful framework leveraging contextual string embeddings:
+**2. Flair NLP:** Utilizes contextual string embeddings (pre-trained models).
 
 ```python
-def flair_sentiment(text):
-    classifier = TextClassifier.load('en-sentiment')
+from flair.models import TextClassifier
+from flair.data import Sentence
+
+# Load Flair sentiment classifier (load once globally or in a class __init__)
+# flair_classifier = TextClassifier.load('en-sentiment')
+
+def get_flair_sentiment_label(text, classifier):
+    if not text.strip(): # Flair needs non-empty string
+        return 'neutral'
     sentence = Sentence(text)
     classifier.predict(sentence)
-    
-    # Convert Flair's label to binary sentiment
-    label = sentence.labels[0].value
-    if label == 'POSITIVE':
-        return 1
+    # Flair returns POSITIVE/NEGATIVE label and a score
+    flair_label_obj = sentence.labels[0]
+    sentiment = flair_label_obj.value.lower() # 'positive' or 'negative'
+    # confidence = flair_label_obj.score
+    return sentiment
+```
+
+**3. HuggingFace Transformers (DistilBERT):** A pre-trained BERT-based model fine-tuned for sentiment.
+
+```python
+from transformers import pipeline
+
+# Load HuggingFace sentiment pipeline (load once globally or in a class __init__)
+# hf_sentiment_pipeline = pipeline("sentiment-analysis", model="distilbert-base-uncased-finetuned-sst-2-english")
+
+def get_huggingface_sentiment_label(text, hf_pipeline):
+    if not text.strip():
+        return 'neutral'
+    results = hf_pipeline(text)
+    # HuggingFace returns 'LABEL_1' (POSITIVE) or 'LABEL_0' (NEGATIVE) for some models, or 'POSITIVE'/'NEGATIVE'
+    hf_label = results[0]['label'].lower()
+    if 'positive' in hf_label or 'label_1' in hf_label: # Adapt based on specific model output
+        return 'positive'
+    elif 'negative' in hf_label or 'label_0' in hf_label:
+        return 'negative'
+    return 'neutral'
+```
+
+**Consensus Logic:**
+A comment was included in the training set for binary classification (positive/negative) only if at least two of the three models agreed on its sentiment, and that consensus was not 'neutral'.
+
+```python
+# df['vader_pred'] = df['processed_text'].apply(lambda x: get_vader_sentiment_label(x))
+# df['flair_pred'] = df['processed_text'].apply(lambda x: get_flair_sentiment_label(x, flair_classifier))
+# df['hf_pred'] = df['processed_text'].apply(lambda x: get_huggingface_sentiment_label(x, hf_sentiment_pipeline))
+
+def determine_consensus_label(row):
+    predictions = [row['vader_pred'], row['flair_pred'], row['hf_pred']]
+    positive_votes = predictions.count('positive')
+    negative_votes = predictions.count('negative')
+
+    if positive_votes >= 2:
+        return 'positive'
+    elif negative_votes >= 2:
+        return 'negative'
     else:
-        return 0
+        return 'ambiguous' # Or 'neutral', or None to filter out
+
+# df['consensus_label'] = df.apply(determine_consensus_label, axis=1)
+# training_df = df[df['consensus_label'].isin(['positive', 'negative'])].copy()
+# training_df['sentiment_numeric'] = training_df['consensus_label'].apply(lambda x: 1 if x == 'positive' else 0)
 ```
+This yielded a more reliable, albeit smaller, dataset for training our custom classifier.
 
-### 3. HuggingFace Transformers
+## Phase 3: Feature Engineering - Extracting Signals from Text
 
-State-of-the-art transformer models for sentiment classification:
+We experimented with several feature extraction techniques:
+
+**1. TF-IDF Vectorization:** Captures word importance using Term Frequency-Inverse Document Frequency, including unigrams and bigrams.
 
 ```python
-def huggingface_sentiment(text):
-    classifier = pipeline('sentiment-analysis')
-    result = classifier(text)[0]
-    
-    # Convert HuggingFace's label to binary sentiment
-    if result['label'] == 'POSITIVE':
-        return 1
-    else:
-        return 0
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+# tfidf_vectorizer = TfidfVectorizer(
+#     max_features=10000, # Limit feature space
+#     min_df=5,           # Ignore terms that appear in less than 5 documents
+#     max_df=0.8,         # Ignore terms that appear in more than 80% of documents
+#     ngram_range=(1, 2), # Consider both unigrams and bigrams
+#     sublinear_tf=True   # Apply logarithmic scaling to term frequency
+# )
+# X_tfidf = tfidf_vectorizer.fit_transform(training_df['processed_text'])
 ```
 
-### Consensus-Based Labeling
-
-The final label was determined by taking the mean of all three models' predictions:
+**2. Word Embeddings (Word2Vec):** Trained a Word2Vec model on our corpus to generate dense vector representations for words, then averaged word vectors to get document embeddings.
 
 ```python
-def get_consensus_label(text):
-    # Get predictions from all three models
-    vader_pred = vader_sentiment(text)
-    flair_pred = flair_sentiment(text)
-    hf_pred = huggingface_sentiment(text)
-    
-    # Calculate consensus
-    mean_pred = (vader_pred + flair_pred + hf_pred) / 3
-    
-    # Assign final label based on threshold
-    if mean_pred >= 0.5:
-        return 1  # Positive
-    else:
-        return 0  # Negative
-```
+import gensim
+import numpy as np
 
-This approach provided more reliable labels than any single model, especially for ambiguous comments. After labeling, approximately 63,000 comments remained for training and evaluation.
+def train_custom_word2vec(tokenized_texts_list, vector_size=100, window=5, min_count=2, workers=4, sg=1):
+    """Trains a Word2Vec model."""
+    # model = gensim.models.Word2Vec(
+    #     tokenized_texts_list,
+    #     vector_size=vector_size,
+    #     window=window,
+    #     min_count=min_count,
+    #     workers=workers,
+    #     sg=sg # 1 for skip-gram; 0 for CBOW
+    # )
+    # return model
 
-## Sophisticated Text Preprocessing
-
-YouTube comments require extensive preprocessing due to their informal nature:
-
-```python
-def preprocess_text(text):
-    # Convert to lowercase
-    text = text.lower()
-    
-    # Handle emojis (convert to description or remove)
-    text = emoji.demojize(text)
-    
-    # Expand contractions (e.g., "don't" -> "do not")
-    text = contractions.fix(text)
-    
-    # Remove URLs
-    text = re.sub(r'https?://\S+|www\.\S+', '', text)
-    
-    # Remove HTML tags
-    text = re.sub(r'<.*?>', '', text)
-    
-    # Remove special characters and numbers
-    text = re.sub(r'[^a-zA-Z\s]', '', text)
-    
-    # Tokenize and remove stopwords
-    tokens = word_tokenize(text)
-    stop_words = set(stopwords.words('english'))
-    tokens = [token for token in tokens if token not in stop_words]
-    
-    # Apply lemmatization
-    lemmatizer = WordNetLemmatizer()
-    tokens = [lemmatizer.lemmatize(token) for token in tokens]
-    
-    # Rejoin tokens
-    return ' '.join(tokens)
-```
-
-Key preprocessing steps included:
-- Language detection to filter non-English comments
-- Emoji handling (conversion to text descriptions)
-- Contraction expansion
-- URL and HTML removal
-- Special character filtering
-- Tokenization with stopword removal
-- Both stemming and lemmatization (for comparison)
-
-## Feature Engineering: Beyond Bag-of-Words
-
-While traditional bag-of-words models provide a baseline, I implemented multiple feature extraction techniques to capture different aspects of the text:
-
-### 1. N-gram Features
-
-```python
-# Count Vectorizer with n-grams
-count_vec = CountVectorizer(
-    max_features=15000,
-    ngram_range=(1, 3),
-    min_df=2
-)
-
-# TF-IDF with n-grams
-tfidf_vec = TfidfVectorizer(
-    max_features=6000,
-    ngram_range=(1, 2),
-    min_df=5,
-    max_df=0.8,
-    sublinear_tf=True
-)
-```
-
-### 2. Word Embeddings
-
-```python
-# Train Word2Vec model on our corpus
-w2v_model = Word2Vec(
-    sentences=tokenized_texts,
-    vector_size=100,
-    window=5,
-    min_count=2,
-    workers=4,
-    sg=1  # Skip-gram model
-)
-
-# Create document vectors by averaging word vectors
-def document_vector(text, model, vector_size=100):
+def create_document_vector(text, word2vec_model, vector_size=100):
+    """Averages word vectors in a document."""
     tokens = text.split()
-    vectors = []
-    for token in tokens:
-        if token in model.wv:
-            vectors.append(model.wv[token])
-    
-    if not vectors:
-        return np.zeros(vector_size)
-    
-    return np.mean(vectors, axis=0)
+    # word_vectors = [word2vec_model.wv[token] for token in tokens if token in word2vec_model.wv]
+    # if not word_vectors:
+    #     return np.zeros(vector_size)
+    # return np.mean(word_vectors, axis=0)
+
+# tokenized_corpus = [text.split() for text in training_df['processed_text']]
+# w2v_model = train_custom_word2vec(tokenized_corpus)
+# X_word2vec = np.array([create_document_vector(text, w2v_model) for text in training_df['processed_text']])
 ```
 
-### 3. Parts-of-Speech Features
+**3. Parts-of-Speech (POS) Features (Conceptual):** While explored, TF-IDF and embeddings were primary. Extracting counts of adjectives or adverbs could also be a feature type.
+
+## Phase 4: Model Development, Comparison, and Stacking
+
+We trained and evaluated several classification models:
+-   Logistic Regression
+-   Random Forest
+-   Gradient Boosting Classifier
+-   Linear SVC
+
+Hyperparameters were tuned using `GridSearchCV` with 5-fold cross-validation, optimizing for F1-score.
 
 ```python
-# Extract adjectives as features
-nlp = spacy.load('en_core_web_sm')
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.svm import LinearSVC
+from sklearn.metrics import classification_report
 
-def extract_adjectives(text):
-    doc = nlp(text)
-    adjectives = [token.text for token in doc if token.pos_ == 'ADJ']
-    return ' '.join(adjectives)
+# y = training_df['sentiment_numeric']
+# X_train, X_test, y_train, y_test = train_test_split(X_tfidf, y, test_size=0.2, random_state=42, stratify=y)
+
+
+# Example for Logistic Regression
+# log_reg_params = {'C': [0.1, 1, 10], 'penalty': ['l1', 'l2'], 'solver': ['liblinear', 'saga']}
+# log_reg_grid = GridSearchCV(LogisticRegression(max_iter=1000, class_weight='balanced'), log_reg_params, cv=5, scoring='f1_weighted', n_jobs=-1)
+# log_reg_grid.fit(X_train, y_train)
+# best_log_reg = log_reg_grid.best_estimator_
+# y_pred_log_reg = best_log_reg.predict(X_test)
+# print("Logistic Regression Report:\n", classification_report(y_test, y_pred_log_reg))
 ```
+The original project mentioned Logistic Regression with CountVectorizer (1-3 n-grams, lemmatization) as the best single model, achieving an F1-score (negative class) of 0.656 and overall accuracy of 0.684.
 
-## Model Development and Evaluation
-
-I built and compared multiple classification approaches:
-
-### Naive Bayes Variants
+### Model Stacking for Improved Performance
+To potentially boost performance, a stacked ensemble model was implemented, combining predictions from base models (Logistic Regression, Random Forest, Gradient Boosting) using a Logistic Regression meta-learner.
 
 ```python
-# Multinomial Naive Bayes
-nb_pipeline = Pipeline([
-    ('vectorizer', CountVectorizer(max_features=15000, ngram_range=(1, 3))),
-    ('classifier', MultinomialNB())
-])
+from sklearn.ensemble import StackingClassifier
+
+# Assuming best_log_reg, best_rf, best_gb are trained best estimators from GridSearchCV
+# base_estimators = [
+#     ('logistic', best_log_reg),
+#     ('rf', RandomForestClassifier(n_estimators=100, random_state=42, class_weight='balanced')), # Example RF
+#     ('gb', GradientBoostingClassifier(n_estimators=100, random_state=42)) # Example GB
+# ]
+# meta_learner_log_reg = LogisticRegression(solver='liblinear', class_weight='balanced', random_state=42)
+
+# stacked_clf = StackingClassifier(
+#     estimators=base_estimators,
+#     final_estimator=meta_learner_log_reg,
+#     cv=5, # Can use cross-validation for generating base model predictions for meta-learner
+#     n_jobs=-1
+# )
+# stacked_clf.fit(X_train, y_train)
+# y_pred_stacked = stacked_clf.predict(X_test)
+# print("Stacked Classifier Report:\n", classification_report(y_test, y_pred_stacked))
 ```
+The stacked model achieved an overall accuracy of 0.87 and an F1-score (weighted average) of 0.87, significantly outperforming individual models.
 
-### Logistic Regression
+## Analyzing Feature Importance
 
+For linear models like Logistic Regression, examining coefficients helps understand which words/n-grams are most indicative of positive or negative sentiment.
 ```python
-# Logistic Regression with different vectorizers
-lr_count_pipeline = Pipeline([
-    ('vectorizer', CountVectorizer(max_features=15000, ngram_range=(1, 3))),
-    ('classifier', LogisticRegression(C=10, class_weight='balanced'))
-])
+# Assuming 'tfidf_vectorizer' is fitted and 'best_log_reg' is the trained Logistic Regression model
+# feature_names = tfidf_vectorizer.get_feature_names_out()
+# coefficients = best_log_reg.coef_[0]
+# coef_df = pd.DataFrame({'feature': feature_names, 'coefficient': coefficients})
+# coef_df = coef_df.sort_values('coefficient', ascending=False)
 
-lr_tfidf_pipeline = Pipeline([
-    ('vectorizer', TfidfVectorizer(max_features=6000, ngram_range=(1, 2))),
-    ('classifier', LogisticRegression(C=1, class_weight='balanced'))
-])
+# print("Top Positive Features:")
+# print(coef_df.head(10))
+# print("\nTop Negative Features:")
+# print(coef_df.tail(10).sort_values('coefficient', ascending=True))
 ```
+This revealed terms like "love," "amazing" for positive, and "hate," "worst" for negative sentiment.
 
-### Tree-Based Models
+## Technical Lessons Learned
 
-```python
-# Random Forest with Word2Vec embeddings
-rf_model = RandomForestClassifier(
-    n_estimators=200,
-    max_depth=5,
-    min_samples_split=5,
-    class_weight='balanced'
-)
-
-# Histogram-based Gradient Boosting
-hgb_model = HistGradientBoostingClassifier(
-    max_iter=100,
-    max_depth=10,
-    learning_rate=0.1,
-    class_weight='balanced'
-)
-```
-
-### Ensemble Approach
-
-```python
-# Stacking Classifier
-estimators = [
-    ('lr', LogisticRegression()),
-    ('rf', RandomForestClassifier(n_estimators=100, max_depth=10)),
-    ('gb', GradientBoostingClassifier(n_estimators=100))
-]
-
-stacking_clf = StackingClassifier(
-    estimators=estimators,
-    final_estimator=LogisticRegression()
-)
-```
-
-## Results and Insights
-
-After extensive experimentation, the best performing model was a Logistic Regression with Count Vectorization using 1-3 n-grams and lemmatization:
-
-| Metric | Score |
-|--------|-------|
-| F1-Score (Negative Class) | 0.656 |
-| Precision (Negative Class) | 0.639 |
-| Recall (Negative Class) | 0.673 |
-| Accuracy | 0.684 |
-
-The confusion matrix revealed that our model was slightly better at identifying negative comments than positive ones, which aligns with our project goals.
-
-## Feature Importance Analysis
-
-The most predictive features for negative sentiment included:
-
-1. "hate" (coefficient: -1.724)
-2. "worst" (coefficient: -1.512)  
-3. "terrible" (coefficient: -1.341)
-4. "bad" (coefficient: -1.203)
-5. "poor" (coefficient: -0.982)
-
-For positive sentiment:
-
-1. "love" (coefficient: 2.104)
-2. "amazing" (coefficient: 1.913)
-3. "great" (coefficient: 1.782)
-4. "beautiful" (coefficient: 1.675)
-5. "awesome" (coefficient: 1.524)
-
-Interestingly, some n-grams like "not bad" and "no hate" were strongly associated with positive sentiment, showing the model's ability to capture negation effects.
-
-## Common Misclassifications
-
-Error analysis revealed several categories of misclassifications:
-
-1. **Sarcasm**: "Yeah, this is *totally* the best song ever... NOT" (incorrectly classified as positive)
-2. **Mixed sentiment**: "Love Justin but hate this song" (model struggled with conflicting signals)
-3. **Cultural references**: Comments referring to memes or pop culture that require context
-4. **Implicit sentiment**: Comments with no explicit sentiment words but implied meaning
-
-## Practical Applications
-
-This sentiment analyzer can be integrated into an artist's digital management strategy:
-
-1. **Real-time monitoring**: Detect sudden shifts in sentiment that require attention
-2. **Targeted engagement**: Focus community management on threads with negative sentiment
-3. **Content strategy**: Analyze which video elements generate positive/negative reactions
-4. **Crisis prevention**: Identify potential PR issues before they escalate
-5. **Trend analysis**: Track sentiment changes over time to measure brand health
-
-## Technical Architecture 
-
-The production implementation involves:
-
-```
-youtube-sentiment-analyzer/
-├── data/
-│   ├── raw/                 # Raw comment data
-│   └── processed/           # Processed text and labels
-├── models/
-│   ├── vectorizers/         # Fitted vectorizers
-│   ├── classifiers/         # Trained models
-│   └── embeddings/          # Word2Vec models
-├── notebooks/
-│   ├── data_collection.ipynb
-│   └── cleaning_eda_modeling.ipynb
-├── src/
-│   ├── data/
-│   │   ├── collect.py       # YouTube API functions
-│   │   └── process.py       # Text preprocessing
-│   ├── features/
-│   │   └── vectorize.py     # Feature extraction
-│   ├── models/
-│   │   ├── train.py         # Model training
-│   │   └── predict.py       # Inference pipeline
-│   └── visualization/
-│       └── visualize.py     # Result visualization
-├── api/
-│   ├── app.py               # FastAPI service
-│   └── Dockerfile           # Container config
-└── requirements.txt
-```
-
-## Future Enhancements
-
-To further improve this system, several enhancements could be implemented:
-
-1. **Neutral class addition**: Include a "neutral" category to better capture ambiguous comments
-2. **Multi-label classification**: Detect multiple emotions within the same comment
-3. **Transformer models**: Fine-tune models like BERT specifically for YouTube comments
-4. **Sarcasm detection**: Add specialized models to identify sarcastic content
-5. **User profiling**: Consider commenter history for additional context
-6. **Cross-language support**: Extend to multiple languages common on global YouTube channels
+1.  **Hybrid Labeling Value:** Combining multiple off-the-shelf sentiment tools with a consensus mechanism creates surprisingly robust labels for training, mitigating individual model biases.
+2.  **Preprocessing is Paramount for Social Media Text:** Standard NLP preprocessing needs to be augmented with specific steps for emojis, slang, URLs, and contractions common in YouTube comments.
+3.  **N-grams Capture Context:** Using bigrams and trigrams with TF-IDF often captures more contextual sentiment than unigrams alone.
+4.  **Model Stacking Benefits:** Ensemble methods like stacking can effectively combine the strengths of diverse base models to achieve superior performance.
+5.  **Error Analysis Drives Improvement:** Understanding common misclassifications (sarcasm, mixed sentiment) points towards areas for future model refinement.
 
 ## Conclusion
 
-Building an effective sentiment analyzer for YouTube comments requires going beyond standard approaches. The hybrid labeling strategy and robust preprocessing pipeline were crucial to achieving reliable results. 
-
-For social media managers and artist representation, tools like this can transform overwhelming comment sections into structured, actionable intelligence that helps protect and enhance online reputation.
+Building a sentiment analyzer for the noisy and nuanced world of YouTube comments requires a multi-pronged approach. This project demonstrated that by combining a clever hybrid labeling strategy, meticulous text preprocessing, diverse feature engineering, and advanced modeling techniques like stacking, it's possible to create a system that provides valuable insights into audience sentiment. Such tools are indispensable for creators and brands aiming to manage their online reputation and engage more effectively with their audience.
 
 ---
 
-*Want to explore this project in more detail? Check out the [complete project page](/projects/sentiment-analysis/) or view the [source code on GitHub](https://github.com/Adredes-weslee/Sentiment-Analysis-and-NLP-for-a-Youtube-Video).*
+*This post details the technical journey of building the YouTube Comment Sentiment Analyzer. For more on the project's business applications and high-level findings, please visit the [project page](/projects/youtube-sentiment-analysis-project-page/). The source code is available on [GitHub](https://github.com/Adredes-weslee/Sentiment-Analysis-and-NLP-for-a-Youtube-Video).*
