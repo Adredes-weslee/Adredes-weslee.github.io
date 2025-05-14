@@ -2,7 +2,7 @@
 layout: post
 title: "Decoding Heat Stress: A Data Scientist's Guide to Wet-Bulb Temperature Analysis"
 date: 2023-05-15 10:30:00 +0800 # Retaining original date
-categories: [data-science, climate, public-health, tutorial]
+categories: [data-science, climate, public-health]
 tags: [wet-bulb-temperature, climate-change, regression-analysis, python, pandas, scikit-learn, data-integration, time-series]
 author: Wes Lee
 feature_image: /assets/images/2023-05-15-predicting-heat-stress-with-wet-bulb-temperature.jpg # Or a new, more technical image

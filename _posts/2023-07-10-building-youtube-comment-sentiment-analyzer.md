@@ -2,7 +2,7 @@
 layout: post
 title: "Building a YouTube Sentiment Classifier: An NLP Deep Dive into Hybrid Labeling and Model Stacking"
 date: 2023-07-10 09:30:00 +0800 # Retaining original date
-categories: [nlp, machine-learning, sentiment-analysis, tutorial]
+categories: [nlp, machine-learning, sentiment-analysis]
 tags: [youtube, text-classification, python, scikit-learn, nltk, vader, flair, huggingface-transformers, feature-engineering, model-stacking]
 author: Wes Lee
 feature_image: /assets/images/2023-07-10-building-youtube-comment-sentiment-analyzer.jpg # Or a new, more technical image

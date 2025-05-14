@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "Engineering an AI Robo-Advisor: A Technical Deep Dive into Risk Profiling and RL-Based Portfolio Optimization"
-date: 2023-10-25 09:30:00 +0800 # Retaining original date
-categories: [ai, finance, machine-learning, reinforcement-learning, tutorial]
+date: 2023-10-25 09:30:00 +0800 
+categories: [ai, finance, machine-learning, reinforcement-learning]
 tags: [robo-advisor, portfolio-optimization, risk-profiling, supervised-learning, deep-q-network, python, scikit-learn, tensorflow, keras, cvxopt, plotly-dash]
 author: Wes Lee
-feature_image: /assets/images/2023-10-25-robo-advisor-risk-profiling-portfolio-optimization.jpg # Or a new, more technical image
+feature_image: /assets/images/2023-10-25-robo-advisor-risk-profiling-portfolio-optimization.jpg 
 ---
 
 ## Introduction: Building a Smarter Financial Advisor

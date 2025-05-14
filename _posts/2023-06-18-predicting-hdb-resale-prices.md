@@ -2,7 +2,7 @@
 layout: post
 title: "Building an HDB Resale Price Predictor: A Technical Deep Dive into Feature Engineering and Regression"
 date: 2023-06-18 14:45:00 +0800 # Retaining original date
-categories: [data-science, machine-learning, real-estate, tutorial]
+categories: [data-science, machine-learning, real-estate]
 tags: [housing, singapore, regression, feature-engineering, price-prediction, python, scikit-learn, pandas]
 author: Wes Lee
 feature_image: /assets/images/2023-06-18-predicting-hdb-resale-prices.jpg # Or a new, more technical image

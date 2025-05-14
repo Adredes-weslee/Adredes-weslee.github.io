@@ -2,7 +2,7 @@
 layout: post
 title: "Unlocking Revenue: A Technical Walkthrough of Customer Segmentation and Price Optimization for CS Tay"
 date: 2024-08-15 10:30:00 +0800 
-categories: [data-science, pricing-strategy, business-analytics, commercial-strategy, machine-learning]
+categories: [data-science, pricing-strategy, business-analytics, commercial-strategy]
 tags: [rfm-analysis, k-means-clustering, price-elasticity, revenue-optimization, python, pandas, scikit-learn, gurobi, capstone-project]
 author: Wes Lee
 feature_image: /assets/images/2024-08-15-customer-segmentation-price-optimization.jpg 

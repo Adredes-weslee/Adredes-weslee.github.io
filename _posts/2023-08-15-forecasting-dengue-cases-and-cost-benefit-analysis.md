@@ -2,7 +2,7 @@
 layout: post
 title: "Dengue Outbreak Prediction: A Technical Guide to Time Series Forecasting and Health Economic Analysis"
 date: 2023-08-15 10:00:00 +0800 # Retaining original date
-categories: [time-series, public-health, economics, data-science, tutorial]
+categories: [time-series, public-health, economics]
 tags: [forecasting, prophet, arima, sarimax, bats, tbats, health-economics, cost-benefit-analysis, python, pandas, statsmodels, singapore, dengue]
 author: Wes Lee
 feature_image: /assets/images/2023-08-15-forecasting-dengue-cases-and-cost-benefit-analysis.jpg # Or a new, more technical image
