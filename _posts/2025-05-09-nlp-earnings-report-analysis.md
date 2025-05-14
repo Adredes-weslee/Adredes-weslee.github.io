@@ -16,6 +16,14 @@ While financial professionals traditionally review these documents manually, the
 
 This blog post details my work on a sophisticated NLP system for analyzing earnings announcement texts from publicly traded companies to extract actionable insights and predict stock market reactions.
 
+<div class="callout interactive-demo">
+  <h4><i class="fas fa-rocket"></i> Try It Yourself!</h4>
+  <p>Want to analyze earnings reports and extract key insights in real-time? Check out the interactive Streamlit application:</p>
+  <a href="https://adredes-weslee-nlp-earnings-report-streamlit-app-0uttcu.streamlit.app/" class="callout-button" target="_blank" rel="noopener noreferrer">
+    <i class="fas fa-play-circle"></i> Launch Interactive Demo
+  </a>
+</div>
+
 > Want to explore the technical implementation? Check out my [NLP Earnings Report Analysis project page](/projects/nlp-earnings-analyzer/)
 
 ## Building a Financial NLP Pipeline
