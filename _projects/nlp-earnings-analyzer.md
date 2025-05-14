@@ -4,7 +4,7 @@ title: "NLP Earnings Report Analyzer: Extracting Financial Insights from Text"
 categories: nlp finance machine-learning data-science
 image: /assets/images//nlp-earnings-analyzer.jpg
 technologies: [Python, NLTK, scikit-learn, PyTorch, Transformers, Streamlit, spaCy, Pandas]
-github: https://github.com/Adredes-weslee/NLP-Earnings-Analyzer
+github: https://github.com/Adredes-weslee/NLP_earnings_report
 blog_post: /nlp/finance/machine-learning/data-science/2025/05/09/nlp-earnings-report-analysis.html
 ---
 
