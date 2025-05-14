@@ -1,11 +1,11 @@
 ---
 layout: post
 title: "A Deep Dive into Enterprise RAG: Design, Implementation, and Lessons Learned"
-date: 2025-05-12 14:33:46 +0800 # Retaining original date for consistency
+date: 2025-05-12 14:33:46 +0800 
 categories: [ai, nlp, rag, enterprise-software]
 tags: [llms, retrieval-augmented-generation, vector-databases, langchain, python, system-design, mLOps]
 author: Wes Lee
-feature_image: /assets/images/2025-05-12-building-effective-rag-systems.jpg # Can be updated if a new image is preferred
+feature_image: /assets/images/2025-05-12-building-effective-rag-systems.jpg 
 ---
 
 ## Introduction: The RAG Revolution in Enterprise
