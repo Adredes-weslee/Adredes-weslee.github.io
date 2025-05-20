@@ -14,23 +14,23 @@ These projects showcase my work with large language models, transformer architec
 
 * [**NLP Earnings Report Analyzer**](/projects/nlp-earnings-analyzer/) - Financial text analysis combining traditional NLP and transformer models for earnings reports
 * [**Custom RAG Engine for Enterprise Document QA**](/projects/rag-engine-project/) - Containerized document QA system with hybrid embedding models and self-hosted inference
-* [**Sentiment Analysis of YouTube Comments**](/projects/sentiment-analysis/) - Hybrid labeling system combining rule-based and transformer approaches
+* [**YouTube Comment Sentiment Analysis: Unlocking Audience Insights for Content Creators**](/projects/sentiment-analysis/) - Hybrid labeling system combining rule-based and transformer approaches
 
 ## Machine Learning & AI Applications
 
 Projects demonstrating various ML techniques and domain applications:
 
 * [**ML Trading Strategist**](/projects/ml-trading-strategist/) - Algorithmic trading framework comparing rule-based, tree-ensemble, and reinforcement learning approaches
-* [**AI-Powered Robo Advisor**](/projects/robo-advisor-project/) - Portfolio optimization using reinforcement learning and risk profiling
-* [**HDB Resale Price Prediction**](/projects/hdb-resale-prices/) - Advanced regression modeling for Singapore's housing market
-* [**Wet-Bulb Temperature Analysis**](/projects/wet-bulb-temperature/) - Climate data modeling for heat stress prediction
+* [**Intelligent Investing: An AI-Powered Robo-Advisor for Personalized Portfolio Management**](/projects/robo-advisor-project/) - Portfolio optimization using reinforcement learning and risk profiling
+* [**Building an HDB Resale Price Predictor: A Technical Deep Dive into Feature Engineering and Regression**](/projects/hdb-resale-prices/) - Advanced regression modeling for Singapore's housing market
+* [**Wet-Bulb Temperature & Climate Resilience: A Policy-Focused Data Study for Singapore**](/projects/wet-bulb-temperature/) - Climate data modeling for heat stress prediction
 
 ## Data Science & Business Analytics
 
 Projects focused on extracting insights and delivering business value:
 
-* [**Customer Segmentation & Price Optimization**](/projects/customer-segmentation/) - RFM analysis and revenue optimization for frozen food distributor
-* [**Forecasting Dengue Cases with Time Series Analysis**](/projects/dengue-forecasting/) - Time series analysis with health intervention cost-benefit analysis
+* [**Strategic Growth Engine: Data-Driven Customer Segmentation & Price Optimization for CS Tay**](/projects/customer-segmentation/) - RFM analysis and revenue optimization for frozen food distributor
+* [**Strategic Dengue Control: Forecasting & Cost-Benefit Analysis for Public Health Interventions in Singapore**](/projects/dengue-forecasting/) - Time series analysis with health intervention cost-benefit analysis
 
 ## Technical Skills Demonstrated
 
