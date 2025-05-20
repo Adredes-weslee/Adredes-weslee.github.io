@@ -5,7 +5,7 @@ categories: [nlp, machine-learning, rag, enterprise-ai]
 image: /assets/images/rag-engine-project.jpg # Or a new one if preferred
 technologies: [Python, LangChain, Streamlit, Docker, Kubernetes, Ollama, HuggingFace Transformers, FAISS, Vector Databases, LLMs]
 github: https://github.com/Adredes-weslee/Custom-RAG-Engine-for-Enterprise-Document-QA
-blog_post: /ai/nlp/rag/2025/05/12/building-effective-rag-systems.html # Link to the new blog post
+blog_post: /ai/nlp/rag/2024/10/29/building-effective-rag-systems.html # Link to the new blog post
 ---
 
 ## Project Overview
