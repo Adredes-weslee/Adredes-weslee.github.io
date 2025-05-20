@@ -1,6 +1,6 @@
 ---
 layout: project
-title: "NLP Earnings Report Analyzer: Extracting Financial Insights from Text"
+title: "FinSight NLP: The Earnings Report Intelligence Platform"
 categories: nlp finance machine-learning data-science
 image: /assets/images//nlp-earnings-analyzer.jpg
 technologies: [Python, NLTK, scikit-learn, PyTorch, Transformers, Streamlit, spaCy, Pandas]

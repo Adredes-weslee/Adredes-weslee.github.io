@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "ML Trading Strategist: A Deep Dive into Development and Comparison"
+title: "Developing ML Trading Strategies: From Rule-Based Systems to Reinforcement Learning"
 date: 2025-05-12 09:30:00 +0800
 categories: [ai, finance, machine-learning, reinforcement-learning]
 tags: [algorithmic-trading, decision-trees, q-learning, technical-analysis, backtesting, python, data-science]
@@ -19,6 +19,7 @@ Algorithmic trading has revolutionized financial markets, with automated systems
     <i class="fas fa-play-circle"></i> Launch Interactive Demo
   </a>
 </div>
+
 
 ## The Core Challenge: Moving Beyond Fixed Rules
 
@@ -174,13 +175,13 @@ Effective strategy evaluation hinges on realistic backtesting. Many strategies l
 2.  **Market Impact (Slippage)**: The effect of a trade on execution price, proportional to trade size.
 3.  **Bid-Ask Spread**: Implicit cost of executing trades.
 
-The `compute_portvals` function in our simulator (detailed on the project page) meticulously tracks cash, positions, and deducts these costs to provide an accurate portfolio valuation over time.
+The `compute_portvals` function in our simulator meticulously tracks cash, positions, and deducts these costs to provide an accurate portfolio valuation over time.
 
 ## Putting the Strategies to the Test
 
 We evaluated these strategies using JPMorgan Chase (JPM) stock data, training on 2008-2009 and testing on 2010-2011.
 
-Both the Tree Strategy and Q-Strategy significantly outperformed the benchmark and the manual strategy in terms of cumulative return and Sharpe ratio. Interestingly, they exhibited different trading patterns: the Tree Strategy tended towards more frequent trades with smaller positions, while the Q-Strategy favored fewer trades with longer holding periods. (Detailed performance metrics are available on the [project page](/projects/ml-trading-strategist/)).
+Both the Tree Strategy and Q-Strategy significantly outperformed the benchmark and the manual strategy in terms of cumulative return and Sharpe ratio. Interestingly, they exhibited different trading patterns: the Tree Strategy tended towards more frequent trades with smaller positions, while the Q-Strategy favored fewer trades with longer holding periods. 
 
 ## Uncovering Insights: Feature Importance and Hyperparameters
 
@@ -243,4 +244,3 @@ Key takeaways for practitioners:
 As financial data grows in complexity, ML will become increasingly indispensable. Future work on this framework could include integrating alternative data, exploring deep reinforcement learning, and applying transfer learning across market regimes.
 
 ---
-

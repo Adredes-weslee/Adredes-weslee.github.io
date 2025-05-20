@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "NLP Earnings Report Analysis: Extracting Insights from Financial Text"
+title: "Decoding Wall Street: How We Engineered an NLP System for Financial Disclosures"
 date: 2025-05-09 09:45:00 +0800
 categories: [nlp, finance, machine-learning, data-science]
 tags: [nlp, finance, machine-learning, data-science, text-analysis, python]

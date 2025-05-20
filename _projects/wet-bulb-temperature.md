@@ -1,113 +1,123 @@
 ---
 layout: project
-title: "Predicting Wet-Bulb Temperature for Heat Stress Analysis"
-categories: climate-science machine-learning data-analysis
-image: /assets/images/wet-bulb-temperature.jpg
-technologies: [Python, Pandas, Scikit-Learn, Matplotlib, Seaborn, Time Series Analysis]
+title: "Wet-Bulb Temperature & Climate Resilience: A Policy-Focused Data Study for Singapore"
+categories: [climate-science, public-health, data-analysis, policy]
+image: /assets/images/wet-bulb-temperature.jpg # Or a new, more policy-focused image
+technologies: [Python, Pandas, Scikit-Learn, Matplotlib, Seaborn, Time Series Analysis, Regression Modeling]
 github: https://github.com/Adredes-weslee/wet-bulb-temperature-analysis
-blog_post: /data-science/climate/public-health/2023/05/15/predicting-heat-stress-with-wet-bulb-temperature.html
+blog_post: /data-science/climate/public-health/2023/05/15/predicting-heat-stress-with-wet-bulb-temperature.html # Link to the new blog post
 ---
 
 ## Project Overview
 
-Commissioned as a hypothetical policy study for the Singapore government, this project investigates the relationship between wet-bulb temperature (WBT)—a crucial indicator of heat stress—and climate change drivers such as greenhouse gases and meteorological factors. Using regression modeling and time series analysis, I aimed to identify key contributors to extreme heat conditions in tropical environments and provide actionable insights for public health planning.
+This project, framed as a hypothetical policy study for the Singapore government, investigates the critical relationship between **wet-bulb temperature (WBT)**—a key indicator of heat stress on the human body—and various climate change drivers. By analyzing long-term meteorological data and greenhouse gas concentrations, this study aims to identify key factors contributing to extreme heat conditions in tropical urban environments like Singapore and provide data-driven insights for public health planning and climate resilience strategies.
 
-## Background & Significance
+## Background: The Significance of Wet-Bulb Temperature
 
-Wet-bulb temperature (WBT) combines heat and humidity into a single value measuring heat stress on the human body. At wet-bulb temperatures above 35°C, even healthy humans cannot survive extended exposure as the body cannot cool itself through sweating.
+Wet-bulb temperature (WBT) is a more comprehensive measure of heat stress than standard air temperature because it accounts for humidity. High WBT conditions severely limit the human body's ability to cool itself through sweating. This has profound implications:
 
-With climate change accelerating, identifying regions approaching critical wet-bulb thresholds has significant public health implications:
+* **At WBT > 31°C:** Sustained physical labor becomes dangerous.
+* **At WBT > 35°C:** Represents the theoretical limit of human survivability for extended exposure, as effective thermoregulation via sweating ceases.
+* **Vulnerable Populations:** Even at lower WBT values (e.g., 28°C), elderly individuals, children, and those with pre-existing health conditions face significant health risks.
 
-- At WBT > 31°C: Most physical labor becomes dangerous
-- At WBT > 35°C: Even resting humans cannot thermoregulate effectively
-- Even at lower WBT values (28°C), vulnerable populations face significant health risks
+As noted by Singapore's Minister for Sustainability and the Environment, Grace Fu, the nation could face days with peak temperatures reaching 40°C as early as 2045. This makes the assessment and prediction of WBT crucial for safeguarding public health and ensuring urban livability.
 
-As Minister for Sustainability and Environment Grace Fu noted, Singapore could experience days with peak temperatures of 40°C as early as 2045, making WBT assessment crucial for future planning.
+## Data Sources & Integration
 
-## Data Integration
+A robust analysis requires integrating data from multiple authoritative sources. This study utilized:
 
-This study integrated data from multiple authoritative sources:
+| Data Source          | Variables                                       | Period    |
+| -------------------- | ----------------------------------------------- | --------- |
+| Data.gov.sg          | Wet-bulb temperature (hourly)                   | 1982-2023 |
+| Data.gov.sg          | Surface air temperature (monthly)               | 1982-2023 |
+| SingStat             | Rainfall, sunshine hours, relative humidity (monthly) | 1975-2023 |
+| NOAA (ESRL/GML)      | CO₂ concentration (ppm, monthly global average)   | 1958-2023 |
+| NOAA (ESRL/GML)      | CH₄ concentration (ppb, monthly global average)   | 1983-2023 |
+| NOAA (ESRL/GML)      | N₂O concentration (ppb, monthly global average)   | 2001-2023 |
+| NOAA (ESRL/GML)      | SF₆ concentration (ppt, monthly global average)   | 1997-2023 |
 
-| Data Source | Variables | Period |
-|-------------|-----------|--------|
-| Data.gov.sg | Wet-bulb temperature (hourly) | 1982-2023 |
-| Data.gov.sg | Surface air temperature (monthly) | 1982-2023 |
-| SingStat | Rainfall, sunshine hours, humidity | 1975-2023 |
-| NOAA | CO₂ concentration (ppm) | 1958-2023 |
-| NOAA | CH₄ concentration (ppb) | 1983-2023 |
-| NOAA | N₂O concentration (ppb) | 2001-2023 |
-| NOAA | SF₆ concentration (ppt) | 1997-2023 |
+*Note: Global GHG averages were used as proxies for atmospheric concentrations influencing regional climate.*
 
-## Methodology
+## Methodology: A Phased Analytical Approach
 
-### Exploratory Data Analysis
-- Performed correlation analysis between WBT and all climate variables
-- Conducted time series decomposition to identify seasonal patterns
-- Created visualizations to understand variable relationships and trends
-- Examined multicollinearity among greenhouse gases
+The project followed a structured methodology:
 
-### Data Processing
-- Aggregated hourly WBT readings to monthly averages
-- Aligned timestamps across datasets for proper integration
-- Applied quality control filters to handle anomalous readings
-- Standardized units across different measurement systems
+1.  **Data Preprocessing & Integration:**
+    * Aggregated hourly WBT readings to monthly averages.
+    * Aligned all datasets to a common monthly timestamp.
+    * Performed quality control, handled missing values (e.g., through imputation or forward/backward fill where appropriate), and standardized units.
 
-### Model Development
-- Built multiple linear regression models to predict WBT
-- Assessed feature importance to understand key drivers
-- Validated models using cross-validation techniques
-- Evaluated performance using R², RMSE, and residual analysis
+2.  **Exploratory Data Analysis (EDA):**
+    * Conducted correlation analysis between monthly average WBT and all climate variables (temperature, humidity, rainfall, sunshine) and GHG concentrations.
+    * Performed time series decomposition (trend, seasonality, residuals) for WBT and key drivers.
+    * Utilized visualizations (time series plots, scatter plots, correlation heatmaps) to understand relationships and trends.
+    * Examined multicollinearity among predictor variables, particularly the greenhouse gases.
 
-## Key Findings
+3.  **Predictive Model Development:**
+    * Built multiple linear regression models to predict monthly average WBT based on the identified meteorological factors and GHG concentrations.
+    * Assessed feature importance using model coefficients and statistical significance (p-values).
+    * Validated models using standard techniques like train-test splits and evaluating performance metrics (R², RMSE).
+    * Analyzed model residuals to check for assumptions of linear regression.
 
-1. **Critical Variables**: Mean air temperature showed the strongest positive correlation with WBT, followed by several greenhouse gases
-2. **Negative Correlation**: Relative humidity surprisingly showed negative correlation with WBT in Singapore's context
-3. **Greenhouse Gas Impact**: Nitrous oxide (N₂O) and sulfur hexafluoride (SF₆) displayed significant positive correlations with WBT
-4. **Multicollinearity**: Strong correlations between greenhouse gases reflect their shared anthropogenic sources
-5. **Extreme Values**: While no clear year-over-year WBT trend was observed, there's evidence of increasing extreme values
+## Key Findings & Insights
 
-## Policy Implications
+The analysis yielded several important findings regarding WBT drivers in Singapore:
 
-The findings suggest several actionable policy recommendations:
+1.  **Dominance of Air Temperature:** Mean surface air temperature exhibited the strongest positive correlation with WBT, confirming its primary role in heat stress.
+2.  **Humidity's Complex Role:** Contrary to common intuition that higher humidity always means higher WBT, relative humidity showed a *negative* correlation with WBT in Singapore's specific context when analyzed alongside other factors in the regression. This suggests that periods of extremely high humidity might also be associated with increased cloud cover or rainfall, which can lower ambient temperature, a more dominant WBT driver.
+3.  **Significant Greenhouse Gas Impact:**
+    * Nitrous oxide (N₂O) and sulfur hexafluoride (SF₆) concentrations showed statistically significant positive correlations with WBT in several model specifications.
+    * Carbon dioxide (CO₂) and Methane (CH₄) also showed positive correlations, though their individual impact was sometimes masked by multicollinearity.
+4.  **Multicollinearity Among GHGs:** Strong inter-correlations were observed between the various greenhouse gases, reflecting their common anthropogenic sources and long atmospheric lifetimes. This makes isolating the individual impact of each GHG complex but underscores their collective influence.
+5.  **Trends in Extreme Values:** While a clear, consistent year-over-year upward trend in *average* monthly WBT was not strongly evident over the entire period after accounting for seasonality and other factors, the analysis suggested a potential increase in the frequency or magnitude of *extreme* WBT values, warranting further investigation with more granular (daily/hourly extreme) data.
 
-1. **Heat Monitoring**: Integrate WBT into Singapore's heat advisory systems rather than relying solely on conventional temperature metrics
-2. **Public Education**: Develop education campaigns on heat stress risks, particularly for vulnerable populations
-3. **Urban Planning**: Design future infrastructure with heat resilience in mind
-4. **Labor Regulations**: Consider WBT thresholds for outdoor work safety guidelines
-5. **Climate Action**: Continue efforts to reduce greenhouse gas emissions as part of heat stress mitigation
+## Policy Implications & Recommendations
 
-## Technical Implementation
+The findings from this study support several actionable policy recommendations for Singapore:
+
+1.  **Enhance Heat Advisory Systems:** Integrate WBT as a primary metric into public heat warning systems, alongside or in place of solely relying on dry-bulb temperature, to provide a more accurate measure of heat stress.
+2.  **Strengthen Public Health Campaigns:** Develop targeted public education initiatives to raise awareness about WBT, its health risks (especially for vulnerable groups like the elderly, children, and outdoor workers), and preventive measures.
+3.  **Climate-Resilient Urban Planning:** Incorporate WBT considerations into urban design and infrastructure development. Promote strategies like increasing green cover, cool pavements, and building designs that mitigate urban heat island effects and improve ventilation.
+4.  **Review Labor Regulations for Outdoor Work:** Establish or update occupational safety and health guidelines for outdoor workers based on WBT thresholds to prevent heat-related illnesses and ensure worker safety.
+5.  **Reinforce Climate Change Mitigation Efforts:** Continue and strengthen national and international efforts to reduce greenhouse gas emissions, as the study links rising GHG concentrations to increased WBT. This includes transitioning to renewable energy, improving energy efficiency, and sustainable practices.
+6.  **Invest in Further Research:** Support ongoing research into localized WBT impacts, including detailed heat mapping, vulnerability assessments for different communities, and the effectiveness of various cooling strategies.
+
+## Technical Implementation Snapshot
+
+While the focus of this page is policy, the analysis was underpinned by data science techniques. For instance, Stull's formula (2011) can be used to calculate WBT from temperature and humidity:
 
 ```python
 # Sample code for wet-bulb temperature calculation using Stull's formula
-def calculate_wetbulb(temperature, relative_humidity):
-    """
-    Calculate wet-bulb temperature using Stull's formula (2011)
-    temperature: dry-bulb temperature (°C)
-    relative_humidity: relative humidity (%)
-    """
-    tw = temperature * np.arctan(0.151977 * np.power(relative_humidity + 8.313659, 0.5)) + \
-         np.arctan(temperature + relative_humidity) - \
-         np.arctan(relative_humidity - 1.676331) + \
-         0.00391838 * np.power(relative_humidity, 1.5) * np.arctan(0.023101 * relative_humidity) - \
-         4.686035
-    return tw
+import numpy as np
+
+def calculate_wetbulb_stull(temperature, relative_humidity):
+    """
+    Calculate wet-bulb temperature using Stull's formula (2011).
+    temperature: dry-bulb temperature (°C)
+    relative_humidity: relative humidity (%)
+    """
+    tw = temperature * np.arctan(0.151977 * np.power(relative_humidity + 8.313659, 0.5)) + \
+         np.arctan(temperature + relative_humidity) - \
+         np.arctan(relative_humidity - 1.676331) + \
+         0.00391838 * np.power(relative_humidity, 1.5) * np.arctan(0.023101 * relative_humidity) - \
+         4.686035
+    return tw
 ```
+Regression models were then built using Python libraries such as Pandas for data manipulation and Scikit-Learn for model training and evaluation.
 
-## Future Work
+## Future Work & Research Directions
 
-- Expand the analysis with additional data sources including wind patterns and urbanization metrics
-- Implement more sophisticated models including non-linear approaches (Random Forest, XGBoost)
-- Develop real-time WBT monitoring tools for public health applications
-- Integrate public health data to correlate WBT with health outcomes
-- Create detailed heat risk maps for urban planning
+This study lays the groundwork for more extensive research:
+* **Granular Data Analysis:** Incorporate daily or hourly extreme WBT values rather than monthly averages for a more precise risk assessment.
+* **Additional Climate Variables:** Include data on wind speed, solar radiation, and urban heat island effect proxies (e.g., land surface temperature, NDVI).
+* **Advanced Modeling:** Implement more sophisticated machine learning models (e.g., Random Forest, XGBoost, Neural Networks) and time series forecasting techniques (e.g., SARIMA, Prophet) to improve predictive accuracy and capture non-linearities.
+* **Health Impact Correlation:** Integrate anonymized public health data (e.g., hospital admissions for heatstroke, cardiovascular events) to directly correlate WBT levels with health outcomes.
+* **High-Resolution Heat Risk Mapping:** Develop detailed WBT risk maps for Singapore at a neighborhood level to identify hotspots and guide targeted interventions.
 
-## References
+## Conclusion
 
-This project drew on extensive research from scientific literature, including studies from:
-- NASA's Jet Propulsion Laboratory
-- National Institute of Health
-- Journal of Applied Physiology
-- Singapore's National Climate Change Study
+Understanding and predicting wet-bulb temperature is paramount for building climate resilience, particularly in tropical urban environments like Singapore. This data-driven analysis has identified key meteorological and greenhouse gas drivers influencing WBT, providing a foundation for evidence-based policymaking. By proactively addressing the risks associated with rising WBT, Singapore can better protect public health, enhance urban livability, and adapt to the challenges of a warming climate.
 
-For a comprehensive bibliography, please visit the project repository.
+---
+
+*For a detailed technical walkthrough of the data processing, modeling, and analysis, please refer to the [accompanying blog post](/data-science/climate/public-health/2023/05/15/predicting-heat-stress-with-wet-bulb-temperature.html). The full codebase and data sources are available on [GitHub](https://github.com/Adredes-weslee/wet-bulb-temperature-analysis).*

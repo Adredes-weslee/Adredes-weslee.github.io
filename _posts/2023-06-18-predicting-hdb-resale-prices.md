@@ -1,178 +1,190 @@
 ---
 layout: post
-title: "Predicting HDB Resale Prices in Singapore"
-date: 2023-06-18 14:45:00 +0800
+title: "Building an HDB Resale Price Predictor: A Technical Deep Dive into Feature Engineering and Regression"
+date: 2023-06-18 14:45:00 +0800 # Retaining original date
 categories: [data-science, machine-learning, real-estate]
-tags: [housing, singapore, regression, feature-engineering, price-prediction]
+tags: [housing, singapore, regression, feature-engineering, price-prediction, python, scikit-learn, pandas]
 author: Wes Lee
-feature_image: /assets/images/2023-06-18-predicting-hdb-resale-prices.jpg
+feature_image: /assets/images/2023-06-18-predicting-hdb-resale-prices.jpg # Or a new, more technical image
 ---
 
-## The Unique Singapore Housing Market
+## Introduction: Decoding Singapore's Unique Housing Market with Data
 
-Singapore's public housing market is one of the most fascinating real estate ecosystems in the world. With over 80% of residents living in Housing Development Board (HDB) flats, these properties represent far more than just shelter—they're crucial financial assets for most Singaporean families and a cornerstone of the nation's economic policy.
+Singapore's public housing (HDB flats) market is a dominant feature of its urban landscape, housing over 80% of the population. Predicting HDB resale prices is not just an academic exercise; it has significant financial implications for citizens and provides valuable insights for urban planning. This post offers a technical walkthrough of a project aimed at building a machine learning model to forecast these prices, detailing the data processing, feature engineering, modeling techniques, and key lessons learned.
 
-As a data scientist with an interest in real estate markets, I recently completed a project analyzing and predicting HDB resale prices using machine learning techniques. In this post, I'll share my approach, insights, and the practical implications of this work for homebuyers, policymakers, and urban planners.
+> For a higher-level overview of this project's significance, key findings, and policy implications for Singapore, please see the [HDB Resale Price Insights Project Page](/projects/hdb-resale-prices-project-page/).
 
-## Why HDB Price Prediction Matters
+## The Data Science Approach: From Raw Data to Price Prediction
 
-Housing costs represent the single largest expenditure for most Singaporeans. With average prices for resale flats exceeding SGD 500,000, even small percentage improvements in price prediction accuracy can translate to significant financial impact for buyers. Beyond individual decisions, understanding price drivers also informs:
+Our goal was to build an accurate and interpretable model for HDB resale prices. This involved several key stages.
 
-- **Policy decisions** about housing grants and subsidies
-- **Urban planning** for amenity distribution and transportation networks
-- **Investment strategies** for property owners
-- **Financial planning** for prospective buyers
+### 1. Dataset Acquisition and Initial Exploration
+The project utilized a Kaggle dataset comprising over 60,000 HDB resale transactions. Initial variables included:
+-   Physical flat attributes: floor area, flat type (e.g., 3 ROOM, 4 ROOM, EXEC), storey range.
+-   Location information: town, block, street name.
+-   Lease details: lease commencement year.
+-   Transaction details: resale price, transaction month and year.
 
-## The Data Science Approach
+### 2. Advanced Feature Engineering: The Core of an Accurate Model
+Raw data rarely tells the whole story. Creating meaningful features (feature engineering) is crucial, especially in a market as nuanced as Singapore's HDB.
 
-### Dataset and Features
-
-For this project, I leveraged a Kaggle dataset containing 60,000+ HDB resale transactions. Key variables included:
-
-- Physical attributes (floor area, flat type, storey range)
-- Location information (town, region)
-- Lease details (commencement year, remaining lease)
-- Derived proximity features (distance to MRT stations, schools)
-
-### Feature Engineering
-
-Some of the most valuable predictors came not from the raw data but from engineered features:
+**a. Lease-Related Features:**
+The remaining lease on an HDB flat is a critical price determinant. We engineered several lease-based features:
 
 ```python
-# Example of feature engineering for lease decay
-def create_lease_features(df):
-    # Calculate remaining lease in years
-    df['remaining_lease'] = df['lease_commence_year'] + 99 - df['transaction_year']
+import pandas as pd
+import numpy as np
+
+# Assume 'df' is your DataFrame with HDB transaction data
+# df['lease_commence_year'] = df['lease_commence_date'].dt.year # If lease_commence_date is datetime
+# df['transaction_year'] = df['month'].dt.year # If 'month' is datetime
+
+def create_lease_features(df_input):
+    df = df_input.copy() # Work on a copy to avoid SettingWithCopyWarning
+    # Calculate remaining lease in years at the time of transaction
+    # HDB leases are typically 99 years
+    df['remaining_lease_years'] = df['lease_commence_year'] + 99 - df['transaction_year']
     
-    # Create lease decay indicators - research shows pricing cliffs at certain thresholds
-    df['lease_decay_60'] = df['remaining_lease'] < 60
-    df['lease_decay_40'] = df['remaining_lease'] < 40
+    # Create binary indicators for critical lease decay thresholds
+    # Research and market observations suggest price impacts at these points
+    df['lease_lt_60_years'] = (df['remaining_lease_years'] < 60).astype(int)
+    df['lease_lt_40_years'] = (df['remaining_lease_years'] < 40).astype(int)
     
     # Calculate percentage of lease remaining
-    df['lease_remaining_pct'] = df['remaining_lease'] / 99
+    df['lease_remaining_percentage'] = df['remaining_lease_years'] / 99.0
     
+    # Interaction term: floor area * remaining lease (value per sqm might change with lease)
+    if 'floor_area_sqm' in df.columns:
+        df['floor_area_x_rem_lease_pct'] = df['floor_area_sqm'] * df['lease_remaining_percentage']
+        
     return df
+
+# Example usage:
+# hdb_data_with_lease_features = create_lease_features(hdb_raw_data)
+# print(hdb_data_with_lease_features[['remaining_lease_years', 'lease_lt_60_years', 'lease_remaining_percentage']].head())
 ```
+This captures the non-linear impact of lease decay, where depreciation often accelerates as the lease shortens, particularly below key thresholds like 60 or 40 years remaining.
 
-This approach to lease remaining was particularly important because of the non-linear relationship between lease decay and property values—a phenomenon unique to leasehold property systems like Singapore's.
+**b. Location and Proximity Features:**
+Location is paramount. Beyond just the 'town', we would ideally engineer features like:
+-   Distance to the nearest MRT station.
+-   Distance to Central Business District (CBD).
+-   Number of schools within a certain radius (e.g., 1km, 2km).
+-   Proximity to shopping malls and other key amenities.
+*(These often require joining with external geospatial datasets or using APIs, which was abstracted in the original project description but is a key step).*
 
-### Modeling Process
+**c. Flat Characteristics:**
+-   **Storey Level:** Convert storey range (e.g., "01 TO 03", "10 TO 12") to an average numerical value or ordinal encoding. Higher floors generally command higher prices.
+-   **Flat Type and Model:** One-hot encode or use target encoding for categorical variables like `flat_type` (e.g., '3 ROOM', '4 ROOM', 'EXECUTIVE') and `flat_model` (e.g., 'Model A', 'DBSS', 'Improved').
 
-I employed a progressive modeling strategy:
+### 3. Data Preprocessing: Preparing Data for Modeling
+Robust preprocessing is essential for model performance and stability.
+-   **Handling Missing Values:** For features with missing data, `IterativeImputer` from Scikit-learn was used. This is an advanced imputer that models each feature with missing values as a function of other features, and uses that estimate for imputation.
+    ```python
+    from sklearn.experimental import enable_iterative_imputer # Enable experimental feature
+    from sklearn.impute import IterativeImputer
+    
+    # Assuming X_train_numeric is your training data with only numeric features
+    # imputer = IterativeImputer(max_iter=10, random_state=0)
+    # X_train_numeric_imputed = imputer.fit_transform(X_train_numeric)
+    # X_test_numeric_imputed = imputer.transform(X_test_numeric) # Use transform on test data
+    ```
+-   **Categorical Variable Encoding:**
+    * For nominal categorical features (like `town` or `flat_model` if no inherent order), One-Hot Encoding is common.
+    * For ordinal features (like `storey_range` if converted to ordered categories), Ordinal Encoding can be used.
+    * The project mentioned Polynomial Encoding, which can capture interactions between categorical features but can lead to a high number of features.
+-   **Feature Scaling:** Numerical features were standardized using `StandardScaler` to bring them to a similar scale, which is important for many regression algorithms, especially those with regularization.
+    ```python
+    from sklearn.preprocessing import StandardScaler
+    
+    # scaler = StandardScaler()
+    # X_train_scaled = scaler.fit_transform(X_train_numeric_imputed) # Fit on train, then transform
+    # X_test_scaled = scaler.transform(X_test_numeric_imputed)   # Transform test
+    ```
+-   **Multicollinearity Analysis:** Variance Inflation Factor (VIF) analysis was conducted to identify and potentially remove or combine highly correlated features, which can destabilize linear models.
+-   **Feature Selection:**
+    * **Mutual Information:** To assess the relationship between each feature and the target variable (resale price).
+    * **LASSO Regularization:** Used not only for modeling but also implicitly for feature selection, as it tends to shrink coefficients of less important features to zero.
 
-1. **Baseline model**: Simple linear regression with basic features
-2. **Feature optimization**: Iterative feature selection using mutual information and domain knowledge
-3. **Regularization**: Ridge and Lasso regression to prevent overfitting and handle multicollinearity
-4. **Hyperparameter tuning**: Grid search with cross-validation to find optimal regularization strength
+### 4. Model Development and Evaluation: A Progressive Approach
 
-The final Ridge regression model achieved an R² score of 0.9261 and RMSE of approximately SGD 39,180—representing less than 8% error on the average transaction price.
+We adopted an iterative modeling strategy:
 
-## Key Insights from the Analysis
+**a. Baseline Model:**
+A simple Multiple Linear Regression model was implemented first with a basic set of features to establish a performance baseline.
 
-### 1. The Lease Decay Effect
+**b. Regularized Regression Models:**
+To prevent overfitting and handle potential multicollinearity from the many engineered features, Ridge (L2 regularization) and Lasso (L1 regularization) regression models were employed.
+-   **Ridge Regression:** Adds a penalty equal to the square of the magnitude of coefficients. It shrinks coefficients but rarely to zero.
+-   **Lasso Regression:** Adds a penalty equal to the absolute value of the magnitude of coefficients. It can shrink some coefficients exactly to zero, effectively performing feature selection.
 
-One of the most interesting findings involved the relationship between remaining lease and resale value. Rather than a linear decline, the data revealed distinct "cliffs" in valuation:
-
-- Properties with less than 60 years remaining showed accelerated depreciation
-- Flats with less than 40 years saw even steeper price drops
-- This non-linear pattern challenges simplistic assumptions about lease depreciation
-
-This insight is particularly relevant given ongoing national discussions about lease decay and potential Voluntary Early Redevelopment Scheme (VERS) policies.
-
-### 2. Location Premium Patterns
-
-The analysis quantified what many Singaporeans intuitively know—central region properties command significant premiums. However, the data revealed more nuanced patterns:
-
-- Mature estates maintain value better than expected given their older lease profiles
-- Proximity to multiple MRT lines creates multiplicative rather than additive value
-- Specific towns (like Marine Parade and Queenstown) show price resilience beyond what their amenities would predict
-
-### 3. Floor Level Economics
-
-Higher floors consistently commanded price premiums, but the relationship wasn't uniform:
-
-- The premium for high floors (>10th story) was more pronounced in newer estates
-- Buildings with more stories showed lower per-floor premium increments
-- Corner units and units with unblocked views commanded additional premiums beyond the floor effect
-
-### 4. The DBSS and Premium Flat Effect
-
-Design, Build and Sell Scheme (DBSS) flats and premium models showed significant price premiums:
+**c. Hyperparameter Tuning:**
+The regularization strength (alpha) for Ridge and Lasso is a critical hyperparameter. `GridSearchCV` was used to find the optimal alpha value by evaluating model performance across a range of alpha values using k-fold cross-validation.
 
 ```python
-# Feature importance visualization for flat models
-coefficients = pd.DataFrame({
-    'Feature': X.columns,
-    'Coefficient': model.coef_
-})
+from sklearn.linear_model import Ridge, Lasso
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.metrics import mean_squared_error, r2_score
+import numpy as np
 
-# Sort by absolute coefficient value
-coefficients = coefficients.reindex(
-    coefficients['Coefficient'].abs().sort_values(ascending=False).index
-)
+# Assume X_processed, y_target are your fully preprocessed features and target variable
+# X_train, X_test, y_train, y_test = train_test_split(X_processed, y_target, test_size=0.2, random_state=42)
 
-# Plot top 10 features
-plt.figure(figsize=(10, 6))
-sns.barplot(data=coefficients.head(10), x='Coefficient', y='Feature')
-plt.title('Top 10 Features by Importance')
-plt.tight_layout()
+# Ridge Regression with GridSearchCV
+ridge_params = {'alpha': [0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]} # Range of alpha values
+ridge_model = Ridge()
+ridge_cv = GridSearchCV(ridge_model, ridge_params, cv=5, scoring='neg_mean_squared_error')
+# ridge_cv.fit(X_train_scaled, y_train) # Use scaled training data
+
+# best_ridge_alpha = ridge_cv.best_params_['alpha']
+# print(f"Best alpha for Ridge: {best_ridge_alpha}")
+# best_ridge_model = ridge_cv.best_estimator_
+
+# Lasso Regression with GridSearchCV (similar setup)
+# lasso_params = {'alpha': [0.001, 0.01, 0.1, 1.0, 10.0, 100.0]} # Lasso often needs smaller alphas
+# lasso_model = Lasso(max_iter=10000) # Increase max_iter if it doesn't converge
+# lasso_cv = GridSearchCV(lasso_model, lasso_params, cv=5, scoring='neg_mean_squared_error')
+# lasso_cv.fit(X_train_scaled, y_train)
+# best_lasso_model = lasso_cv.best_estimator_
+
+# Evaluate the best performing model (e.g., Ridge)
+# y_pred_ridge = best_ridge_model.predict(X_test_scaled)
+# rmse_ridge = np.sqrt(mean_squared_error(y_test, y_pred_ridge))
+# r2_ridge = r2_score(y_test, y_pred_ridge)
+
+# print(f"Final Ridge Model RMSE: {rmse_ridge:.2f} SGD") # Original: ~39,180 SGD
+# print(f"Final Ridge Model R-squared: {r2_ridge:.4f}")   # Original: 0.9261
 ```
 
-This analysis showed that DBSS flats and Premium Apartments commanded the highest model-specific premiums, even after controlling for size, location, and other factors.
+**d. Validation Strategy:**
+K-fold cross-validation (typically 5 or 10 folds) was used during hyperparameter tuning to ensure that the model's performance estimates were robust and not overly dependent on a particular train-test split.
 
-## Practical Applications
+**e. Performance Metrics:**
+-   **Root Mean Squared Error (RMSE):** Measures the standard deviation of the residuals (prediction errors). An RMSE of ~39,180 SGD was achieved.
+-   **R-squared (R²):** Represents the proportion of the variance in the dependent variable that is predictable from the independent variables. An R² of 0.9261 indicates that the model explains about 92.61% of the variability in HDB resale prices.
 
-### For Homebuyers
+## Technical Lessons Learned and Best Practices
 
-The model offers several practical tools for prospective buyers:
+1.  **Domain Knowledge is Gold:** Understanding the nuances of the HDB market (e.g., the 99-year lease structure, flat types, town maturity) was paramount for effective feature engineering. The "lease decay cliffs" are a prime example.
+2.  **Iterative Feature Engineering:** The process wasn't linear. We often revisited feature engineering based on model performance and error analysis.
+3.  **Handling Multicollinearity:** In real estate data, many features are inherently correlated (e.g., flat size and number of rooms, proximity to MRT and proximity to CBD). Regularization (Ridge/Lasso) and VIF analysis are crucial.
+4.  **Importance of Scaling:** For distance-based algorithms or those using regularization, feature scaling (like StandardScaler) is essential for fair coefficient penalization and faster convergence.
+5.  **Interpretability vs. Accuracy Trade-off:** While more complex models (e.g., Gradient Boosting, Neural Networks) might offer marginal improvements in RMSE, linear models (especially regularized ones) provide better interpretability of feature importance, which is often valuable for stakeholders and policy insights.
+6.  **Robust Validation:** K-fold cross-validation is more reliable than a single train-test split for assessing model generalization and tuning hyperparameters.
 
-1. **Value assessment**: Determine if a listing is fairly priced based on comparable properties
-2. **Feature prioritization**: Understand which features deliver the most value for your budget
-3. **Negotiation insights**: Identify properties that may be overvalued due to specific features
-4. **Long-term planning**: Project how future lease decay might affect resale potential
+## Future Technical Enhancements
 
-### For Policymakers
-
-The findings also have implications for housing policy:
-
-1. **Lease decay management**: Develop targeted interventions for flats approaching critical lease thresholds
-2. **Amenity distribution**: Balance amenity development to reduce regional price disparities
-3. **Grant optimization**: Structure housing grants to address specific market inefficiencies
-4. **Market monitoring**: Detect potential pricing bubbles or anomalies
-
-## Challenges and Limitations
-
-Despite the model's strong performance, several challenges remain:
-
-1. **Hidden variables**: Factors like unit orientation, view quality, and renovation state aren't captured in the public dataset
-2. **Temporal dynamics**: Market conditions and buyer preferences evolve over time
-3. **Policy intervention effects**: Changes in cooling measures or grant structures can create structural breaks in pricing patterns
-4. **Hyperlocal factors**: Neighborhood-level developments that affect only small clusters of properties
-
-## Technical Lessons Learned
-
-From a data science perspective, this project reinforced several key lessons:
-
-1. **Domain knowledge matters**: Understanding Singapore's unique housing policies was essential for effective feature engineering
-2. **Multicollinearity management**: In real estate, many predictors are naturally correlated, requiring careful handling through regularization
-3. **Feature interaction importance**: The interaction between variables (like floor × view or location × amenities) often contains more signal than individual features
-4. **Interpretability vs. accuracy**: While more complex models like random forests achieved marginally better performance, the interpretability of linear models provided more valuable insights
-
-## Next Steps
-
-As I continue to refine this work, several extensions are planned:
-
-1. **Time series modeling**: Incorporating temporal trends to forecast future price movements
-2. **Hyperlocal analysis**: Developing neighborhood-specific models to capture micromarket dynamics
-3. **Interactive application**: Creating a user-friendly tool for homebuyers to estimate fair values
-4. **Macroeconomic integration**: Adding broader economic indicators to improve long-range forecasting
+While the model performed well, there's always room for improvement:
+-   **Geospatial Features:** More sophisticated geospatial features (e.g., using GIS data for precise amenity distances, view quality proxies, noise levels).
+-   **Time Series Modeling:** Explicitly modeling temporal trends and seasonality in prices (e.g., using ARIMA with exogenous variables or Prophet) if forecasting future prices is a goal, rather than just explaining current price variations.
+-   **Non-Linear Models:** Exploring models like Random Forests, Gradient Boosting (XGBoost, LightGBM), or Neural Networks to capture more complex, non-linear relationships, potentially at the cost of some interpretability.
+-   **Interaction Terms:** Systematically exploring interaction terms between key features (e.g., `remaining_lease * is_central_region`).
+-   **Hyperlocal Models:** Training separate models for distinct regions or towns if data permits, as price dynamics can vary significantly.
 
 ## Conclusion
 
-Singapore's HDB market represents a fascinating intersection of social policy, urban planning, and real estate economics. Through data science, we can decode the complex factors driving property values, helping both individuals and policymakers make more informed decisions.
-
-As housing continues to be both a necessity and a major investment for Singaporeans, data-driven insights will become increasingly valuable in navigating this complex market. By quantifying the impact of various factors on resale prices, we move toward a more transparent, efficient, and equitable housing ecosystem.
+Predicting HDB resale prices is a challenging yet rewarding data science problem. This project demonstrated that a combination of thoughtful feature engineering grounded in domain knowledge, robust preprocessing, and appropriate regularized regression techniques can yield highly accurate and interpretable models. The insights derived not only aid individual homebuyers but also provide a quantitative basis for housing policy and urban development in Singapore.
 
 ---
 
-*Want to explore this project in more detail? Check out the [complete project page](/projects/hdb-resale-prices/) or view the [source code on GitHub](https://github.com/Adredes-weslee/Making-Predictions-on-HDB-Resale-Price).*
+*This post details the technical methodologies used in the HDB Resale Price Prediction project. For more on the project's significance, key findings, and policy implications, please visit the [project page](/projects/hdb-resale-prices-project-page/). The source code is available on [GitHub](https://github.com/Adredes-weslee/Making-Predictions-on-HDB-Resale-Price).*

@@ -1,293 +1,353 @@
 ---
 layout: post
-title: "Transforming Commercial Strategy with Data Science: Customer Segmentation and Price Optimization"
-date: 2024-08-15 10:30:00 +0800
+title: "Unlocking Revenue: A Technical Walkthrough of Customer Segmentation and Price Optimization for CS Tay"
+date: 2024-08-15 10:30:00 +0800 
 categories: [data-science, pricing-strategy, business-analytics, commercial-strategy]
-tags: [rfm-analysis, k-means-clustering, price-elasticity, revenue-optimization, commercial-strategy]
+tags: [rfm-analysis, k-means-clustering, price-elasticity, revenue-optimization, python, pandas, scikit-learn, gurobi, capstone-project]
 author: Wes Lee
-feature_image: /assets/images/2024-08-15-customer-segmentation-price-optimization.jpg
+feature_image: /assets/images/2024-08-15-customer-segmentation-price-optimization.jpg 
 ---
 
-# Transforming Commercial Strategy with Data Science
+## Introduction: A Data Science Journey in Commercial Strategy
 
-As part of my BCG RISE 2.0 program capstone, I had the opportunity to lead a data science project that delivered tangible business impact for CS Tay, a leading frozen food distributor in Singapore. This blog post details our approach to solving real-world commercial challenges through customer segmentation, price elasticity modeling, and revenue optimization.
+As part of my BCG RISE 2.0 program capstone, I undertook a data science project with CS Tay, a leading frozen food distributor in Singapore. The goal was to leverage data to address real-world commercial challenges. This post provides a technical deep dive into the methodologies we employed, from customer segmentation using RFM and K-Means to price elasticity modeling and revenue optimization with Gurobi.
 
-## The Business Challenge
+> For a higher-level overview of the business context, outcomes, and impact of this project, please see the [Strategic Growth Engine Project Page](/projects/customer-segmentation-price-optimization-project-page/).
 
-CS Tay faced typical challenges of mature businesses in competitive markets:
+## The Starting Point: Business Challenges & Data
 
-- **Stagnating Revenue Growth:** Despite a solid customer base, revenue growth had plateaued
-- **Margin Pressure:** Increasing competition and costs were compressing profit margins
-- **Limited Customer Insights:** Despite having extensive transaction data, the company lacked actionable customer insights
-- **Pricing Inefficiency:** Prices were set based on cost-plus formulas rather than customer willingness to pay
-- **One-Size-Fits-All Approach:** The same commercial strategies were applied across diverse customer segments
+CS Tay, like many mature businesses, faced stagnating revenue, margin pressures, and the limitations of a one-size-fits-all commercial approach. They had extensive transaction data (2+ years, 200+ customers, 800+ SKUs) but lacked actionable insights. Our mission was to transform this data into a data-driven commercial strategy.
 
-The company needed a data-driven approach to revitalize its commercial strategy and drive profitable growth.
+## Phase 1: Deep Dive into Customer Segmentation
 
-## Our Three-Phase Approach
+Understanding *who* the customers are and *how* they behave is fundamental. We employed a multi-step approach.
 
-We implemented a systematic, three-phase approach that combined business strategy with advanced data science techniques:
+### 1. Data Preparation & Enhanced RFM Metrics
 
-### Phase 1: Customer Segmentation & Analysis
-
-The foundation of our approach was understanding customer behavior through advanced segmentation techniques:
-
-1. **Data Preparation:** We cleaned and integrated 2+ years of transaction data covering 200+ customers and 800+ SKUs
-2. **Enhanced RFM Analysis:** We calculated Recency, Frequency, Monetary and Total Quantity metrics for each customer
-3. **Two-Stage K-Means Clustering:** We implemented a sophisticated clustering approach:
-   - Used RobustScaler to handle outliers in the data
-   - Applied silhouette analysis to determine optimal cluster counts
-   - Executed first-stage clustering to identify major segments 
-   - Performed second-stage clustering on the largest segment for more granular insights
-4. **Cross-Category Analysis:** We analyzed segment distributions across customer categories (Supermarkets, Cafes, etc.) and product types (RTC, Raw, RTE)
-5. **Segment Profiling:** We developed detailed profiles including business category distributions within each segment
-
-Our analysis revealed a more nuanced segmentation than initially expected. Using a two-stage K-Means clustering approach with silhouette analysis to determine optimal cluster counts, we identified five key segments:
-
-- **Champions (0.3%):** Elite customers with extremely high frequency (9,680+ transactions), high monetary value (over SGD 13M), and recent activity
-- **Potential Loyalists (0.1%):** Recent customers with high-frequency patterns (200+ transactions) and significant monetary value (SGD 10M+)
-- **New Customers (80%):** Recent purchasers with varying frequency and spending patterns
-- **Hibernating (11%):** Previously active customers with moderate recency scores (average 280 days) and modest spending
-- **Lost (9%):** Inactive customers with very poor recency scores (average 511 days) and low frequency
-
-Visualization of the segmentation revealed clear distinctions between clusters:
-
-![Customer Segment Distribution](/assets/images/Customer Segment Distribution.jpg)
-
-Importantly, we identified distinct customer category distributions across segments:
-- **Cafes** made up the largest portion of our New Customers segment (240 businesses)
-- **Schools** represented the second largest group (100 businesses) in New Customers
-- **Wholesalers** and **Wet Markets** showed potential for growth with 39 and 42 businesses respectively
-- **Supermarkets** were disproportionately represented in our Champions segment
+First, we cleaned and integrated the transaction data. Then, we calculated enhanced RFM (Recency, Frequency, Monetary) metrics, adding Total Quantity as a fourth dimension to capture purchase volume.
 
 ```python
-# Advanced RFM Calculation with Total Quantity
-from sklearn.preprocessing import RobustScaler
-from sklearn.cluster import KMeans
-from sklearn.metrics import silhouette_score
-from yellowbrick.cluster import KElbowVisualizer
+# Python (Illustrative - assumes 'cs' is the preloaded DataFrame)
+import pandas as pd
 from datetime import timedelta
 
 # Calculate snapshot date (one day after last transaction)
 snapshot_date = cs['Transaction Date'].max() + timedelta(days=1)
-print(f"Last Invoice Date: {cs['Transaction Date'].max()}")
-print(f"Snapshot Date: {snapshot_date}")  # 2024-02-01
+print(f"Snapshot Date: {snapshot_date}")
 
-# Calculate recency (days since last purchase)
+# Calculate Recency: Days since last purchase for each customer
 cs['Recency'] = (snapshot_date - cs['Transaction Date']).dt.days
-recency = cs.groupby('Customer Code')['Recency'].min().reset_index()
+recency_df = cs.groupby('Customer Code')['Recency'].min().reset_index()
 
-# Calculate frequency (number of transactions)
-frequency = cs.groupby('Customer Code')['Sales Order No.'].nunique().reset_index()
+# Calculate Frequency: Number of unique sales orders (transactions)
+frequency_df = cs.groupby('Customer Code')['Sales Order No.'].nunique().reset_index()
+frequency_df.columns = ['Customer Code', 'Frequency']
 
-# Calculate monetary value (total spend)
-monetary = cs.groupby('Customer Code')['Total Base Amt'].sum().reset_index()
+# Calculate Monetary Value: Total sum of 'Total Base Amt'
+monetary_df = cs.groupby('Customer Code')['Total Base Amt'].sum().reset_index()
+monetary_df.columns = ['Customer Code', 'Monetary']
 
-# Calculate total quantity purchased
-total_quantity = cs.groupby('Customer Code')['Qty'].sum().reset_index()
+# Calculate Total Quantity: Sum of 'Qty'
+total_quantity_df = cs.groupby('Customer Code')['Qty'].sum().reset_index()
+total_quantity_df.columns = ['Customer Code', 'Total Quantity']
 
-# Merge all RFM metrics
-rfm = pd.merge(recency, frequency, on='Customer Code', how='inner')
-rfm = pd.merge(rfm, monetary, on='Customer Code', how='inner')
-rfm = pd.merge(rfm, total_quantity, on='Customer Code', how='inner')
-rfm.columns = ['Customer Code', 'Recency', 'Frequency', 'Monetary', 'Total Quantity']
+# Merge all RFM-Q metrics into a single DataFrame
+rfm_q_df = pd.merge(recency_df, frequency_df, on='Customer Code', how='inner')
+rfm_q_df = pd.merge(rfm_q_df, monetary_df, on='Customer Code', how='inner')
+rfm_q_df = pd.merge(rfm_q_df, total_quantity_df, on='Customer Code', how='inner')
 
-# Advanced two-stage clustering
-# First stage: optimal cluster detection using silhouette scores
+print("RFM-Q DataFrame head:")
+print(rfm_q_df.head())
+```
+
+### 2. Two-Stage K-Means Clustering for Nuanced Segments
+
+To identify customer segments, we used K-Means clustering. Given potential outliers in business data, `RobustScaler` was chosen for feature scaling.
+
+**Determining Optimal Cluster Numbers (k):**
+We used silhouette analysis to find the optimal number of clusters. The silhouette score measures how similar an object is to its own cluster compared to other clusters.
+
+```python
+from sklearn.preprocessing import RobustScaler
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+# from yellowbrick.cluster import KElbowVisualizer # KElbowVisualizer can also be used
+
 features_for_segmentation = ['Recency', 'Frequency', 'Monetary', 'Total Quantity']
+rfm_features = rfm_q_df[features_for_segmentation]
+
+# Scale features using RobustScaler
 scaler = RobustScaler()
-scaled_data = scaler.fit_transform(rfm[features_for_segmentation])
+scaled_rfm_features = scaler.fit_transform(rfm_features)
 
-# Find optimal k using silhouette analysis
-silhouette_scores = {}
-for k in range(2, 7):
-    kmeans = KMeans(n_clusters=k, random_state=42)
-    labels = kmeans.fit_predict(scaled_data)
-    silhouette = silhouette_score(scaled_data, labels)
-    silhouette_scores[k] = silhouette
-    print(f"K={k}, Silhouette Score={silhouette}")
+# Silhouette analysis to find optimal k for the first stage
+silhouette_scores_stage1 = {}
+k_range = range(2, 7) # Test k from 2 to 6
 
-# First-stage clustering with k=3 (best silhouette score)
-kmeans = KMeans(n_clusters=3, random_state=42)
-rfm["KMeans_Segment"] = kmeans.fit_predict(scaled_data) + 1
+for k in k_range:
+    kmeans = KMeans(n_clusters=k, init='k-means++', n_init=10, random_state=42)
+    cluster_labels = kmeans.fit_predict(scaled_rfm_features)
+    silhouette_avg = silhouette_score(scaled_rfm_features, cluster_labels)
+    silhouette_scores_stage1[k] = silhouette_avg
+    print(f"For k={k}, the average silhouette_score is: {silhouette_avg}")
 
-# Second-stage clustering on largest segment
-cluster_1 = rfm[rfm['KMeans_Segment'] == 1]
-cluster_1_scaled = scaler.fit_transform(cluster_1[features_for_segmentation])
-kmeans_stage2 = KMeans(n_clusters=3, random_state=42)
-cluster_1["KMeans_Segment"] = kmeans_stage2.fit_predict(cluster_1_scaled) + 4
+# Optimal k for first stage was found to be 3 (based on original analysis)
+optimal_k_stage1 = 3
+kmeans_stage1 = KMeans(n_clusters=optimal_k_stage1, init='k-means++', n_init=10, random_state=42)
+rfm_q_df['KMeans_Segment_Stage1'] = kmeans_stage1.fit_predict(scaled_rfm_features) + 1 # Segments 1, 2, 3
+```
 
-# Create enhanced RFM score segments
-def rfm_segment(customer):
-    if customer['Score'] >= 27:
-        return 'Champions'
-    elif customer['Score'] >= 15:
-        return 'New_Customers'
-    elif customer['Score'] >= 6:
-        return 'Hibernating'
+**Second-Stage Clustering:**
+The largest segment from the first stage was often too broad. We performed a second K-Means clustering step on this segment to achieve more granular insights.
+
+```python
+# Assuming Segment 1 from Stage 1 is the largest and needs further clustering
+largest_segment_data = rfm_q_df[rfm_q_df['KMeans_Segment_Stage1'] == 1].copy() # Use .copy() to avoid SettingWithCopyWarning
+scaled_largest_segment_features = scaler.transform(largest_segment_data[features_for_segmentation]) # Use transform, not fit_transform
+
+# Silhouette analysis for the second stage on the largest segment
+silhouette_scores_stage2 = {}
+for k in k_range: # Can use the same k_range or a different one
+    kmeans = KMeans(n_clusters=k, init='k-means++', n_init=10, random_state=42)
+    cluster_labels_s2 = kmeans.fit_predict(scaled_largest_segment_features)
+    if len(set(cluster_labels_s2)) > 1: # Silhouette score requires at least 2 labels
+        silhouette_avg_s2 = silhouette_score(scaled_largest_segment_features, cluster_labels_s2)
+        silhouette_scores_stage2[k] = silhouette_avg_s2
+        print(f"For k={k} (Stage 2), the average silhouette_score is: {silhouette_avg_s2}")
+
+# Optimal k for second stage was found to be 3 (based on original analysis)
+optimal_k_stage2 = 3
+kmeans_stage2 = KMeans(n_clusters=optimal_k_stage2, init='k-means++', n_init=10, random_state=42)
+# Assign new segment labels starting from where Stage 1 left off (e.g., 4, 5, 6)
+largest_segment_data['KMeans_Segment_Final'] = kmeans_stage2.fit_predict(scaled_largest_segment_features) + optimal_k_stage1 + 1
+
+# Combine segments: Non-largest segments from Stage 1 keep their labels
+# Other segments from Stage 1 are assigned their original Stage 1 labels
+final_segments = []
+for index, row in rfm_q_df.iterrows():
+    if row['KMeans_Segment_Stage1'] == 1: # If it was part of the largest segment
+        # Find its new label from largest_segment_data
+        final_segments.append(largest_segment_data.loc[index, 'KMeans_Segment_Final'])
     else:
-        return 'Lost'
+        final_segments.append(row['KMeans_Segment_Stage1'])
+rfm_q_df['KMeans_Segment_Final'] = final_segments
 
-rfm['RFM_Segment'] = rfm.apply(rfm_segment, axis=1)
+print("Final K-Means Segments head:")
+print(rfm_q_df[['Customer Code', 'KMeans_Segment_Final']].head())
+```
+This two-stage approach led to five key segments: Champions, Potential Loyalists, New Customers, Hibernating, and Lost.
 
-# Visualizations for customer segments
-import squarify
+### 3. Visualizing and Profiling Segments
+Visualizations like treemaps and count plots helped in understanding segment sizes and their distribution across business categories (Supermarkets, Cafes, etc.).
+
+```python
 import matplotlib.pyplot as plt
 import seaborn as sns
+import squarify # for treemaps
 
-# Create treemap visualization of customer segments
-segment_counts = rfm['RFM_Segment'].value_counts()
+# Example: Treemap of final customer segments
+segment_counts_final = rfm_q_df['KMeans_Segment_Final'].value_counts() # Use the final segment column
 plt.figure(figsize=(12, 8))
-squarify.plot(sizes=segment_counts.values, label=segment_counts.index, alpha=0.7)
+squarify.plot(sizes=segment_counts_final.values, 
+              label=[f'Segment {i}' for i in segment_counts_final.index], 
+              alpha=0.7, color=sns.color_palette("viridis", len(segment_counts_final)))
 plt.axis('off')
-plt.title('Customer Segments Treemap')
+plt.title('Final Customer Segments Treemap (K-Means)')
+plt.show()
 
-# Analyze segment distribution across customer categories
-# Merge segmentation with customer category data
-cust_cat = cs[['Customer Code', 'Customer Category Desc', 'Item Category']]
-cust_cat = cust_cat.drop_duplicates(subset='Customer Code', keep='first')
-segmented_with_categories = pd.merge(rfm, cust_cat, on='Customer Code', how='inner')
+# Example: Distribution by customer category (assuming 'cust_cat_df' is merged)
+# cust_cat_df = cs[['Customer Code', 'Customer Category Desc']].drop_duplicates()
+# rfm_q_df_merged = pd.merge(rfm_q_df, cust_cat_df, on='Customer Code', how='left')
 
-# Create visualizations of business categories by segment
-plt.figure(figsize=(15, 10))
-sns.countplot(y='Customer Category Desc', hue='RFM_Segment', data=segmented_with_categories)
-plt.title('Customer Category Distribution by Segment')
-plt.xlabel('Count')
-plt.tight_layout()
+# plt.figure(figsize=(15, 10))
+# sns.countplot(y='Customer Category Desc', hue='KMeans_Segment_Final', data=rfm_q_df_merged)
+# plt.title('Customer Category Distribution by Final K-Means Segment')
+# plt.xlabel('Count')
+# plt.tight_layout()
+# plt.show()
 ```
 
-### Phase 2: Price Elasticity Modeling
+## Phase 2: Modeling Price Elasticity of Demand
 
-With customer segments defined, we moved to understand how each segment responds to price changes:
+With segments defined, we aimed to understand their price sensitivity.
 
-1. **Data Aggregation:** Aggregated sales data by segment, product, and time period
-2. **Log-Log Regression:** Built log-log regression models to calculate price elasticities
-3. **Elasticity Analysis:** Calculated own-price and cross-price elasticities for top SKUs
-4. **Substitution Effects:** Identified product substitution patterns within segments
-
-The elasticity findings were insightful:
-
-- **Segment Differences:** Champions were less price-sensitive than At-Risk customers
-- **Category Variations:** Fresh seafood had lower price elasticity than processed foods
-- **Substitution Effects:** Several clear substitution patterns emerged, especially in the retail segment
-- **Volume Sensitivity:** Bulk buyers showed different elasticity patterns than small-volume customers
-
-Our detailed analysis revealed that in the Supermarket segment, Raw products like SP01 Skinless Chicken Breast showed high price elasticity (-2.61), meaning customers were very sensitive to price changes. Meanwhile, Ready-to-Cook (RTC) products exhibited positive elasticity in some cases, indicating potential for price optimization without significantly reducing demand.
-
-Cross-price elasticity analysis identified valuable product relationships:
-- Complementary products (-0.85 to -5.41 elasticity) that should be bundled together for promotions
-- Substitute products (0.28 to 31.73 elasticity) that compete for the same consumer need
-- Price-insensitive premium products ideal for margin improvement
+### 1. Data Aggregation and Log-Log Regression
+Sales data was aggregated by segment, product, and time. We used a log-log regression model (log(Quantity) ~ log(Price)) because the coefficient of log(Price) directly gives the price elasticity.
 
 ```python
-# Log-log regression for elasticity calculation
-def calculate_elasticity(segment_df, product):
-    X = sm.add_constant(segment_df['log_price'])
-    model = sm.OLS(segment_df['log_quantity'], X).fit()
-    return model.params['log_price']  # This is the elasticity coefficient
+import statsmodels.api as sm
+import numpy as np
 
-# Cross-elasticity calculation
-def calculate_cross_elasticity(df, sku_a, sku_b):
-    merged_data = pd.merge(
-        df[df['Inventory Code'] == sku_a], 
-        df[df['Inventory Code'] == sku_b], 
-        on='Transaction Date', suffixes=('_a', '_b')
-    )
-    X = sm.add_constant(merged_data['log_price_b'])
-    model = sm.OLS(merged_data['log_qty_a'], X).fit()
-    return model.params['log_price_b']  # Cross-price elasticity
+# Assume 'sales_data_agg' is a DataFrame with:
+# 'Segment', 'Product_ID', 'Period', 'log_Quantity', 'log_Price'
+
+def calculate_price_elasticity(df, segment_col, product_col, log_qty_col, log_price_col):
+    """Calculates price elasticity for each product within each segment."""
+    elasticities = {}
+    for segment in df[segment_col].unique():
+        elasticities[segment] = {}
+        segment_data = df[df[segment_col] == segment]
+        for product in segment_data[product_col].unique():
+            product_segment_data = segment_data[segment_data[product_col] == product]
+            if len(product_segment_data) > 10: # Need enough data points
+                Y = product_segment_data[log_qty_col]
+                X = product_segment_data[log_price_col]
+                X = sm.add_constant(X) # Add intercept
+                
+                model = sm.OLS(Y, X, missing='drop').fit()
+                price_elasticity_coefficient = model.params[log_price_col]
+                # Optionally, store p-value: model.pvalues[log_price_col]
+                elasticities[segment][product] = price_elasticity_coefficient
+            else:
+                elasticities[segment][product] = np.nan # Not enough data
+    return elasticities
+
+# Example:
+# elasticity_results = calculate_price_elasticity(sales_data_agg, 
+#                                               'KMeans_Segment_Final', 
+#                                               'Inventory Code', 
+#                                               'log_Qty', # Ensure these columns exist
+#                                               'log_UnitPrice') # Ensure these columns exist
+# print(elasticity_results)
 ```
 
-### Phase 3: Revenue Optimization
-
-Finally, we used the insights from segmentation and elasticity modeling to optimize pricing:
-
-1. **Optimization Modeling:** Built a constrained optimization model using Gurobi
-2. **Business Constraints:** Incorporated realistic constraints like maximum price changes
-3. **Scenario Analysis:** Tested different constraint scenarios to understand tradeoffs
-4. **Segment-Specific Strategies:** Developed tailored pricing strategies for each segment
-
-The optimization model allowed us to:
-
-- Identify optimal price points for each product in each segment
-- Calculate the potential revenue impact of price changes
-- Respect practical business constraints like maximum price changes
-- Create a realistic implementation roadmap
-
-Our optimization analysis revealed significant revenue improvement potential, particularly in the Supermarket segment where we identified over SGD 4M in potential annual revenue uplift. By treating each customer category separately and considering both own-price and cross-price elasticities, we developed tailored pricing strategies that balanced revenue growth with practical implementation constraints.
+### 2. Analyzing Own-Price and Cross-Price Elasticities
+This revealed how demand for a product changes with its own price and with the price changes of other (substitute or complementary) products. For instance, Raw products like SP01 Skinless Chicken Breast showed high price elasticity (-2.61) in the Supermarket segment.
 
 ```python
-# Revenue optimization with constraints using Gurobi
+# Conceptual: Cross-price elasticity (requires careful data alignment)
+def calculate_cross_price_elasticity(df, product_a_id, product_b_id, segment_col, log_qty_a_col, log_price_b_col):
+    """Calculates cross-price elasticity of product A with respect to product B's price."""
+    # Data needs to be prepared such that for each observation, we have qty_A and price_B
+    # This often involves merging or careful time-series alignment.
+    # For simplicity, assuming 'merged_data_for_cross_el' is pre-prepared:
+    # Columns: 'Segment', log_qty_A_col, log_price_B_col
+    
+    cross_elasticities = {}
+    # for segment in merged_data_for_cross_el[segment_col].unique():
+    #     segment_data = merged_data_for_cross_el[merged_data_for_cross_el[segment_col] == segment]
+    #     if len(segment_data) > 10:
+    #         Y = segment_data[log_qty_a_col]
+    #         X = segment_data[log_price_b_col]
+    #         X = sm.add_constant(X)
+    #         model = sm.OLS(Y, X, missing='drop').fit()
+    #         cross_elasticities[segment] = model.params[log_price_b_col]
+    #     else:
+    #         cross_elasticities[segment] = np.nan
+    return cross_elasticities
+```
+
+## Phase 3: Optimizing Revenue with Gurobi
+
+The final phase involved using these insights for price optimization. We built a constrained optimization model using Gurobi.
+
+### 1. Optimization Model Formulation
+The objective was to maximize total revenue, subject to business constraints (e.g., maximum allowable price changes for products, average price increase limits).
+
+```python
 from gurobipy import Model, GRB, quicksum
 
-def optimize_prices(elasticities, base_prices, base_quantities, constraints):
-    m = Model("price_optimization")
+def optimize_prices_gurobi(product_elasticities, base_prices, base_quantities, 
+                           min_price_multiplier=0.9, max_price_multiplier=1.2, 
+                           max_avg_increase_multiplier=1.05,
+                           premium_products_list=None, premium_max_multiplier=1.1):
+    """
+    Optimizes prices to maximize revenue using Gurobi.
+    Args:
+        product_elasticities (dict): {product_id: elasticity_value}
+        base_prices (dict): {product_id: current_price}
+        base_quantities (dict): {product_id: current_quantity_sold}
+        min_price_multiplier (float): Min allowed price change factor (e.g., 0.9 for -10%)
+        max_price_multiplier (float): Max allowed price change factor (e.g., 1.2 for +20%)
+        max_avg_increase_multiplier (float): Max allowed average price increase factor
+        premium_products_list (list, optional): List of premium product_ids.
+        premium_max_multiplier (float): Max price multiplier for premium products.
+    Returns:
+        dict: Optimal price multipliers {product_id: multiplier}
+        float: Max projected revenue
+    """
+    m = Model("PriceOptimization")
+
+    products = list(product_elasticities.keys())
+
+    # Decision Variables: Price Multiplier for each product
+    # p_mult[i] is the factor by which base_price[i] is multiplied
+    p_mult = m.addVars(products, lb=min_price_multiplier, ub=max_price_multiplier, name="price_multiplier")
+
+    # Objective Function: Maximize Total Revenue
+    # Revenue_i = New_Price_i * New_Quantity_i
+    # New_Price_i = Base_Price_i * p_mult[i]
+    # New_Quantity_i = Base_Quantity_i * (p_mult[i] ^ Elasticity_i)  (from log-log model)
+    # So, Revenue_i = (Base_Price_i * p_mult[i]) * (Base_Quantity_i * (p_mult[i] ** Elasticity_i))
+    # Revenue_i = Base_Price_i * Base_Quantity_i * (p_mult[i] ** (1 + Elasticity_i))
     
-    # Decision variables (price multipliers)
-    price_vars = {}
-    for product in elasticities.keys():
-        price_vars[product] = m.addVar(
-            lb=constraints['min_mult'], 
-            ub=constraints['max_mult'], 
-            name=f"price_mult_{product}"
-        )
+    # Gurobi's general power constraint: x_res = x_base ** exponent (requires x_base >= 0)
+    # We need to introduce auxiliary variables for p_mult[i] ** (1 + Elasticity_i)
     
-    # Objective: maximize revenue
-    revenue = quicksum(
-        base_quantities[p] * base_prices[p] * price_vars[p] * 
-        (price_vars[p] ** elasticities[p]) 
-        for p in elasticities.keys()
+    # For simplicity in this example, let's assume Gurobi can handle this directly if exponent is constant.
+    # If not, reformulation or piecewise linear approximation would be needed for non-integer/complex exponents.
+    # Gurobi's addGenConstrPow() is the way for var ** constant.
+    
+    # Let's use an auxiliary variable for the quantity multiplier
+    q_mult_factor = m.addVars(products, name="quantity_multiplier_factor")
+    for prod_id in products:
+        # q_mult_factor[prod_id] = p_mult[prod_id] ** product_elasticities[prod_id]
+        m.addGenConstrPow(p_mult[prod_id], q_mult_factor[prod_id], product_elasticities[prod_id], 
+                          name=f"pow_constr_{prod_id}")
+
+    total_revenue = quicksum(
+        base_prices[prod_id] * p_mult[prod_id] * base_quantities[prod_id] * q_mult_factor[prod_id]
+        for prod_id in products
     )
-    
-    m.setObjective(revenue, GRB.MAXIMIZE)
-    
-    # Add constraints on average price increase
-    avg_increase = quicksum(price_vars[p] for p in elasticities.keys()) / len(elasticities)
-    m.addConstr(avg_increase <= constraints['max_avg_increase'])
-    
-    # Add constraint on max price change for premium products
-    for p in constraints.get('premium_products', []):
-        if p in price_vars:
-            m.addConstr(price_vars[p] <= constraints['premium_max_mult'])
-    
-    # Solve and return results
+    m.setObjective(total_revenue, GRB.MAXIMIZE)
+
+    # Constraint: Average price increase limit
+    if len(products) > 0:
+        m.addConstr(quicksum(p_mult[prod_id] for prod_id in products) / len(products) <= max_avg_increase_multiplier, 
+                    "AvgPriceIncreaseLimit")
+
+    # Constraint: Max price change for premium products
+    if premium_products_list:
+        for prod_id in premium_products_list:
+            if prod_id in products: # Ensure product is in the optimization scope
+                m.addConstr(p_mult[prod_id] <= premium_max_multiplier, f"PremiumLimit_{prod_id}")
+                
+    m.params.NonConvex = 2 # Allow Gurobi to solve non-convex quadratic objectives/constraints
+
     m.optimize()
-    return {p: price_vars[p].X for p in elasticities.keys()}, m.ObjVal
+
+    if m.status == GRB.OPTIMAL:
+        optimal_multipliers = {prod_id: p_mult[prod_id].X for prod_id in products}
+        return optimal_multipliers, m.ObjVal
+    else:
+        print("Optimization was not successful. Status:", m.status)
+        return None, None
+
+# Example usage:
+# optimal_multipliers, max_revenue = optimize_prices_gurobi(
+#     product_elasticities_segment_x, 
+#     base_prices_segment_x, 
+#     base_quantities_segment_x,
+#     premium_products_list=['SKU001', 'SKU005']
+# )
+# if optimal_multipliers:
+#     print("Optimal Price Multipliers:", optimal_multipliers)
+#     print("Projected Max Revenue:", max_revenue)
 ```
 
-## Results and Business Impact
+### 2. Scenario Analysis and Strategy Development
+The model allowed us to test different constraints and develop segment-specific pricing strategies, identifying significant revenue uplift potential (e.g., SGD ~4M annually in the Supermarket segment).
 
-Our data-driven approach delivered significant potential business value:
+## Key Technical Lessons Learned
 
-- **Revenue Potential:** Identified SGD ~4M/year in potential revenue uplift through optimized pricing
-- **Segment Strategies:** Created tailored commercial strategies for each customer segment
-- **Product Insights:** Uncovered valuable product substitution patterns to inform bundling strategies
-- **Implementation Roadmap:** Developed a phased implementation plan with monitoring mechanisms
-- **Organizational Capabilities:** Built data science capabilities within CS Tay's commercial team
+1.  **Iterative Segmentation:** Simple RFM scores are a good start, but multi-stage clustering with robust scaling and silhouette analysis provides deeper, more actionable segments.
+2.  **Elasticity Nuances:** Price elasticity varies significantly not just by product but critically by customer segment. Cross-price elasticities are vital for understanding substitution/complementarity.
+3.  **Constrained Optimization is Key:** Unconstrained optimization can yield unrealistic prices. Incorporating business rules (max/min price changes, category-level adjustments) is essential for practical implementation.
+4.  **Tooling Matters:** Libraries like Scikit-learn, Statsmodels, and Gurobi (or other solvers like PuLP/CBC for open-source alternatives) are powerful enablers for each stage of such a project.
+5.  **Data Quality and Granularity:** The success of elasticity and optimization models heavily depends on the quality, granularity (transaction-level), and length of historical sales data.
 
-## Key Takeaways
+This project underscored how a systematic, multi-phase data science approach, combining statistical modeling with optimization, can translate raw business data into tangible commercial strategies and significant revenue impact.
 
-This project reinforced several important principles for successful data science applications in business:
+---
 
-1. **Start with Business Context:** Understanding the business challenge thoroughly before diving into technical solutions
-2. **Combine Multiple Techniques:** Integrating segmentation, elasticity modeling, and optimization for a comprehensive solution
-3. **Balance Sophistication with Practicality:** Creating models that were mathematically sound yet practically implementable
-4. **Focus on Actionability:** Ensuring all insights could be translated into specific business actions
-5. **Consider Implementation Realities:** Designing solutions with real-world implementation constraints in mind
-
-Data science is most powerful when it bridges the gap between technical sophistication and business practicality. This project demonstrated how advanced analytics can transform commercial strategy when properly aligned with business goals and operational realities.
-
-## Technologies Used
-
-The technical implementation leveraged several powerful data science tools:
-
-- **Python** - Core programming language for all analysis
-- **Pandas & NumPy** - Data manipulation and numerical computation
-- **Scikit-learn** - Machine learning and clustering algorithms
-- **Yellowbrick** - Enhanced visualization for machine learning models
-- **Squarify** - Advanced treemap visualizations for segment analysis
-- **StatsModels** - Statistical modeling for elasticity calculations
-- **Matplotlib & Seaborn** - Data visualization
-- **Gurobi** - Mathematical optimization for revenue maximization
-
-This combination of tools allowed us to move from raw transaction data to actionable commercial insights in a rigorous, reproducible way.
+*This post details the technical methodologies used in the CS Tay Commercial Strategy project, a capstone for the BCG RISE 2.0 program. For more on the business impact, see the [project page](/projects/customer-segmentation-price-optimization-project-page/).*
