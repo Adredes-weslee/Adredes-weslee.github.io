@@ -6,11 +6,24 @@ image: /assets/images/wet-bulb-temperature.jpg # Or a new, more policy-focused i
 technologies: [Python, Pandas, Scikit-Learn, Matplotlib, Seaborn, Time Series Analysis, Regression Modeling]
 github: https://github.com/Adredes-weslee/wet-bulb-temperature-analysis
 blog_post: /data-science/climate/public-health/2023/05/15/predicting-heat-stress-with-wet-bulb-temperature.html # Link to the new blog post
+streamlit_app: https://adredes-weslee-data-analysis-of-wet-bulb-te-dashboardapp-mwqkey.streamlit.app/
 ---
 
 ## Project Overview
 
 This project, framed as a hypothetical policy study for the Singapore government, investigates the critical relationship between **wet-bulb temperature (WBT)**—a key indicator of heat stress on the human body—and various climate change drivers. By analyzing long-term meteorological data and greenhouse gas concentrations, this study aims to identify key factors contributing to extreme heat conditions in tropical urban environments like Singapore and provide data-driven insights for public health planning and climate resilience strategies.
+
+* **Comprehensive Data Integration**: Combined climate data from multiple sources including temperature, humidity, rainfall, and greenhouse gas concentrations.
+* **Advanced Time Series Analysis**: Decomposed trends, seasonality, and anomalies in wet-bulb temperature patterns.
+* **Statistical Modeling**: Developed regression models to identify key drivers of wet-bulb temperature changes.
+* **Policy Recommendations**: Formulated evidence-based recommendations for climate resilience strategies.
+* **Interactive Dashboard**: Created a Streamlit application for visualizing WBT trends, drivers, and projections.
+
+<div class="demo-link-container">
+  <a href="https://adredes-weslee-data-analysis-of-wet-bulb-te-dashboardapp-mwqkey.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
+    <i class="fas fa-play-circle"></i> Try the Live Demo
+  </a>
+</div>
 
 ## Background: The Significance of Wet-Bulb Temperature
 

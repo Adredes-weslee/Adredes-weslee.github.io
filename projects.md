@@ -50,4 +50,20 @@ All projects follow a structured development approach:
 4. **Evaluation** - Comprehensive testing using appropriate metrics
 5. **Deployment & Documentation** - Production-ready code with clear documentation
 
+## Try My Interactive Demos
+
+I've created interactive Streamlit applications that showcase the practical applications of some of these projects.
+
+<div style="padding: 20px; background-color: #f5f5f5; border-radius: 8px; margin: 20px 0;">
+  <h3 style="margin-top: 0;">Available Interactive Demos:</h3>
+  <ul>
+    <li><strong><a href="/streamlit-apps/#ml-trading-strategist">ML Trading Strategist</a></strong> - Experiment with different algorithmic trading approaches</li>
+    <li><strong><a href="/streamlit-apps/#nlp-earnings-report-analyzer">NLP Earnings Report Analyzer</a></strong> - Analyze financial text for insights</li>
+    <li><strong><a href="/streamlit-apps/#wet-bulb-temperature-analysis">Wet-Bulb Temperature Analysis</a></strong> - Explore climate data and heat stress indicators</li>
+  </ul>
+  <a href="/streamlit-apps/" style="display: inline-block; background-color: #ff4b4b; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; margin-top: 10px;">
+    <i class="fas fa-play-circle"></i> Explore All Interactive Demos
+  </a>
+</div>
+
 Interested in collaborating on a project? Feel free to [contact me](/contact/) to discuss potential opportunities.

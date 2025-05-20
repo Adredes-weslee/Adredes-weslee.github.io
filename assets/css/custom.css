@@ -87,26 +87,31 @@ h1, h2, h3 {
 
 /* Project badge for home page */
 .project-badge {
-  display: inline-block;
-  margin-left: 10px;
-  font-size: 0.8rem;
-  vertical-align: middle;
+  display: block;
+  margin-top: 8px;
+  font-size: 0.9rem;
+  clear: both;
 }
 
 .demo-badge a {
   background-color: #ff4b4b;
   color: white;
-  padding: 3px 8px;
-  border-radius: 12px;
-  font-weight: normal;
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-weight: bold;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-top: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .demo-badge a:hover {
   background-color: #e03b3b;
   text-decoration: none;
   color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 /* Button styles in project layout */
@@ -142,6 +147,92 @@ h1, h2, h3 {
   margin-bottom: 1.5rem;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid #f0f0f0;
+}
+
+/* Streamlit Apps Page Styling */
+.demo-showcase {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+@media (min-width: 768px) {
+  .demo-showcase {
+    flex-direction: row;
+  }
+}
+
+.demo-screenshot {
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .demo-screenshot {
+    width: 45%;
+    margin-right: 2rem;
+    margin-bottom: 0;
+  }
+}
+
+.demo-description {
+  flex: 1;
+}
+
+.demo-description h3 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.3rem;
+}
+
+.demo-description ul {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.demo-button {
+  display: inline-block;
+  background-color: #ff4b4b;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.demo-button:hover {
+  background-color: #e03b3b;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  text-decoration: none;
+  color: white;
+}
+
+.demo-project-link {
+  display: inline-block;
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.demo-project-link:hover {
+  background-color: #e0e0e0;
+  text-decoration: none;
 }
 
 .home-intro {
