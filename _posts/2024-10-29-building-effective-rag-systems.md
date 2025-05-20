@@ -12,7 +12,7 @@ feature_image: /assets/images/2024-10-29-building-effective-rag-systems.jpg
 
 Retrieval-Augmented Generation (RAG) is rapidly transforming how enterprises leverage Large Language Models (LLMs). By grounding LLMs with external, verifiable knowledge sources, RAG systems minimize hallucinations, provide up-to-date information, and enable domain-specific expertise. This post chronicles the journey of building and deploying a production-grade RAG system for technical documentation QA within an enterprise setting, detailing the technical choices, challenges, and solutions encountered.
 
-> For a complete overview of the RAG Engine project, including system architecture, component details, and deployment instructions, please see the [RAG Engine: Enterprise Document Q&A System](/projects/rag-engine-project/) project page.
+> For a higher-level overview of this project, its strategic goals, the challenges it addresses, and its overall business impact, please see the [*Democratizing Enterprise Knowledge: The Custom RAG Engine Project*](/projects/rag-engine-project/) project page.
 
 ## Architecting the RAG Pipeline: Core Components
 
@@ -538,6 +538,6 @@ A Redis cache stores responses to frequently asked questions, reducing LLM load 
 
 Building this RAG system was a journey of iterative refinement. Key successes include achieving secure, air-gapped LLM operation, handling diverse document formats effectively, and significantly improving access to technical knowledge. The modular design allows for ongoing enhancements, such as incorporating multi-modal data, deeper integration with structured databases, and more sophisticated agentic behaviors. RAG is not a static solution but an evolving capability that promises to unlock even greater value from enterprise data.
 
-> For a complete overview of the RAG Engine project, including system architecture, component details, and deployment instructions, please see the [RAG Engine: Enterprise Document Q&A System](/projects/rag-engine-project/) project page.
-
 ---
+
+*To understand the broader strategic context, key features, and overall outcomes of this initiative, please visit the [project page](/projects/rag-engine-project/) project page. The source code is available on [GitHub](https://github.com/Adredes-weslee/Custom-RAG-Engine-for-Enterprise-Document-QA).*

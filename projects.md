@@ -13,7 +13,7 @@ Below are some of my key projects in AI, machine learning, and data science. Eac
 These projects showcase my work with large language models, transformer architectures, and natural language processing:
 
 * [**NLP Earnings Report Analyzer**](/projects/nlp-earnings-analyzer/) - Financial text analysis combining traditional NLP and transformer models for earnings reports
-* [**Custom RAG Engine for Enterprise Document QA**](/projects/rag-engine-project/) - Containerized document QA system with hybrid embedding models and self-hosted inference
+* [**Democratizing Enterprise Knowledge: The Custom RAG Engine Project**](/projects/rag-engine-project/) - Containerized document QA system with hybrid embedding models and self-hosted inference
 * [**YouTube Comment Sentiment Analysis: Unlocking Audience Insights for Content Creators**](/projects/sentiment-analysis/) - Hybrid labeling system combining rule-based and transformer approaches
 
 ## Machine Learning & AI Applications

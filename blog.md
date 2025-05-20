@@ -30,7 +30,7 @@ Welcome to my blog where I share insights, tutorials, and thoughts about AI, mac
 
 <div class="blog-card">
   <div class="blog-content">
-    <h3><a href="/ai/nlp/rag/2024/10/29/building-effective-rag-systems.html">Building Effective RAG Systems: Lessons from Enterprise Applications</a></h3>
+    <h3><a href="/ai/nlp/rag/2024/10/29/building-effective-rag-systems.html">A Deep Dive into Enterprise RAG: Design, Implementation, and Lessons Learned</a></h3>
     <p>Explore key insights from implementing Retrieval-Augmented Generation systems in enterprise environments, focusing on practical implementation strategies and lessons learned.</p>
   </div>
   <img src="/assets/images/2024-10-29-building-effective-rag-systems.jpg" alt="Building Effective RAG Systems" class="blog-image">

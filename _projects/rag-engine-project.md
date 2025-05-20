@@ -169,4 +169,4 @@ The Custom RAG Engine successfully demonstrates that sophisticated, secure, and 
 
 ---
 
-*For a detailed technical discussion of RAG system design principles, implementation challenges, and lessons learned, please refer to the [accompanying blog post](/ai/nlp/rag/2024/10/29/building-effective-rag-systems.html). The full codebase and documentation are available on [GitHub](https://github.com/Adredes-weslee/Custom-RAG-Engine-for-Enterprise-Document-QA).*
+*For an in-depth technical exploration of this RAG engine's architecture, including detailed implementation steps, code explanations, and specific engineering lessons learned, please refer to the [accompanying blog post](/ai/nlp/rag/2024/10/29/building-effective-rag-systems.html). The full codebase and documentation are available on [GitHub](https://github.com/Adredes-weslee/Custom-RAG-Engine-for-Enterprise-Document-QA).*
