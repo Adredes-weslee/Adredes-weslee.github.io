@@ -14,7 +14,7 @@ When we discuss rising global temperatures, the common metric is the dry-bulb te
 
 This post details the technical journey of a data science project focused on analyzing WBT in Singapore, from data integration challenges to modeling and deriving insights.
 
-> For a higher-level overview of this project's policy implications and key findings for Singapore, please see the [Wet-Bulb Temperature & Climate Resilience Project Page](/projects/wet-bulb-temperature-analysis-project-page/).
+> For a higher-level overview of this project's policy implications and key findings for Singapore, please see the [*Wet-Bulb Temperature & Climate Resilience: A Policy-Focused Data Study for Singapore* Project Page](/projects/wet-bulb-temperature-analysis/).
 
 ## Understanding Wet-Bulb Temperature (WBT)
 

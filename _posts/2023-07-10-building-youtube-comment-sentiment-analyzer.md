@@ -12,7 +12,7 @@ feature_image: /assets/images/2023-07-10-building-youtube-comment-sentiment-anal
 
 YouTube comments are a firehose of audience feedback, but their sheer volume and informal nature make manual sentiment analysis impractical. This post details the technical journey of building a robust binary sentiment classifier for YouTube comments, focusing on a hybrid labeling strategy, advanced preprocessing, diverse feature engineering, and model stacking to achieve reliable performance. Our goal was to accurately identify negative sentiment to help content creators manage reputation and optimize content.
 
-> For a higher-level overview of this project's business context, key findings, and applications, please see the [YouTube Comment Sentiment Analysis Project Page](/projects/youtube-sentiment-analysis-project-page/).
+> For a higher-level overview of this project's business context, key findings, and applications, please see the [*YouTube Comment Sentiment Analysis: Unlocking Audience Insights for Content Creators* Project Page](/projects/sentiment-analysis/).
 
 ## Phase 1: Data Acquisition and Preparation
 
@@ -401,4 +401,4 @@ Building a sentiment analyzer for the noisy and nuanced world of YouTube comment
 
 ---
 
-*This post details the technical journey of building the YouTube Comment Sentiment Analyzer. For more on the project's business applications and high-level findings, please visit the [project page](/projects/youtube-sentiment-analysis-project-page/). The source code is available on [GitHub](https://github.com/Adredes-weslee/Sentiment-Analysis-and-NLP-for-a-Youtube-Video).*
+*This post details the technical journey of building the YouTube Comment Sentiment Analyzer. For more on the project's business applications and high-level findings, please visit the [project page](/projects/sentiment-analysis/). The source code is available on [GitHub](https://github.com/Adredes-weslee/Sentiment-Analysis-and-NLP-for-a-Youtube-Video).*

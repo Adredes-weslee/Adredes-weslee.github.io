@@ -12,7 +12,7 @@ feature_image: /assets/images/2023-08-15-forecasting-dengue-cases-and-cost-benef
 
 Dengue fever is a persistent and escalating public health concern in many tropical regions, including Singapore. The 2020 outbreak, with over 30,000 cases, underscored the urgent need for robust predictive tools and economically sound intervention strategies. This post offers a technical walkthrough of a project that tackled this dual challenge by combining advanced time series forecasting of dengue cases with a detailed health economic cost-benefit analysis of control interventions.
 
-> For a higher-level overview of this project's public health context, strategic findings, and policy recommendations for Singapore, please see the [Strategic Dengue Control Project Page](/projects/dengue-forecasting-project-page/).
+> For a higher-level overview of this project's public health context, strategic findings, and policy recommendations for Singapore, please see the [*Strategic Dengue Control: Forecasting & Cost-Benefit Analysis for Public Health Interventions in Singapore* Project Page](/projects/dengue-forecasting/).
 
 ## Phase 1: Building the Foundation - Data Integration and Preparation
 
@@ -248,4 +248,4 @@ This project demonstrated a comprehensive workflow for tackling a complex public
 
 ---
 
-*For a deeper dive into the specific findings, policy recommendations, and overall impact of this work, please visit the [project page](/projects/dengue-forecasting-project-page/). The source code and datasets are available on [GitHub](https://github.com/Adredes-weslee/Dengue-Case-Prediction-and-Cost-Benefits-Analysis).*
+*For a deeper dive into the specific findings, policy recommendations, and overall impact of this work, please visit the [project page](/projects/dengue-forecasting/). The source code and datasets are available on [GitHub](https://github.com/Adredes-weslee/Dengue-Case-Prediction-and-Cost-Benefits-Analysis).*

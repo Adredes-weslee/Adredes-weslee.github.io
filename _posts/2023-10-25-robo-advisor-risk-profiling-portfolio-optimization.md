@@ -12,7 +12,7 @@ feature_image: /assets/images/2023-10-25-robo-advisor-risk-profiling-portfolio-o
 
 Traditional financial advice often comes with high barriers to entry. Robo-advisors aim to democratize wealth management, but many existing solutions rely on simplistic rule-based systems. This post details the technical journey of building an advanced AI-powered robo-advisor. We'll explore the two core AI components: a supervised learning model for predicting investor risk tolerance and a reinforcement learning (Deep Q-Network) agent for dynamic portfolio optimization, comparing its output to traditional Modern Portfolio Theory (MPT).
 
-> For a higher-level overview of this project's business context, system architecture, and overall impact, please see the [Intelligent Investing Project Page](/projects/ai-robo-advisor-project-page/).
+> For a higher-level overview of this project's business context, system architecture, and overall impact, please see the [*Intelligent Investing: An AI-Powered Robo-Advisor for Personalized Portfolio Management* Project Page](/projects/robo-advisor-project/).
 
 ## Data Foundation: Fueling the AI
 
@@ -491,4 +491,4 @@ This project successfully demonstrated the engineering of an AI-powered robo-adv
 
 ---
 
-*This post details the technical engineering of the AI-Powered Robo Advisor. For more on the project's overall architecture, business impact, and future directions, please visit the [project page](/projects/ai-robo-advisor-project-page/). The source code is available on [GitHub](https://github.com/Adredes-weslee/Using_Artificial_Intelligence_to_Develop_a_Robo_Advisor).*
+*This post details the technical engineering of the AI-Powered Robo Advisor. For more on the project's overall architecture, business impact, and future directions, please visit the [project page](/projects/robo-advisor-project/). The source code is available on [GitHub](https://github.com/Adredes-weslee/Using_Artificial_Intelligence_to_Develop_a_Robo_Advisor).*

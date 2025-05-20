@@ -12,7 +12,7 @@ feature_image: /assets/images/2024-08-15-customer-segmentation-price-optimizatio
 
 As part of my BCG RISE 2.0 program capstone, I undertook a data science project with CS Tay, a leading frozen food distributor in Singapore. The goal was to leverage data to address real-world commercial challenges. This post provides a technical deep dive into the methodologies we employed, from customer segmentation using RFM and K-Means to price elasticity modeling and revenue optimization with Gurobi.
 
-> For a higher-level overview of the business context, outcomes, and impact of this project, please see the [Strategic Growth Engine Project Page](/projects/customer-segmentation-price-optimization-project-page/).
+> For a higher-level overview of the business context, outcomes, and impact of this project, please see the [*Strategic Growth Engine: Data-Driven Customer Segmentation & Price Optimization for CS Tay* Project Page](/projects/customer-segmentation/).
 
 ## The Starting Point: Business Challenges & Data
 
@@ -350,4 +350,4 @@ This project underscored how a systematic, multi-phase data science approach, co
 
 ---
 
-*This post details the technical methodologies used in the CS Tay Commercial Strategy project, a capstone for the BCG RISE 2.0 program. For more on the business impact, see the [project page](/projects/customer-segmentation-price-optimization-project-page/).*
+*This post details the technical methodologies used in the CS Tay Commercial Strategy project, a capstone for the BCG RISE 2.0 program. For more on the business impact, see the [project page](/projects/customer-segmentation/).*

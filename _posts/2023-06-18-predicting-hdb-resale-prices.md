@@ -12,7 +12,7 @@ feature_image: /assets/images/2023-06-18-predicting-hdb-resale-prices.jpg # Or a
 
 Singapore's public housing (HDB flats) market is a dominant feature of its urban landscape, housing over 80% of the population. Predicting HDB resale prices is not just an academic exercise; it has significant financial implications for citizens and provides valuable insights for urban planning. This post offers a technical walkthrough of a project aimed at building a machine learning model to forecast these prices, detailing the data processing, feature engineering, modeling techniques, and key lessons learned.
 
-> For a higher-level overview of this project's significance, key findings, and policy implications for Singapore, please see the [HDB Resale Price Insights Project Page](/projects/hdb-resale-prices-project-page/).
+> For a higher-level overview of this project's significance, key findings, and policy implications for Singapore, please see the [*HDB Resale Price Insights: A Data-Driven Analysis for Singapore's Housing Market* Project Page](/projects/hdb-resale-prices/).
 
 ## The Data Science Approach: From Raw Data to Price Prediction
 
@@ -187,4 +187,4 @@ Predicting HDB resale prices is a challenging yet rewarding data science problem
 
 ---
 
-*This post details the technical methodologies used in the HDB Resale Price Prediction project. For more on the project's significance, key findings, and policy implications, please visit the [project page](/projects/hdb-resale-prices-project-page/). The source code is available on [GitHub](https://github.com/Adredes-weslee/Making-Predictions-on-HDB-Resale-Price).*
+*This post details the technical methodologies used in the HDB Resale Price Prediction project. For more on the project's significance, key findings, and policy implications, please visit the [project page](/projects/hdb-resale-prices/). The source code is available on [GitHub](https://github.com/Adredes-weslee/Making-Predictions-on-HDB-Resale-Price).*
