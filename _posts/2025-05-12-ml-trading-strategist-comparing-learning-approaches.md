@@ -243,4 +243,6 @@ Key takeaways for practitioners:
 
 As financial data grows in complexity, ML will become increasingly indispensable. Future work on this framework could include integrating alternative data, exploring deep reinforcement learning, and applying transfer learning across market regimes.
 
+> For a complete overview of the ML Trading Strategist framework, including system architecture, component details, and deployment instructions, please see the [ML Trading Strategist: Advanced Algorithmic Trading Framework](/projects/ml-trading-strategist/) project page.
+
 ---

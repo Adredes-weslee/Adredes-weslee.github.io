@@ -536,4 +536,6 @@ A Redis cache stores responses to frequently asked questions, reducing LLM load 
 
 Building this RAG system was a journey of iterative refinement. Key successes include achieving secure, air-gapped LLM operation, handling diverse document formats effectively, and significantly improving access to technical knowledge. The modular design allows for ongoing enhancements, such as incorporating multi-modal data, deeper integration with structured databases, and more sophisticated agentic behaviors. RAG is not a static solution but an evolving capability that promises to unlock even greater value from enterprise data.
 
+> For a complete overview of the RAG Engine project, including system architecture, component details, and deployment instructions, please see the [RAG Engine: Enterprise Document Q&A System](/projects/rag-engine-project/) project page.
+
 ---

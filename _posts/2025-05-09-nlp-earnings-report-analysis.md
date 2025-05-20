@@ -269,4 +269,6 @@ While powerful, the system can be further enhanced:
 
 This NLP Earnings Report Analysis system showcases how tailored NLP can unlock significant value from financial texts that human readers might miss. The key takeaway is the importance of domain-specific adaptations; general-purpose models often need customization for specialized fields like finance. By marrying traditional techniques with modern transformer models, we've created a powerful tool for financial professionals to navigate the vast ocean of earnings reports more efficiently and objectively.
 
+> For a complete overview of the FinSight NLP platform, including system architecture, component details, and interactive demos, please see the [FinSight NLP: The Earnings Report Intelligence Platform](/projects/nlp-earnings-analyzer/) project page.
+
 ---
