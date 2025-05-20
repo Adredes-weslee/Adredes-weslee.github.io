@@ -193,3 +193,7 @@ The NLP Earnings Report Analyzer offers tangible benefits:
 ## Conclusion
 
 The NLP Earnings Report Analysis system demonstrates the significant potential of applying domain-adapted NLP to complex financial texts. By strategically combining traditional NLP methods with modern transformer architectures, and by prioritizing reproducibility and usability through versioning and an interactive dashboard, this project provides a robust platform for extracting deep, actionable insights from the dense landscape of financial disclosures. Its comprehensive documentation and modular design pave the way for future extensions and adaptations.
+
+---
+
+*For a detailed technical walkthrough of the NLP methodology, model comparisons, and key findings from earnings report analysis, please refer to the [accompanying blog post](/nlp/finance/machine-learning/data-science/2025/05/09/nlp-earnings-report-analysis.html). The full codebase and documentation are available on [GitHub](https://github.com/Adredes-weslee/NLP_earnings_report).*

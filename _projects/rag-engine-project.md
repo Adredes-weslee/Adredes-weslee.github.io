@@ -166,3 +166,7 @@ The Custom RAG Engine successfully demonstrates that sophisticated, secure, and 
 * **Multi-Modal RAG**: Extend capabilities to include information from images and diagrams within documents.
 * **Automated Document Lifecycle Management**: Integrate with document repositories for automatic updates and re-indexing.
 * **Enhanced User Feedback Integration**: Develop a more robust system for incorporating user feedback to continuously refine retrieval and generation.
+
+---
+
+*For a detailed technical discussion of RAG system design principles, implementation challenges, and lessons learned, please refer to the [accompanying blog post](/ai/nlp/rag/2024/10/29/building-effective-rag-systems.html). The full codebase and documentation are available on [GitHub](https://github.com/Adredes-weslee/Custom-RAG-Engine-for-Enterprise-Document-QA).*
