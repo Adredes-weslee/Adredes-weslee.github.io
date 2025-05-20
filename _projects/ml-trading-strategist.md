@@ -3,7 +3,7 @@ layout: project
 title: "ML Trading Strategist: Advanced Algorithmic Trading Framework"
 categories: machine-learning finance reinforcement-learning data-science
 image: /assets/images/ml-trading-strategist.jpg
-technologies: [Python, Pandas, Scikit-learn, Streamlit, NumPy, YAML, Reinforcement Learning]
+technologies: [Python, Pandas, Scikit-learn, Streamlit, NumPy, YAML, Reinforcement Learning, Technical Analysis, Backtesting]
 github: https://github.com/Adredes-weslee/ML-Trading-Strategist
 blog_post: /ai/finance/machine-learning/reinforcement-learning/2025/05/12/ml-trading-strategist-comparing-learning-approaches.html
 streamlit_app: https://adredes-weslee-ml-trading-strategist-app-pu7qym.streamlit.app/
@@ -11,295 +11,312 @@ streamlit_app: https://adredes-weslee-ml-trading-strategist-app-pu7qym.streamlit
 
 ## Project Overview
 
-Developed a modular machine learning framework for algorithmic trading strategy development, testing, and comparison. This comprehensive platform enables traders and researchers to experiment with different approaches to market prediction, including manual rule-based strategies, decision tree ensembles, and reinforcement learning (Q-learning) techniques, all with realistic backtesting that accounts for trading costs and market impact.
+Developed a modular machine learning framework for algorithmic trading strategy development, testing, and comparison. This comprehensive platform enables traders and researchers to experiment with different approaches to market prediction. Key capabilities include:
+
+* **Multiple Strategy Models**: Implementation of manual rule-based strategies, decision tree ensembles (Tree Strategy Learner), and reinforcement learning (Q-Strategy Learner with Dyna-Q).
+* **Realistic Backtesting**: A market simulator that accounts for trading costs like commissions and market impact (slippage).
+* **Comprehensive Technical Indicator Library**: Tools for feature engineering using common financial indicators.
+* **Performance Analysis**: Robust metrics and visualizations for strategy evaluation.
+* **Configuration System**: YAML-based setup for reproducible experiments.
+* **Interactive UI**: A Streamlit web application for strategy configuration, execution, and visualization of results.
 
 <div class="demo-link-container">
-  <a href="https://adredes-weslee-ml-trading-strategist-app-pu7qym.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
-    <i class="fas fa-play-circle"></i> Try the Live Demo
-  </a>
+  <a href="https://adredes-weslee-ml-trading-strategist-app-pu7qym.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
+    <i class="fas fa-play-circle"></i> Try the Live Demo
+  </a>
 </div>
 
 ## Business Problem & Context
 
-Traditional algorithmic trading faces several key challenges that this project addresses:
+Traditional algorithmic trading and the application of machine learning in finance face several challenges that this project aims to address:
 
-1. **Strategy Comparison Complexity**: Difficult to compare different trading approaches on an equal footing
-2. **Unrealistic Backtesting**: Many frameworks ignore crucial real-world factors like commissions and slippage
-3. **Feature Engineering Burden**: Selecting relevant technical indicators requires significant domain expertise
-4. **Overfitting Risk**: ML models can easily overfit to historical market data
-5. **Production-Research Gap**: Moving from research to production requires significant additional engineering
+1.  **Strategy Comparison Complexity**: Evaluating diverse trading approaches (rule-based vs. ML) on a consistent basis is difficult.
+2.  **Unrealistic Backtesting**: Many frameworks overlook crucial real-world factors like commissions, slippage, and market impact, leading to overly optimistic results.
+3.  **Feature Engineering Burden**: Selecting and tuning relevant technical indicators often requires significant domain expertise and iterative effort.
+4.  **Overfitting Risk**: ML models can easily overfit to historical market data, performing poorly on unseen data.
+5.  **Production-Research Gap**: Transitioning strategies from research environments to live production systems often requires substantial re-engineering.
 
-## Architecture
+This framework provides tools to mitigate these issues by enabling systematic experimentation and robust evaluation.
 
-The trading strategist platform follows a modular architecture with components that handle different aspects of the trading workflow:
+## System Architecture
+
+The platform is designed with a modular architecture, separating concerns for clarity and extensibility.
 
 ### System Components
 
-- **Data Management Layer**: Loads and preprocesses historical price data from various sources
-- **Technical Indicators**: Comprehensive library of financial indicators (RSI, Bollinger Bands, MACD, etc.)
-- **Strategy Models**:
-  - Manual Strategy (rule-based approach using technical indicators)
-  - Tree Strategy Learner (bagged random forest for return prediction)
-  - Q-Strategy Learner (reinforcement learning with optional Dyna-Q planning)
-- **Market Simulator**: Realistic backtesting with configurable commissions and market impact
-- **Performance Analysis**: Comprehensive metrics calculation and visualization
-- **Configuration System**: YAML-based configuration for reproducible experiments
-- **Streamlit UI**: Interactive web interface for strategy configuration and visualization
+* **Data Management Layer**: Handles loading, cleaning, and preprocessing of historical price data from various sources (e.g., CSV files, APIs).
+* **Technical Indicator Library**: Provides functions to calculate a wide range of financial technical indicators (RSI, Bollinger Bands, MACD, Momentum, CCI, etc.).
+* **Strategy Models**:
+    * **Manual Strategy**: A baseline rule-based approach using technical indicator thresholds and a voting mechanism.
+    * **Tree Strategy Learner**: A supervised learning model using a bagged ensemble of random decision trees to predict future returns and generate trading signals.
+    * **Q-Strategy Learner**: A reinforcement learning agent that learns optimal trading policies using Q-learning, with an optional Dyna-Q component for model-based planning.
+* **Market Simulator**: Executes trades generated by strategies and calculates portfolio values, incorporating configurable commission costs and market impact.
+* **Performance Analysis Module**: Computes key performance metrics (e.g., cumulative return, Sharpe ratio, max drawdown) and generates visualizations.
+* **Configuration System**: Utilizes YAML files for managing all parameters related to data, strategy, simulation, and evaluation, ensuring experiment reproducibility.
+* **Streamlit User Interface**: An interactive web application allowing users to configure experiments, run simulations, and visualize results and comparisons.
 
 ### System Architecture Diagram
 
 ```mermaid
 graph TD
-    A[User Interface - Streamlit] --> B[Strategy Configuration]
-    A --> C[Data Loading]
-    C --> D[Data Preprocessing]
-    B --> E[Strategy Selection]
-    
-    E -->|Manual| F[Manual Strategy]
-    E -->|Tree| G[Tree Strategy Learner]
-    E -->|Q-Learning| H[Q-Strategy Learner]
-    
-    F --> I[Technical Indicators]
-    G --> I
-    H --> I
-    
-    F --> J[Trade Signal Generation]
-    G --> J
-    H --> J
-    
-    J --> K[Market Simulator]
-    K --> L[Performance Metrics]
-    L --> M[Visualization]
-    M --> A
+    A[User Interface - Streamlit] --> B[Strategy Configuration (YAML)]
+    A --> C[Data Loading & Management]
+    C --> D[Data Preprocessing]
+    D --> I[Technical Indicator Library]
+
+    B --> E[Strategy Selection]
+    E --> F[Manual Strategy]
+    E --> G[Tree Strategy Learner]
+    E --> H[Q-Strategy Learner]
+    
+    F -- Uses --> I
+    G -- Uses --> I
+    H -- Uses --> I
+    
+    F --> J[Trade Signal Generation]
+    G --> J
+    H --> J
+    
+    J --> K[Market Simulator]
+    K --> L[Performance Metrics Calculation]
+    L --> M[Results Visualization]
+    M --> A
 ```
 
-## ML Trading Models
+## Core Features & Technical Components
 
-### 1. Tree Strategy Learner
+### 1. Strategy Models Implemented
 
-This model leverages ensemble learning through bagged random decision trees to predict optimal trading decisions:
+#### a. Manual Strategy
+A baseline, rule-based strategy. It generates buy/sell signals based on predefined thresholds for multiple technical indicators (RSI, Bollinger Bands, MACD). A voting system combines these individual signals to make a final trading decision.
 
-- **Feature Engineering**: Converts raw price data into technical indicators (RSI, Bollinger Bands, etc.)
-- **Label Generation**: Creates target variables based on future return thresholds
-- **Ensemble Method**: Uses bootstrap aggregation (bagging) with random trees to reduce overfitting
-- **Trade Signal Generation**: Converts model predictions into buy/sell/hold actions
+#### b. Tree Strategy Learner
+This supervised learning model employs an ensemble of bagged random decision trees.
+* **Feature Engineering**: Uses technical indicators as input features.
+* **Label Generation**: Creates target labels (buy/sell/hold) based on whether future returns (e.g., 5 days ahead) exceed specified buy/sell thresholds.
+* **Ensemble Method**: Utilizes bootstrap aggregation (bagging) and random feature selection within trees to improve generalization and reduce overfitting.
 
 ```python
 class TreeStrategyLearner:
-    def __init__(self, leaf_size=5, bags=20, boost=False, 
-                 buy_threshold=0.02, sell_threshold=-0.02, prediction_days=5):
-        # Initialize learner parameters
-        
-    def addEvidence(self, symbol, sd, ed, sv):
-        # Load data and compute indicators as features
-        # Generate labels from future returns
-        # Create and train bagged random tree ensemble
-        
-    def testPolicy(self, symbol, sd, ed, sv):
-        # Apply trained model to test data
-        # Generate trading decisions based on predictions
-        # Return DataFrame with trades
+    def __init__(self, leaf_size=5, bags=20, boost=False, 
+                 buy_threshold=0.02, sell_threshold=-0.02, prediction_days=5, verbose=False):
+        self.leaf_size = leaf_size
+        self.bags = bags
+        # ... other initializations ...
+        self.model = None # Will hold the ensemble of tree learners
+
+    def addEvidence(self, symbol, sd, ed, sv):
+        # 1. Load price data for the symbol within start date (sd) and end date (ed)
+        # 2. Compute technical indicators (features) from price data
+        # 3. Generate labels based on future returns and thresholds
+        # 4. Create 'bags' number of decision tree learners (e.g., RTLearner)
+        # 5. For each bag:
+        #    a. Create a bootstrap sample of the features and labels
+        #    b. Train a decision tree learner on this sample
+        #    c. Store the trained learner
+        # self.model now holds the ensemble of trained trees
+        pass
+        
+    def testPolicy(self, symbol, sd, ed, sv):
+        # 1. Load price data for the symbol for the test period
+        # 2. Compute technical indicators (features)
+        # 3. For each day in the test period:
+        #    a. Get predictions from all trees in the ensemble (self.model)
+        #    b. Aggregate predictions (e.g., majority vote or average)
+        #    c. Convert aggregated prediction to a trading action (buy, sell, hold shares)
+        # 4. Return a DataFrame of trades (date, symbol, order type, shares)
+        pass
 ```
 
-### 2. Q-Strategy Learner
-
-This model applies reinforcement learning to discover optimal trading policies through interaction with a simulated market environment:
-
-- **State Representation**: Discretizes market states based on technical indicators
-- **Q-Learning**: Updates state-action values based on reward signals
-- **Exploration-Exploitation**: Uses epsilon-greedy policy with decay
-- **Dyna-Q Planning**: Optional model-based planning for improved sample efficiency
+#### c. Q-Strategy Learner
+This model applies reinforcement learning (Q-learning) to find an optimal trading policy.
+* **State Representation**: Discretizes the market state based on binned values of technical indicators.
+* **Q-Learning Algorithm**: Iteratively updates state-action values (Q-values) in a Q-table based on rewards received from the market environment.
+* **Exploration vs. Exploitation**: Employs an epsilon-greedy policy with a decaying random action rate (rar) to balance exploring new actions and exploiting known good actions.
+* **Dyna-Q**: Optionally incorporates Dyna-Q, a model-based RL technique, to perform "planning" updates using a learned model of the environment, improving sample efficiency.
 
 ```python
 class QStrategyLearner:
-    def __init__(self, indicator_bins=10, learning_rate=0.2, 
-                 discount_factor=0.9, random_action_rate=0.5,
-                 random_action_decay=0.99, dyna_iterations=10):
-        # Initialize Q-learning parameters
+    def __init__(self, indicator_bins=10, num_actions=3, learning_rate=0.2, 
+                 discount_factor=0.9, random_action_rate=0.5,
+                 random_action_decay=0.99, dyna_iterations=10, verbose=False):
+        self.indicator_bins = indicator_bins # Bins per indicator for state discretization
+        self.num_actions = num_actions # Typically buy, sell, hold
+        self.alpha = learning_rate
+        self.gamma = discount_factor
+        # ... other initializations for Q-table, Dyna-Q model (T, R) ...
         
-    def addEvidence(self, symbol, sd, ed, sv):
-        # Process data and create indicator-based market states
-        # Train Q-learner through experience and Dyna-Q planning
-        
-    def testPolicy(self, symbol, sd, ed, sv):
-        # Apply learned Q-values to make trading decisions
-        # Return DataFrame with trades
+    def _discretize_state(self, indicators_values):
+        # Convert continuous indicator values to a single discrete state index
+        pass
+
+    def addEvidence(self, symbol, sd, ed, sv):
+        # 1. Load price data and compute indicators
+        # 2. Iterate through training data day by day:
+        #    a. Determine current discretized state (s)
+        #    b. Choose an action (a) using epsilon-greedy policy based on Q[s,:]
+        #    c. Execute action, observe reward (r) and next state (s_prime)
+        #    d. Update Q[s, a] using the Q-learning update rule:
+        #       Q[s,a] = (1-alpha)*Q[s,a] + alpha*(r + gamma*max(Q[s_prime,:]))
+        #    e. If Dyna-Q is enabled:
+        #       i. Update transition model T(s,a) -> s_prime and reward model R(s,a) -> r
+        #       ii. Perform 'dyna_iterations' of planning: randomly sample previous (s,a), predict s_prime, r from model, and update Q[s,a]
+        #    f. Decay random_action_rate
+        pass
+        
+    def testPolicy(self, symbol, sd, ed, sv):
+        # 1. Load price data and compute indicators for the test period
+        # 2. For each day:
+        #    a. Determine current discretized state (s)
+        #    b. Choose the action (a) that maximizes Q[s,:] (greedy policy)
+        #    c. Convert action to trades
+        # 3. Return DataFrame of trades
+        pass
 ```
 
-### 3. Manual Strategy
-
-This serves as a baseline rule-based approach using technical indicators and predefined thresholds:
-
-- **Signal Generation**: Creates buy/sell signals based on indicator crossovers and thresholds
-- **Voting Mechanism**: Combines signals from multiple indicators
-- **Benchmark Comparison**: Provides standard for evaluating ML-based approaches
-
-## Performance Evaluation
-
-The platform evaluates trading strategies using these key metrics:
-
-| Metric | Description |
-|--------|-------------|
-| **Cumulative Return** | Total percentage return over the entire period |
-| **Average Daily Return** | Mean of daily percentage returns |
-| **Standard Deviation of Daily Returns** | Volatility measure |
-| **Sharpe Ratio** | Risk-adjusted return metric (higher is better) |
-| **Maximum Drawdown** | Largest peak-to-trough decline |
-| **Number of Trades** | Total trading activity |
-
-## Implementation Highlights
-
-### 1. Robust Data Management
-
-- **Multiple Data Sources**: Support for CSV files, Yahoo Finance API, and custom data providers
-- **Data Validation**: Automatic checks for missing values and outliers
-- **Efficient Storage**: Serialization for rapid loading of processed data
-
-### 2. Advanced Technical Indicators
-
+### 2. Realistic Market Simulator
+Crucial for reliable strategy evaluation, the simulator models real-world trading conditions.
 ```python
-def bollinger_indicator(self, prices, window=20, num_std=2):
-    """
-    Calculate Bollinger Bands indicator.
-    
-    Parameters:
-    -----------    
-    prices : pd.DataFrame
-        Price data
-    window : int
-        Rolling window size for moving average
-    num_std : int
-        Number of standard deviations for upper/lower bands
-        
-    Returns:
-    --------
-    pd.DataFrame
-        Bollinger Band normalized values between -1 and 1
-    """
-    # Calculate rolling mean
-    rolling_mean = prices.rolling(window=window).mean()
-    
-    # Calculate rolling standard deviation
-    rolling_std = prices.rolling(window=window).std()
-    
-    # Calculate Bollinger Bands
-    upper_band = rolling_mean + (rolling_std * num_std)
-    lower_band = rolling_mean - (rolling_std * num_std)
-    
-    # Calculate % distance from mean (normalized between -1 and 1)
-    bb_value = (prices - rolling_mean) / (rolling_std * num_std)
-    
-    return bb_value
+def compute_portvals(orders_df, start_val=100000.0, commission=9.95, impact=0.005, prices_df=None):
+    """
+    Simulate trading with realistic costs and compute portfolio values.
+    
+    Parameters:
+    -----------    
+    orders_df : pd.DataFrame
+        Trading orders (dates as index, symbols as columns, values are shares traded).
+    start_val : float
+        Initial portfolio cash value.
+    commission : float
+        Fixed commission cost per trade.
+    impact : float
+        Market impact (slippage) as a percentage of trade value.
+    prices_df: pd.DataFrame
+        DataFrame of daily prices for the traded symbols.
+        
+    Returns:
+    --------
+    pd.Series
+        Daily portfolio values over time.
+    """
+    # Implementation details:
+    # 1. Initialize portfolio: cash = start_val, holdings = 0 for all symbols.
+    # 2. Iterate through dates in orders_df:
+    #    For each symbol with an order on that date:
+    #    a. Get current price from prices_df.
+    #    b. Calculate trade value.
+    #    c. Adjust cash: subtract (trade_value + commission + abs(trade_value * impact)).
+    #    d. Update holdings for the symbol.
+    # 3. Calculate daily total portfolio value (cash + market value of all holdings).
+    pass
 ```
 
-### 3. Realistic Market Simulation
-
-The market simulator accounts for real-world trading factors:
-
+### 3. Technical Indicator Library
+A comprehensive set of functions to calculate various technical indicators used for feature engineering. Example:
 ```python
-def compute_portvals(orders, start_val=100000.0, commission=9.95, impact=0.005):
-    """
-    Simulate trading with realistic costs.
-    
-    Parameters:
-    -----------    
-    orders : pd.DataFrame
-        Trading orders with dates as index and symbols as columns
-    start_val : float
-        Initial portfolio value
-    commission : float
-        Fixed commission cost per trade
-    impact : float
-        Market impact as percentage of trade value
-        
-    Returns:
-    --------
-    pd.DataFrame
-        Portfolio values over time
-    """
-    # Implementation includes:
-    # - Commission costs
-    # - Price impact based on trade size
-    # - Cash balance management
-    # - Position tracking
-    # - Daily portfolio valuation
+def bollinger_indicator(prices_df, symbol, window=20, num_std=2):
+    """Calculate Bollinger Bands indicator values, normalized."""
+    prices = prices_df[symbol]
+    rolling_mean = prices.rolling(window=window).mean()
+    rolling_std = prices.rolling(window=window).std()
+    
+    upper_band = rolling_mean + (rolling_std * num_std)
+    lower_band = rolling_mean - (rolling_std * num_std)
+    
+    # Normalized Bollinger value: (price - SMA) / (num_std * StdDev)
+    # This value is typically between -1 and 1 if price is within bands.
+    bb_value = (prices - rolling_mean) / (rolling_std * num_std)
+    return pd.DataFrame(bb_value, index=prices.index, columns=['bollinger'])
 ```
 
 ### 4. Configuration Management
-
-All experiment parameters are cleanly managed through YAML configuration files:
-
+Experiments are defined using YAML files, ensuring all parameters (data sources, date ranges, strategy hyperparameters, simulation costs) are explicitly stated and versionable.
 ```yaml
-# Example tree_strategy.yaml
+# Example: tree_strategy_config.yaml
 data:
-  symbol: JPM
-  training:
-    start_date: '2008-01-01'
-    end_date: '2009-12-31'
-  testing:
-    start_date: '2010-01-01'
-    end_date: '2011-12-31'
-tree_strategy_learner:
-  bags: 20
-  leaf_size: 5
-  buy_threshold: 0.02
-  sell_threshold: -0.02
-  prediction_days: 5
-trading:
-  commission: 9.95
-  impact: 0.005
-portfolio:
-  starting_value: 100000
+  symbol: JPM
+  training_period:
+    start_date: '2008-01-01'
+    end_date: '2009-12-31'
+  testing_period:
+    start_date: '2010-01-01'
+    end_date: '2011-12-31'
+
+strategy:
+  type: TreeStrategyLearner
+  parameters:
+    leaf_size: 5
+    bags: 20
+    buy_threshold: 0.02
+    sell_threshold: -0.02
+    prediction_days: 5
+
+simulation:
+  commission: 9.95
+  impact: 0.005
+  starting_value: 100000
 ```
 
-## Results and Evaluation
+## Performance Evaluation & Results
 
-Comparative analysis of the three strategies against a buy-and-hold benchmark revealed:
+Strategies are evaluated using a standard set of financial metrics:
 
-### Performance Metrics (JPM 2010-2011)
+| Metric                        | Description                                         |
+| ----------------------------- | --------------------------------------------------- |
+| Cumulative Return             | Total percentage return over the period.            |
+| Average Daily Return          | Mean of daily percentage returns.                   |
+| Std. Dev. of Daily Returns    | Volatility; standard deviation of daily returns.    |
+| Sharpe Ratio                  | Risk-adjusted return (vs. risk-free rate).          |
+| Maximum Drawdown              | Largest peak-to-trough percentage decline.          |
+| Number of Trades              | Total trading activity.                             |
 
-| Strategy | Cumulative Return | Sharpe Ratio | Max Drawdown | Trades |
-|----------|-------------------|--------------|--------------|--------|
-| Benchmark | +23.5% | 0.72 | -19.2% | 1 |
-| Manual | +31.2% | 1.05 | -15.3% | 15 |
-| Tree Strategy | +42.7% | 1.48 | -12.1% | 23 |
-| Q-Strategy | +37.9% | 1.31 | -13.8% | 19 |
+### Comparative Results (JPM Stock, Test Period: 2010-2011)
+![Strategy Performance Comparison](/assets/images/Strategy Performance Comparison.jpg)
+
+| Strategy        | Cumulative Return | Sharpe Ratio (Annualized) | Max Drawdown | # Trades |
+| --------------- | ----------------- | ------------------------- | ------------ | -------- |
+| Benchmark       | +23.5%            | 0.72                      | -19.2%       | 1        |
+| Manual Strategy | +31.2%            | 1.05                      | -15.3%       | 15       |
+| Tree Strategy   | +42.7%            | 1.48                      | -12.1%       | 23       |
+| Q-Strategy      | +37.9%            | 1.31                      | -13.8%       | 19       |
 
 ### Key Findings
+1.  **ML Strategies Outperform**: Both the Tree Strategy and Q-Strategy demonstrated superior cumulative returns and risk-adjusted returns (Sharpe Ratio) compared to the manual strategy and the buy-and-hold benchmark.
+2.  **Feature Importance**: For the Tree Strategy on JPM data, Bollinger Bands and RSI were identified as the most predictive technical indicators.
+3.  **Hyperparameter Sensitivity**: Performance of ML strategies was sensitive to key hyperparameters (e.g., `prediction_days` and `leaf_size` for Tree Strategy; `learning_rate` and `indicator_bins` for Q-Strategy).
+4.  **Market Regime Dependency**: Strategy performance can vary significantly across different market conditions (e.g., trending vs. sideways markets, high vs. low volatility). Continuous monitoring and potential retraining are implied.
 
-1. **ML Strategy Advantage**: Both the Tree Strategy and Q-Strategy outperformed the manual approach
-2. **Feature Importance**: RSI and Bollinger Bands emerged as the most predictive technical indicators
-3. **Hyperparameter Sensitivity**: Tree Strategy performance was most sensitive to prediction_days and leaf_size
-4. **Q-Learning Convergence**: The Q-Strategy required at least 20 iterations for stable convergence
-5. **Market Regime Dependency**: Performance varied significantly across different market regimes (bull vs. bear)
-
-## Deployment
-
-The project is fully containerized for easy deployment:
-
+## Deployment & Usage
+The project is containerized for ease of deployment and includes a Streamlit application for interactive use.
 ```bash
-# Clone repository
-git clone https://github.com/Adredes-weslee/ML-Trading-Strategist.git
+# 1. Clone the repository
+git clone [https://github.com/Adredes-weslee/ML-Trading-Strategist.git](https://github.com/Adredes-weslee/ML-Trading-Strategist.git)
 cd ML-Trading-Strategist
 
-# Create conda environment
+# 2. Create and activate Conda environment (recommended)
 conda env create -f environment.yaml
 conda activate trading-strategist
 
-# Run application
+# 3. Run the Streamlit application
 streamlit run app.py
 ```
+Users can then configure strategies, run backtests, and view results through the web interface.
 
 ## Skills & Tools
-
-- **Languages & Frameworks**: Python, Pandas, Streamlit, Scikit-learn
-- **Financial Analysis**: Technical indicators, backtesting, portfolio optimization
-- **Machine Learning**: Decision trees, ensemble methods, reinforcement learning
-- **Software Engineering**: Modular design, configuration management, visualization
-- **Data Processing**: Time series analysis, feature engineering, data validation
+* **Programming**: Python
+* **Libraries**: Pandas, NumPy, Scikit-learn
+* **Machine Learning**: Decision Trees, Ensemble Methods (Bagging), Reinforcement Learning (Q-learning, Dyna-Q)
+* **Financial Analysis**: Technical Indicators, Backtesting, Portfolio Metrics
+* **Software Engineering**: Modular Design, Configuration Management (YAML)
+* **Visualization/UI**: Streamlit
 
 ## Conclusion
 
-The ML Trading Strategist demonstrates how modern machine learning techniques can be effectively applied to financial markets when properly implemented with realistic constraints. The comparative analysis highlights the strengths and weaknesses of different approaches, providing valuable insights for both algorithmic traders and researchers in the field of quantitative finance.
+The ML Trading Strategist framework provides a robust and flexible platform for the development, comparison, and evaluation of algorithmic trading strategies. By incorporating realistic backtesting and offering a range of modeling approaches from simple rule-based systems to sophisticated machine learning techniques like ensemble trees and reinforcement learning, it empowers users to gain deeper insights into strategy performance and market dynamics. The results indicate that ML-driven strategies, when carefully designed and validated, can offer a significant edge in financial markets.
 
-While both ML approaches (Tree Strategy and Q-Strategy) outperformed rule-based trading in this study, the project emphasizes the importance of proper validation, realistic backtesting, and consideration of market regimes when evaluating trading strategies.
+## Future Enhancements
+* Integration of more advanced deep learning models (e.g., LSTMs, Transformers for sequence modeling).
+* Expansion of the technical indicator library and feature engineering capabilities.
+* Incorporation of alternative data sources (e.g., news sentiment, economic indicators).
+* Development of more sophisticated portfolio optimization and risk management modules.
+* Tools for automated hyperparameter optimization.
