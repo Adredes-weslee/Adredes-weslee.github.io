@@ -14,6 +14,8 @@ Financial earnings reports are a goldmine of information that can significantly 
 
 This blog post walks you through the development of a sophisticated Natural Language Processing (NLP) system designed to analyze earnings announcement texts from publicly traded companies. Our goal? To extract actionable insights and even predict stock market reactions.
 
+> For a complete overview of the FinSight NLP platform, including system architecture, component details, and interactive demos, please see the [FinSight NLP: The Earnings Report Intelligence Platform](/projects/nlp-earnings-analyzer/) project page.
+
 <div class="callout interactive-demo">
   <h4><i class="fas fa-rocket"></i> Try It Yourself!</h4>
   <p>Want to analyze earnings reports and extract key insights in real-time? Check out the interactive Streamlit application:</p>

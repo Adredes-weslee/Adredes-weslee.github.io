@@ -12,6 +12,8 @@ feature_image: /assets/images/2024-10-29-building-effective-rag-systems.jpg
 
 Retrieval-Augmented Generation (RAG) is rapidly transforming how enterprises leverage Large Language Models (LLMs). By grounding LLMs with external, verifiable knowledge sources, RAG systems minimize hallucinations, provide up-to-date information, and enable domain-specific expertise. This post chronicles the journey of building and deploying a production-grade RAG system for technical documentation QA within an enterprise setting, detailing the technical choices, challenges, and solutions encountered.
 
+> For a complete overview of the RAG Engine project, including system architecture, component details, and deployment instructions, please see the [RAG Engine: Enterprise Document Q&A System](/projects/rag-engine-project/) project page.
+
 ## Architecting the RAG Pipeline: Core Components
 
 An effective RAG system is more than just an LLM and a vector database. It's a carefully orchestrated pipeline. Here’s a breakdown of the key components we engineered:
