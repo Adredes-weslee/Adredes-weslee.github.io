@@ -22,7 +22,7 @@ This post details the technical journey of a data science project focused on ana
   </a>
 </div>
 
-> For a higher-level overview of this project's policy implications and key findings for Singapore, please see the [*Wet-Bulb Temperature & Climate Resilience: A Policy-Focused Data Study for Singapore* Project Page](/projects/wet-bulb-temperature-analysis/).
+> For a higher-level overview of this project's policy implications and key findings for Singapore, please see the [*Wet-Bulb Temperature & Climate Resilience: A Policy-Focused Data Study for Singapore* Project Page](/projects/wet-bulb-temperature/).
 
 ## Understanding Wet-Bulb Temperature (WBT)
 
