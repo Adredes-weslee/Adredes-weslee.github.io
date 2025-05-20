@@ -14,7 +14,7 @@ Welcome to my blog where I share insights, tutorials, and thoughts about AI, mac
 
 <div class="blog-card">
   <div class="blog-content">
-    <h3><a href="/ai/finance/machine-learning/reinforcement-learning/2025/05/12/ml-trading-strategist-comparing-learning-approaches.html">ML Trading Strategist: Comparing Machine Learning Approaches for Algorithmic Trading</a></h3>
+    <h3><a href="/ai/finance/machine-learning/reinforcement-learning/2025/05/12/ml-trading-strategist-comparing-learning-approaches.html">Developing ML Trading Strategies: From Rule-Based Systems to Reinforcement Learning</a></h3>
     <p>Learn how different machine learning approaches can be applied to algorithmic trading, with a systematic comparison of traditional rule-based methods, supervised learning, and reinforcement learning strategies.</p>
   </div>
   <img src="/assets/images/2025-05-12-ml-trading-strategist-comparing-learning-approaches.jpg" alt="ML Trading Strategist" class="blog-image">
@@ -22,7 +22,7 @@ Welcome to my blog where I share insights, tutorials, and thoughts about AI, mac
 
 <div class="blog-card">
   <div class="blog-content">
-    <h3><a href="/nlp/finance/machine-learning/data-science/2025/05/09/nlp-earnings-report-analysis.html">NLP Earnings Report Analysis: Extracting Insights from Financial Text</a></h3>
+    <h3><a href="/nlp/finance/machine-learning/data-science/2025/05/09/nlp-earnings-report-analysis.html">Decoding Wall Street: How We Engineered an NLP System for Financial Disclosures</a></h3>
     <p>Discover how advanced natural language processing techniques can extract valuable insights from financial earnings reports, combining traditional methods with transformer models for improved analysis and prediction.</p>
   </div>
   <img src="/assets/images/2025-05-09-nlp-earnings-report-analysis.jpg" alt="NLP Earnings Report Analysis" class="blog-image">

@@ -323,4 +323,5 @@ The ML Trading Strategist framework provides a robust and flexible platform for 
 
 ---
 
-*For a detailed technical walkthrough of trading strategy implementation, comparative performance analysis, and the reinforcement learning approach, please refer to the [accompanying blog post](/ai/finance/machine-learning/reinforcement-learning/2025/05/12/ml-trading-strategist-comparing-learning-approaches.html). The full codebase and documentation are available on [GitHub](https://github.com/Adredes-weslee/ML-Trading-Strategist).*
+*For an in-depth discussion on the development and comparative analysis of the various trading strategies within this framework—from rule-based systems to decision tree ensembles and reinforcement learning—including implementation details and specific insights, please see our [accompanying blog post: "Developing ML Trading Strategies: From Rule-Based Systems to Reinforcement Learning"](/ai/finance/machine-learning/reinforcement-learning/2025/05/12/ml-trading-strategist-comparing-learning-approaches.html). The complete source code and documentation for the framework are available on [GitHub](https://github.com/Adredes-weslee/ML-Trading-Strategist).*
+

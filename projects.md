@@ -12,7 +12,7 @@ Below are some of my key projects in AI, machine learning, and data science. Eac
 
 These projects showcase my work with large language models, transformer architectures, and natural language processing:
 
-* [**NLP Earnings Report Analyzer**](/projects/nlp-earnings-analyzer/) - Financial text analysis combining traditional NLP and transformer models for earnings reports
+* [**FinSight NLP: The Earnings Report Intelligence Platform**](/projects/nlp-earnings-analyzer/) - Financial text analysis combining traditional NLP and transformer models for earnings reports
 * [**Democratizing Enterprise Knowledge: The Custom RAG Engine Project**](/projects/rag-engine-project/) - Containerized document QA system with hybrid embedding models and self-hosted inference
 * [**YouTube Comment Sentiment Analysis: Unlocking Audience Insights for Content Creators**](/projects/sentiment-analysis/) - Hybrid labeling system combining rule-based and transformer approaches
 
@@ -20,7 +20,7 @@ These projects showcase my work with large language models, transformer architec
 
 Projects demonstrating various ML techniques and domain applications:
 
-* [**ML Trading Strategist**](/projects/ml-trading-strategist/) - Algorithmic trading framework comparing rule-based, tree-ensemble, and reinforcement learning approaches
+* [**ML Trading Strategist: Advanced Algorithmic Trading Framework**](/projects/ml-trading-strategist/) - Algorithmic trading framework comparing rule-based, tree-ensemble, and reinforcement learning approaches
 * [**Intelligent Investing: An AI-Powered Robo-Advisor for Personalized Portfolio Management**](/projects/robo-advisor-project/) - Portfolio optimization using reinforcement learning and risk profiling
 * [**Building an HDB Resale Price Predictor: A Technical Deep Dive into Feature Engineering and Regression**](/projects/hdb-resale-prices/) - Advanced regression modeling for Singapore's housing market
 * [**Wet-Bulb Temperature & Climate Resilience: A Policy-Focused Data Study for Singapore**](/projects/wet-bulb-temperature/) - Climate data modeling for heat stress prediction
@@ -57,9 +57,9 @@ I've created interactive Streamlit applications that showcase the practical appl
 <div style="padding: 20px; background-color: #f5f5f5; border-radius: 8px; margin: 20px 0;">
   <h3 style="margin-top: 0;">Available Interactive Demos:</h3>
   <ul>
-    <li><strong><a href="/streamlit-apps/#ml-trading-strategist">ML Trading Strategist</a></strong> - Experiment with different algorithmic trading approaches</li>
-    <li><strong><a href="/streamlit-apps/#nlp-earnings-report-analyzer">NLP Earnings Report Analyzer</a></strong> - Analyze financial text for insights</li>
-    <li><strong><a href="/streamlit-apps/#wet-bulb-temperature-analysis">Wet-Bulb Temperature Analysis</a></strong> - Explore climate data and heat stress indicators</li>
+    <li><strong><a href="/streamlit-apps/#ml-trading-strategist">ML Trading Strategist: Advanced Algorithmic Trading Framework</a></strong> - Experiment with different algorithmic trading approaches</li>
+    <li><strong><a href="/streamlit-apps/#nlp-earnings-report-analyzer">FinSight NLP: The Earnings Report Intelligence Platform</a></strong> - Analyze financial text for insights</li>
+    <li><strong><a href="/streamlit-apps/#wet-bulb-temperature-analysis">Wet-Bulb Temperature & Climate Resilience: A Policy-Focused Data Study for Singapore</a></strong> - Explore climate data and heat stress indicators</li>
   </ul>
   <a href="/streamlit-apps/" style="display: inline-block; background-color: #ff4b4b; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; margin-top: 10px;">
     <i class="fas fa-play-circle"></i> Explore All Interactive Demos

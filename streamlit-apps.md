@@ -8,7 +8,7 @@ permalink: /streamlit-apps/
 
 This page features all my interactive Streamlit applications that demonstrate the practical applications of my projects. Feel free to explore these live demos to see the projects in action.
 
-## ML Trading Strategist
+## ML Trading Strategist: Advanced Algorithmic Trading Framework
 
 An interactive application for exploring different machine learning approaches to algorithmic trading, with complete backtesting capabilities and performance visualization.
 
@@ -23,7 +23,7 @@ An interactive application for exploring different machine learning approaches t
       <li>Test strategies on different market conditions</li>
     </ul>
     <a href="https://adredes-weslee-ml-trading-strategist-app-pu7qym.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
-      <i class="fas fa-play-circle"></i> Launch Trading Strategist Demo
+      <i class="fas fa-play-circle"></i> Launch ML Trading Strategist Demo
     </a>
     <a href="/projects/ml-trading-strategist/" class="demo-project-link">
       <i class="fas fa-info-circle"></i> View Project Details
@@ -31,7 +31,7 @@ An interactive application for exploring different machine learning approaches t
   </div>
 </div>
 
-## NLP Earnings Report Analyzer
+## FinSight NLP: The Earnings Report Intelligence Platform
 
 This application allows you to analyze financial earnings reports using advanced NLP techniques, extracting key insights, topics, and sentiment.
 
@@ -46,7 +46,7 @@ This application allows you to analyze financial earnings reports using advanced
       <li>Compare multiple reports and track changes over time</li>
     </ul>
     <a href="https://adredes-weslee-nlp-earnings-report-streamlit-app-0uttcu.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
-      <i class="fas fa-play-circle"></i> Launch NLP Analyzer Demo
+      <i class="fas fa-play-circle"></i> Launch FinSight NLP Demo
     </a>
     <a href="/projects/nlp-earnings-analyzer/" class="demo-project-link">
       <i class="fas fa-info-circle"></i> View Project Details
@@ -54,7 +54,7 @@ This application allows you to analyze financial earnings reports using advanced
   </div>
 </div>
 
-## Wet-Bulb Temperature Analysis
+## Wet-Bulb Temperature & Climate Resilience: A Policy-Focused Data Study for Singapore
 
 This interactive dashboard visualizes wet-bulb temperature trends in Singapore and their correlation with climate factors, providing insights for climate resilience planning.
 
@@ -69,7 +69,7 @@ This interactive dashboard visualizes wet-bulb temperature trends in Singapore a
       <li>Risk mapping for vulnerable populations</li>
     </ul>
     <a href="https://adredes-weslee-data-analysis-of-wet-bulb-te-dashboardapp-mwqkey.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
-      <i class="fas fa-play-circle"></i> Launch Wet-Bulb Temperature Dashboard
+      <i class="fas fa-play-circle"></i> Launch Wet-Bulb Temperature & Climate Resilience Dashboard
     </a>
     <a href="/projects/wet-bulb-temperature/" class="demo-project-link">
       <i class="fas fa-info-circle"></i> View Project Details

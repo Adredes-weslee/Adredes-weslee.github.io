@@ -196,4 +196,5 @@ The NLP Earnings Report Analysis system demonstrates the significant potential o
 
 ---
 
-*For a detailed technical walkthrough of the NLP methodology, model comparisons, and key findings from earnings report analysis, please refer to the [accompanying blog post](/nlp/finance/machine-learning/data-science/2025/05/09/nlp-earnings-report-analysis.html). The full codebase and documentation are available on [GitHub](https://github.com/Adredes-weslee/NLP_earnings_report).*
+*For an in-depth technical discussion of how this platform was engineered, including the specific NLP methodologies, data processing pipeline, model development, and challenges overcome, please refer to our [accompanying blog post: "Decoding Wall Street: How We Engineered an NLP System for Financial Disclosures"](/nlp/finance/machine-learning/data-science/2025/05/09/nlp-earnings-report-analysis.html). The complete source code, detailed documentation, and setup instructions are available on [GitHub](https://github.com/Adredes-weslee/NLP_earnings_report).*
+

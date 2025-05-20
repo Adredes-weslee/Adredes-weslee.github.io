@@ -14,7 +14,8 @@ Financial earnings reports are a goldmine of information that can significantly 
 
 This blog post walks you through the development of a sophisticated Natural Language Processing (NLP) system designed to analyze earnings announcement texts from publicly traded companies. Our goal? To extract actionable insights and even predict stock market reactions.
 
-> For a complete overview of the FinSight NLP platform, including system architecture, component details, and interactive demos, please see the [FinSight NLP: The Earnings Report Intelligence Platform](/projects/nlp-earnings-analyzer/) project page.
+> For a comprehensive overview of the FinSight NLP initiative, its business objectives, key capabilities, overall system architecture, and real-world impact, please visit the [FinSight NLP: The Earnings Report Intelligence Platform Project Page](/projects/nlp-earnings-analyzer/). This post delves into the specific engineering journey and technical details behind its development.
+
 
 <div class="callout interactive-demo">
   <h4><i class="fas fa-rocket"></i> Try It Yourself!</h4>
@@ -271,6 +272,6 @@ While powerful, the system can be further enhanced:
 
 This NLP Earnings Report Analysis system showcases how tailored NLP can unlock significant value from financial texts that human readers might miss. The key takeaway is the importance of domain-specific adaptations; general-purpose models often need customization for specialized fields like finance. By marrying traditional techniques with modern transformer models, we've created a powerful tool for financial professionals to navigate the vast ocean of earnings reports more efficiently and objectively.
 
-> For a complete overview of the FinSight NLP platform, including system architecture, component details, and interactive demos, please see the [FinSight NLP: The Earnings Report Intelligence Platform](/projects/nlp-earnings-analyzer/) project page.
-
 ---
+
+*   To explore the strategic vision, key features, performance metrics, and business applications of the FinSight NLP platform, please see the [FinSight NLP: The Earnings Report Intelligence Platform Project Page](/projects/nlp-earnings-analyzer/). The detailed source code and technical implementation discussed in this post are available on [GitHub](https://github.com/Adredes-weslee/NLP_earnings_report).*

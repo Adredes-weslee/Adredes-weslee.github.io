@@ -12,7 +12,7 @@ feature_image: /assets/images/2025-05-12-ml-trading-strategist-comparing-learnin
 
 Algorithmic trading has revolutionized financial markets, with automated systems now responsible for over 70% of trading volume on major exchanges. Yet many traders continue to rely on traditional rule-based systems or struggle to effectively implement machine learning approaches that can adapt to changing market conditions. This post explores my journey building the ML Trading Strategist framework, which enables the development, testing, and comparison of various trading strategies using both traditional and machine learning techniques.
 
-> For a complete overview of the ML Trading Strategist framework, including system architecture, component details, and deployment instructions, please see the [ML Trading Strategist: Advanced Algorithmic Trading Framework](/projects/ml-trading-strategist/) project page.
+> For a comprehensive overview of the ML Trading Strategist platform, its architecture, core features, the business problems it addresses, and overall performance results, please visit the [ML Trading Strategist: Advanced Algorithmic Trading Framework Project Page](/projects/ml-trading-strategist/). This post delves into the specific journey of developing and comparing the different trading strategy models within this framework.
 
 <div class="callout interactive-demo">
   <h4><i class="fas fa-rocket"></i> Try It Yourself!</h4>
@@ -245,6 +245,8 @@ Key takeaways for practitioners:
 
 As financial data grows in complexity, ML will become increasingly indispensable. Future work on this framework could include integrating alternative data, exploring deep reinforcement learning, and applying transfer learning across market regimes.
 
-> For a complete overview of the ML Trading Strategist framework, including system architecture, component details, and deployment instructions, please see the [ML Trading Strategist: Advanced Algorithmic Trading Framework](/projects/ml-trading-strategist/) project page.
-
 ---
+
+*To explore the complete ML Trading Strategist platform, including its overall architecture, features, and usage instructions, please refer to the [ML Trading Strategist: Advanced Algorithmic Trading Framework Project Page](/projects/ml-trading-strategist/). The full codebase for the framework and the strategies discussed herein is available on [GitHub](https://github.com/Adredes-weslee/ML-Trading-Strategist).*
+
+
