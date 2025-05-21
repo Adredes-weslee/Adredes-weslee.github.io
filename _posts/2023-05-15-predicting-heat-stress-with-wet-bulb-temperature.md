@@ -219,4 +219,5 @@ Analyzing wet-bulb temperature through a data science lens offers a more nuanced
 
 ---
 
-*This post details the technical execution of the Wet-Bulb Temperature Analysis project. To learn more about the project's background, findings, and policy implications for Singapore, please visit the [project page on GitHub](https://github.com/Adredes-weslee/wet-bulb-temperature-analysis).*
+*This post details the technical execution of the Wet-Bulb Temperature Analysis project. To learn more about the project's background, findings, and policy implications for Singapore, please visit the [project page on GitHub](https://github.com/Adredes-weslee/wet-bulb-temperature-analysis). The source code is available on [GitHub](https://github.com/Adredes-weslee/wet-bulb-temperature-analysis).*
+
