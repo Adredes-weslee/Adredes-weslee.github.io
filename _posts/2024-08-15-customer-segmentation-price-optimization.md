@@ -14,6 +14,14 @@ As part of my BCG RISE 2.0 program capstone, I undertook a data science project 
 
 > For a higher-level overview of the business context, outcomes, and impact of this project, please see the [*Strategic Growth Engine: Data-Driven Customer Segmentation & Price Optimization for CS Tay* Project Page](/projects/customer-segmentation/).
 
+<div class="callout interactive-demo">
+  <h4><i class="fas fa-chart-line"></i> Optimize Pricing Strategies!</h4>
+  <p>Experiment with different customer segments and pricing scenarios to see potential revenue impact in real-time:</p>
+  <a href="https://adredes-weslee-price-optimization-streamlitapp-yxjoe3.streamlit.app/" class="callout-button" target="_blank" rel="noopener noreferrer">
+    <i class="fas fa-play-circle"></i> Launch Price Optimizer
+  </a>
+</div>
+
 ## The Starting Point: Business Challenges & Data
 
 CS Tay, like many mature businesses, faced stagnating revenue, margin pressures, and the limitations of a one-size-fits-all commercial approach. They had extensive transaction data (2+ years, 200+ customers, 800+ SKUs) but lacked actionable insights. Our mission was to transform this data into a data-driven commercial strategy.
@@ -350,4 +358,5 @@ This project underscored how a systematic, multi-phase data science approach, co
 
 ---
 
-*This post details the technical methodologies used in the CS Tay Commercial Strategy project, a capstone for the BCG RISE 2.0 program. For more on the business impact, see the [project page](/projects/customer-segmentation/).*
+*This post details the technical methodologies used in the CS Tay Commercial Strategy project, a capstone for the BCG RISE 2.0 program. For more on the business impact, see the [project page](/projects/customer-segmentation/). The source code is available on [GitHub](https://github.com/Adredes-weslee/price-optimization).*
+
