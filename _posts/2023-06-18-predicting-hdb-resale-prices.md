@@ -14,6 +14,14 @@ Singapore's public housing (HDB flats) market is a dominant feature of its urban
 
 > For a higher-level overview of this project's significance, key findings, and policy implications for Singapore, please see the [*HDB Resale Price Insights: A Data-Driven Analysis for Singapore's Housing Market* Project Page](/projects/hdb-resale-prices/).
 
+<div class="callout interactive-demo">
+  <h4><i class="fas fa-home"></i> Predict HDB Resale Prices!</h4>
+  <p>Enter property details like location, flat type, and remaining lease to get an estimated resale price:</p>
+  <a href="https://adredes-weslee-making-predictions-on-hdb-resale-pric-app-iwznz4.streamlit.app/" class="callout-button" target="_blank" rel="noopener noreferrer">
+    <i class="fas fa-calculator"></i> Launch Price Predictor
+  </a>
+</div>
+
 ## The Data Science Approach: From Raw Data to Price Prediction
 
 Our goal was to build an accurate and interpretable model for HDB resale prices. This involved several key stages.
