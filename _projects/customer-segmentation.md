@@ -5,13 +5,19 @@ date: 2024-08-15 # Retaining original date
 categories: [data-science, business-analytics, pricing-strategy, commercial-strategy, capstone]
 image: /assets/images/customer-segmentation.jpg # Or a new, more strategic image
 technologies: [Python, Pandas, Scikit-Learn, Matplotlib, Seaborn, StatsModels, Gurobi, RFM Analysis, K-Means Clustering, Price Elasticity Modeling, Revenue Optimization]
-github: https://github.com/Adredes-weslee/BCG-RISE-2.0/tree/main/capstone
+github: https://github.com/Adredes-weslee/price-optimization
 blog_post: /data-science/pricing-strategy/business-analytics/commercial-strategy/2024/08/15/customer-segmentation-price-optimization.html # Link to the new blog post
 ---
 
 ## Project Overview
 
 As a capstone project for the BCG RISE 2.0 program, I led a data science initiative for CS Tay, a prominent frozen food distributor in Singapore. The project aimed to revitalize the company's commercial strategy by leveraging data analytics to drive revenue growth and improve profit margins in a competitive market. Our team delivered actionable insights through advanced customer segmentation, price elasticity modeling, and revenue optimization, identifying a potential SGD ~4M annual revenue uplift.
+
+<div class="demo-link-container">
+  <a href="https://adredes-weslee-price-optimization-streamlitapp-yxjoe3.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
+    <i class="fas fa-chart-line"></i> Try the Price Optimization Demo
+  </a>
+</div>
 
 ## The Business Challenge: Navigating a Mature Market
 
@@ -127,4 +133,4 @@ By embedding data-driven insights into its commercial operations, CS Tay is posi
 
 ---
 
-*This project was completed as part of the BCG RISE 2.0 Program. For a detailed technical walkthrough of the methodologies, please refer to the [accompanying blog post](/data-science/pricing-strategy/business-analytics/commercial-strategy/2024/08/15/customer-segmentation-price-optimization.html).*
+*This project was completed as part of the BCG RISE 2.0 Program. For a detailed technical walkthrough of the methodologies, please refer to the [accompanying blog post](/data-science/pricing-strategy/business-analytics/commercial-strategy/2024/08/15/customer-segmentation-price-optimization.html). The full codebase is available on [GitHub](https://github.com/Adredes-weslee/price-optimization).*
