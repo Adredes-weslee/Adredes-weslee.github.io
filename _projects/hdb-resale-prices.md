@@ -12,6 +12,12 @@ blog_post: /data-science/machine-learning/real-estate/2023/06/18/predicting-hdb-
 
 This project developed a robust machine learning model to predict Housing & Development Board (HDB) flat resale prices in Singapore. Utilizing a comprehensive dataset of over 60,000 transactions, the model combines advanced feature engineering specific to Singapore's unique public housing context with regularized regression techniques. The primary goal was to achieve high predictive accuracy (R² of 0.9261 and RMSE of ~SGD 39,180) and extract actionable insights into the key drivers of HDB resale values, thereby offering valuable information for homebuyers, policymakers, and urban planners.
 
+<div class="demo-link-container">
+  <a href="https://adredes-weslee-making-predictions-on-hdb-resale-pric-app-iwznz4.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
+    <i class="fas fa-home"></i> Try the HDB Price Predictor
+  </a>
+</div>
+
 ## The Significance: Understanding Singapore's Housing Backbone
 
 In Singapore, over 80% of the resident population lives in HDB flats, making public housing a cornerstone of the nation's social fabric and economy. The HDB resale market is dynamic and deeply impacts citizens' financial well-being, investment choices, and housing affordability. Accurate price prediction and a clear understanding of value drivers are crucial for:
