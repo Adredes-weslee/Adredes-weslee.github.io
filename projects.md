@@ -60,6 +60,8 @@ I've created interactive Streamlit applications that showcase the practical appl
     <li><strong><a href="/streamlit-apps/#ml-trading-strategist">ML Trading Strategist: Advanced Algorithmic Trading Framework</a></strong> - Experiment with different algorithmic trading approaches</li>
     <li><strong><a href="/streamlit-apps/#nlp-earnings-report-analyzer">FinSight NLP: The Earnings Report Intelligence Platform</a></strong> - Analyze financial text for insights</li>
     <li><strong><a href="/streamlit-apps/#wet-bulb-temperature-analysis">Wet-Bulb Temperature & Climate Resilience: A Policy-Focused Data Study for Singapore</a></strong> - Explore climate data and heat stress indicators</li>
+    <li><strong><a href="/streamlit-apps/#hdb-resale-price-predictor">Building an HDB Resale Price Predictor: A Technical Deep Dive into Feature Engineering and Regression</a></strong> - Predict Singapore housing prices based on location, features, and market factors</li>
+    <li><strong><a href="/streamlit-apps/#price-optimization">Strategic Growth Engine: Data-Driven Customer Segmentation & Price Optimization for CS Tay</a></strong> - Explore customer segments and optimize pricing strategies for revenue growth</li>
   </ul>
   <a href="/streamlit-apps/" style="display: inline-block; background-color: #ff4b4b; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; margin-top: 10px;">
     <i class="fas fa-play-circle"></i> Explore All Interactive Demos
