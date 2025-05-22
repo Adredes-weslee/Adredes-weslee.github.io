@@ -1,0 +1,188 @@
+---
+layout: base
+---
+
+<article class="page" role="article">
+  <header>
+    <h1 class="page-title">{{ page.title }}</h1>
+    {% if page.description %}<p class="lead">{{ page.description }}</p>{% endif %}
+  </header>
+  
+  {{ content }}
+  
+  <div class="blog-container">
+    {% assign posts = site.posts | sort: "date" | reverse %}
+    
+    {% for post in posts %}
+      {% assign post_date = post.date | date: "%b %-d, %Y" %}
+      {% assign post_url = post.url | relative_url %}
+      {% assign post_slug = post.url | split: '/' | last | replace: '.html', '' %}
+      
+      <a href="{{ post_url }}" class="blog-card">
+        <h3>{{ post.title }}</h3>
+        
+        {% if post.feature_image %}
+          <div class="thumbnail">
+            <img src="{{ post.feature_image | relative_url }}" alt="{{ post.title }}">
+          </div>
+        {% endif %}
+        
+        <p class="post-date">{{ post_date }}</p>
+        
+        {% comment %} Custom descriptions based on post URLs {% endcomment %}
+        {% case post_url %}
+          {% when '/ai/finance/machine-learning/reinforcement-learning/2025/05/12/ml-trading-strategist-comparing-learning-approaches.html' %}
+            <p class="description">Learn how different machine learning approaches can be applied to algorithmic trading, with a systematic comparison of traditional rule-based methods, supervised learning, and reinforcement learning strategies.</p>
+          
+          {% when '/nlp/finance/machine-learning/data-science/2025/05/09/nlp-earnings-report-analysis.html' %}
+            <p class="description">Discover how advanced natural language processing techniques can extract valuable insights from financial earnings reports, combining traditional methods with transformer models for improved analysis and prediction.</p>
+          
+          {% when '/ai/nlp/rag/2024/10/29/building-effective-rag-systems.html' %}
+            <p class="description">Explore key insights from implementing Retrieval-Augmented Generation systems in enterprise environments, focusing on practical implementation strategies and lessons learned.</p>
+          
+          {% when '/data-science/pricing-strategy/business-analytics/commercial-strategy/2024/08/15/customer-segmentation-price-optimization.html' %}
+            <p class="description">Learn how advanced clustering techniques, price elasticity modeling, and revenue optimization can transform commercial strategy and deliver tangible business impact for a distribution company.</p>
+          
+          {% when '/ai/finance/machine-learning/reinforcement-learning/2023/10/25/robo-advisor-risk-profiling-portfolio-optimization.html' %}
+            <p class="description">Learn how I combined machine learning for investor risk profiling with both traditional optimization and reinforcement learning to create a dynamic, personalized portfolio management system.</p>
+          
+          {% when '/time-series/public-health/economics/2023/08/15/forecasting-dengue-cases-and-cost-benefit-analysis.html' %}
+            <p class="description">Discover how advanced time series forecasting combined with health economic analysis can guide public health interventions for dengue fever in Singapore.</p>
+          
+          {% when '/nlp/machine-learning/sentiment-analysis/2023/07/10/building-youtube-comment-sentiment-analyzer.html' %}
+            <p class="description">Learn how to combine multiple sentiment analysis models to create a hybrid labeling system that accurately classifies YouTube comments for digital reputation management.</p>
+          
+          {% when '/data-science/machine-learning/real-estate/2023/06/18/predicting-hdb-resale-prices.html' %}
+            <p class="description">Explore how machine learning can decode Singapore's unique public housing market, revealing key price drivers and providing practical insights for homebuyers and policymakers.</p>
+          
+          {% when '/data-science/climate/public-health/2023/05/15/predicting-heat-stress-with-wet-bulb-temperature.html' %}
+            <p class="description">Discover how combining heat and humidity measurements can better predict dangerous climate conditions and inform public health policy decisions in Singapore.</p>
+          
+          {% else %}
+            <p class="description">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+        {% endcase %}
+        
+        <span class="more">Read more →</span>
+      </a>
+    {% endfor %}
+  </div>
+  
+  <div class="subscribe-section">
+    <h2>Subscribe</h2>
+    <p>Stay updated with my latest posts by connecting with me on <a href="https://www.linkedin.com/in/wes-lee/" target="_blank" rel="noopener">LinkedIn</a>.</p>
+  </div>
+</article>
+
+<style>
+.blog-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 2rem;
+  margin-top: 2rem;
+}
+
+.blog-card {
+  display: block;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background: var(--card-bg, #fff);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: inherit;
+  text-decoration: none;
+  height: 100%;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  text-decoration: none;
+}
+
+.blog-card h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.blog-card .thumbnail {
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 180px;
+}
+
+.blog-card .thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  max-height: 180px;
+}
+
+.blog-card .description {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  /* Remove these properties to allow full text display */
+  /* height: 6em; */
+  /* overflow: hidden; */
+  /* display: -webkit-box; */
+  /* -webkit-line-clamp: 4; */
+  /* -webkit-box-orient: vertical; */
+}
+
+.blog-card .post-date {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0.5rem 0;
+}
+
+.blog-card .more {
+  font-weight: 500;
+  color: var(--accent-color);
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+/* Categories styling */
+.blog-categories {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.blog-categories h2 {
+  margin-bottom: 1rem;
+}
+
+.category-tag {
+  display: inline-block;
+  background: #f0f0f0;
+  padding: 0.3rem 0.8rem;
+  margin: 0.2rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: #333;
+  text-decoration: none;
+}
+
+.category-tag:hover {
+  background: #e0e0e0;
+  text-decoration: none;
+}
+
+/* Add styling for subscribe section */
+.subscribe-section {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  background: var(--card-bg, #fff);
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  text-align: center;
+}
+
+.subscribe-section h2 {
+  margin-top: 0;
+}
+</style>
