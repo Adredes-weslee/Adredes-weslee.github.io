@@ -12,6 +12,7 @@ layout: base
   {{ intro_content }}
   
   <h2 id="llm-nlp-projects">LLM & NLP Projects</h2>
+  <p>These projects showcase my work with large language models, transformer architectures, and natural language processing:</p>
   
   <div class="projects-section-container">
     {% assign collection = site[page.show_collection] | sort: "date" | reverse %}
@@ -37,11 +38,11 @@ layout: base
           
           {% case project_slug %}
             {% when 'nlp-earnings-analyzer' %}
-              <p class="description">Built a sophisticated system that combines traditional NLP with transformer models to analyze financial earnings reports, extract key insights, and predict potential market reactions.</p>
+              <p class="description">Financial text analysis combining traditional NLP and transformer models for earnings reports</p>
             {% when 'rag-engine-project' %}
-              <p class="description">Designed and deployed a modular, containerized Retrieval-Augmented Generation system to support structured QA over enterprise documentation using self-hosted open-source LLMs.</p>
+              <p class="description">Containerized document QA system with hybrid embedding models and self-hosted inference</p>
             {% when 'sentiment-analysis' %}
-              <p class="description">Built a binary sentiment classifier for YouTube comments using multiple NLP techniques and hybrid labeling approaches to help content creators understand audience reception.</p>
+              <p class="description">Hybrid labeling system combining rule-based and transformer approaches</p>
             {% else %}
               <p class="description">{{ project.content | strip_html | truncatewords: 30 }}</p>
           {% endcase %}
@@ -58,15 +59,8 @@ layout: base
     {% endfor %}
   </div>
   
-  <p>These projects showcase my work with large language models, transformer architectures, and natural language processing:</p>
-  
-  <ul>
-    <li><strong><a href="/projects/nlp-earnings-analyzer/">FinSight NLP: The Earnings Report Intelligence Platform</a></strong> - Financial text analysis combining traditional NLP and transformer models for earnings reports</li>
-    <li><strong><a href="/projects/rag-engine-project/">Democratizing Enterprise Knowledge: The Custom RAG Engine Project</a></strong> - Containerized document QA system with hybrid embedding models and self-hosted inference</li>
-    <li><strong><a href="/projects/sentiment-analysis/">YouTube Comment Sentiment Analysis: Unlocking Audience Insights for Content Creators</a></strong> - Hybrid labeling system combining rule-based and transformer approaches</li>
-  </ul>
-  
   <h2 id="machine-learning-ai-applications">Machine Learning & AI Applications</h2>
+  <p>Projects demonstrating various ML techniques and domain applications:</p>
   
   <div class="projects-section-container">
     {% assign ml_projects = "" | split: "" %}
@@ -91,13 +85,13 @@ layout: base
           
           {% case project_slug %}
             {% when 'ml-trading-strategist' %}
-              <p class="description">Developed a modular machine learning framework for algorithmic trading that compares rule-based, tree-ensemble, and reinforcement learning approaches with realistic backtesting.</p>
+              <p class="description">Algorithmic trading framework comparing rule-based, tree-ensemble, and reinforcement learning approaches</p>
             {% when 'robo-advisor-project' %}
-              <p class="description">Developed a dynamic portfolio optimization tool using reinforcement learning to automate asset allocation based on risk profiles and market conditions.</p>
+              <p class="description">Portfolio optimization using reinforcement learning and risk profiling</p>
             {% when 'hdb-resale-prices' %}
-              <p class="description">Built a machine learning model to forecast public housing prices in Singapore using advanced regression techniques and domain-specific feature engineering.</p>
+              <p class="description">Advanced regression modeling for Singapore's housing market</p>
             {% when 'wet-bulb-temperature' %}
-              <p class="description">Analyzed climate data to model wet-bulb temperature trends and their implications for public health in Singapore.</p>
+              <p class="description">Climate data modeling for heat stress prediction</p>
             {% else %}
               <p class="description">{{ project.content | strip_html | truncatewords: 30 }}</p>
           {% endcase %}
@@ -126,16 +120,8 @@ layout: base
     {% endfor %}
   </div>
   
-  <p>Projects demonstrating various ML techniques and domain applications:</p>
-  
-  <ul>
-    <li><strong><a href="/projects/ml-trading-strategist/">ML Trading Strategist: Advanced Algorithmic Trading Framework</a></strong> - Algorithmic trading framework comparing rule-based, tree-ensemble, and reinforcement learning approaches</li>
-    <li><strong><a href="/projects/robo-advisor-project/">Intelligent Investing: An AI-Powered Robo-Advisor for Personalized Portfolio Management</a></strong> - Portfolio optimization using reinforcement learning and risk profiling</li>
-    <li><strong><a href="/projects/hdb-resale-prices/">Building an HDB Resale Price Predictor: A Technical Deep Dive into Feature Engineering and Regression</a></strong> - Advanced regression modeling for Singapore's housing market</li>
-    <li><strong><a href="/projects/wet-bulb-temperature/">Wet-Bulb Temperature & Climate Resilience: A Policy-Focused Data Study for Singapore</a></strong> - Climate data modeling for heat stress prediction</li>
-  </ul>
-  
   <h2 id="data-science-business-analytics">Data Science & Business Analytics</h2>
+  <p>Projects focused on extracting insights and delivering business value:</p>
   
   <div class="projects-section-container">
     {% assign ds_projects = "" | split: "" %}
@@ -160,9 +146,9 @@ layout: base
           
           {% case project_slug %}
             {% when 'customer-segmentation' %}
-              <p class="description">Led a data science project that delivered tangible business impact through advanced customer segmentation, price elasticity modeling, and revenue optimization for a food distributor.</p>
+              <p class="description">RFM analysis and revenue optimization for frozen food distributor</p>
             {% when 'dengue-forecasting' %}
-              <p class="description">Combined advanced time series forecasting with health economic analysis to guide evidence-based dengue intervention strategies in Singapore.</p>
+              <p class="description">Time series analysis with health intervention cost-benefit analysis</p>
             {% else %}
               <p class="description">{{ project.content | strip_html | truncatewords: 30 }}</p>
           {% endcase %}
@@ -179,23 +165,26 @@ layout: base
     {% endfor %}
   </div>
   
-  <p>Projects focused on extracting insights and delivering business value:</p>
-  
+  <h2 id="technical-skills-demonstrated">Technical Skills Demonstrated</h2>
   <ul>
-    <li><strong><a href="/projects/customer-segmentation/">Strategic Growth Engine: Data-Driven Customer Segmentation & Price Optimization for CS Tay</a></strong> - RFM analysis and revenue optimization for frozen food distributor</li>
-    <li><strong><a href="/projects/dengue-forecasting/">Strategic Dengue Control: Forecasting & Cost-Benefit Analysis for Public Health Interventions in Singapore</a></strong> - Time series analysis with health intervention cost-benefit analysis</li>
+    <li><strong>Machine Learning:</strong> Classification, regression, clustering, time series forecasting, deep learning</li>
+    <li><strong>NLP & LLMs:</strong> RAG systems, prompt tuning/optimization, fine-tuning, embedding techniques, sentiment analysis</li>
+    <li><strong>MLOps:</strong> Docker, Kubernetes, MLflow, observability, deployment pipelines</li>
+    <li><strong>Data Analysis:</strong> Feature engineering, statistical modeling, visualization</li>
+    <li><strong>Business Impact:</strong> Cost-benefit analysis, revenue optimization, actionable insights</li>
   </ul>
   
-  {% assign skills_and_methodology = page.content | split: '## Technical Skills Demonstrated' | last %}
-  {% assign technical_skills = '## Technical Skills Demonstrated' | append: skills_and_methodology | split: '## Try My Interactive Demos' | first %}
-  {{ technical_skills | markdownify }}
+  <h2 id="project-methodology">Project Methodology</h2>
+  <p>All projects follow a structured development approach:</p>
+  <ol>
+    <li><strong>Problem Definition</strong> - Clear objectives and success metrics</li>
+    <li><strong>Data Collection & Processing</strong> - Rigorous cleaning, transformation, and feature engineering</li>
+    <li><strong>Model Development</strong> - Iterative training, validation, and hyperparameter tuning</li>
+    <li><strong>Evaluation</strong> - Comprehensive testing using appropriate metrics</li>
+    <li><strong>Deployment & Documentation</strong> - Production-ready code with clear documentation</li>
+  </ol>
   
-  {% assign project_methodology = page.content | split: '## Project Methodology' | last %}
-  {% assign methodology_content = '## Project Methodology' | append: project_methodology | split: '## Try My Interactive Demos' | first %}
-  {{ methodology_content | markdownify }}
-  
-  <h2 id="contact">Interested in Collaborating?</h2>
-  <p>Feel free to <a href="/contact/">contact me</a> to discuss potential opportunities.</p>
+  <p>Interested in collaborating on a project? Feel free to <a href="/contact/">contact me</a> to discuss potential opportunities.</p>
 </article>
 
 <style>
