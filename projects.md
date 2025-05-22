@@ -1,5 +1,5 @@
 ---
-layout: projects
+layout: projects-by-section
 title: Projects
 description: A showcase of my data science, machine learning, and AI projects.
 permalink: /projects/
