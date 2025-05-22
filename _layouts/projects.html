@@ -9,11 +9,16 @@ layout: base
   </header>
   
   {{ content }}
-  
   {% if page.show_collection %}
     <div class="projects-container">
       {% assign collection = site[page.show_collection] | sort: "date" | reverse %}
+      
+      {% comment %}
+      Define descriptions for each project to avoid weird formatting from content
+      {% endcomment %}
+      
       {% for project in collection %}
+        {% assign project_slug = project.url | split: '/' | last %}
         <a href="{{ project.url | relative_url }}" class="project-card">
           <h3>{{ project.title }}</h3>
           {% if project.image %}
@@ -21,7 +26,31 @@ layout: base
               <img src="{{ project.image | relative_url }}" alt="{{ project.title }}">
             </div>
           {% endif %}
-          <p class="description">{{ project.content | strip_html | truncatewords: 30 }}</p>
+          
+          {% comment %} Use custom descriptions based on project slug {% endcomment %}
+          {% case project_slug %}
+            {% when 'ml-trading-strategist' %}
+              <p class="description">Developed a modular machine learning framework for algorithmic trading that compares rule-based, tree-ensemble, and reinforcement learning approaches with realistic backtesting.</p>
+            {% when 'nlp-earnings-analyzer' %}
+              <p class="description">Built a sophisticated system that combines traditional NLP with transformer models to analyze financial earnings reports, extract key insights, and predict potential market reactions.</p>
+            {% when 'rag-engine-project' %}
+              <p class="description">Designed and deployed a modular, containerized Retrieval-Augmented Generation system to support structured QA over enterprise documentation using self-hosted open-source LLMs.</p>
+            {% when 'customer-segmentation' %}
+              <p class="description">Led a data science project that delivered tangible business impact through advanced customer segmentation, price elasticity modeling, and revenue optimization for a food distributor.</p>
+            {% when 'robo-advisor-project' %}
+              <p class="description">Developed a dynamic portfolio optimization tool using reinforcement learning to automate asset allocation based on risk profiles and market conditions.</p>
+            {% when 'dengue-forecasting' %}
+              <p class="description">Combined advanced time series forecasting with health economic analysis to guide evidence-based dengue intervention strategies in Singapore.</p>
+            {% when 'sentiment-analysis' %}
+              <p class="description">Built a binary sentiment classifier for YouTube comments using multiple NLP techniques and hybrid labeling approaches to help content creators understand audience reception.</p>
+            {% when 'hdb-resale-prices' %}
+              <p class="description">Built a machine learning model to forecast public housing prices in Singapore using advanced regression techniques and domain-specific feature engineering.</p>
+            {% when 'wet-bulb-temperature' %}
+              <p class="description">Analyzed climate data to model wet-bulb temperature trends and their implications for public health in Singapore.</p>
+            {% else %}
+              <p class="description">{{ project.content | strip_html | truncatewords: 30 }}</p>
+          {% endcase %}
+          
           <span class="more">Read more →</span>
         </a>
       {% endfor %}
