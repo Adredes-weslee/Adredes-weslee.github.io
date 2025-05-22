@@ -1,3 +1,4 @@
+<!-- filepath: c:\Users\tcmk_\Downloads\Adredes-weslee.github.io\_config.yml -->
 # Welcome to Jekyll!
 #
 # This config file is meant for settings that affect your whole blog, values
@@ -46,8 +47,6 @@ menu:
     url: /projects/
   - title: Interactive Demos
     url: /streamlit-apps/
-  - title: Skills
-    url: /skills/
   - title: Blog
     url: /blog/
   - title: Contact

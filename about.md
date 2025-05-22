@@ -131,40 +131,105 @@ Led the Chemistry department at a premier tuition centre, specializing in A-Leve
 ### National University of Singapore
 **Bachelor of Engineering, Chemical Engineering**
 
-## Technical Skills
+## Technical Skills & Expertise
 
-### Programming Languages
+### Machine Learning & AI
+
+#### Natural Language Processing (NLP)
+- **Large Language Models (LLMs)** - Fine-tuning and deployment of models like LLaMA 3.1, DeBERTa, Phi-3
+- **LLM Applications** - RAG systems, prompt tuning and prompt engineering
+- **Transformer Architecture** - Understanding and application of attention mechanisms
+- **Text Processing** - Tokenization, lemmatization, embeddings, vector search
+- **Sentiment Analysis** - Classification of text sentiment using hybrid labeling approaches
+- **RAG Systems** - Building retrieval augmented generation systems for enterprise use cases
+- **Frameworks** - DSPy, HuggingFace Transformers, LangChain, InstructorAI, NLTK, spaCy
+
+#### Supervised Learning
+- **Classification** - Logistic regression, ensemble methods (Random Forest, XGBoost)
+- **Regression** - Linear, Ridge, Lasso regression for numerical prediction
+- **Model Evaluation** - Cross-validation, metrics (ROC/AUC, F1, RMSE, R²)
+- **Feature Engineering** - Domain-specific feature creation, selection, and transformation
+
+#### Unsupervised Learning
+- **Clustering** - K-Means, DBSCAN, hierarchical clustering
+- **RFM Analysis** - Customer segmentation based on recency, frequency, monetary value
+- **Dimensionality Reduction** - PCA, t-SNE for visualization and feature extraction
+
+#### Reinforcement Learning
+- **Deep Q-Networks (DQN)** - Implementation for portfolio optimization
+- **Reward Modeling** - Design of reward functions for financial applications
+
+#### Time Series Analysis
+- **Statistical Models** - ARIMA, SARIMA, SARIMAX, Holt-Winters
+- **ML-based Forecasting** - Prophet, BATS, TBATS
+- **Feature Creation** - Lag features, rolling statistics, seasonality decomposition
+
+### Programming & Development
+
+#### Languages
 - **Python** (Advanced) - Primary language for data science and machine learning projects
 - **SQL** (Intermediate) - For data querying and database management
 - **Java** (Basic) - Fundamentals of object-oriented programming
 - **HTML/CSS** (Basic) - Web development foundations
 
-### Machine Learning & AI
-- **Natural Language Processing (NLP)** - LLMs, transformers, text classification, sentiment analysis
-- **Supervised Learning** - Classification, regression, evaluation metrics (ROC/AUC)
-- **Unsupervised Learning** - Clustering (K-Means, DBSCAN), dimensionality reduction
-- **Reinforcement Learning** - Deep Q-Networks (DQN) for portfolio optimization
-- **Time Series** - ARIMA, SARIMA, Prophet for forecasting
+#### Data Manipulation & Analysis
+- **Pandas** - Advanced data manipulation, cleaning, and transformation
+- **NumPy** - Numerical computing and matrix operations
+- **Database Queries** - MySQL, PostgreSQL, Google BigQuery
+- **Data Cleaning** - Handling missing values, outliers, and inconsistencies
 
-### Libraries & Frameworks
-- **ML/AI**: DSPy, HuggingFace Transformers, Scikit-learn, LangChain
-- **LLM Operations**: Langfuse, Ollama, InstructorAI
-- **Data Analysis**: Pandas, NumPy, Matplotlib, Seaborn
-- **Web Development**: FastAPI, Pydantic, Streamlit, Plotly Dash
-- **Deep Learning**: TensorFlow, PyTorch
-- **Optimization**: Gurobi, CVXOPT
+#### Visualization
+- **Static Visualization** - Matplotlib, Seaborn for publication-quality charts
+- **Interactive Dashboards** - Plotly Dash, Streamlit for web applications
+- **BI Tools** - Power BI for business intelligence
 
-### DevOps & Cloud
-- **Containerization**: Docker, Kubernetes
-- **CI/CD**: GitLab CI/CD
-- **MLOps**: MLflow
-- **Cloud Platforms**: Google Cloud Platform (GCP), AWS (Certified Cloud Practitioner)
+#### Web Development
+- **API Development** - FastAPI, Pydantic for schema validation
+- **Frontend** - Streamlit, Dash applications
+- **CMS** - WordPress site management and customization
 
-### Business & Analytics Tools
-- **BI Tools**: Power BI (DAX, data modeling)
-- **Automation**: Google Apps Script
-- **Big Data**: Google BigQuery
-- **Project Management**: Agile methodologies
+### DevOps & MLOps
+
+#### Containerization & Orchestration
+- **Docker** - Container creation, management, and deployment
+- **Kubernetes** - Pod orchestration, service deployment, scaling
+- **CI/CD** - GitLab CI/CD pipelines for ML applications
+
+#### Model Management
+- **Experiment Tracking** - MLflow for model versioning and experiment tracking
+- **Observability** - Langfuse for LLM monitoring and evaluation
+- **Local Inference** - Ollama for self-hosted LLMs
+
+#### Cloud Platforms
+- **Google Cloud Platform (GCP)** - Cloud Storage, Compute Engine, BigQuery
+- **AWS** - S3, EC2, SageMaker (Certified Cloud Practitioner)
+- **Azure** - Azure OpenAI service
+
+### Domain Expertise
+
+#### Finance & Business
+- **Portfolio Optimization** - Mean-Variance Optimization, Sharpe Ratio maximization
+- **Price Elasticity Modeling** - Log-log regression for price-demand relationships
+- **Customer Segmentation** - RFM analysis, behavioral clustering
+- **Business Valuation** - Fundamentals of company valuation methods
+
+#### Public Health
+- **Cost-Benefit Analysis** - Health economics and intervention evaluation
+- **Health Metrics** - DALY (Disability-Adjusted Life Year) calculations
+- **Epidemiological Data** - Disease surveillance and forecasting
+
+#### Education
+- **Curriculum Development** - Creating structured learning materials
+- **Assessment Design** - Evaluation methods and metrics
+- **Chemistry Expertise** - A-Level and IB curriculum knowledge
+
+### Business Tools
+
+- **Project Management** - Agile methodologies, task tracking
+- **Presentation Tools** - Advanced PowerPoint, Google Slides
+- **Automation** - Google Apps Script for workflow automation
+- **Collaboration** - Git, GitHub, GitLab for version control
+- **Documentation** - Technical writing, Markdown, Google Workspace
 
 ## Projects
 
