@@ -149,31 +149,40 @@ features:
     method: "f_regression"  # or "mutual_info_regression"
     percentile: 99
 ```
+
+**d. Lease Decay Feature Engineering:**
+```python
+# Advanced lease feature engineering
+def create_lease_features(df: pd.DataFrame) -> pd.DataFrame:
+    """Create comprehensive lease-based features."""
+    df_copy = df.copy()
+    
     # Calculate remaining lease in years at the time of transaction
     # HDB leases are typically 99 years
-    df['remaining_lease_years'] = df['lease_commence_year'] + 99 - df['transaction_year']
+    df_copy['remaining_lease_years'] = df_copy['lease_commence_year'] + 99 - df_copy['transaction_year']
     
     # Create binary indicators for critical lease decay thresholds
     # Research and market observations suggest price impacts at these points
-    df['lease_lt_60_years'] = (df['remaining_lease_years'] < 60).astype(int)
-    df['lease_lt_40_years'] = (df['remaining_lease_years'] < 40).astype(int)
+    df_copy['lease_lt_60_years'] = (df_copy['remaining_lease_years'] < 60).astype(int)
+    df_copy['lease_lt_40_years'] = (df_copy['remaining_lease_years'] < 40).astype(int)
     
     # Calculate percentage of lease remaining
-    df['lease_remaining_percentage'] = df['remaining_lease_years'] / 99.0
+    df_copy['lease_remaining_percentage'] = df_copy['remaining_lease_years'] / 99.0
     
     # Interaction term: floor area * remaining lease (value per sqm might change with lease)
-    if 'floor_area_sqm' in df.columns:
-        df['floor_area_x_rem_lease_pct'] = df['floor_area_sqm'] * df['lease_remaining_percentage']
+    if 'floor_area_sqm' in df_copy.columns:
+        df_copy['floor_area_x_rem_lease_pct'] = df_copy['floor_area_sqm'] * df_copy['lease_remaining_percentage']
         
-    return df
+    return df_copy
 
 # Example usage:
-# hdb_data_with_lease_features = create_lease_features(hdb_raw_data)
-# print(hdb_data_with_lease_features[['remaining_lease_years', 'lease_lt_60_years', 'lease_remaining_percentage']].head())
+hdb_data_with_lease_features = create_lease_features(hdb_raw_data)
+print(hdb_data_with_lease_features[['remaining_lease_years', 'lease_lt_60_years', 'lease_remaining_percentage']].head())
 ```
+
 This captures the non-linear impact of lease decay, where depreciation often accelerates as the lease shortens, particularly below key thresholds like 60 or 40 years remaining.
 
-**b. Location and Proximity Features:**
+**e. Location and Proximity Features:**
 Location is paramount. Beyond just the 'town', we would ideally engineer features like:
 -   Distance to the nearest MRT station.
 -   Distance to Central Business District (CBD).
@@ -181,7 +190,7 @@ Location is paramount. Beyond just the 'town', we would ideally engineer feature
 -   Proximity to shopping malls and other key amenities.
 *(These often require joining with external geospatial datasets or using APIs, which was abstracted in the original project description but is a key step).*
 
-**c. Flat Characteristics:**
+**f. Flat Characteristics:**
 -   **Storey Level:** Convert storey range (e.g., "01 TO 03", "10 TO 12") to an average numerical value or ordinal encoding. Higher floors generally command higher prices.
 -   **Flat Type and Model:** One-hot encode or use target encoding for categorical variables like `flat_type` (e.g., '3 ROOM', '4 ROOM', 'EXECUTIVE') and `flat_model` (e.g., 'Model A', 'DBSS', 'Improved').
 
