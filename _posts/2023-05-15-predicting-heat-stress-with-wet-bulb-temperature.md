@@ -370,5 +370,5 @@ The evolution from a research notebook to a production platform showcases that *
 
 ---
 
-*Technical implementation details and source code available on [GitHub](https://github.com/Adredes-weslee/wet-bulb-temperature-analysis). For policy implications and strategic insights, see the [project overview page](/projects/wet-bulb-temperature/).*
+*Technical implementation details and source code available on [GitHub](https://github.com/Adredes-weslee/Data-Analysis-of-Wet-Bulb-Temperature). For policy implications and strategic insights, see the [project overview page](/projects/wet-bulb-temperature/).*
 

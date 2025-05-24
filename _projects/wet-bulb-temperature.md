@@ -4,7 +4,7 @@ title: "Wet-Bulb Temperature & Climate Resilience: A Policy-Focused Data Study f
 categories: [climate-science, public-health, data-analysis, policy]
 image: /assets/images/wet-bulb-temperature.jpg # Or a new, more policy-focused image
 technologies: [Python, Pandas, Scikit-Learn, Matplotlib, Seaborn, Time Series Analysis, Regression Modeling]
-github: https://github.com/Adredes-weslee/wet-bulb-temperature-analysis
+github: https://github.com/Adredes-weslee/Data-Analysis-of-Wet-Bulb-Temperature
 blog_post: /data-science/climate/public-health/2023/05/15/predicting-heat-stress-with-wet-bulb-temperature.html # Link to the new blog post
 streamlit_app: https://adredes-weslee-data-analysis-of-wet-bulb-te-dashboardapp-mwqkey.streamlit.app/
 ---
@@ -40,11 +40,12 @@ This project represents a **comprehensive climate resilience analysis for Singap
 While media reports focus on dry-bulb temperature, **wet-bulb temperature provides the complete picture of human heat tolerance**. In Singapore's high-humidity environment, this distinction becomes critical for public health and economic productivity.
 
 ### 🚨 **Critical Heat Stress Thresholds**
+
 | WBT Range | Health Impact | Economic Implications | Population at Risk |
 |-----------|---------------|----------------------|-------------------|
-| **> 28°C** | Vulnerable populations at risk | Reduced outdoor productivity | Elderly, children, outdoor workers |
-| **> 31°C** | Physical labor becomes dangerous | Major economic disruption | All outdoor workers |
-| **> 35°C** | **Theoretical limit of human survival** | **Total outdoor activity cessation** | **Entire population** |
+| > 28°C | Vulnerable populations at risk | Reduced outdoor productivity | Elderly, children, outdoor workers |
+| > 31°C | Physical labor becomes dangerous | Major economic disruption | All outdoor workers |
+| > 35°C | Theoretical limit of human survival | Total outdoor activity cessation | Entire population |
 
 ### 📈 **Singapore's Current Risk Profile (1982-2023 Analysis)**
 * **Current Range:** 23.1°C to 28.9°C (approaching dangerous thresholds)
@@ -330,4 +331,4 @@ Understanding and predicting wet-bulb temperature is paramount for building clim
 
 ---
 
-*For a detailed technical walkthrough of the data processing, modeling, and analysis, please refer to the [accompanying blog post](/data-science/climate/public-health/2023/05/15/predicting-heat-stress-with-wet-bulb-temperature.html). The full codebase and data sources are available on [GitHub](https://github.com/Adredes-weslee/wet-bulb-temperature-analysis).*
+*For a detailed technical walkthrough of the data processing, modeling, and analysis, please refer to the [accompanying blog post](/data-science/climate/public-health/2023/05/15/predicting-heat-stress-with-wet-bulb-temperature.html). The full codebase and data sources are available on [GitHub](https://github.com/Adredes-weslee/Data-Analysis-of-Wet-Bulb-Temperature).*
