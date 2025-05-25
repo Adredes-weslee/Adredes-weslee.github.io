@@ -14,7 +14,7 @@ Financial earnings reports contain critical information that drives stock prices
 
 This blog post takes you deep into the engineering journey behind a sophisticated Natural Language Processing system designed specifically for financial earnings analysis. We'll explore the technical decisions, implementation challenges, and novel solutions that enable automated extraction of actionable insights from earnings announcements.
 
-> For a comprehensive business overview of this platform, including strategic value propositions, ROI analysis, and market positioning, visit the [FinSight NLP: The Earnings Report Intelligence Platform Project Page](/projects/nlp-earnings-analyzer/). This post focuses on the technical implementation and engineering innovations.
+> For a comprehensive business overview of this platform, including strategic value propositions, ROI analysis, and market positioning, visit the [*FinSight NLP: The Earnings Report Intelligence Platform* Project Page](/projects/nlp-earnings-analyzer/). This post focuses on the technical implementation and engineering innovations.
 
 
 <div class="callout interactive-demo">
