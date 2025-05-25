@@ -751,4 +751,4 @@ This project represents a successful convergence of academic NLP research with p
 
 ---
 
-*   To explore the strategic vision, key features, performance metrics, and business applications of the FinSight NLP platform, please see the [FinSight NLP: The Earnings Report Intelligence Platform Project Page](/projects/nlp-earnings-analyzer/). The detailed source code and technical implementation discussed in this post are available on [GitHub](https://github.com/Adredes-weslee/NLP_earnings_report).*
+*To explore the strategic vision, key features, performance metrics, and business applications of the FinSight NLP platform, please see the [FinSight NLP: The Earnings Report Intelligence Platform Project Page](/projects/nlp-earnings-analyzer/).*
