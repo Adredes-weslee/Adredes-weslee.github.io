@@ -4,8 +4,6 @@ title: About Me
 permalink: /about/
 ---
 
-# About Me: Wes Lee
-
 Hello! I'm Wes Lee, an AI Engineer passionate about transforming complex challenges into scalable, intelligent solutions. My journey into AI is driven by a fascination with machine learning's potential and a background that blends education, strategic consulting, and a proven ability to deliver impactful results.
 
 Currently, I'm immersed in the AI Apprenticeship Programme (AIAP) at AI Singapore, a prestigious initiative shaping the next wave of AI talent. Here, I'm contributing to a production-grade LLM-powered information extraction engine for Visier, a global HR analytics leader. This involves fine-tuning models like LLaMA 3.1, building robust DSPy pipelines, and developing custom evaluation frameworks. My capstone project was an enterprise-grade RAG (Retrieval-Augmented Generation) system, a secure, containerized solution for querying diverse documents using self-hosted LLMs.
