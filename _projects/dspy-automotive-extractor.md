@@ -229,7 +229,7 @@ This project transforms prompt optimization from **creative guesswork** into **s
 **DSPy Automotive Extractor** proves that systematic prompt optimization delivers measurable business value. With **51.33% accuracy** achieved through scientific methodology, this project provides both the **technical framework** and **business validation** for enterprise AI transformation.
 
 
-*The DSPy Automotive Extractor framework represents a paradigm shift from traditional prompt engineering approaches, delivering measurable optimization gains through systematic reasoning field validation. For technical implementation details and deep-dive analysis of the underlying optimization algorithms, please see our [technical blog post](/ai/nlp/prompt-engineering/dspy/2025/06/13/dspy-prompt-optimization-automotive-intelligence.html).*
+*The DSPy Automotive Extractor framework represents a paradigm shift from traditional prompt engineering approaches, delivering measurable optimization gains through systematic reasoning field validation. For technical implementation details and deep-dive analysis of the underlying optimization algorithms, please see our [technical blog post](/ai/nlp/dspy/2025/06/13/dspy-prompt-optimization-automotive-intelligence.html).*
 
 *Complete source code, documentation, and deployment guides are available on [GitHub](https://github.com/Adredes-weslee/dspy-automotive-extractor).*
 
