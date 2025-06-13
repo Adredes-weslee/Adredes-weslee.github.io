@@ -20,7 +20,7 @@ layout: base
     
     {% for project in collection %}
       {% assign project_slug = project.url | split: '/' | last %}
-      {% if project_slug == "nlp-earnings-analyzer" or project_slug == "rag-engine-project" or project_slug == "sentiment-analysis" %}
+      {% if project_slug == "dspy-automotive-extractor" or project_slug == "nlp-earnings-analyzer" or project_slug == "rag-engine-project" or project_slug == "sentiment-analysis" %}
         {% assign nlp_projects = nlp_projects | push: project %}
       {% endif %}
     {% endfor %}
@@ -37,6 +37,8 @@ layout: base
           {% endif %}
           
           {% case project_slug %}
+            {% when 'dspy-automotive-extractor' %}
+              <p class="description">Systematic prompt optimization using DSPy framework for structured data extraction from automotive complaints</p>
             {% when 'nlp-earnings-analyzer' %}
               <p class="description">Financial text analysis combining traditional NLP and transformer models for earnings reports</p>
             {% when 'rag-engine-project' %}
@@ -49,6 +51,12 @@ layout: base
           
           <span class="more">Read more →</span>
         </a>
+        
+        {% if project_slug == "dspy-automotive-extractor" %}
+          <a href="https://adredes-weslee-dspy-automotive-extractor-srcapp-cloud-fbfbhk.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-play-circle"></i> Try Interactive Demo
+          </a>
+        {% endif %}
         
         {% if project_slug == "nlp-earnings-analyzer" %}
           <a href="https://adredes-weslee-nlp-earnings-report-streamlit-app-0uttcu.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
