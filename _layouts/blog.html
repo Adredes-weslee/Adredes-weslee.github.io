@@ -31,6 +31,9 @@ layout: base
         
         {% comment %} Custom descriptions based on post URLs {% endcomment %}
         {% case post_url %}
+          {% when '/ai/nlp/dspy/2025/06/13/dspy-prompt-optimization-automotive-intelligence.html' %}
+            <p class="description">Discover how systematic prompt optimization using Stanford's DSPy framework achieved 51.33% accuracy in structured data extraction from automotive complaints, challenging conventional prompt engineering approaches through rigorous scientific methodology.</p>
+        
           {% when '/ai/finance/machine-learning/reinforcement-learning/2025/05/12/ml-trading-strategist-comparing-learning-approaches.html' %}
             <p class="description">Learn how different machine learning approaches can be applied to algorithmic trading, with a systematic comparison of traditional rule-based methods, supervised learning, and reinforcement learning strategies.</p>
           
@@ -125,12 +128,6 @@ layout: base
 .blog-card .description {
   font-size: 0.9rem;
   margin-bottom: 1rem;
-  /* Remove these properties to allow full text display */
-  /* height: 6em; */
-  /* overflow: hidden; */
-  /* display: -webkit-box; */
-  /* -webkit-line-clamp: 4; */
-  /* -webkit-box-orient: vertical; */
 }
 
 .blog-card .post-date {
