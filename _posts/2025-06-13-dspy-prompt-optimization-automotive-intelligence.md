@@ -1081,4 +1081,4 @@ This research provides both theoretical insights and practical tools for buildin
 
 ---
 
-*To explore the complete DSPy Automotive Extractor platform, including its overall architecture, optimization methodology, and usage instructions, please refer to the [DSPy Prompt Optimization: A Scientific Approach to Automotive Intelligence Project Page](/projects/dspy-automotive-extractor/). The full codebase for the framework and the optimization techniques discussed herein is available on [GitHub](https://github.com/Adredes-weslee/dspy-automotive-extractor).*
+*To explore the complete DSPy Automotive Extractor platform, including its overall architecture, optimization methodology, and usage instructions, please refer to the [DSPy Automotive Extractor: Systematic Prompt Optimization for Enterprise AI Project Page](/projects/dspy-automotive-extractor/). The full codebase for the framework and the optimization techniques discussed herein is available on [GitHub](https://github.com/Adredes-weslee/dspy-automotive-extractor).*
