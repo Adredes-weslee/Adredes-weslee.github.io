@@ -147,4 +147,4 @@ The integration of advanced time-series modeling with rigorous health economics 
 
 ---
 
-*For detailed technical implementation, model architecture, and code walkthrough, see the [technical blog post](/epidemiology/forecasting/health-economics/2025/06/18/production-dengue-forecasting-platform.html). Complete source code and deployment guides available on [GitHub](https://github.com/Adredes-weslee/Dengue-Case-Prediction-and-Cost-Benefits-Analysis).*
+*For detailed technical implementation, model architecture, and code walkthrough, see the [technical blog post](/epidemiology/forecasting/health-economics/2025/06/18/forecasting-dengue-cases-and-cost-benefit-analysis.html). Complete source code and deployment guides available on [GitHub](https://github.com/Adredes-weslee/Dengue-Case-Prediction-and-Cost-Benefits-Analysis).*
