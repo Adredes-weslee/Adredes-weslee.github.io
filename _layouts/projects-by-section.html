@@ -130,7 +130,7 @@ layout: base
   
   <h2 id="data-science-business-analytics">Data Science & Business Analytics</h2>
   <p>Projects focused on extracting insights and delivering business value:</p>
-  
+
   <div class="projects-section-container">
     {% assign ds_projects = "" | split: "" %}
     
@@ -166,6 +166,12 @@ layout: base
         
         {% if project_slug == "customer-segmentation" %}
           <a href="https://adredes-weslee-price-optimization-streamlitapp-yxjoe3.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-play-circle"></i> Try Interactive Demo
+          </a>
+        {% endif %}
+        
+        {% if project_slug == "dengue-forecasting" %}
+          <a href="https://adredes-weslee-dengue-case-prediction-and-c-dashboardapp-aszwww.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
             <i class="fas fa-play-circle"></i> Try Interactive Demo
           </a>
         {% endif %}
