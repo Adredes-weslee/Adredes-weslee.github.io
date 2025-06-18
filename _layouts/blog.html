@@ -31,6 +31,9 @@ layout: base
         
         {% comment %} Custom descriptions based on post URLs {% endcomment %}
         {% case post_url %}
+          {% when '/epidemiology/forecasting/health-economics/2025/06/18/forecasting-dengue-cases-and-cost-benefit-analysis.html' %}
+            <p class="description">Learn how to transform epidemiological research into operational public health intelligence through production-ready forecasting systems, comprehensive cost-benefit analysis, and interactive policy dashboards for Singapore's dengue control program.</p>
+        
           {% when '/ai/nlp/dspy/2025/06/13/dspy-prompt-optimization-automotive-intelligence.html' %}
             <p class="description">Discover how systematic prompt optimization using Stanford's DSPy framework achieved 51.33% accuracy in structured data extraction from automotive complaints, challenging conventional prompt engineering approaches through rigorous scientific methodology.</p>
         
@@ -48,9 +51,6 @@ layout: base
           
           {% when '/ai/finance/machine-learning/reinforcement-learning/2023/10/25/robo-advisor-risk-profiling-portfolio-optimization.html' %}
             <p class="description">Learn how I combined machine learning for investor risk profiling with both traditional optimization and reinforcement learning to create a dynamic, personalized portfolio management system.</p>
-          
-          {% when '/time-series/public-health/economics/2023/08/15/forecasting-dengue-cases-and-cost-benefit-analysis.html' %}
-            <p class="description">Discover how advanced time series forecasting combined with health economic analysis can guide public health interventions for dengue fever in Singapore.</p>
           
           {% when '/nlp/machine-learning/sentiment-analysis/2023/07/10/building-youtube-comment-sentiment-analyzer.html' %}
             <p class="description">Learn how to combine multiple sentiment analysis models to create a hybrid labeling system that accurately classifies YouTube comments for digital reputation management.</p>
@@ -76,6 +76,7 @@ layout: base
   </div>
 </article>
 
+<!-- CSS remains the same -->
 <style>
 .blog-container {
   display: grid;
