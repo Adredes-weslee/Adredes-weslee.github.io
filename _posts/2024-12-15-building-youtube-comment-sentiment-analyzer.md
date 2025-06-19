@@ -643,4 +643,4 @@ The platform demonstrates that modern NLP can transform raw social media data in
 
 ---
 
-*This technical implementation complements the strategic overview in the [*YouTube Comment Sentiment Analysis: Real-Time Audience Intelligence* Project Page](/projects/sentiment-analysis/). Complete source code and real dataset available on [GitHub](https://github.com/Adredes-weslee/Sentiment-Analysis-and-NLP-for-a-Youtube-Video).*
+*This technical implementation complements the strategic overview in the [YouTube Comment Sentiment Analysis: Real-Time Audience Intelligence Project Page](/projects/sentiment-analysis/). Complete source code and real dataset available on [GitHub](https://github.com/Adredes-weslee/Sentiment-Analysis-and-NLP-for-a-Youtube-Video).*
