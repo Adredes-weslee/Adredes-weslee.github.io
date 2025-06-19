@@ -15,7 +15,7 @@ These projects showcase my work with large language models, transformer architec
 * [**DSPy Prompt Optimization: A Scientific Approach to Automotive Intelligence**](/projects/dspy-automotive-extractor/) - Systematic prompt optimization using DSPy framework for structured data extraction from automotive complaints
 * [**FinSight NLP: The Earnings Report Intelligence Platform**](/projects/nlp-earnings-analyzer/) - Financial text analysis combining traditional NLP and transformer models for earnings reports
 * [**Democratizing Enterprise Knowledge: The Custom RAG Engine Project**](/projects/rag-engine-project/) - Containerized document QA system with hybrid embedding models and self-hosted inference
-* [**YouTube Comment Sentiment Analysis: Unlocking Audience Insights for Content Creators**](/projects/sentiment-analysis/) - Hybrid labeling system combining rule-based and transformer approaches
+* [**YouTube Comment Sentiment Analysis: Real-Time Audience Intelligence for Digital Creators**](/projects/sentiment-analysis/) - Production-ready platform that processed 114,109+ YouTube comments with transformer-powered intelligence
 
 ## Machine Learning & AI Applications
 
