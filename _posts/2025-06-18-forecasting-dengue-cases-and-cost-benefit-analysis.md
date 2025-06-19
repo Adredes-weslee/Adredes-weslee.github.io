@@ -21,6 +21,7 @@ Moving from exploratory data analysis to a production-ready public health platfo
     <i class="fas fa-play-circle"></i> Launch Dengue Forecasting Platform
   </a>
 </div>
+
 ## Architecture Overview: From Raw Data to Policy Insights
 
 Our production platform follows a modular architecture that separates concerns and enables maintainable, scalable code:
