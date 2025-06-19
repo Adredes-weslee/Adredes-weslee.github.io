@@ -44,7 +44,7 @@ layout: base
             {% when 'rag-engine-project' %}
               <p class="description">Containerized document QA system with hybrid embedding models and self-hosted inference</p>
             {% when 'sentiment-analysis' %}
-              <p class="description">Hybrid labeling system combining rule-based and transformer approaches</p>
+              <p class="description">Production-ready platform that processed 114,109+ YouTube comments with transformer-powered intelligence</p>
             {% else %}
               <p class="description">{{ project.content | strip_html | truncatewords: 30 }}</p>
           {% endcase %}
@@ -63,6 +63,13 @@ layout: base
             <i class="fas fa-play-circle"></i> Try Interactive Demo
           </a>
         {% endif %}
+
+        {% if project_slug == "sentiment-analysis" %}
+          <a href="https://adredes-weslee-sentiment-analysis-and-nlp-f-dashboardapp-kqphrr.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-play-circle"></i> Try Interactive Demo
+          </a>
+        {% endif %}
+
       </div>
     {% endfor %}
   </div>
