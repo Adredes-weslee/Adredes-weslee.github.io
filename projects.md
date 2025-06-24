@@ -22,7 +22,7 @@ These projects showcase my work with large language models, transformer architec
 Projects demonstrating various ML techniques and domain applications:
 
 * [**ML Trading Strategist: Advanced Algorithmic Trading Framework**](/projects/ml-trading-strategist/) - Algorithmic trading framework comparing rule-based, tree-ensemble, and reinforcement learning approaches
-* [**Intelligent Investing: An AI-Powered Robo-Advisor for Personalized Portfolio Management**](/projects/robo-advisor-project/) - Portfolio optimization using reinforcement learning and risk profiling
+* [**Next-Generation AI Portfolio Advisory: TabPFN Foundation Models + Dynamic Investment Objectives**](/projects/robo-advisor-project/) - Pioneer the first known application of TabPFN foundation models for financial risk assessment with 9 dynamic investment objectives
 * [**Building an HDB Resale Price Predictor: A Technical Deep Dive into Feature Engineering and Regression**](/projects/hdb-resale-prices/) - Advanced regression modeling for Singapore's housing market
 * [**Wet-Bulb Temperature & Climate Resilience: A Policy-Focused Data Study for Singapore**](/projects/wet-bulb-temperature/) - Climate data modeling for heat stress prediction
 
