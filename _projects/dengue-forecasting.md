@@ -5,7 +5,7 @@ categories: [epidemiological-forecasting, public-health, health-economics, polic
 image: /assets/images/dengue-forecasting.jpg
 technologies: [Python, Prophet, Streamlit, Time Series Analysis, Health Economics, DALY Analysis, Cost-Benefit Modeling, Interactive Dashboards]
 github: https://github.com/Adredes-weslee/Dengue-Case-Prediction-and-Cost-Benefits-Analysis
-blog_post: /epidemiology/forecasting/health-economics/2025/06/18/production-dengue-forecasting-platform.html
+blog_post: /epidemiology/forecasting/health-economics/2025/06/18/forecasting-dengue-cases-and-cost-benefit-analysis.html
 streamlit_app: https://adredes-weslee-dengue-case-prediction-and-c-dashboardapp-aszwww.streamlit.app/
 ---
 
