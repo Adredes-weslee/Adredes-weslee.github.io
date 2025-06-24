@@ -102,7 +102,7 @@ layout: base
             {% when 'ml-trading-strategist' %}
               <p class="description">Algorithmic trading framework comparing rule-based, tree-ensemble, and reinforcement learning approaches</p>
             {% when 'robo-advisor-project' %}
-              <p class="description">Portfolio optimization using reinforcement learning and risk profiling</p>
+              <p class="description">Pioneer TabPFN foundation models for risk assessment with 9 dynamic investment objectives delivering 15-25% superior risk-adjusted returns</p>
             {% when 'hdb-resale-prices' %}
               <p class="description">Advanced regression modeling for Singapore's housing market</p>
             {% when 'wet-bulb-temperature' %}
@@ -110,16 +110,22 @@ layout: base
             {% else %}
               <p class="description">{{ project.content | strip_html | truncatewords: 30 }}</p>
           {% endcase %}
-          
+
           <span class="more">Read more →</span>
         </a>
-        
+
         {% if project_slug == "ml-trading-strategist" %}
           <a href="https://adredes-weslee-ml-trading-strategist-app-pu7qym.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
             <i class="fas fa-play-circle"></i> Try Interactive Demo
           </a>
         {% endif %}
-        
+
+        {% if project_slug == "robo-advisor-project" %}
+          <a href="https://adredes-weslee-using-artificial-intelligenc-dashboardapp-juewyb.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
+            <i class="fas fa-robot"></i> Try Interactive Demo
+          </a>
+        {% endif %}
+
         {% if project_slug == "hdb-resale-prices" %}
           <a href="https://adredes-weslee-making-predictions-on-hdb-resale-pric-app-iwznz4.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
             <i class="fas fa-play-circle"></i> Try Interactive Demo
