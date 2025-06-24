@@ -5,7 +5,7 @@ categories: [nlp, machine-learning, transformers, social-media-analytics, stream
 image: /assets/images/sentiment-analysis.jpg
 technologies: [Python, Streamlit, HuggingFace Transformers, RoBERTa, DistilBERT, VADER, Plotly, YouTube API, PyTorch]
 github: https://github.com/Adredes-weslee/Sentiment-Analysis-and-NLP-for-a-Youtube-Video
-blog_post: /nlp/machine-learning/transformers/2024/12/15/building-production-youtube-sentiment-platform.html
+blog_post: /nlp/machine-learning/transformers/2024/12/15/building-youtube-comment-sentiment-analyzer.html
 streamlit_app: https://adredes-weslee-sentiment-analysis-and-nlp-f-dashboardapp-kqphrr.streamlit.app/
 ---
 
