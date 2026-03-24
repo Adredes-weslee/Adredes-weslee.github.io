@@ -5,7 +5,9 @@ date: 2025-06-13 09:30:00 +0800
 categories: [ai, nlp, dspy]
 tags: [dspy, prompt-optimization, llms, structured-extraction, ollama, langfuse, automotive, nhtsa, meta-optimization, reasoning-fields]
 author: Wes Lee
-feature_image: /assets/images/2025-06-13-dspy-automotive-optimization.jpg 
+feature_image: /assets/images/article-heroes/2025-06-13-dspy-prompt-optimization-automotive-intelligence.jpg
+display_title: "DSPy Prompt Optimization for Automotive Extraction"
+archive_title: "DSPy Prompt Optimization for Extraction"
 ---
 
 ## Introduction: From Prompt Engineering to Prompt Science
@@ -487,7 +489,7 @@ class FormatEnforcementEnhancement(MetaOptimizer):
 CRITICAL FORMAT ENFORCEMENT REQUIREMENTS:
 - You MUST respond with a valid JSON object following the exact schema
 - No additional text, explanations, commentary, or reasoning outside the JSON
-- Follow this precise format: {{"make": "...", "model": "...", "year": ...}}
+- Follow this precise format: {% raw %}{{"make": "...", "model": "...", "year": ...}}{% endraw %}
 - If uncertain about any field, use "UNKNOWN" for make/model, null for year
 - Do not include markdown formatting, code blocks, or extra whitespace
 - Validate JSON structure before responding

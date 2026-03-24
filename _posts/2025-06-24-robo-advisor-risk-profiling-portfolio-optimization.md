@@ -5,7 +5,9 @@ date: 2025-06-24 10:00:00 +0800
 categories: [ai, finance, foundation-models, reinforcement-learning]
 tags: [tabpfn, foundation-models, robo-advisor, portfolio-optimization, pytorch, streamlit, production-ml, multi-objective-rl, market-regime-detection]
 author: Wes Lee
-feature_image: /assets/images/2025-06-24-building-production-ai-robo-advisor-tabpfn.jpg
+feature_image: /assets/images/article-heroes/2025-06-24-robo-advisor-risk-profiling-portfolio-optimization.jpg
+display_title: "Production AI Robo-Advisor with TabPFN"
+archive_title: "Production AI Robo-Advisor with TabPFN"
 ---
 
 ## Introduction: From Traditional ML to Foundation Model Intelligence

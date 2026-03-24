@@ -5,7 +5,9 @@ date: 2025-05-12 09:30:00 +0800
 categories: [ai, finance, machine-learning, reinforcement-learning]
 tags: [algorithmic-trading, decision-trees, q-learning, technical-analysis, backtesting, python, data-science]
 author: Wes Lee
-feature_image: /assets/images/2025-05-12-ml-trading-strategist-comparing-learning-approaches.jpg
+feature_image: /assets/images/article-heroes/2025-05-12-ml-trading-strategist-comparing-learning-approaches.jpg
+display_title: "ML Trading Strategies Across Learning Approaches"
+archive_title: "ML Trading Across Learning Approaches"
 ---
 
 ## Introduction to Algorithmic Trading

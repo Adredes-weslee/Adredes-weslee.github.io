@@ -5,7 +5,9 @@ date: 2023-06-18 14:45:00 +0800 # Retaining original date
 categories: [data-science, machine-learning, real-estate]
 tags: [housing, singapore, regression, feature-engineering, price-prediction, python, scikit-learn, pandas]
 author: Wes Lee
-feature_image: /assets/images/2023-06-18-predicting-hdb-resale-prices.jpg # Or a new, more technical image
+feature_image: /assets/images/article-heroes/2023-06-18-predicting-hdb-resale-prices.jpg
+display_title: "Building an HDB Resale Price Predictor"
+archive_title: "HDB Resale Price Predictor"
 ---
 
 ## Introduction: Decoding Singapore's Unique Housing Market with Data

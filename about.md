@@ -1,62 +1,175 @@
 ---
-layout: page
-title: About Me
+layout: base
+title: About
+description: "About Wes Lee: AI engineer building backend-first AI platforms, evaluation systems, and decision-support products across education, workforce intelligence, and public-sector settings."
 permalink: /about/
 ---
 
-Hello! I'm Wes Lee, an AI Engineer passionate about transforming complex challenges into scalable, intelligent solutions. My journey into AI is driven by a fascination with machine learning's potential and a background that blends education, strategic consulting, and a proven ability to deliver impactful results.
+<script>
+  document.documentElement.classList.add('about-page');
+</script>
 
-Currently, I'm immersed in the AI Apprenticeship Programme (AIAP) at AI Singapore, a prestigious initiative shaping the next wave of AI talent. Here, I'm contributing to a production-grade LLM-powered information extraction engine for Visier, a global HR analytics leader. This involves fine-tuning models like LLaMA 3.1, building robust DSPy pipelines, and developing custom evaluation frameworks. My capstone project was an enterprise-grade RAG (Retrieval-Augmented Generation) system, a secure, containerized solution for querying diverse documents using self-hosted LLMs.
+<article class="page editorial-page editorial-page--about" role="article">
+<div class="editorial-shell about-shell">
+  <section class="editorial-hero" data-reveal>
+    <div class="editorial-hero__copy">
+      <p class="editorial-kicker">About</p>
+      <h1>AI engineer building backend-first platforms, multimodal evaluation systems, and evidence-grounded decision tools.</h1>
+      <p class="editorial-lead">
+        Current work spans education AI, workforce intelligence, and public-sector delivery across Singapore and Brunei.
+        This site focuses on inspectable systems and selected private-code case studies across LLMs, forecasting, analytics, and evaluation.
+      </p>
+    </div>
+    <div class="editorial-hero__aside">
+      <div class="editorial-note">
+        <span class="editorial-note__label">Current role</span>
+        <p>AI Engineer and ASEAN Education Program Director at Elice, leading AI feature delivery across Singapore and Brunei.</p>
+      </div>
+      <div class="editorial-note">
+        <span class="editorial-note__label">Delivery scope</span>
+        <p>Enterprise and government stakeholder framing, multimodal evaluation, personalization, and workforce-intelligence systems.</p>
+      </div>
+    </div>
+  </section>
 
-Before diving deep into AI, I honed my analytical and leadership skills in different arenas. As Head Chemistry Tutor at Ideas Ink School, I led the department to significant growth, scaling operations to 7-figure annual revenues and mentoring hundreds of students to academic success. More recently, as a Consultant at TalentKraft, I contributed to strategic human capital projects, including redesigning digital platforms and automating reporting workflows with Google Apps Script. These experiences have been invaluable in developing strong stakeholder engagement, business storytelling, and problem-solving capabilities that I now apply to AI.
+  <section class="editorial-section" data-reveal>
+    <div class="editorial-section__header">
+      <p class="editorial-kicker">Profile</p>
+      <h2>From model behavior to production systems that hold up under delivery constraints.</h2>
+    </div>
+    <div class="editorial-richtext">
+      <p>
+        I build applied AI systems with a bias toward backend clarity, evaluation discipline, and operator usability.
+        The work I enjoy most sits where retrieval, orchestration, observability, security checks, and human review
+        matter as much as the model itself.
+      </p>
+      <p>
+        At Elice, I lead AI feature delivery from scoping through technical framing and delivery coordination. Recent
+        systems include Creator AI, a multi-service platform for course, lab, and quiz-bank generation across Discovery,
+        Strategy, Retrieval, Generation, Validation, and HITL review; SlideBench, a multimodal benchmarking platform for
+        AI-generated learning artifacts; and model-integration work that standardized Azure OpenAI, OpenAI Responses,
+        Gemini, and MLAPI behind service-level controls and hardened configuration.
+      </p>
+      <p>
+        I also work on the operational layer: background job orchestration, admin-token protection, malware and
+        project-code checks, regression coverage, deployment diagnostics, and Langfuse-based observability. More recent
+        prototypes include telemetry-aware personalization for Elice's legacy LXP using Playwright probes and Bayesian
+        Knowledge Tracing, plus a workforce-intelligence system built with Next.js, FastAPI, PostgreSQL, and Docker for
+        governed public-source ingestion, explainable scoring, analyst dashboards, historical backfill, and forecasting.
+      </p>
+      <p>
+        Before Elice, at AI Singapore's AI Apprenticeship Programme, I built an LLM-based structured query and
+        classification system for enterprise HR data and a local-first, GPU-accelerated RAG stack over more than
+        1,000 technical documents, with FastAPI, Pydantic, Kubernetes, and observability in the loop. Earlier
+        consulting work at TalentKraft focused on automation and delivery, including report-generation workflows that
+        cut analyst effort by about 70 percent.
+      </p>
+    </div>
+  </section>
 
-## My AI Focus & Expertise
+  <section class="editorial-section editorial-grid-two" data-reveal>
+    <div>
+      <div class="editorial-section__header">
+        <p class="editorial-kicker">Focus</p>
+        <h2>What I tend to build.</h2>
+      </div>
+      <div class="editorial-list">
+        <div class="editorial-list__item">
+          <h3>AI platforms and orchestration</h3>
+          <p>Multi-service systems spanning retrieval, generation, validation, review workflows, and reproducible artifacts.</p>
+        </div>
+        <div class="editorial-list__item">
+          <h3>Evaluation, observability, and hardening</h3>
+          <p>Rubric judging, evidence checks, regression coverage, diagnostics, tracing, and deployment guardrails.</p>
+        </div>
+        <div class="editorial-list__item">
+          <h3>Backend and operator surfaces</h3>
+          <p>Python, FastAPI, Pydantic, PostgreSQL, Next.js, Streamlit, internal dashboards, and explainable review workflows.</p>
+        </div>
+        <div class="editorial-list__item">
+          <h3>Decision-support systems</h3>
+          <p>Education AI, workforce intelligence, HR analytics, finance, forecasting, and public-sector workflows.</p>
+        </div>
+      </div>
+    </div>
 
-My core technical focus lies in:
+    <div class="editorial-card-stack">
+      <div class="editorial-card">
+        <p class="editorial-card__eyebrow">Now</p>
+        <ul>
+          <li>Elice: AI Engineer and ASEAN Education Program Director since October 2025</li>
+          <li>Cross-border product and solution work across Singapore and Brunei</li>
+          <li>Government and enterprise stakeholder framing, including Brunei Innovation Lab Maker Phase representation</li>
+        </ul>
+      </div>
 
-**Applied Machine Learning & NLP**: Specializing in Large Language Models (LLMs) – including fine-tuning (LLaMA 3.1, DeBERTa, Phi-3), RAG systems, prompt engineering, and frameworks like DSPy, LangChain, and HuggingFace Transformers.
+      <div class="editorial-card">
+        <p class="editorial-card__eyebrow">Prior impact</p>
+        <ul>
+          <li>AI Singapore AIAP: enterprise HR LLM workflows and local-first RAG over 1,000+ technical documents</li>
+          <li>TalentKraft: automated more than 100 report decks and reduced analyst time by about 70 percent</li>
+          <li>Consulting and teaching background that still shapes how systems are explained to real users</li>
+        </ul>
+      </div>
 
-**Full-Stack AI Systems**: Developing end-to-end solutions, from data ingestion and model development to building APIs (FastAPI) and interactive UIs (Streamlit, Dash).
+      <div class="editorial-card">
+        <p class="editorial-card__eyebrow">Education and research</p>
+        <ul>
+          <li>Georgia Tech M.S. Analytics, GPA 4.0/4.0, expected August 2026</li>
+          <li>First-author survey in progress on hallucination in medical vision-language models with xulabs (CMU)</li>
+          <li>AI Singapore AIAP alumnus, AWS Certified Cloud Practitioner, English and Mandarin</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-**MLOps & Production Deployment**: Proficient in Docker, Kubernetes, CI/CD (GitLab), MLflow for experiment tracking, and deploying models on cloud platforms (GCP, AWS).
+  <section class="editorial-section editorial-grid-two" data-reveal>
+    <div>
+      <div class="editorial-section__header">
+        <p class="editorial-kicker">Portfolio scope</p>
+        <h2>Case studies with a visible system behind them.</h2>
+      </div>
+      <div class="editorial-richtext">
+        <p>
+          This site focuses on public case studies plus a small number of documented private-code systems across
+          finance, document intelligence, evaluation, workforce intelligence, forecasting, pricing, and graph ML.
+          The common thread is not the library stack. It is the translation from technical experimentation into a
+          workflow, interface, or decision surface someone can actually use.
+        </p>
+        <p>
+          Each project page is intentionally concise: the business problem, outcome, key decisions, system design,
+          and links to code, technical articles, or demos where available.
+        </p>
+      </div>
+      <div class="editorial-action-row">
+        <a href="/projects/" class="home-button home-button--primary">Explore projects</a>
+        <a href="https://github.com/Adredes-weslee" class="home-button home-button--ghost" target="_blank" rel="noopener noreferrer">Browse GitHub</a>
+      </div>
+    </div>
 
-**Data Science & Analytics**: Leveraging Python, SQL, and various libraries for data manipulation, visualization, supervised/unsupervised learning, and time series analysis.
+    <div>
+      <div class="editorial-section__header">
+        <p class="editorial-kicker">Experience footprint</p>
+        <h2>The environments that shaped how I build.</h2>
+      </div>
+      <div class="editorial-richtext">
+        <ul>
+          <li>Education platforms, learning analytics, and evaluation-heavy product workflows.</li>
+          <li>Workforce intelligence, HR data systems, and analyst-facing decision tools.</li>
+          <li>Public-sector and enterprise solution framing where technical choices need to survive stakeholder scrutiny.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-I'm continuously learning and expanding my skillset, currently pursuing a Master of Science in Analytics from Georgia Institute of Technology (4.0 GPA). I've also completed specialized training through the BCG RISE 2.0 (Data Analyst Track) and the General Assembly Data Science Immersive.
-
-## Education Highlights
-
-- **Georgia Institute of Technology**: M.S. Analytics (Expected Dec 2026, Current GPA: 4.0/4.0)
-- **BCG RISE 2.0**: Business and Data Analytics Programme (Data Analyst Track)
-- **General Assembly**: Data Science Immersive
-- **Bangor University**: B.Sc. (Honours) Business Studies and Finance (First Class Honours)
-- **National University of Singapore**: B.Eng. Chemical Engineering
-
-## Projects & Portfolio
-
-I believe in learning by doing. I've worked on a variety of projects spanning financial NLP, algorithmic trading, climate resilience analysis, and public health forecasting.
-
-- **Explore my featured projects**: [Project Portfolio](/projects/)
-- **Dive into the code**: [GitHub Profile](https://github.com/Adredes-weslee)
-
-## Certifications
-
-- **AWS Certified Cloud Practitioner**
-- **BCG RISE (Python Expert, ML Expert, Data Analytics)**
-
-## Beyond the Code
-
-When I'm not immersed in data and algorithms, you can find me:
-
-- Focusing on fitness, particularly bodybuilding.
-- Keeping up with the latest in AI and ML through podcasts like Latent Space, Last Week in AI, and No Priors.
-- Volunteering my prompt engineering skills for better.sg's "Are You Ok" chatbot.
-
-## Let's Connect
-
-I'm always open to discussing new ideas, collaborations, or opportunities.
-
-- **Email**: [weslee.qb@gmail.com](mailto:weslee.qb@gmail.com)
-- **LinkedIn**: [linkedin.com/in/wes-lee](https://www.linkedin.com/in/wes-lee/)
-- **GitHub**: [github.com/Adredes-weslee](https://github.com/Adredes-weslee)
-- **Languages**: English, Mandarin
+  <section class="editorial-cta" data-reveal>
+    <p class="editorial-kicker">Connect</p>
+    <h2>Open to AI engineering roles, technical collaboration, and applied AI consulting.</h2>
+    <div class="editorial-contact-grid">
+      <a href="mailto:weslee.qb@gmail.com">weslee.qb@gmail.com</a>
+      <a href="https://www.linkedin.com/in/wes-lee/" target="_blank" rel="noopener noreferrer">linkedin.com/in/wes-lee</a>
+      <a href="https://github.com/Adredes-weslee" target="_blank" rel="noopener noreferrer">github.com/Adredes-weslee</a>
+    </div>
+  </section>
+</div>
+</article>

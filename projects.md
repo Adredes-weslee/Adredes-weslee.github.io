@@ -1,54 +1,52 @@
 ---
 layout: projects-by-section
 title: Projects
-description: A showcase of my data science, machine learning, and AI projects.
+description: Portfolio case studies across LLM systems, machine learning, evaluation workflows, and decision-support products.
 permalink: /projects/
 show_collection: projects
 ---
 
-Below are some of my key projects in AI, machine learning, and data science. Each project demonstrates different aspects of my technical skills and problem-solving approach.
+<script>
+  document.documentElement.classList.add('projects-index-page');
+</script>
 
-## LLM & NLP Projects
+<div class="editorial-shell projects-shell">
+  <section class="editorial-hero" data-reveal>
+    <div class="editorial-hero__copy">
+      <p class="editorial-kicker">Projects</p>
+      <h1>Flagship systems first, then supporting work by problem shape.</h1>
+      <p class="editorial-lead">
+        This page focuses on case studies across document intelligence, finance, forecasting,
+        pricing, evaluation systems, and workforce intelligence. Most projects link to public code, articles,
+        or demos; a small number are documented case studies where the source repo is private.
+      </p>
+    </div>
+    <div class="editorial-hero__aside">
+      <div class="editorial-note">
+        <span class="editorial-note__label">Through-line</span>
+        <p>Each page stays short: business problem, outcome, key decisions, system design, and links to code or demos.</p>
+      </div>
+      <div class="editorial-note">
+        <span class="editorial-note__label">Navigation rule</span>
+        <p>Projects are the canonical portfolio layer. Articles and demos are secondary surfaces linked from each project where available.</p>
+      </div>
+    </div>
+  </section>
 
-These projects showcase my work with large language models, transformer architectures, and natural language processing:
-
-* [**DSPy Prompt Optimization: A Scientific Approach to Automotive Intelligence**](/projects/dspy-automotive-extractor/) - Systematic prompt optimization using DSPy framework for structured data extraction from automotive complaints
-* [**FinSight NLP: The Earnings Report Intelligence Platform**](/projects/nlp-earnings-analyzer/) - Financial text analysis combining traditional NLP and transformer models for earnings reports
-* [**Democratizing Enterprise Knowledge: The Custom RAG Engine Project**](/projects/rag-engine-project/) - Containerized document QA system with hybrid embedding models and self-hosted inference
-* [**YouTube Comment Sentiment Analysis: Real-Time Audience Intelligence for Digital Creators**](/projects/sentiment-analysis/) - Production-ready platform that processed 114,109+ YouTube comments with transformer-powered intelligence
-
-## Machine Learning & AI Applications
-
-Projects demonstrating various ML techniques and domain applications:
-
-* [**ML Trading Strategist: Advanced Algorithmic Trading Framework**](/projects/ml-trading-strategist/) - Algorithmic trading framework comparing rule-based, tree-ensemble, and reinforcement learning approaches
-* [**Next-Generation AI Portfolio Advisory: TabPFN Foundation Models + Dynamic Investment Objectives**](/projects/robo-advisor-project/) - Pioneer the first known application of TabPFN foundation models for financial risk assessment with 9 dynamic investment objectives
-* [**Building an HDB Resale Price Predictor: A Technical Deep Dive into Feature Engineering and Regression**](/projects/hdb-resale-prices/) - Advanced regression modeling for Singapore's housing market
-* [**Wet-Bulb Temperature & Climate Resilience: A Policy-Focused Data Study for Singapore**](/projects/wet-bulb-temperature/) - Climate data modeling for heat stress prediction
-
-## Data Science & Business Analytics
-
-Projects focused on extracting insights and delivering business value:
-
-* [**Strategic Growth Engine: Data-Driven Customer Segmentation & Price Optimization for CS Tay**](/projects/customer-segmentation/) - RFM analysis and revenue optimization for frozen food distributor
-* [**Strategic Dengue Control: Forecasting & Cost-Benefit Analysis for Public Health Interventions in Singapore**](/projects/dengue-forecasting/) - Time series analysis with health intervention cost-benefit analysis
-
-## Technical Skills Demonstrated
-
-* **Machine Learning:** Classification, regression, clustering, time series forecasting, deep learning
-* **NLP & LLMs:** RAG systems, prompt tuning/optimization, fine-tuning, embedding techniques, sentiment analysis
-* **MLOps:** Docker, Kubernetes, MLflow, observability, deployment pipelines
-* **Data Analysis:** Feature engineering, statistical modeling, visualization
-* **Business Impact:** Cost-benefit analysis, revenue optimization, actionable insights
-
-## Project Methodology
-
-All projects follow a structured development approach:
-
-1. **Problem Definition** - Clear objectives and success metrics
-2. **Data Collection & Processing** - Rigorous cleaning, transformation, and feature engineering
-3. **Model Development** - Iterative training, validation, and hyperparameter tuning
-4. **Evaluation** - Comprehensive testing using appropriate metrics
-5. **Deployment & Documentation** - Production-ready code with clear documentation
-
-Interested in collaborating on a project? Feel free to [contact me](/contact/) to discuss potential opportunities.
+  <section class="editorial-section" data-reveal>
+    <div class="editorial-section__header">
+      <p class="editorial-kicker">How to use the page</p>
+      <h2>Start with the flagship set, then use the sections below for breadth.</h2>
+    </div>
+    <div class="editorial-richtext editorial-grid-two">
+      <div>
+        <p><strong>The flagship set</strong> is the clearest signal for platform architecture, evaluation rigor, and operator-facing product work.</p>
+        <p><strong>The supporting sections</strong> broaden the portfolio across private platform work, narrower NLP systems, decision tools, planning workflows, and applied ML studies.</p>
+      </div>
+      <div>
+        <p>The ordering is intentional: platform work first, then planning and decision systems, then the broader modeling range.</p>
+        <p>Cards marked <strong>Live demo</strong>, <strong>Article</strong>, or <strong>Repo</strong> have deeper public surfaces. A <strong>Private repo</strong> label means the case study is public but the source code is not.</p>
+      </div>
+    </div>
+  </section>
+</div>

@@ -5,7 +5,9 @@ date: 2024-12-15 10:00:00 +0800
 categories: [nlp, machine-learning, transformers]
 tags: [youtube, streamlit, huggingface, roberta, distilbert, production-ml, vader, plotly, pytorch]
 author: Wes Lee
-feature_image: /assets/images/2023-07-10-building-youtube-comment-sentiment-analyzer.jpg
+feature_image: /assets/images/article-heroes/2024-12-15-building-youtube-comment-sentiment-analyzer.jpg
+display_title: "Production YouTube Sentiment Analysis"
+archive_title: "YouTube Sentiment Analysis at Production Scale"
 ---
 
 ## Introduction: From Research to Production-Ready Sentiment Intelligence

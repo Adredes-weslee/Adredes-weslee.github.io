@@ -5,7 +5,9 @@ date: 2025-05-09 09:45:00 +0800
 categories: [nlp, finance, machine-learning, data-science]
 tags: [nlp, finance, machine-learning, data-science, text-analysis, python]
 author: Wes Lee
-feature_image: /assets/images/2025-05-09-nlp-earnings-report-analysis.jpg
+feature_image: /assets/images/article-heroes/2025-05-09-nlp-earnings-report-analysis.jpg
+display_title: "Engineering NLP for Financial Disclosures"
+archive_title: "NLP for Financial Disclosures"
 ---
 
 ## The Challenge: Unlocking Insights from Financial Texts

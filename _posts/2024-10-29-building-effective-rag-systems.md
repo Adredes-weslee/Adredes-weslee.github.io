@@ -5,7 +5,9 @@ date: 2024-10-29 14:33:46 +0800
 categories: [ai, nlp, rag]
 tags: [llms, retrieval-augmented-generation, vector-databases, langchain, python, system-design, mLOps]
 author: Wes Lee
-feature_image: /assets/images/2024-10-29-building-effective-rag-systems.jpg 
+feature_image: /assets/images/article-heroes/2024-10-29-building-effective-rag-systems.jpg
+display_title: "Enterprise RAG: Design and Implementation Lessons"
+archive_title: "Enterprise RAG Design Lessons"
 ---
 
 ## Introduction: The RAG Revolution in Enterprise

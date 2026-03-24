@@ -1,96 +1,103 @@
 ---
-layout: page
+layout: base
 title: Contact
+description: "Contact Wes Lee for AI engineering roles, platform work, and applied AI collaboration."
 permalink: /contact/
 ---
 
-# Get In Touch
+<script>
+  document.documentElement.classList.add('contact-page');
+</script>
 
-I'm always interested in new opportunities, collaborations, or just chatting about AI, machine learning, and data science. Feel free to reach out through any of the channels below.
-
-## Connect With Me
-
-<div class="contact-grid">
-  <div class="contact-method">
-    <div class="contact-icon">
-      <i class="far fa-envelope"></i>
+<article class="page editorial-page editorial-page--contact" role="article">
+<div class="editorial-shell contact-shell">
+  <section class="editorial-hero" data-reveal>
+    <div class="editorial-hero__copy">
+      <p class="editorial-kicker">Contact</p>
+      <h1>Open to AI engineering roles, platform work, and applied AI collaborations.</h1>
+      <p class="editorial-lead">
+        Best-fit conversations involve backend-first AI platforms, evaluation systems, retrieval or workflow
+        orchestration, and decision-support products moving beyond prototype stage.
+      </p>
     </div>
-    <h3>Email</h3>
-    <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
-    <p class="contact-desc">Preferred for professional inquiries and collaboration opportunities</p>
-  </div>
-  
-  <div class="contact-method">
-    <div class="contact-icon">
-      <i class="fab fa-linkedin"></i>
-    </div>    <h3>LinkedIn</h3>
-    <p><a href="https://www.linkedin.com/in/wes-lee/" target="_blank">linkedin.com/in/wes-lee</a></p>
-    <p class="contact-desc">Connect with me professionally and stay updated on my career developments</p>
-  </div>
-  
-  <div class="contact-method">
-    <div class="contact-icon">
-      <i class="fab fa-github"></i>
+    <div class="editorial-hero__aside">
+      <div class="editorial-note">
+        <span class="editorial-note__label">Best channel</span>
+        <p>Email is best for anything concrete. LinkedIn works well for introductions and role discussions.</p>
+      </div>
+      <div class="editorial-note">
+        <span class="editorial-note__label">Based in</span>
+        <p>Singapore, with experience working across regional education, enterprise, and public-sector contexts.</p>
+      </div>
     </div>
-    <h3>GitHub</h3>
-    <p><a href="https://github.com/{{ site.github_username }}" target="_blank">github.com/{{ site.github_username }}</a></p>
-    <p class="contact-desc">Explore my code repositories and technical projects</p>
-  </div>
-  
+  </section>
+
+  <section class="editorial-section" data-reveal>
+    <div class="editorial-section__header">
+      <p class="editorial-kicker">Direct channels</p>
+      <h2>Reach out where the context fits.</h2>
+    </div>
+    <div class="editorial-contact-cards">
+      <a class="editorial-contact-card" href="mailto:{{ site.email }}">
+        <span class="editorial-contact-card__label">Email</span>
+        <h3>{{ site.email }}</h3>
+        <p>Best for project discussions, consulting inquiries, role outreach, and technical collaboration.</p>
+      </a>
+      <a class="editorial-contact-card" href="https://www.linkedin.com/in/wes-lee/" target="_blank" rel="noopener noreferrer">
+        <span class="editorial-contact-card__label">LinkedIn</span>
+        <h3>linkedin.com/in/wes-lee</h3>
+        <p>Useful for recruiter contact, professional introductions, and broader network conversations.</p>
+      </a>
+      <a class="editorial-contact-card" href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener noreferrer">
+        <span class="editorial-contact-card__label">GitHub</span>
+        <h3>github.com/{{ site.github_username }}</h3>
+        <p>Browse the public repos, demos, and case studies behind the portfolio.</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="editorial-section editorial-grid-two" data-reveal>
+    <div>
+      <div class="editorial-section__header">
+        <p class="editorial-kicker">Best-fit work</p>
+        <h2>The problems I am most useful on.</h2>
+      </div>
+      <div class="editorial-list">
+        <div class="editorial-list__item">
+          <h3>AI platforms and internal tools</h3>
+          <p>Backend services, orchestration, review workflows, operator dashboards, and usable product surfaces.</p>
+        </div>
+        <div class="editorial-list__item">
+          <h3>Evaluation, benchmarking, and observability</h3>
+          <p>LLM evaluation, multimodal artifact review, prompt optimization, tracing, and regression coverage.</p>
+        </div>
+        <div class="editorial-list__item">
+          <h3>Decision-support products</h3>
+          <p>Education, workforce intelligence, finance, forecasting, and policy or operations tools tied to concrete decisions.</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="editorial-section__header">
+        <p class="editorial-kicker">Good collaboration fits</p>
+        <h2>Useful beyond full end-to-end product ownership.</h2>
+      </div>
+      <div class="editorial-list">
+        <div class="editorial-list__item">
+          <h3>0-to-1 prototyping and architecture</h3>
+          <p>Early system framing, tool selection, API and workflow design, and technical direction for ambiguous builds.</p>
+        </div>
+        <div class="editorial-list__item">
+          <h3>Research and experimentation</h3>
+          <p>Model comparison, retrieval systems, forecasting, prompt optimization, and evaluation-heavy product experiments.</p>
+        </div>
+        <div class="editorial-list__item">
+          <h3>Technical writing and stakeholder framing</h3>
+          <p>Clear explanations of system choices, proposal and solution framing, and communication across technical and non-technical audiences.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
-
-## Work Opportunities
-
-I'm particularly interested in opportunities in these areas:
-
-- **AI Engineering** - Building production-grade ML and LLM applications
-- **NLP & LLM Development** - Prompt tuning, fine-tuning, and production deployment
-- **Data Science Consulting** - Solving business problems through data and ML
-- **MLOps & Infrastructure** - Designing robust ML infrastructure and pipelines
-
-## Collaboration
-
-Open to collaboration on:
-
-- **Open Source Projects** - Contributing to ML/AI libraries and frameworks
-- **Research Initiatives** - Exploring cutting-edge techniques in NLP and ML
-- **Technical Writing** - Creating educational content about AI and data science
-- **Community Events** - Speaking opportunities and knowledge sharing
-
-## Let's Connect
-
-Whether you have a specific project in mind or just want to discuss the latest developments in AI and machine learning, I'm always happy to chat. Drop me a line through any of the channels above.
-
-<style>
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin: 2rem 0;
-}
-
-.contact-method {
-  background: #f8f9fa;
-  padding: 1.5rem;
-  border-radius: 8px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-align: center;
-}
-
-.contact-method:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.contact-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: #007bff;
-}
-
-.contact-desc {
-  font-size: 0.9rem;
-  color: #6c757d;
-  margin-top: 0.5rem;
-}
-</style>
+</article>

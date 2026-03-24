@@ -5,7 +5,9 @@ date: 2024-08-15 10:30:00 +0800
 categories: [data-science, pricing-strategy, business-analytics, commercial-strategy]
 tags: [rfm-analysis, k-means-clustering, price-elasticity, revenue-optimization, python, pandas, scikit-learn, gurobi, capstone-project]
 author: Wes Lee
-feature_image: /assets/images/2024-08-15-customer-segmentation-price-optimization.jpg 
+feature_image: /assets/images/article-heroes/2024-08-15-customer-segmentation-price-optimization.jpg
+display_title: "Customer Segmentation and Price Optimization"
+archive_title: "Segmentation and Price Optimization"
 ---
 
 ## Introduction: A Data Science Journey in Commercial Strategy
