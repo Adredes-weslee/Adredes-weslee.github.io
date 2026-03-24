@@ -22,8 +22,8 @@
 title: Wes Lee
 email: weslee.qb@gmail.com 
 description: >- # this means to ignore newlines until "baseurl:"
-  Portfolio website showcasing Wes Lee's projects and expertise in AI Engineering, 
-  Machine Learning, and Data Science with Python and SQL.
+  Public portfolio of Wes Lee, a Singapore-based AI engineer building LLM systems,
+  evaluation platforms, and decision-support products.
 tagline: AI Engineer
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://adredes-weslee.github.io" # the base hostname & protocol for your site, e.g. http://example.com
@@ -32,11 +32,11 @@ url: "https://adredes-weslee.github.io" # the base hostname & protocol for your 
 accent_image: /assets/images/sidebar-bg.jpg
 accent_color: '#4fb1ba'
 theme_color: '#4fb1ba'
-logo: /assets/images/logo.png
+logo: /assets/images/profile.jpg
 
 # Social accounts
 github_username: Adredes-weslee
-linkedin_username: in/wes-lee
+linkedin_username: wes-lee
 twitter_username: 
 
 # Sidebar configuration
@@ -45,8 +45,6 @@ menu:
     url: /about/
   - title: Projects
     url: /projects/
-  - title: Interactive Demos
-    url: /streamlit-apps/
   - title: Blog
     url: /blog/
   - title: Contact
@@ -57,7 +55,7 @@ author:
   name: Wes Lee
   email: weslee.qb@gmail.com
   picture: /assets/images/profile.jpg
-  about: AI Engineer | Python & SQL Developer | Data Analyst
+  about: AI engineer building LLM systems and decision-support products
   social:
     linkedin: https://www.linkedin.com/in/wes-lee/
     github: Adredes-weslee
@@ -72,11 +70,15 @@ plugins:
   - jekyll-paginate
   - jekyll-remote-theme
 
+feed:
+  posts_limit: 20
+  excerpt_only: true
+
 # Add custom CSS
 hydejack:
   no_page_style: false
   no_mark_external: false
-  no_push_state: false
+  no_push_state: true
   no_drawer: false
   no_navbar: false
   no_search: false
@@ -104,14 +106,14 @@ collections:
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
 #
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - repos/
+  - about_old.md
+  - Wes_Lee_Resume.pdf
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/

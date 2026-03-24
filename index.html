@@ -1,369 +1,291 @@
 ---
-layout: page
+layout: base
 title: Home
-cover: true
+description: "Portfolio of Wes Lee, featuring AI platforms, LLM systems, evaluation workflows, and decision-support case studies."
 ---
 
-<div class="home-section">
-  <div class="home-intro">
-    <p>LLM engineer consultant with FinTech and crypto native insight, seasoned educator, and MSc Analytics candidate. Translates complex data into strategy, mentors stakeholders, and ships Gen AI products—delivering clear stories and measurable outcomes for knowledge SaaS, finance, and cloud driven enterprises.</p>
-    
-    <div class="skills-summary">
-      <ul>
-        <li><strong>AI Engineering</strong> - End-to-end ML systems with production-ready infrastructure</li>
-        <li><strong>LLM Applications</strong> - Prompt tuning/optimization, Fine-tuning, RAG systems</li>
-        <li><strong>MLOps & Deployment</strong> - Containerization, observability, and CI/CD pipelines</li>
-        <li><strong>Data Analysis</strong> - Business insights through statistical modeling and visualization</li>
+<script>
+  document.documentElement.classList.add('home-landing-page');
+</script>
+
+<article class="page editorial-page editorial-page--home" role="article">
+<div class="home-shell">
+  <section class="home-hero">
+    <div class="home-hero__copy" data-reveal="hero">
+      <p class="home-kicker">Singapore-based AI engineer | AI platforms | evaluation systems</p>
+      <h1 class="home-name">Wes Lee</h1>
+      <p class="home-display">Builds backend-first AI platforms, multimodal evaluation systems, and operator-facing decision tools.</p>
+      <p class="home-summary">
+        Currently AI Engineer and ASEAN Education Program Director at Elice. This site focuses on
+        inspectable systems and selected private-code case studies across retrieval, evaluation, finance, forecasting, and decision support.
+      </p>
+
+      <div class="home-actions">
+        <a href="/projects/" class="home-button home-button--primary">View selected work</a>
+        <a href="/about/" class="home-button home-button--ghost">About me</a>
+      </div>
+
+      <ul class="home-signal-list" aria-label="Primary focus areas">
+        <li>AI platforms</li>
+        <li>Evaluation systems</li>
+        <li>Retrieval and orchestration</li>
+        <li>Operator-facing products</li>
       </ul>
     </div>
-        
-    <div class="read-more">
-      <a href="/about/" class="heading flip-title">Learn more about me →</a>
+
+    <div class="home-hero__visual" data-reveal>
+      <div class="home-hero__label-row">
+        <span>Selected systems</span>
+        <span>Portfolio intelligence</span>
+      </div>
+
+      <figure class="home-hero__frame">
+        <img
+          src="/assets/images/home-hero-flagship.jpg"
+          alt="Selected flagship systems across finance, retrieval, evaluation, and document intelligence"
+        >
+        <figcaption>
+          <strong>Selected flagship systems</strong>
+          <span>Case studies across foundation models, retrieval, evaluation, and operator-facing products.</span>
+        </figcaption>
+      </figure>
+
+      <div class="home-metric-grid">
+        <div class="home-metric">
+          <span class="home-metric__value">1,000+</span>
+          <span class="home-metric__label">technical docs queried in local RAG workflows</span>
+        </div>
+        <div class="home-metric">
+          <span class="home-metric__value">114K+</span>
+          <span class="home-metric__label">comments processed in NLP pipelines</span>
+        </div>
+        <div class="home-metric">
+          <span class="home-metric__value">70%</span>
+          <span class="home-metric__label">analyst time reduced through workflow automation</span>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <section class="home-work">
+    <div class="home-section-heading" data-reveal>
+      <p class="home-section-kicker">Flagship case studies</p>
+      <h2>Start with four flagship case studies that best represent the portfolio.</h2>
+      <p>
+        This set is intentionally small: the clearest signal for platform architecture, evaluation rigor,
+        and operator-facing product execution.
+      </p>
+    </div>
+
+    <div class="home-feature-grid">
+      <article class="home-feature" data-reveal>
+        <div class="home-feature__media">
+          <img src="/assets/images/project-covers/creator-ai.jpg" alt="Creator AI Platform visual">
+        </div>
+        <div class="home-feature__body">
+          <p class="home-feature__label">Edtech / AI platform</p>
+          <h3>Creator AI Platform</h3>
+          <p>
+            A backend-first orchestration platform for learning-asset generation with staged discovery,
+            retrieval, validation, and human review built into the product itself.
+          </p>
+          <ul class="home-feature__meta">
+            <li>Workflow orchestration and quality gates</li>
+            <li>Discovery, retrieval, generation, and review stages</li>
+            <li>Private codebase with public case study</li>
+          </ul>
+          <div class="home-feature__links">
+            <a href="/projects/creator-ai/" class="editorial-project-chip editorial-project-chip--project project-link-chip">Project page</a>
+            <a href="/ai-platforms/edtech/orchestration/2026/03/24/designing-creator-ai-as-a-backend-first-content-generation-platform.html" class="editorial-project-chip editorial-project-chip--article project-link-chip">Article</a>
+            <span class="editorial-project-chip editorial-project-chip--private project-link-chip project-link-chip--static" aria-disabled="true">Private repo</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="home-feature" data-reveal>
+        <div class="home-feature__media">
+          <img src="/assets/images/project-covers/intelligent-content-analyzer.jpg" alt="Intelligent Content Analyzer visual">
+        </div>
+        <div class="home-feature__body">
+          <p class="home-feature__label">Document intelligence / service architecture</p>
+          <h3>Intelligent Content Analyzer</h3>
+          <p>
+            A modular document intelligence platform that splits upload, retrieval, generation, and
+            evaluation into services rather than one monolithic demo app.
+          </p>
+          <ul class="home-feature__meta">
+            <li>Hybrid retrieval and confidence checks</li>
+            <li>FastAPI gateway plus dedicated services</li>
+            <li>Multilingual workflow support</li>
+          </ul>
+          <div class="home-feature__links">
+            <a href="/projects/intelligent-content-analyzer/" class="editorial-project-chip editorial-project-chip--project project-link-chip">Project page</a>
+            <a href="/ai/rag/document-intelligence/2026/03/24/building-service-oriented-document-intelligence.html" class="editorial-project-chip editorial-project-chip--article project-link-chip">Article</a>
+            <a
+              href="https://adredes-weslee-intelligent-content-analyzer-uiapp-stwg9a.streamlit.app/"
+              class="editorial-project-chip editorial-project-chip--demo project-link-chip"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Live demo</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="home-feature" data-reveal>
+        <div class="home-feature__media">
+          <img src="/assets/images/project-covers/slidebench.jpg" alt="SlideBench AI Evaluation Workbench visual">
+        </div>
+        <div class="home-feature__body">
+          <p class="home-feature__label">Evaluation systems / multimodal</p>
+          <h3>SlideBench AI Evaluation Workbench</h3>
+          <p>
+            A multimodal evaluation workbench for AI-generated slides and learning artifacts, combining
+            deterministic metrics, retrieval, provenance checks, and judge-assisted scoring.
+          </p>
+          <ul class="home-feature__meta">
+            <li>Deterministic metrics plus retrieval-assisted evaluation</li>
+            <li>Provenance checks and judge-assisted scoring</li>
+            <li>Private codebase with public case study</li>
+          </ul>
+          <div class="home-feature__links">
+            <a href="/projects/slidebench/" class="editorial-project-chip editorial-project-chip--project project-link-chip">Project page</a>
+            <a href="/evaluation-systems/multimodal/edtech/2026/03/24/building-slidebench-to-evaluate-ai-generated-slides.html" class="editorial-project-chip editorial-project-chip--article project-link-chip">Article</a>
+            <span class="editorial-project-chip editorial-project-chip--private project-link-chip project-link-chip--static" aria-disabled="true">Private repo</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="home-feature" data-reveal>
+        <div class="home-feature__media">
+          <img src="/assets/images/project-covers/robo-advisor-project.jpg" alt="AI Portfolio Advisory System visual">
+        </div>
+        <div class="home-feature__body">
+          <p class="home-feature__label">Finance / foundation models</p>
+          <h3>AI Portfolio Advisory System</h3>
+          <p>
+            A robo-advisor platform that applies TabPFN to investor risk assessment and pairs it with
+            objective-aware portfolio optimization.
+          </p>
+          <ul class="home-feature__meta">
+            <li>TabPFN risk profiling</li>
+            <li>Dynamic portfolio objectives</li>
+            <li>Interactive demo available</li>
+          </ul>
+          <div class="home-feature__links">
+            <a href="/projects/robo-advisor-project/" class="editorial-project-chip editorial-project-chip--project project-link-chip">Project page</a>
+            <a href="/ai/finance/foundation-models/reinforcement-learning/2025/06/24/robo-advisor-risk-profiling-portfolio-optimization.html" class="editorial-project-chip editorial-project-chip--article project-link-chip">Article</a>
+            <a
+              href="https://adredes-weslee-using-artificial-intelligenc-dashboardapp-juewyb.streamlit.app/"
+              class="editorial-project-chip editorial-project-chip--demo project-link-chip"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Live demo</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="home-section-heading" data-reveal>
+      <p>
+        The supporting layer then broadens into workforce intelligence, prompt optimization, enterprise RAG,
+        policy forecasting, inventory planning, graph ML, climate analytics, and other applied systems.
+      </p>
+    </div>
+  </section>
+
+  <section class="home-band" data-reveal>
+    <div class="home-band__intro">
+      <p class="home-section-kicker">Current work</p>
+      <h2>Current work centers on orchestration, evaluation, and operator review.</h2>
+    </div>
+
+    <div class="home-capability-grid">
+      <div class="home-capability">
+        <h3>AI platforms</h3>
+        <p>Backend-first systems that connect retrieval, generation, validation, and human-in-the-loop review.</p>
+      </div>
+      <div class="home-capability">
+        <h3>Evaluation and observability</h3>
+        <p>Benchmarking, evidence checks, regression coverage, tracing, and structured scoring for model behavior.</p>
+      </div>
+      <div class="home-capability">
+        <h3>Product interfaces</h3>
+        <p>FastAPI, Streamlit, and internal-tool patterns that give operators usable surfaces instead of opaque models.</p>
+      </div>
+      <div class="home-capability">
+        <h3>Decision domains</h3>
+        <p>Education, workforce intelligence, finance, public health, and business analytics where systems need to drive action.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-journal">
+    <div class="home-section-heading" data-reveal>
+      <p class="home-section-kicker">Recent writing</p>
+      <h2>Writing behind the systems.</h2>
+      <p>Technical notes on implementation choices, evaluation logic, and what changed between experiment and usable product.</p>
+    </div>
+
+    <div class="home-writing-grid">
+      <a
+        href="/ai-ops/workforce-intelligence/public-signals/2026/03/24/building-operational-workforce-risk-intelligence-from-public-signals.html"
+        class="home-writing"
+        data-reveal
+      >
+        <div class="home-writing__media">
+          <img src="/assets/images/article-heroes/2026-03-24-building-operational-workforce-risk-intelligence-from-public-signals.jpg" alt="Workforce intelligence article image">
+        </div>
+        <p class="home-writing__date">Mar 24, 2026</p>
+        <h3>Operational Workforce Risk Intelligence from Public Signals</h3>
+        <p>Why workforce monitoring becomes useful only after public signals are turned into incidents, forecasts, alerts, and reviewable risk views.</p>
+        <span class="home-text-link">Read article</span>
+      </a>
+
+      <a
+        href="/ai-platforms/edtech/orchestration/2026/03/24/designing-creator-ai-as-a-backend-first-content-generation-platform.html"
+        class="home-writing"
+        data-reveal
+      >
+        <div class="home-writing__media">
+          <img src="/assets/images/article-heroes/2026-03-24-designing-creator-ai-as-a-backend-first-content-generation-platform.jpg" alt="Creator AI article image">
+        </div>
+        <p class="home-writing__date">Mar 24, 2026</p>
+        <h3>Designing Creator AI as a Backend-First Platform</h3>
+        <p>Why AI content generation becomes more valuable when orchestration, discovery, validation, and review are part of the product.</p>
+        <span class="home-text-link">Read article</span>
+      </a>
+
+      <a
+        href="/evaluation-systems/multimodal/edtech/2026/03/24/building-slidebench-to-evaluate-ai-generated-slides.html"
+        class="home-writing"
+        data-reveal
+      >
+        <div class="home-writing__media">
+          <img src="/assets/images/article-heroes/2026-03-24-building-slidebench-to-evaluate-ai-generated-slides.jpg" alt="Slide evaluation article image">
+        </div>
+        <p class="home-writing__date">Mar 24, 2026</p>
+        <h3>Building SlideBench for AI-Generated Slides</h3>
+        <p>How deterministic metrics, benchmark retrieval, provenance checks, and judge-assisted scoring combine into one evaluation workflow.</p>
+        <span class="home-text-link">Read article</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="home-cta" data-reveal>
+    <p class="home-section-kicker">Next move</p>
+    <h2>Need an engineer who can connect model quality with product execution?</h2>
+    <p>
+      Best fit is backend-first AI platforms, evaluation-heavy systems, and decision-support products moving beyond prototype stage.
+    </p>
+    <div class="home-actions">
+      <a href="/contact/" class="home-button home-button--primary">Start a conversation</a>
+      <a
+        href="https://github.com/Adredes-weslee"
+        class="home-button home-button--ghost"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Browse GitHub</a>
+    </div>
+  </section>
 </div>
-
-<div class="home-section" id="projects">
-  <h2>Featured Projects</h2>
-  
-  <div class="projects-section-container">
-    <!-- DSPy Automotive Extractor (NEW) -->
-    <div class="project-card-wrapper">
-      <a href="/projects/dspy-automotive-extractor/" class="project-card">
-        <h3>DSPy Automotive Extractor: Systematic Prompt Optimization for Enterprise AI</h3>
-        <div class="thumbnail">
-          <img src="/assets/images/dspy-automotive-extractor.jpg" alt="DSPy Automotive Extractor">
-        </div>
-        <p class="description">Achieved 51.33% accuracy in structured data extraction through systematic prompt optimization using Stanford's DSPy framework, establishing fundamental principles for enterprise AI optimization.</p>
-        <span class="more">Read more →</span>
-      </a>
-      <a href="https://adredes-weslee-dspy-automotive-extractor-srcapp-cloud-fbfbhk.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
-        <i class="fas fa-play-circle"></i> Try Interactive Demo
-      </a>
-    </div>
-    
-    <!-- ML Trading Strategist -->
-    <div class="project-card-wrapper">
-      <a href="/projects/ml-trading-strategist/" class="project-card">
-        <h3>ML Trading Strategist: Advanced Algorithmic Trading Framework</h3>
-        <div class="thumbnail">
-          <img src="/assets/images/ml-trading-strategist.jpg" alt="ML Trading Strategist">
-        </div>
-        <p class="description">Developed a modular machine learning framework for algorithmic trading that compares rule-based, tree-ensemble, and reinforcement learning approaches with realistic backtesting.</p>
-        <span class="more">Read more →</span>
-      </a>
-      <a href="https://adredes-weslee-ml-trading-strategist-app-pu7qym.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
-        <i class="fas fa-play-circle"></i> Try Interactive Demo
-      </a>
-    </div>
-    
-    <!-- FinSight NLP -->
-    <div class="project-card-wrapper">
-      <a href="/projects/nlp-earnings-analyzer/" class="project-card">
-        <h3>FinSight NLP: The Earnings Report Intelligence Platform</h3>
-        <div class="thumbnail">
-          <img src="/assets/images/nlp-earnings-analyzer.jpg" alt="NLP Earnings Report Analyzer">
-        </div>
-        <p class="description">Built a sophisticated system that combines traditional NLP with transformer models to analyze financial earnings reports, extract key insights, and predict potential market reactions.</p>
-        <span class="more">Read more →</span>
-      </a>
-      <a href="https://adredes-weslee-nlp-earnings-report-streamlit-app-0uttcu.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
-        <i class="fas fa-play-circle"></i> Try Interactive Demo
-      </a>
-    </div>
-    
-    <!-- RAG Engine -->
-    <div class="project-card-wrapper">
-      <a href="/projects/rag-engine-project/" class="project-card">
-        <h3>Democratizing Enterprise Knowledge: The Custom RAG Engine Project</h3>
-        <div class="thumbnail">
-          <img src="/assets/images/rag-engine-project.jpg" alt="Custom RAG Engine">
-        </div>
-        <p class="description">Designed and deployed a modular, containerized Retrieval-Augmented Generation system to support structured QA over enterprise documentation using self-hosted open-source LLMs.</p>
-        <span class="more">Read more →</span>
-      </a>
-    </div>
-    
-    <!-- Customer Segmentation -->
-    <div class="project-card-wrapper">
-      <a href="/projects/customer-segmentation/" class="project-card">
-        <h3>Strategic Growth Engine: Data-Driven Customer Segmentation & Price Optimization</h3>
-        <div class="thumbnail">
-          <img src="/assets/images/customer-segmentation.jpg" alt="Customer Segmentation & Price Optimization">
-        </div>
-        <p class="description">Led a data science project that delivered tangible business impact through advanced customer segmentation, price elasticity modeling, and revenue optimization for a food distributor.</p>
-        <span class="more">Read more →</span>
-      </a>
-      <a href="https://adredes-weslee-price-optimization-streamlitapp-yxjoe3.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
-        <i class="fas fa-play-circle"></i> Try Interactive Demo
-      </a>
-    </div>
-    
-    <!-- Updated Robo-Advisor with new title and description -->
-    <div class="project-card-wrapper">
-      <a href="/projects/robo-advisor-project/" class="project-card">
-        <h3>Next-Generation AI Portfolio Advisory: TabPFN Foundation Models + Dynamic Investment Objectives</h3>
-        <div class="thumbnail">
-          <img src="/assets/images/robo-advisor-project.jpg" alt="AI Portfolio Advisory">
-        </div>
-        <p class="description">Pioneer TabPFN foundation models for risk assessment with 9 dynamic investment objectives delivering 15-25% superior risk-adjusted returns across intelligent cloud optimization environments.</p>
-        <span class="more">Read more →</span>
-      </a>
-      <a href="https://adredes-weslee-using-artificial-intelligenc-dashboardapp-juewyb.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
-        <i class="fas fa-robot"></i> Try Interactive Demo
-      </a>
-    </div>
-  </div>
-
-  <div class="read-more">
-    <a href="/projects/" class="heading flip-title">View All Projects →</a>
-    <a href="/streamlit-apps/" class="heading flip-title" style="margin-left: 20px;">Explore Interactive Demos <i class="fas fa-play-circle"></i></a>
-  </div>
-</div>
-
-<div class="section-divider"></div>
-
-<div class="home-section" id="latest-posts">
-  <h2>Latest Blog Posts</h2>
-  
-  <div class="blog-container">
-
-    <!-- NEW: Foundation AI Robo-Advisor Blog (June 24, 2025) -->
-    <a href="/ai/finance/foundation-models/reinforcement-learning/2025/06/24/robo-advisor-risk-profiling-portfolio-optimization.html" class="blog-card">
-      <h3>Building a Production AI Robo-Advisor: TabPFN Foundation Models + Dynamic Investment Objectives</h3>
-      <div class="thumbnail">
-        <img src="/assets/images/2025-06-24-building-production-ai-robo-advisor-tabpfn.jpg" alt="Foundation AI Robo-Advisor">
-      </div>
-      <p class="post-date">Jun 24, 2025</p>
-      <p class="description">Pioneer the first known application of TabPFN foundation models for financial risk assessment while implementing dynamic investment objectives that revolutionize portfolio personalization, achieving R² > 0.85 risk prediction accuracy and 15-25% superior risk-adjusted returns.</p>
-      <span class="more">Read more →</span>
-    </a>
-
-    <!-- Dengue Forecasting (June 18, 2025) -->
-    <a href="/epidemiology/forecasting/health-economics/2025/06/18/forecasting-dengue-cases-and-cost-benefit-analysis.html" class="blog-card">
-      <h3>Building a Production Dengue Forecasting Platform: From Research to Policy Dashboard</h3>
-      <div class="thumbnail">
-        <img src="/assets/images/2025-06-18-production-dengue-forecasting-platform.jpg" alt="Dengue Forecasting Platform">
-      </div>
-      <p class="post-date">Jun 18, 2025</p>
-      <p class="description">Learn how to transform epidemiological research into operational public health intelligence through production-ready forecasting systems and comprehensive cost-benefit analysis for Singapore's dengue control program.</p>
-      <span class="more">Read more →</span>
-    </a>
-
-    <!-- DSPy Automotive Optimization (June 13, 2025) -->
-    <a href="/ai/nlp/dspy/2025/06/13/dspy-prompt-optimization-automotive-intelligence.html" class="blog-card">
-      <h3>DSPy Prompt Optimization: A Scientific Approach to Automotive Intelligence</h3>
-      <div class="thumbnail">
-        <img src="/assets/images/2025-06-13-dspy-automotive-optimization.jpg" alt="DSPy Automotive Optimization">
-      </div>
-      <p class="post-date">Jun 13, 2025</p>
-      <p class="description">Discover how systematic prompt optimization using Stanford's DSPy framework achieved 51.33% accuracy in structured data extraction from automotive complaints, challenging conventional prompt engineering approaches through rigorous scientific methodology.</p>
-      <span class="more">Read more →</span>
-    </a>
-
-    <!-- ML Trading Strategist Blog -->
-    <a href="/ai/finance/machine-learning/reinforcement-learning/2025/05/12/ml-trading-strategist-comparing-learning-approaches.html" class="blog-card">
-      <h3>Developing ML Trading Strategies: From Rule-Based Systems to Reinforcement Learning</h3>
-      <div class="thumbnail">
-        <img src="/assets/images/2025-05-12-ml-trading-strategist-comparing-learning-approaches.jpg" alt="ML Trading Strategist">
-      </div>
-      <p class="post-date">May 12, 2025</p>
-      <p class="description">Learn how different machine learning approaches can be applied to algorithmic trading, with a systematic comparison of traditional rule-based methods, supervised learning, and reinforcement learning strategies.</p>
-      <span class="more">Read more →</span>
-    </a>
-
-    <!-- NLP Earnings Report Blog -->
-    <a href="/nlp/finance/machine-learning/data-science/2025/05/09/nlp-earnings-report-analysis.html" class="blog-card">
-      <h3>Decoding Wall Street: How We Engineered an NLP System for Financial Disclosures</h3>
-      <div class="thumbnail">
-        <img src="/assets/images/2025-05-09-nlp-earnings-report-analysis.jpg" alt="NLP Earnings Report Analysis">
-      </div>
-      <p class="post-date">May 9, 2025</p>
-      <p class="description">Discover how advanced natural language processing techniques can extract valuable insights from financial earnings reports, combining traditional methods with transformer models for improved analysis and prediction.</p>
-      <span class="more">Read more →</span>
-    </a>
-    
-    <!-- YouTube Sentiment Analysis (December 15, 2024) -->
-    <a href="/nlp/machine-learning/transformers/2024/12/15/building-youtube-comment-sentiment-analyzer.html" class="blog-card">
-      <h3>Building a Production YouTube Sentiment Analysis Platform: From 114K Comments to Real-Time Intelligence</h3>
-      <div class="thumbnail">
-        <img src="/assets/images/2023-07-10-building-youtube-comment-sentiment-analyzer.jpg" alt="YouTube Sentiment Analysis">
-      </div>
-      <p class="post-date">Dec 15, 2024</p>
-      <p class="description">Chronicle the complete technical journey of transforming a traditional ML pipeline into a modern, transformer-powered sentiment analysis platform that processed 114,109+ YouTube comments with real-time inference on Streamlit Community Cloud.</p>
-      <span class="more">Read more →</span>
-    </a>
-    
-    
-
-  </div>
-  
-  <div class="read-more">
-    <a href="/blog/" class="heading flip-title">All Blog Posts →</a>
-  </div>
-</div>
-
-<style>
-/* Project Card Styles from projects-by-section.html */
-.projects-section-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 2rem;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-}
-
-.project-card-wrapper {
-  display: flex;
-  flex-direction: column;
-}
-
-.project-card {
-  display: block;
-  padding: 1.5rem;
-  border-radius: 8px 8px 0 0;
-  background: var(--card-bg, #fff);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  color: inherit;
-  text-decoration: none;
-  flex-grow: 1;
-  margin-bottom: 0;
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  text-decoration: none;
-}
-
-.project-card h3 {
-  margin-top: 0;
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-}
-
-.project-card .thumbnail {
-  margin-bottom: 1rem;
-  border-radius: 4px;
-  overflow: hidden;
-  background-color: #f5f5f5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 180px;
-}
-
-.project-card .thumbnail img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  max-height: 180px;
-}
-
-.project-card .description {
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-}
-
-.project-card .more {
-  font-weight: 500;
-  color: var(--accent-color);
-}
-
-.demo-button {
-  display: block;
-  text-align: center;
-  background-color: #ff4b4b;
-  color: white;
-  padding: 12px 10px;
-  border-radius: 0 0 8px 8px;
-  text-decoration: none;
-  font-weight: bold;
-  margin-top: -2px;
-  transition: background-color 0.2s ease;
-}
-
-.demo-button:hover {
-  background-color: #e43b3b;
-  color: white;
-}
-
-.demo-button i {
-  margin-right: 5px;
-}
-
-/* Blog Card Styles from blog.html */
-.blog-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 2rem;
-  margin-top: 2rem;
-}
-
-.blog-card {
-  display: block;
-  padding: 1.5rem;
-  border-radius: 8px;
-  background: var(--card-bg, #fff);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  color: inherit;
-  text-decoration: none;
-  height: 100%;
-}
-
-.blog-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  text-decoration: none;
-}
-
-.blog-card h3 {
-  margin-top: 0;
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-}
-
-.blog-card .thumbnail {
-  margin-bottom: 1rem;
-  border-radius: 4px;
-  overflow: hidden;
-  background-color: #f5f5f5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 180px;
-}
-
-.blog-card .thumbnail img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  max-height: 180px;
-}
-
-.blog-card .description {
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-}
-
-.blog-card .post-date {
-  font-size: 0.85rem;
-  color: #666;
-  margin: 0.5rem 0;
-}
-
-.blog-card .more {
-  font-weight: 500;
-  color: var(--accent-color);
-  display: inline-block;
-  margin-top: 0.5rem;
-}
-
-.section-divider {
-  height: 2px;
-  background: #eee;
-  margin: 3rem 0;
-}
-</style>
+</article>

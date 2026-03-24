@@ -1,59 +1,45 @@
 ---
 permalink: /404.html
-layout: page
+layout: base
 title: Page Not Found
-description: "Sorry, the page you were looking for doesn't exist."
-hide_description: true
+description: "The page you were looking for does not exist."
 sitemap: false
 ---
 
-<div class="page-not-found">
-  <h1 class="error-code">404</h1>
-  
-  <p class="lead">Sorry, we've misplaced that URL or it's pointing to something that doesn't exist anymore.</p>
-  
-  <hr class="divider">
-  
-  <p>Here are some helpful links instead:</p>
-  
-  <div class="helpful-links">
-    <a href="{{ '/' | relative_url }}" class="btn">Home</a>
-    <a href="{{ '/projects/' | relative_url }}" class="btn">Projects</a>
-    <a href="{{ '/about/' | relative_url }}" class="btn">About Me</a>
-    <a href="{{ '/contact/' | relative_url }}" class="btn">Contact</a>
-  </div>
+<script>
+  document.documentElement.classList.add('error-page');
+</script>
+
+<article class="page editorial-page editorial-page--error" role="article">
+<div class="editorial-shell error-shell">
+  <section class="editorial-hero editorial-hero--error" data-reveal>
+    <div class="editorial-hero__copy">
+      <p class="editorial-kicker">404</p>
+      <h1>This page is gone or the URL is wrong.</h1>
+      <p class="editorial-lead">
+        The best place to recover is the main portfolio path: start with projects, then use
+        the writing and contact pages if you were looking for deeper context.
+      </p>
+    </div>
+    <div class="editorial-hero__aside">
+      <div class="editorial-note">
+        <span class="editorial-note__label">Fastest recovery</span>
+        <p>The canonical portfolio layer is the Projects page. Most deeper surfaces branch from there.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="editorial-section" data-reveal>
+    <div class="editorial-section__header">
+      <p class="editorial-kicker">Where to go</p>
+      <h2>Use one of the main routes instead.</h2>
+    </div>
+    <div class="editorial-action-row">
+      <a href="{{ '/' | relative_url }}" class="home-button home-button--ghost">Home</a>
+      <a href="{{ '/projects/' | relative_url }}" class="home-button home-button--primary">Projects</a>
+      <a href="{{ '/blog/' | relative_url }}" class="home-button home-button--ghost">Blog</a>
+      <a href="{{ '/contact/' | relative_url }}" class="home-button home-button--ghost">Contact</a>
+    </div>
+  </section>
 </div>
-
-<style>
-.page-not-found {
-  text-align: center;
-  padding: 3rem 0;
-}
-
-.error-code {
-  font-size: 8rem;
-  font-weight: 700;
-  margin: 0;
-  background: linear-gradient(135deg, var(--accent-color) 0%, #4fb1ba 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.divider {
-  margin: 2rem auto;
-  width: 60px;
-  border-top: 4px solid var(--accent-color);
-}
-
-.helpful-links {
-  margin-top: 1.5rem;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.helpful-links .btn {
-  min-width: 120px;
-}
-</style>
+</article>

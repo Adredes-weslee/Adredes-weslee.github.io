@@ -1,103 +1,69 @@
 ---
-layout: page
+layout: base
 ---
 
-<div class="project-page">
-  <!-- Technology tags -->
+<div class="project-page editorial-shell">
+  <header class="project-page__header" data-reveal>
+    <p class="editorial-kicker">Project</p>
+    <h1 class="page-title">{{ page.title }}</h1>
+    {% if page.description %}<p class="editorial-lead">{{ page.description }}</p>{% endif %}
+  </header>
+
   {% if page.technologies %}
-  <p class="tech-stack">
-    {% for tech in page.technologies %}
-      <span class="tech-tag">{{ tech }}</span>
-    {% endfor %}
-  </p>
-  {% endif %}
-    <!-- Featured image -->
-  {% if page.image %}
-  <div class="lead project-featured-image">
-    <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="lead">
-  </div>
-  {% endif %}
-  
-  <!-- GitHub and Streamlit links -->
-  <p class="project-links">
-    {% if page.github %}
-    <a href="{{ page.github }}" class="btn" target="_blank" rel="noopener noreferrer">
-      <i class="fab fa-github"></i> View on GitHub
-    </a>
-    {% endif %}
-    
-    {% if page.streamlit_app %}
-    <a href="{{ page.streamlit_app }}" class="btn btn-streamlit" target="_blank" rel="noopener noreferrer">
-      <i class="fas fa-play-circle"></i> Live Demo
-    </a>
-    {% endif %}
-  </p>
-  
-  <!-- Main content -->
-  {{ content }}
-  
-  <!-- Project navigation -->
-  <div class="page-control">
-    <div>
-      <a class="btn btn-primary" href="{{ '/projects/' | relative_url }}">
-        ← All Projects
-      </a>
+    <div class="project-tech-stack" data-reveal>
+      {% for tech in page.technologies %}
+        <span class="tech-tag">{{ tech }}</span>
+      {% endfor %}
     </div>
+  {% endif %}
+
+  {% if page.image %}
+    <figure class="project-feature-panel" data-reveal>
+      <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+    </figure>
+  {% endif %}
+
+  {% if page.github or page.blog_post or page.streamlit_app or page.repo_private %}
+    <div class="project-link-row" data-reveal>
+      {% if page.streamlit_app %}
+        <a href="{{ page.streamlit_app }}" class="editorial-project-chip editorial-project-chip--demo project-link-chip" target="_blank" rel="noopener noreferrer">
+          Live Demo
+        </a>
+      {% endif %}
+
+      {% if page.blog_post %}
+        <a href="{{ page.blog_post | relative_url }}" class="editorial-project-chip editorial-project-chip--article project-link-chip">
+          Read article
+        </a>
+      {% endif %}
+
+      {% if page.github %}
+        <a href="{{ page.github }}" class="editorial-project-chip editorial-project-chip--repo project-link-chip" target="_blank" rel="noopener noreferrer">
+          Repo
+        </a>
+      {% elsif page.repo_private %}
+        <span class="editorial-project-chip editorial-project-chip--private project-link-chip project-link-chip--static" aria-disabled="true">
+          Private repo
+        </span>
+      {% endif %}
+    </div>
+
+    {% if page.repo_private %}
+      <p class="project-access-note" data-reveal>{{ page.repo_note | default: "Source code is private. The public project page and article cover the design decisions and evaluation approach." }}</p>
+    {% endif %}
+  {% endif %}
+
+  {% if page.image %}
+    <figure class="project-evidence-panel" data-reveal>
+      <img src="{{ page.image | replace: '/project-covers/', '/project-evidence/' | relative_url }}" alt="{{ page.title }} supporting evidence">
+    </figure>
+  {% endif %}
+
+  <div class="editorial-richtext project-richtext" data-reveal>
+    {{ content }}
+  </div>
+
+  <div class="project-footer-nav" data-reveal>
+    <a class="home-button home-button--ghost" href="{{ '/projects/' | relative_url }}">Back to all projects</a>
   </div>
 </div>
-
-<style>
-.tech-stack {
-  margin-bottom: 1rem;
-}
-
-.tech-tag {
-  display: inline-block;
-  background: rgba(0,0,0,0.05);
-  color: var(--body-color);
-  padding: 0.2rem 0.6rem;
-  border-radius: 3px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.github-link {
-  margin: 1.5rem 0;
-}
-
-.project-links a {
-  margin-right: 1rem;
-}
-
-.project-page h2 {
-  margin-top: 2.5rem;
-}
-
-.project-featured-image {
-  text-align: center;
-  margin-bottom: 2rem;
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  padding: 1rem;
-}
-
-.project-featured-image img {
-  max-width: 100%;
-  height: auto;
-  max-height: 500px;
-  object-fit: contain;
-}
-
-code {
-  background: rgba(0,0,0,0.05);
-  padding: 0.2em 0.4em;
-  border-radius: 3px;
-}
-
-.btn-streamlit {
-  background-color: #FF4B4B;
-  color: white;
-}
-</style>

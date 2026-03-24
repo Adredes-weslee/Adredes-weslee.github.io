@@ -2,186 +2,71 @@
 layout: base
 ---
 
-<article class="page" role="article">
-  <header>
+<article class="page editorial-page editorial-page--blog" role="article">
+  <header class="editorial-page__header">
     <h1 class="page-title">{{ page.title }}</h1>
     {% if page.description %}<p class="lead">{{ page.description }}</p>{% endif %}
   </header>
-  
+
   {{ content }}
-  
-  <div class="blog-container">
-    {% assign posts = site.posts | sort: "date" | reverse %}
-    
-    {% for post in posts %}
-      {% assign post_date = post.date | date: "%b %-d, %Y" %}
-      {% assign post_url = post.url | relative_url %}
-      {% assign post_slug = post.url | split: '/' | last | replace: '.html', '' %}
-      
-      <a href="{{ post_url }}" class="blog-card">
-        <h3>{{ post.title }}</h3>
-        
-        {% if post.feature_image %}
-          <div class="thumbnail">
-            <img src="{{ post.feature_image | relative_url }}" alt="{{ post.title }}">
+
+  {% assign posts = site.posts | sort: "date" | reverse %}
+  {% assign newest_post = posts | first %}
+  {% assign oldest_post = posts | last %}
+
+  <section class="editorial-section blog-featured-section" data-reveal>
+    <div class="editorial-section__header">
+      <p class="editorial-kicker">Featured reading</p>
+      <h2>Start with four recent articles.</h2>
+      <p>The top row is the fast entry point. The full archive sits below, grouped by year so it reads like an archive instead of one long feed.</p>
+    </div>
+
+    <div class="editorial-post-grid">
+      {% for post in posts limit: 4 %}
+        {% assign post_date = post.date | date: "%b %-d, %Y" %}
+        {% assign post_url = post.url | relative_url %}
+
+        <a href="{{ post_url }}" class="editorial-post-card" data-reveal>
+          {% if post.feature_image %}
+            <div class="editorial-post-card__media">
+              <img src="{{ post.feature_image | relative_url }}" alt="{{ post.title }}">
+            </div>
+          {% endif %}
+
+          <p class="editorial-post-card__date">{{ post_date }}</p>
+          <h3>{{ post.display_title | default: post.title }}</h3>
+          <p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 24 }}</p>
+          <span class="home-text-link">Read article</span>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="editorial-section blog-index-section" data-reveal>
+    <div class="editorial-section__header">
+      <p class="editorial-kicker">Archive</p>
+      <h2>Browse the full archive.</h2>
+      <p>{{ posts | size }} articles across {{ newest_post.date | date: "%Y" }} back to {{ oldest_post.date | date: "%Y" }}, organized newest-first inside yearly groups.</p>
+    </div>
+
+    {% assign posts_by_year = posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+    <div class="blog-archive-grid">
+      {% for year in posts_by_year %}
+        <section class="blog-archive-year" data-reveal>
+          <div class="blog-archive-year__meta">
+            <h3>{{ year.name }}</h3>
+            <span class="blog-archive-year__count">{{ year.items | size }} articles</span>
           </div>
-        {% endif %}
-        
-        <p class="post-date">{{ post_date }}</p>
-        
-        {% comment %} Custom descriptions based on post URLs {% endcomment %}
-        {% case post_url %}
-
-           {% when '/ai/finance/foundation-models/reinforcement-learning/2025/06/24/robo-advisor-risk-profiling-portfolio-optimization.html' %}
-            <p class="description">Pioneer the first known application of TabPFN foundation models for financial risk assessment while implementing dynamic investment objectives that revolutionize portfolio personalization, achieving R² > 0.85 risk prediction accuracy and 15-25% superior risk-adjusted returns across 9 strategy combinations.</p>
-
-          {% when '/epidemiology/forecasting/health-economics/2025/06/18/forecasting-dengue-cases-and-cost-benefit-analysis.html' %}
-            <p class="description">Learn how to transform epidemiological research into operational public health intelligence through production-ready forecasting systems, comprehensive cost-benefit analysis, and interactive policy dashboards for Singapore's dengue control program.</p>
-        
-          {% when '/ai/nlp/dspy/2025/06/13/dspy-prompt-optimization-automotive-intelligence.html' %}
-            <p class="description">Discover how systematic prompt optimization using Stanford's DSPy framework achieved 51.33% accuracy in structured data extraction from automotive complaints, challenging conventional prompt engineering approaches through rigorous scientific methodology.</p>
-        
-          {% when '/ai/finance/machine-learning/reinforcement-learning/2025/05/12/ml-trading-strategist-comparing-learning-approaches.html' %}
-            <p class="description">Learn how different machine learning approaches can be applied to algorithmic trading, with a systematic comparison of traditional rule-based methods, supervised learning, and reinforcement learning strategies.</p>
-          
-          {% when '/nlp/finance/machine-learning/data-science/2025/05/09/nlp-earnings-report-analysis.html' %}
-            <p class="description">Discover how advanced natural language processing techniques can extract valuable insights from financial earnings reports, combining traditional methods with transformer models for improved analysis and prediction.</p>
-          
-          {% when '/nlp/machine-learning/transformers/2024/12/15/building-youtube-comment-sentiment-analyzer.html' %}
-            <p class="description">Chronicle the complete technical journey of transforming a traditional ML pipeline into a modern, transformer-powered sentiment analysis platform that processed 114,109+ YouTube comments with real-time inference on Streamlit Community Cloud.</p>
-  
-          {% when '/ai/nlp/rag/2024/10/29/building-effective-rag-systems.html' %}
-            <p class="description">Explore key insights from implementing Retrieval-Augmented Generation systems in enterprise environments, focusing on practical implementation strategies and lessons learned.</p>
-          
-          {% when '/data-science/pricing-strategy/business-analytics/commercial-strategy/2024/08/15/customer-segmentation-price-optimization.html' %}
-            <p class="description">Learn how advanced clustering techniques, price elasticity modeling, and revenue optimization can transform commercial strategy and deliver tangible business impact for a distribution company.</p>
-          
-          {% when '/data-science/machine-learning/real-estate/2023/06/18/predicting-hdb-resale-prices.html' %}
-            <p class="description">Explore how machine learning can decode Singapore's unique public housing market, revealing key price drivers and providing practical insights for homebuyers and policymakers.</p>
-          
-          {% when '/data-science/climate/public-health/2023/05/15/predicting-heat-stress-with-wet-bulb-temperature.html' %}
-            <p class="description">Discover how combining heat and humidity measurements can better predict dangerous climate conditions and inform public health policy decisions in Singapore.</p>
-          
-          {% else %}
-            <p class="description">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
-        {% endcase %}
-        
-        <span class="more">Read more →</span>
-      </a>
-    {% endfor %}
-  </div>
-  
-  <div class="subscribe-section">
-    <h2>Subscribe</h2>
-    <p>Stay updated with my latest posts by connecting with me on <a href="https://www.linkedin.com/in/wes-lee/" target="_blank" rel="noopener">LinkedIn</a>.</p>
-  </div>
+          <div class="blog-archive-list">
+            {% for post in year.items %}
+              <a href="{{ post.url | relative_url }}" class="blog-archive-item">
+                <strong>{{ post.archive_title | default: post.display_title | default: post.title }}</strong>
+                <span>{{ post.date | date: "%b %-d" }} | {{ post.description | default: post.excerpt | strip_html | truncatewords: 16 }}</span>
+              </a>
+            {% endfor %}
+          </div>
+        </section>
+      {% endfor %}
+    </div>
+  </section>
 </article>
-
-<!-- CSS remains the same -->
-<style>
-.blog-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 2rem;
-  margin-top: 2rem;
-}
-
-.blog-card {
-  display: block;
-  padding: 1.5rem;
-  border-radius: 8px;
-  background: var(--card-bg, #fff);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  color: inherit;
-  text-decoration: none;
-  height: 100%;
-}
-
-.blog-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  text-decoration: none;
-}
-
-.blog-card h3 {
-  margin-top: 0;
-  margin-bottom: 1rem;
-}
-
-.blog-card .thumbnail {
-  margin-bottom: 1rem;
-  border-radius: 4px;
-  overflow: hidden;
-  background-color: #f5f5f5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 180px;
-}
-
-.blog-card .thumbnail img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  max-height: 180px;
-}
-
-.blog-card .description {
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-}
-
-.blog-card .post-date {
-  font-size: 0.85rem;
-  color: #666;
-  margin: 0.5rem 0;
-}
-
-.blog-card .more {
-  font-weight: 500;
-  color: var(--accent-color);
-  display: inline-block;
-  margin-top: 0.5rem;
-}
-
-/* Categories styling */
-.blog-categories {
-  margin-top: 3rem;
-  margin-bottom: 1rem;
-}
-
-.blog-categories h2 {
-  margin-bottom: 1rem;
-}
-
-.category-tag {
-  display: inline-block;
-  background: #f0f0f0;
-  padding: 0.3rem 0.8rem;
-  margin: 0.2rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  color: #333;
-  text-decoration: none;
-}
-
-.category-tag:hover {
-  background: #e0e0e0;
-  text-decoration: none;
-}
-
-/* Add styling for subscribe section */
-.subscribe-section {
-  margin-top: 3rem;
-  padding: 1.5rem;
-  background: var(--card-bg, #fff);
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  text-align: center;
-}
-
-.subscribe-section h2 {
-  margin-top: 0;
-}
-</style>

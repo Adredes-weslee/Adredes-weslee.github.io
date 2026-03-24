@@ -2,303 +2,227 @@
 layout: base
 ---
 
-<article class="page" role="article">
-  <header>
+<article class="page editorial-page editorial-page--projects" role="article">
+  <header class="editorial-page__header">
     <h1 class="page-title">{{ page.title }}</h1>
     {% if page.description %}<p class="lead">{{ page.description }}</p>{% endif %}
   </header>
-  
-  {% assign intro_content = page.content | split: '## LLM & NLP Projects' | first %}
-  {{ intro_content }}
-  
-  <h2 id="llm-nlp-projects">LLM & NLP Projects</h2>
-  <p>These projects showcase my work with large language models, transformer architectures, and natural language processing:</p>
-  
-  <div class="projects-section-container">
-    {% assign collection = site[page.show_collection] | sort: "date" | reverse %}
-    {% assign nlp_projects = "" | split: "" %}
-    
-    {% for project in collection %}
-      {% assign project_slug = project.url | split: '/' | last %}
-      {% if project_slug == "dspy-automotive-extractor" or project_slug == "nlp-earnings-analyzer" or project_slug == "rag-engine-project" or project_slug == "sentiment-analysis" %}
-        {% assign nlp_projects = nlp_projects | push: project %}
-      {% endif %}
-    {% endfor %}
-    
-    {% for project in nlp_projects %}
-      {% assign project_slug = project.url | split: '/' | last %}
-      <div class="project-card-wrapper">
-        <a href="{{ project.url | relative_url }}" class="project-card">
-          <h3>{{ project.title }}</h3>
-          {% if project.image %}
-            <div class="thumbnail">
-              <img src="{{ project.image | relative_url }}" alt="{{ project.title }}">
-            </div>
+
+  {{ content }}
+
+  {% assign collection = site[page.show_collection] | sort: "date" | reverse %}
+  {% assign flagship_slugs = "creator-ai|intelligent-content-analyzer|slidebench|robo-advisor-project" | split: "|" %}
+  {% assign supporting_slugs = "workforce-risk-intelligence|dspy-automotive-extractor|rag-engine-project" | split: "|" %}
+  {% assign platform_support_slugs = "nlp-earnings-analyzer|sentiment-analysis" | split: "|" %}
+  {% assign decision_support_slugs = "dengue-forecasting|agentive-inventory|customer-segmentation" | split: "|" %}
+  {% assign applied_support_slugs = "elliptic-gnn-project|ml-trading-strategist|hdb-resale-prices|wet-bulb-temperature" | split: "|" %}
+
+  <section class="editorial-section projects-section-index" data-reveal>
+    <div class="editorial-section__header">
+      <p class="editorial-kicker">Start here</p>
+      <h2>Four flagship case studies that best represent the portfolio right now.</h2>
+      <p>These are the strongest signals for platform architecture, evaluation discipline, and operator-facing product work.</p>
+    </div>
+    <div class="editorial-project-grid">
+      {% for desired_slug in flagship_slugs %}
+        {% for project in collection %}
+          {% assign project_slug = project.url | split: '/' | last %}
+          {% if project_slug == desired_slug %}
+            <a href="{{ project.url | relative_url }}" class="editorial-project-card" data-reveal>
+              {% if project.image %}
+                <div class="editorial-project-card__media">
+                  <img src="{{ project.image | relative_url }}" alt="{{ project.title }}">
+                </div>
+              {% endif %}
+              <p class="editorial-project-card__label">Flagship case study</p>
+              <h3>{{ project.title }}</h3>
+              {% case project_slug %}
+                {% when 'creator-ai' %}
+                  <p>Backend-first orchestration platform for AI-generated learning assets with quality gates, retrieval, and human review.</p>
+                {% when 'slidebench' %}
+                  <p>Evaluation workbench for AI-generated slides and learning artifacts using retrieval, provenance checks, and judge-assisted scoring.</p>
+                {% when 'robo-advisor-project' %}
+                  <p>Foundation-model risk profiling and objective-aware portfolio optimization in one advisory surface.</p>
+                {% when 'intelligent-content-analyzer' %}
+                  <p>Document upload, retrieval, generation, and evaluation decomposed into a service-oriented product stack.</p>
+              {% endcase %}
+              <div class="editorial-project-card__status">
+                {% if project.streamlit_app %}<span class="editorial-project-chip editorial-project-chip--demo">Live demo</span>{% endif %}
+                {% if project.blog_post %}<span class="editorial-project-chip editorial-project-chip--article">Article</span>{% endif %}
+                {% if project.repo_private %}<span class="editorial-project-chip editorial-project-chip--private">Private repo</span>{% elsif project.github %}<span class="editorial-project-chip editorial-project-chip--repo">Repo</span>{% endif %}
+              </div>
+              <span class="home-text-link">Open project</span>
+            </a>
           {% endif %}
-          
-          {% case project_slug %}
-            {% when 'dspy-automotive-extractor' %}
-              <p class="description">Systematic prompt optimization using DSPy framework for structured data extraction from automotive complaints</p>
-            {% when 'nlp-earnings-analyzer' %}
-              <p class="description">Financial text analysis combining traditional NLP and transformer models for earnings reports</p>
-            {% when 'rag-engine-project' %}
-              <p class="description">Containerized document QA system with hybrid embedding models and self-hosted inference</p>
-            {% when 'sentiment-analysis' %}
-              <p class="description">Production-ready platform that processed 114,109+ YouTube comments with transformer-powered intelligence</p>
-            {% else %}
-              <p class="description">{{ project.content | strip_html | truncatewords: 30 }}</p>
-          {% endcase %}
-          
-          <span class="more">Read more →</span>
-        </a>
-        
-        {% if project_slug == "dspy-automotive-extractor" %}
-          <a href="https://adredes-weslee-dspy-automotive-extractor-srcapp-cloud-fbfbhk.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-play-circle"></i> Try Interactive Demo
-          </a>
-        {% endif %}
-        
-        {% if project_slug == "nlp-earnings-analyzer" %}
-          <a href="https://adredes-weslee-nlp-earnings-report-streamlit-app-0uttcu.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-play-circle"></i> Try Interactive Demo
-          </a>
-        {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </section>
 
-        {% if project_slug == "sentiment-analysis" %}
-          <a href="https://adredes-weslee-sentiment-analysis-and-nlp-f-dashboardapp-kqphrr.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-play-circle"></i> Try Interactive Demo
-          </a>
-        {% endif %}
-
-      </div>
-    {% endfor %}
-  </div>
-  
-  <h2 id="machine-learning-ai-applications">Machine Learning & AI Applications</h2>
-  <p>Projects demonstrating various ML techniques and domain applications:</p>
-  
-  <div class="projects-section-container">
-    {% assign ml_projects = "" | split: "" %}
-    
-    {% for project in collection %}
-      {% assign project_slug = project.url | split: '/' | last %}
-      {% if project_slug == "ml-trading-strategist" or project_slug == "robo-advisor-project" or project_slug == "hdb-resale-prices" or project_slug == "wet-bulb-temperature" %}
-        {% assign ml_projects = ml_projects | push: project %}
-      {% endif %}
-    {% endfor %}
-    
-    {% for project in ml_projects %}
-      {% assign project_slug = project.url | split: '/' | last %}
-      <div class="project-card-wrapper">
-        <a href="{{ project.url | relative_url }}" class="project-card">
-          <h3>{{ project.title }}</h3>
-          {% if project.image %}
-            <div class="thumbnail">
-              <img src="{{ project.image | relative_url }}" alt="{{ project.title }}">
-            </div>
+  <section class="editorial-section projects-section-index" data-reveal>
+    <div class="editorial-section__header">
+      <p class="editorial-kicker">Supporting 3</p>
+      <h2>Three supporting systems that add depth around current platform, evaluation, and knowledge-work themes.</h2>
+      <p>This tier keeps the portfolio broad without diluting the flagship set: one private workforce system, one public LLM evaluation system, and one public enterprise RAG stack.</p>
+    </div>
+    <div class="editorial-project-grid">
+      {% for desired_slug in supporting_slugs %}
+        {% for project in collection %}
+          {% assign project_slug = project.url | split: '/' | last %}
+          {% if project_slug == desired_slug %}
+            <a href="{{ project.url | relative_url }}" class="editorial-project-card" data-reveal>
+              {% if project.image %}
+                <div class="editorial-project-card__media">
+                  <img src="{{ project.image | relative_url }}" alt="{{ project.title }}">
+                </div>
+              {% endif %}
+              <p class="editorial-project-card__label">Supporting case study</p>
+              <h3>{{ project.title }}</h3>
+              {% case project_slug %}
+                {% when 'workforce-risk-intelligence' %}
+                  <p>Public-signal intelligence workflow for workforce-risk monitoring, retrenchment forecasting, and operator dashboards.</p>
+                {% when 'dspy-automotive-extractor' %}
+                  <p>Prompt optimization turned into a measured engineering loop with structured evaluation and local inference.</p>
+                {% when 'rag-engine-project' %}
+                  <p>Enterprise document QA built for privacy, local deployment, and mixed code-plus-text retrieval.</p>
+              {% endcase %}
+              <div class="editorial-project-card__status">
+                {% if project.streamlit_app %}<span class="editorial-project-chip editorial-project-chip--demo">Live demo</span>{% endif %}
+                {% if project.blog_post %}<span class="editorial-project-chip editorial-project-chip--article">Article</span>{% endif %}
+                {% if project.repo_private %}<span class="editorial-project-chip editorial-project-chip--private">Private repo</span>{% elsif project.github %}<span class="editorial-project-chip editorial-project-chip--repo">Repo</span>{% endif %}
+              </div>
+              <span class="home-text-link">Open project</span>
+            </a>
           {% endif %}
-          
-          {% case project_slug %}
-            {% when 'ml-trading-strategist' %}
-              <p class="description">Algorithmic trading framework comparing rule-based, tree-ensemble, and reinforcement learning approaches</p>
-            {% when 'robo-advisor-project' %}
-              <p class="description">Pioneer TabPFN foundation models for risk assessment with 9 dynamic investment objectives delivering 15-25% superior risk-adjusted returns</p>
-            {% when 'hdb-resale-prices' %}
-              <p class="description">Advanced regression modeling for Singapore's housing market</p>
-            {% when 'wet-bulb-temperature' %}
-              <p class="description">Climate data modeling for heat stress prediction</p>
-            {% else %}
-              <p class="description">{{ project.content | strip_html | truncatewords: 30 }}</p>
-          {% endcase %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </section>
 
-          <span class="more">Read more →</span>
-        </a>
-
-        {% if project_slug == "ml-trading-strategist" %}
-          <a href="https://adredes-weslee-ml-trading-strategist-app-pu7qym.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-play-circle"></i> Try Interactive Demo
-          </a>
-        {% endif %}
-
-        {% if project_slug == "robo-advisor-project" %}
-          <a href="https://adredes-weslee-using-artificial-intelligenc-dashboardapp-juewyb.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-robot"></i> Try Interactive Demo
-          </a>
-        {% endif %}
-
-        {% if project_slug == "hdb-resale-prices" %}
-          <a href="https://adredes-weslee-making-predictions-on-hdb-resale-pric-app-iwznz4.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-play-circle"></i> Try Interactive Demo
-          </a>
-        {% endif %}
-        
-        {% if project_slug == "wet-bulb-temperature" %}
-          <a href="https://adredes-weslee-data-analysis-of-wet-bulb-te-dashboardapp-mwqkey.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-play-circle"></i> Try Interactive Demo
-          </a>
-        {% endif %}
-      </div>
-    {% endfor %}
-  </div>
-  
-  <h2 id="data-science-business-analytics">Data Science & Business Analytics</h2>
-  <p>Projects focused on extracting insights and delivering business value:</p>
-
-  <div class="projects-section-container">
-    {% assign ds_projects = "" | split: "" %}
-    
-    {% for project in collection %}
-      {% assign project_slug = project.url | split: '/' | last %}
-      {% if project_slug == "customer-segmentation" or project_slug == "dengue-forecasting" %}
-        {% assign ds_projects = ds_projects | push: project %}
-      {% endif %}
-    {% endfor %}
-    
-    {% for project in ds_projects %}
-      {% assign project_slug = project.url | split: '/' | last %}
-      <div class="project-card-wrapper">
-        <a href="{{ project.url | relative_url }}" class="project-card">
-          <h3>{{ project.title }}</h3>
-          {% if project.image %}
-            <div class="thumbnail">
-              <img src="{{ project.image | relative_url }}" alt="{{ project.title }}">
-            </div>
+  <section class="editorial-section projects-section-index" data-reveal>
+    <div class="editorial-section__header">
+      <p class="editorial-kicker">Supporting platform and language systems</p>
+      <h2>Narrower NLP and language applications beyond the flagship and supporting sets.</h2>
+    </div>
+    <div class="editorial-project-grid">
+      {% for desired_slug in platform_support_slugs %}
+        {% for project in collection %}
+          {% assign project_slug = project.url | split: '/' | last %}
+          {% if project_slug == desired_slug %}
+            <a href="{{ project.url | relative_url }}" class="editorial-project-card" data-reveal>
+              {% if project.image %}
+                <div class="editorial-project-card__media">
+                  <img src="{{ project.image | relative_url }}" alt="{{ project.title }}">
+                </div>
+              {% endif %}
+              <p class="editorial-project-card__label">Language systems</p>
+              <h3>{{ project.title }}</h3>
+              {% case project_slug %}
+                {% when 'nlp-earnings-analyzer' %}
+                  <p>Financial earnings report intelligence using traditional NLP and transformer-based analysis.</p>
+                {% when 'sentiment-analysis' %}
+                  <p>YouTube comment intelligence with transformer-powered sentiment analysis at production scale.</p>
+              {% endcase %}
+              <div class="editorial-project-card__status">
+                {% if project.streamlit_app %}<span class="editorial-project-chip editorial-project-chip--demo">Live demo</span>{% endif %}
+                {% if project.blog_post %}<span class="editorial-project-chip editorial-project-chip--article">Article</span>{% endif %}
+                {% if project.repo_private %}<span class="editorial-project-chip editorial-project-chip--private">Private repo</span>{% elsif project.github %}<span class="editorial-project-chip editorial-project-chip--repo">Repo</span>{% endif %}
+              </div>
+              <span class="home-text-link">Open project</span>
+            </a>
           {% endif %}
-          
-          {% case project_slug %}
-            {% when 'customer-segmentation' %}
-              <p class="description">RFM analysis and revenue optimization for frozen food distributor</p>
-            {% when 'dengue-forecasting' %}
-              <p class="description">Time series analysis with health intervention cost-benefit analysis</p>
-            {% else %}
-              <p class="description">{{ project.content | strip_html | truncatewords: 30 }}</p>
-          {% endcase %}
-          
-          <span class="more">Read more →</span>
-        </a>
-        
-        {% if project_slug == "customer-segmentation" %}
-          <a href="https://adredes-weslee-price-optimization-streamlitapp-yxjoe3.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-play-circle"></i> Try Interactive Demo
-          </a>
-        {% endif %}
-        
-        {% if project_slug == "dengue-forecasting" %}
-          <a href="https://adredes-weslee-dengue-case-prediction-and-c-dashboardapp-aszwww.streamlit.app/" class="demo-button" target="_blank" rel="noopener noreferrer">
-            <i class="fas fa-play-circle"></i> Try Interactive Demo
-          </a>
-        {% endif %}
-      </div>
-    {% endfor %}
-  </div>
-  
-  <h2 id="technical-skills-demonstrated">Technical Skills Demonstrated</h2>
-  <ul>
-    <li><strong>Machine Learning:</strong> Classification, regression, clustering, time series forecasting, deep learning</li>
-    <li><strong>NLP & LLMs:</strong> RAG systems, prompt tuning/optimization, fine-tuning, embedding techniques, sentiment analysis</li>
-    <li><strong>MLOps:</strong> Docker, Kubernetes, MLflow, observability, deployment pipelines</li>
-    <li><strong>Data Analysis:</strong> Feature engineering, statistical modeling, visualization</li>
-    <li><strong>Business Impact:</strong> Cost-benefit analysis, revenue optimization, actionable insights</li>
-  </ul>
-  
-  <h2 id="project-methodology">Project Methodology</h2>
-  <p>All projects follow a structured development approach:</p>
-  <ol>
-    <li><strong>Problem Definition</strong> - Clear objectives and success metrics</li>
-    <li><strong>Data Collection & Processing</strong> - Rigorous cleaning, transformation, and feature engineering</li>
-    <li><strong>Model Development</strong> - Iterative training, validation, and hyperparameter tuning</li>
-    <li><strong>Evaluation</strong> - Comprehensive testing using appropriate metrics</li>
-    <li><strong>Deployment & Documentation</strong> - Production-ready code with clear documentation</li>
-  </ol>
-  
-  <p>Interested in collaborating on a project? Feel free to <a href="/contact/">contact me</a> to discuss potential opportunities.</p>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="editorial-section projects-section-index" data-reveal>
+    <div class="editorial-section__header">
+      <p class="editorial-kicker">Decision systems and planning</p>
+      <h2>Forecasting, optimization, and decision support tied to action beyond the top set.</h2>
+    </div>
+    <div class="editorial-project-grid">
+      {% for desired_slug in decision_support_slugs %}
+        {% for project in collection %}
+          {% assign project_slug = project.url | split: '/' | last %}
+          {% if project_slug == desired_slug %}
+            <a href="{{ project.url | relative_url }}" class="editorial-project-card" data-reveal>
+              {% if project.image %}
+                <div class="editorial-project-card__media">
+                  <img src="{{ project.image | relative_url }}" alt="{{ project.title }}">
+                </div>
+              {% endif %}
+              <p class="editorial-project-card__label">Decision support</p>
+              <h3>{{ project.title }}</h3>
+              {% case project_slug %}
+                {% when 'dengue-forecasting' %}
+                  <p>Time-series forecasting and health economics for intervention planning.</p>
+                {% when 'agentive-inventory' %}
+                  <p>Forecast-driven inventory planning with approvals, procurement guardrails, and auditability.</p>
+                {% when 'customer-segmentation' %}
+                  <p>Segmentation, price elasticity, and commercial strategy analysis for revenue optimization.</p>
+              {% endcase %}
+              <div class="editorial-project-card__status">
+                {% if project.streamlit_app %}<span class="editorial-project-chip editorial-project-chip--demo">Live demo</span>{% endif %}
+                {% if project.blog_post %}<span class="editorial-project-chip editorial-project-chip--article">Article</span>{% endif %}
+                {% if project.repo_private %}<span class="editorial-project-chip editorial-project-chip--private">Private repo</span>{% elsif project.github %}<span class="editorial-project-chip editorial-project-chip--repo">Repo</span>{% endif %}
+              </div>
+              <span class="home-text-link">Open project</span>
+            </a>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="editorial-section projects-section-index" data-reveal>
+    <div class="editorial-section__header">
+      <p class="editorial-kicker">Applied ML studies</p>
+      <h2>Modeling work that broadens the range of the portfolio further.</h2>
+    </div>
+    <div class="editorial-project-grid">
+      {% for desired_slug in applied_support_slugs %}
+        {% for project in collection %}
+          {% assign project_slug = project.url | split: '/' | last %}
+          {% if project_slug == desired_slug %}
+            <a href="{{ project.url | relative_url }}" class="editorial-project-card" data-reveal>
+              {% if project.image %}
+                <div class="editorial-project-card__media">
+                  <img src="{{ project.image | relative_url }}" alt="{{ project.title }}">
+                </div>
+              {% endif %}
+              <p class="editorial-project-card__label">Applied ML</p>
+              <h3>{{ project.title }}</h3>
+              {% case project_slug %}
+                {% when 'elliptic-gnn-project' %}
+                  <p>Leakage-safe graph learning for illicit transaction detection with operational evaluation metrics.</p>
+                {% when 'ml-trading-strategist' %}
+                  <p>Algorithmic trading across rule-based, tree-ensemble, and reinforcement learning approaches.</p>
+                {% when 'hdb-resale-prices' %}
+                  <p>Regression modeling for Singapore public housing price behavior.</p>
+                {% when 'wet-bulb-temperature' %}
+                  <p>Climate resilience analysis through wet-bulb temperature modeling and heat-stress interpretation.</p>
+              {% endcase %}
+              <div class="editorial-project-card__status">
+                {% if project.streamlit_app %}<span class="editorial-project-chip editorial-project-chip--demo">Live demo</span>{% endif %}
+                {% if project.blog_post %}<span class="editorial-project-chip editorial-project-chip--article">Article</span>{% endif %}
+                {% if project.repo_private %}<span class="editorial-project-chip editorial-project-chip--private">Private repo</span>{% elsif project.github %}<span class="editorial-project-chip editorial-project-chip--repo">Repo</span>{% endif %}
+              </div>
+              <span class="home-text-link">Open project</span>
+            </a>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="editorial-cta" data-reveal>
+    <p class="editorial-kicker">Next step</p>
+    <h2>Each project page links deeper into code, articles, and demos where available.</h2>
+    <p>Use the project pages as the main portfolio layer. The live demos page remains a secondary index for browsing interactive surfaces only.</p>
+    <div class="editorial-action-row">
+      <a href="/contact/" class="home-button home-button--primary">Get in touch</a>
+      <a href="/streamlit-apps/" class="home-button home-button--ghost">Browse live demos</a>
+    </div>
+  </section>
 </article>
-
-<style>
-.projects-section-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 2rem;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-}
-
-.project-card-wrapper {
-  display: flex;
-  flex-direction: column;
-}
-
-.project-card {
-  display: block;
-  padding: 1.5rem;
-  border-radius: 8px 8px 0 0;
-  background: var(--card-bg, #fff);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  color: inherit;
-  text-decoration: none;
-  flex-grow: 1;
-  margin-bottom: 0;
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  text-decoration: none;
-}
-
-.project-card h3 {
-  margin-top: 0;
-  margin-bottom: 1rem;
-}
-
-.project-card .thumbnail {
-  margin-bottom: 1rem;
-  border-radius: 4px;
-  overflow: hidden;
-  background-color: #f5f5f5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 180px;
-}
-
-.project-card .thumbnail img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  max-height: 180px;
-}
-
-.project-card .description {
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-}
-
-.project-card .more {
-  font-weight: 500;
-  color: var(--accent-color);
-}
-
-.demo-button {
-  display: block;
-  text-align: center;
-  background-color: #ff4b4b;
-  color: white;
-  padding: 12px 10px;
-  border-radius: 0 0 8px 8px;
-  text-decoration: none;
-  font-weight: bold;
-  margin-top: -2px;
-  transition: background-color 0.2s ease;
-}
-
-.demo-button:hover {
-  background-color: #e43b3b;
-  color: white;
-}
-
-.demo-button i {
-  margin-right: 5px;
-}
-</style>

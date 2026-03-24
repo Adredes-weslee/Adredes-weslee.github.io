@@ -18,3 +18,14 @@ vendor/bundle/
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+
+# Local-only workspace files
+repos/
+about_old.md
+Wes_Lee_Resume.pdf
+output/
+_site_check/
+serve-out.log
+serve-err.log
+__pycache__/
+*.pyc
