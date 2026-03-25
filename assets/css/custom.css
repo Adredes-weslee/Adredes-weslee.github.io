@@ -1949,6 +1949,30 @@ html.home-landing-page body {
   }
 }
 
+@media (min-width: 1200px) and (max-width: 1580px) {
+  .home-hero {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+  }
+
+  .home-hero__copy {
+    max-width: none;
+  }
+
+  .home-hero__visual {
+    gap: 0.9rem;
+  }
+
+  .home-hero__frame img {
+    aspect-ratio: 1.34;
+  }
+
+  .home-hero__label-row {
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+}
+
 @media (min-width: 1600px) {
   .home-hero {
     gap: clamp(2.5rem, 4vw, 4rem);
