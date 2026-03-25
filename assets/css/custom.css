@@ -1907,13 +1907,71 @@ html.home-landing-page body {
     display: none !important;
   }
 
+  #_sidebar .sidebar-bg.sidebar-overlay {
+    background-position: center bottom !important;
+    background-repeat: no-repeat !important;
+    background-size: auto 100% !important;
+  }
+
   main.content[class*="layout-"] {
-    width: min(1100px, calc(100vw - 31rem)) !important;
+    width: min(1660px, calc(100vw - clamp(360px, 22vw, 420px) - clamp(36px, 4vw, 80px) - clamp(36px, 4vw, 80px))) !important;
     max-width: none !important;
-    margin-left: 400px !important;
-    margin-right: auto !important;
-    padding-left: 16px !important;
-    padding-right: 16px !important;
+    margin-left: clamp(360px, 22vw, 420px) !important;
+    margin-right: clamp(36px, 4vw, 80px) !important;
+    padding-left: clamp(18px, 1.6vw, 28px) !important;
+    padding-right: clamp(18px, 1.6vw, 28px) !important;
+  }
+
+  .home-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 38rem);
+  }
+
+  .home-hero__copy {
+    max-width: 48rem;
+  }
+
+  .home-hero__frame {
+    padding: 1rem;
+  }
+
+  .home-hero__frame img {
+    aspect-ratio: 1.18;
+  }
+
+  .home-hero__visual {
+    gap: 1.1rem;
+  }
+
+  .home-feature-grid,
+  .home-writing-grid {
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1600px) {
+  .home-hero {
+    gap: clamp(2.5rem, 4vw, 4rem);
+    padding: clamp(2rem, 3vw, 3rem);
+  }
+
+  .home-hero__frame img {
+    aspect-ratio: 1.24;
+  }
+
+  .home-feature {
+    padding: 1.5rem;
+  }
+
+  .home-writing {
+    padding: 1.2rem;
+  }
+}
+
+@media (max-width: 1199px) {
+  #_sidebar .sidebar-bg.sidebar-overlay {
+    background-position: center bottom !important;
+    background-repeat: no-repeat !important;
+    background-size: auto 100% !important;
   }
 }
 

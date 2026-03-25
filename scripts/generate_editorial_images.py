@@ -399,7 +399,7 @@ def compose_sidebar_background() -> None:
 
     draw.ellipse((width - 480, 80, width + 120, 680), fill=(255, 139, 43, 34))
     draw.ellipse((-240, height - 760, 340, height - 140), fill=(255, 255, 255, 20))
-    draw.rounded_rectangle((84, 1140, 1316, 1836), radius=56, fill=(7, 20, 24, 72), outline=(255, 255, 255, 14), width=2)
+    draw.rounded_rectangle((84, 980, 1316, 1764), radius=56, fill=(7, 20, 24, 72), outline=(255, 255, 255, 14), width=2)
     canvas.alpha_composite(overlay)
 
     muted_covers = [
@@ -407,8 +407,8 @@ def compose_sidebar_background() -> None:
         PROJECT_COVERS_DIR / "dspy-automotive-extractor.jpg",
         PROJECT_COVERS_DIR / "rag-engine-project.jpg",
     ]
-    positions = [(170, 1180), (290, 1330), (140, 1490)]
-    sizes = [(940, 420), (860, 380), (920, 400)]
+    positions = [(164, 1010), (300, 1170), (132, 1330)]
+    sizes = [(900, 392), (820, 352), (880, 372)]
 
     for path, position, size in zip(muted_covers, positions, sizes):
         if not path.exists():
