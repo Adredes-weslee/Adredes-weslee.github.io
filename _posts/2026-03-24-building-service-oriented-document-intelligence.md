@@ -16,7 +16,7 @@ This project was built around that gap. Instead of packaging upload, retrieval, 
 
 > Related: For the concise portfolio summary, see the [Intelligent Content Analyzer project page](/projects/intelligent-content-analyzer/).
 >
-> Demo: The public interface is available [here](https://adredes-weslee-intelligent-content-analyzer-uiapp-stwg9a.streamlit.app/).
+> Demo: The public interface is available [here](https://adredes-weslee-intelligent-content-analyzer-uiapp-stwg9a.streamlit.app/). That public surface is the Streamlit UI shell; the fuller service-backed mode in the repo still runs behind the gateway and microservice stack.
 
 ## The first architectural decision: keep the gateway thin and the services explicit
 

@@ -17,7 +17,7 @@ Students and knowledge workers often need more than a single question-answering 
 
 ## Outcome
 
-- Provides a live API gateway and Streamlit UI for upload, question answering, and summarization.
+- Provides a public Streamlit UI surface for upload, question answering, and summarization, with the fuller gateway-backed mode available in the repo's service stack.
 - Uses hybrid retrieval, optional reranking, optional Redis cache, and optional Langfuse tracing.
 - Supports both local single-process mode and multi-service HTTP mode.
 - Preserves the query language in the response path where possible, which makes the system more usable across multilingual inputs.
@@ -31,10 +31,10 @@ Students and knowledge workers often need more than a single question-answering 
 
 ## System design
 
-An API gateway orchestrates upload, retrieval, QA, and summary routes. Ingest services parse and chunk documents, retrieval blends sparse and dense search with FAISS, generation handles answer and summary prompts, and evaluation services compute confidence-oriented signals for the UI and API.
+An API gateway orchestrates upload, retrieval, QA, and summary routes. Ingest services parse and chunk documents, retrieval blends sparse and dense search with FAISS, generation handles answer and summary prompts, and evaluation services compute confidence-oriented signals for the UI and API. The public demo exposes the Streamlit UI shell, while the full service-backed deployment path remains the stronger proof of architecture.
 
 ## Stack
 
-- FastAPI microservices, Streamlit UI, and Docker Compose
+- FastAPI microservices, Streamlit UI shell, and Docker Compose
 - FAISS, Redis, Langfuse, and hybrid retrieval components
 - Dedicated services for ingestion, retrieval, generation, and evaluation

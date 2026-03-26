@@ -19,7 +19,7 @@ Earnings reports are dense, repetitive, and full of signals that are hard to com
 
 - Built an end-to-end workflow from data processing to embeddings, sentiment, topic modeling, feature extraction, and modeling.
 - Combined finance-specific lexicons with transformer-based methods instead of relying on generic sentiment tooling.
-- Added an interactive dashboard for exploratory analysis and model review.
+- Added an interactive dashboard for exploratory analysis and model review, with a lean public demo surface and a heavier local research stack.
 - Included data and experiment versioning so the analysis can be reproduced.
 
 ## Key decisions
@@ -31,10 +31,10 @@ Earnings reports are dense, repetitive, and full of signals that are hard to com
 
 ## System design
 
-Reports are collected, cleaned, and transformed into multiple analysis paths for lexicon-based sentiment, transformer inference, topic discovery, feature extraction, and modeling. Those outputs are then surfaced through the dashboard for comparison and exploratory review.
+Reports are collected, cleaned, and transformed into multiple analysis paths for lexicon-based sentiment, transformer inference, topic discovery, feature extraction, and modeling. Those outputs are then surfaced through the dashboard for comparison and exploratory review. The public Streamlit surface stays lightweight, while the verified full local dashboard path uses the repo's Conda environment to support the heavier NLP stack cleanly.
 
 ## Stack
 
 - Python, scikit-learn, transformers, BERTopic, and finance-domain lexicons
-- Streamlit for interactive analysis
+- Streamlit for interactive analysis, with `environment.yaml` as the verified full local run path
 - Topic modeling, feature extraction, and experiment versioning utilities

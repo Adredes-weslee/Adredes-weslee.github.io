@@ -12,19 +12,21 @@ archive_title: "NLP for Financial Disclosures"
 
 ## The Challenge: Unlocking Insights from Financial Texts
 
-Financial earnings reports contain critical information that drives stock prices, but their dense, unstructured nature makes systematic analysis extraordinarily challenging. Traditional manual processing is inconsistent, subjective, and cannot scale to handle the thousands of quarterly reports released each earnings season. Moreover, financial language has unique characteristics that standard NLP tools struggle with—domain-specific terminology, nuanced sentiment patterns, and complex numerical relationships embedded in natural language.
+Financial earnings reports contain critical information that drives stock prices, but their dense, unstructured nature makes systematic analysis extraordinarily challenging. Traditional manual processing is inconsistent, subjective, and cannot scale to handle the thousands of quarterly reports released each earnings season. Moreover, financial language has unique characteristics that standard NLP tools struggle with: domain-specific terminology, nuanced sentiment patterns, and complex numerical relationships embedded in natural language.
 
 This blog post takes you deep into the engineering journey behind a sophisticated Natural Language Processing system designed specifically for financial earnings analysis. We'll explore the technical decisions, implementation challenges, and novel solutions that enable automated extraction of actionable insights from earnings announcements.
 
-> For a comprehensive business overview of this platform, including strategic value propositions, ROI analysis, and market positioning, visit the [*FinSight NLP: The Earnings Report Intelligence Platform* Project Page](/projects/nlp-earnings-analyzer/). This post focuses on the technical implementation and engineering innovations.
+> Related: For the concise portfolio summary, see the [Earnings Report Intelligence Platform project page](/projects/nlp-earnings-analyzer/).
+>
+> Demo: The public Streamlit surface is available [here](https://adredes-weslee-nlp-earnings-report-streamlit-app-0uttcu.streamlit.app/). The verified full local dashboard path uses the repo's `environment.yaml` / Python 3.11 Conda environment; the lighter `requirements.txt` path is better treated as the hosted-style surface, not the preferred Windows full-stack route.
 
 
 <div class="callout interactive-demo">
-  <h4><i class="fas fa-rocket"></i> Try It Yourself!</h4>
-  <p>Want to analyze earnings reports and extract key insights in real-time? Check out the interactive Streamlit application:</p>
-  <a href="https://adredes-weslee-nlp-earnings-report-streamlit-app-0uttcu.streamlit.app/" class="callout-button" target="_blank" rel="noopener noreferrer">
-    <i class="fas fa-play-circle"></i> Launch Interactive Demo
-  </a>
+  <h4><i class="fas fa-rocket"></i> Try It Yourself!</h4>
+  <p>Want to analyze earnings reports and extract key insights in real time? The public Streamlit demo exposes the lighter interactive surface, while the full local dashboard stack is best run from the repo's Conda environment.</p>
+  <a href="https://adredes-weslee-nlp-earnings-report-streamlit-app-0uttcu.streamlit.app/" class="callout-button" target="_blank" rel="noopener noreferrer">
+    <i class="fas fa-play-circle"></i> Launch Interactive Demo
+  </a>
 </div>
 
 ## Engineering the Financial NLP Pipeline: Technical Deep Dive
@@ -48,10 +50,10 @@ Our architecture follows a four-layer design optimized for both development flex
 ```python
 # Simplified system flow
 pipeline = DataPipeline(data_path=RAW_DATA_PATH)
-→ text_processor = TextProcessor(financial_optimized=True)  
-→ nlp_engine = NLPProcessor(embedding_method='transformer')
-→ model_trainer = ModelTrainer(cross_validation=True)
-→ dashboard = EarningsReportDashboard(models=trained_models)
+-> text_processor = TextProcessor(financial_optimized=True)
+-> nlp_engine = NLPProcessor(embedding_method='transformer')
+-> model_trainer = ModelTrainer(cross_validation=True)
+-> dashboard = EarningsReportDashboard(models=trained_models)
 ```
 
 #### Layer 1: Data Intelligence with Version Control
