@@ -109,6 +109,7 @@ collections:
 exclude:
   - .sass-cache/
   - .jekyll-cache/
+  - output/
   - repos/
   - about_old.md
   - Wes_Lee_Resume.pdf
