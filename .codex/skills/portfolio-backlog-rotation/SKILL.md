@@ -38,11 +38,12 @@ Do not use this skill when:
    - newly relevant to current positioning
 2. Clone or refresh the repos locally if needed.
 3. Inspect the real codebase, not just the README.
-4. Classify each repo as:
+4. Inspect the existing website surfaces too, so the decision considers repo quality and current public representation together.
+5. Classify each repo as:
    - `promote`
    - `refresh`
    - `defer`
-5. If work is justified, update:
+6. If work is justified, update:
    - `.content-refresh/project-briefs/`
    - `_projects/`
    - optionally `_posts/`

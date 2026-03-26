@@ -32,15 +32,16 @@ Do not use this skill when:
 ## Required workflow
 
 1. Check `repo-registry.yml` to confirm the repo is new or not yet fully represented.
-2. Clone the repo into `repos/` if it is not already present locally.
-3. Inspect the real codebase, not just `README.md`.
+2. If you are scanning an owner fleet, triage candidates before cloning all of them. Prefer repos with a cohesive product, platform, research, or demo surface. Deprioritize obvious coursework, throwaway experiments, test repos, and pure material dumps unless the user explicitly wants them covered.
+3. Clone the repo into `repos/` if it is not already present locally.
+4. Inspect the real codebase, not just `README.md`.
    Required surfaces:
    - manifests such as `requirements.txt`, `environment.yml`, `pyproject.toml`, `package.json`
    - runnable entrypoints
    - tests and workflows
    - demo surfaces and screenshots
    - docs, diagrams, architecture notes, and assets
-4. Decide:
+5. Decide:
    - business problem
    - outcome and evidence
    - architecture
@@ -48,12 +49,12 @@ Do not use this skill when:
    - public demo status
    - whether an article is justified
    - whether the repo must be handled as a private public-safe case study
-5. Create or update:
+6. Create or update:
    - `.content-refresh/project-briefs/<slug>.md`
    - `_projects/<slug>.md`
    - optionally `_posts/<date>-<slug>.md`
    - `.codex/automations/repo-registry.yml`
-6. If visuals are weak, record image work instead of inventing claims.
+7. If visuals are weak, record image work instead of inventing claims.
 
 ## Expected outputs
 
@@ -73,6 +74,7 @@ Do not use this skill when:
 
 Stop when:
 - the repo has been cloned or refreshed
+- candidate selection is defensible if more than one untracked repo existed
 - the brief is grounded in repo inspection
 - the drafted website surfaces are materially different from the README
 - private/public handling is explicit

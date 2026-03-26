@@ -33,21 +33,22 @@ Do not use this skill when:
 ## Required workflow
 
 1. Look up the repo in `repo-registry.yml`.
-2. Compare current repo HEAD against `last_repo_sync_ref`.
-3. If there is no meaningful drift, return a short no-op summary.
-4. If there is drift, inspect the actual code diff and current repo state.
-5. Prioritize only claim-relevant changes:
+2. Refresh the local clone first. At minimum, fetch the default branch so the comparison is against current repo state rather than only the last local checkout.
+3. Compare current repo HEAD against `last_repo_sync_ref`.
+4. If there is no meaningful drift, return a short no-op summary.
+5. If there is drift, inspect the actual code diff and current repo state.
+6. Prioritize only claim-relevant changes:
    - runnable entrypoints
    - demo URL or live demo health
    - architecture boundaries
    - metrics or outputs cited publicly
    - visibility changes
-6. Update only the minimum needed surfaces:
+7. Update only the minimum needed surfaces:
    - `_projects/<slug>.md`
    - matching `_posts/<slug>.md` when the article is affected
    - `streamlit-apps.md` or homepage/demo wording when demo status changed
    - `.codex/automations/repo-registry.yml`
-7. Write the inspected repo HEAD back to `last_repo_sync_ref` once the review-ready patch is prepared.
+8. Write the inspected repo HEAD back to `last_repo_sync_ref` once the review-ready patch is prepared.
 
 ## Expected outputs
 
@@ -60,6 +61,7 @@ Do not use this skill when:
 
 Stop when:
 - the repo was compared against `last_repo_sync_ref`
+- the comparison used a refreshed local clone rather than only stale local state
 - any public claim changes are traceable to actual repo changes
 - unrelated pages were not rewritten
 - the registry sync ref matches the inspected repo HEAD

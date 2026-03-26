@@ -35,6 +35,7 @@ Do not use this skill when:
 2. Use `public_demo_url` as the canonical live surface.
 3. Check:
    - demo reachability
+   - whether the live surface is only a Streamlit shell or sleep screen versus a fully interactive loaded app
    - latest visible GitHub Actions or CI status when available
    - obvious docs/runtime/demo-entrypoint drift
 4. If all demos are healthy, return a visible summary table and stop.
@@ -50,6 +51,7 @@ Do not use this skill when:
 - a visible summary table with:
   - repo
   - demo reachable yes/no
+  - live surface status: loaded / shell / sleep / error
   - CI healthy yes/no/unknown
   - action needed yes/no
   - short note
