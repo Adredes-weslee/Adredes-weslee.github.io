@@ -40,3 +40,12 @@
 - Repo-intake and drift-sync prompts live in `.codex/automations/`.
 - `repo-registry.yml` is the source of truth for which backing repos have project pages, articles, demos, and private-case-study handling.
 - Use those files as review-first automation specs; they are meant to drive Codex background runs that draft changes for review, not direct auto-publish flows.
+
+## Repo-local Skills
+- Repo-local manual workflows live in `.codex/skills/`.
+- Use repo-local skills for heavier clone/inspect/sync work when background automations are either too weak, too risky, or too platform-dependent.
+- Current repo-local portfolio skills:
+  - `portfolio-repo-intake`
+  - `portfolio-drift-sync`
+  - `portfolio-demo-health`
+  - `portfolio-backlog-rotation`

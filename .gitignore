@@ -23,6 +23,7 @@ Desktop.ini
 repos/
 about_old.md
 Wes_Lee_Resume.pdf
+.codex/config.toml
 output/
 _site_check/
 serve-out.log
