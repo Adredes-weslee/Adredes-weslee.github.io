@@ -1,0 +1,224 @@
+version: 1
+last_updated: 2026-03-26
+
+defaults:
+  review_required: true
+  inspect_readme_only: false
+  clone_before_synthesis: true
+  create_project_page_for_new_repo: true
+  create_article_for_new_repo: true
+  auto_publish_private_repo_surfaces: false
+  tracked_owners:
+    - Adredes-weslee
+  tracked_external_repos:
+    - sqizzo/ntuc-workforce-intel
+  excluded_repos:
+    - Adredes-weslee/Adredes-weslee.github.io
+  excluded_patterns:
+    - archived forks
+    - throwaway experiments
+    - dataset-only repos
+    - generated artifact mirrors
+
+repos:
+  - repo: Adredes-weslee/Data-Analysis-of-Wet-Bulb-Temperature
+    local_clone: repos/Data-Analysis-of-Wet-Bulb-Temperature
+    visibility: public
+    tier: secondary
+    has_project_page: true
+    project_slug: wet-bulb-temperature
+    has_article: true
+    article_slug: predicting-heat-stress-with-wet-bulb-temperature
+    has_public_demo: true
+    public_demo_url: https://adredes-weslee-data-analysis-of-wet-bulb-te-dashboardapp-mwqkey.streamlit.app/
+    last_repo_sync_ref: a70eba08f3656ba09c39dabdae77eca785feb8bd
+    last_website_sync: 2026-03-26
+
+  - repo: Adredes-weslee/ML-Trading-Strategist
+    local_clone: repos/ML-Trading-Strategist
+    visibility: public
+    tier: secondary
+    has_project_page: true
+    project_slug: ml-trading-strategist
+    has_article: true
+    article_slug: ml-trading-strategist-comparing-learning-approaches
+    has_public_demo: true
+    public_demo_url: https://adredes-weslee-ml-trading-strategist-app-pu7qym.streamlit.app/
+    last_repo_sync_ref: 24e3f38524b8f0b726ae95ddcca7395e181bb0b2
+    last_website_sync: 2026-03-26
+
+  - repo: Adredes-weslee/Dengue-Case-Prediction-and-Cost-Benefits-Analysis
+    local_clone: repos/Dengue-Case-Prediction-and-Cost-Benefits-Analysis
+    visibility: public
+    tier: secondary
+    has_project_page: true
+    project_slug: dengue-forecasting
+    has_article: true
+    article_slug: forecasting-dengue-cases-and-cost-benefit-analysis
+    has_public_demo: true
+    public_demo_url: https://adredes-weslee-dengue-case-prediction-and-c-dashboardapp-aszwww.streamlit.app/
+    last_repo_sync_ref: 086e23b525232ea8384af5a9740287031b5f0334
+    last_website_sync: 2026-03-26
+
+  - repo: Adredes-weslee/Custom-RAG-Engine-for-Enterprise-Document-QA
+    local_clone: repos/Custom-RAG-Engine-for-Enterprise-Document-QA
+    visibility: public
+    tier: supporting
+    has_project_page: true
+    project_slug: rag-engine-project
+    has_article: true
+    article_slug: building-effective-rag-systems
+    has_public_demo: false
+    last_repo_sync_ref: c4b019e1d594bd7f60fe8153035f3ec2c9bd4292
+    last_website_sync: 2026-03-26
+
+  - repo: Adredes-weslee/price-optimization
+    local_clone: repos/price-optimization
+    visibility: public
+    tier: secondary
+    has_project_page: true
+    project_slug: customer-segmentation
+    has_article: true
+    article_slug: customer-segmentation-price-optimization
+    has_public_demo: true
+    public_demo_url: https://adredes-weslee-price-optimization-streamlitapp-yxjoe3.streamlit.app/
+    last_repo_sync_ref: 18a3cc3a5047015c73f11a5a2a2995027bfa672e
+    last_website_sync: 2026-03-26
+
+  - repo: Adredes-weslee/NLP_earnings_report
+    local_clone: repos/NLP_earnings_report
+    visibility: public
+    tier: secondary
+    has_project_page: true
+    project_slug: nlp-earnings-analyzer
+    has_article: true
+    article_slug: nlp-earnings-report-analysis
+    has_public_demo: true
+    public_demo_url: https://adredes-weslee-nlp-earnings-report-streamlit-app-0uttcu.streamlit.app/
+    last_repo_sync_ref: a0e1b022b839c5a61754d9a21346f43c0960b6a8
+    last_website_sync: 2026-03-26
+
+  - repo: Adredes-weslee/Sentiment-Analysis-and-NLP-for-a-Youtube-Video
+    local_clone: repos/Sentiment-Analysis-and-NLP-for-a-Youtube-Video
+    visibility: public
+    tier: secondary
+    has_project_page: true
+    project_slug: sentiment-analysis
+    has_article: true
+    article_slug: building-youtube-comment-sentiment-analyzer
+    has_public_demo: true
+    public_demo_url: https://adredes-weslee-sentiment-analysis-and-nlp-f-dashboardapp-kqphrr.streamlit.app/
+    last_repo_sync_ref: 9614b9ea63dc924df5fea3fe1d5c02e7aedad22c
+    last_website_sync: 2026-03-26
+
+  - repo: Adredes-weslee/Making-Predictions-on-HDB-Resale-Price
+    local_clone: repos/Making-Predictions-on-HDB-Resale-Price
+    visibility: public
+    tier: secondary
+    has_project_page: true
+    project_slug: hdb-resale-prices
+    has_article: true
+    article_slug: predicting-hdb-resale-prices
+    has_public_demo: true
+    public_demo_url: https://adredes-weslee-making-predictions-on-hdb-resale-pric-app-iwznz4.streamlit.app/
+    last_repo_sync_ref: a3027115aa595c26f680e44941a6e89d2ca4a7ed
+    last_website_sync: 2026-03-26
+
+  - repo: Adredes-weslee/Using_Artificial_Intelligence_to_Develop_a_Robo_Advisor
+    local_clone: repos/Using_Artificial_Intelligence_to_Develop_a_Robo_Advisor
+    visibility: public
+    tier: flagship
+    has_project_page: true
+    project_slug: robo-advisor-project
+    has_article: true
+    article_slug: robo-advisor-risk-profiling-portfolio-optimization
+    has_public_demo: true
+    public_demo_url: https://adredes-weslee-using-artificial-intelligenc-dashboardapp-juewyb.streamlit.app/
+    last_repo_sync_ref: 256ab20dfc10810def6cbde80c5cc807768feb15
+    last_website_sync: 2026-03-26
+
+  - repo: Adredes-weslee/dspy-automotive-extractor
+    local_clone: repos/dspy-automotive-extractor
+    visibility: public
+    tier: supporting
+    has_project_page: true
+    project_slug: dspy-automotive-extractor
+    has_article: true
+    article_slug: dspy-prompt-optimization-automotive-intelligence
+    has_public_demo: true
+    public_demo_url: https://adredes-weslee-dspy-automotive-extractor-srcapp-cloud-fbfbhk.streamlit.app/
+    last_repo_sync_ref: 53ab71e2bf7ecf701d104847bd8464eca385c07c
+    last_website_sync: 2026-03-26
+
+  - repo: Adredes-weslee/intelligent-content-analyzer
+    local_clone: repos/intelligent-content-analyzer
+    visibility: public
+    tier: flagship
+    has_project_page: true
+    project_slug: intelligent-content-analyzer
+    has_article: true
+    article_slug: building-service-oriented-document-intelligence
+    has_public_demo: true
+    public_demo_url: https://adredes-weslee-intelligent-content-analyzer-uiapp-stwg9a.streamlit.app/
+    last_repo_sync_ref: 02c615799589b0fd0dfa63347181f954ba53eb0d
+    last_website_sync: 2026-03-26
+
+  - repo: Adredes-weslee/elliptic-gnn-project
+    local_clone: repos/elliptic-gnn-project
+    visibility: private
+    tier: private-case-study
+    has_project_page: true
+    project_slug: elliptic-gnn-project
+    has_article: true
+    article_slug: building-leakage-safe-graph-ml-for-illicit-transaction-detection
+    has_public_demo: false
+    last_repo_sync_ref: 0fe23e8d11f2744931d4e723d0f9582f0a527a6d
+    last_website_sync: 2026-03-26
+
+  - repo: Adredes-weslee/agentive-inventory
+    local_clone: repos/agentive-inventory
+    visibility: public
+    tier: secondary
+    has_project_page: true
+    project_slug: agentive-inventory
+    has_article: true
+    article_slug: human-in-the-loop-inventory-planning
+    has_public_demo: false
+    last_repo_sync_ref: f7cf7ce7c1afbb1442df522c8425265b0715fc95
+    last_website_sync: 2026-03-26
+
+  - repo: Adredes-weslee/creator-ai
+    local_clone: repos/creator-ai
+    visibility: private
+    tier: flagship
+    has_project_page: true
+    project_slug: creator-ai
+    has_article: true
+    article_slug: designing-creator-ai-as-a-backend-first-content-generation-platform
+    has_public_demo: false
+    last_repo_sync_ref: 225d5f731cfe6785921b00f07b8bed8eb494275f
+    last_website_sync: 2026-03-26
+
+  - repo: Adredes-weslee/Benchmarking-AI-Generated-Slides
+    local_clone: repos/Benchmarking-AI-Generated-Slides
+    visibility: private
+    tier: flagship
+    has_project_page: true
+    project_slug: slidebench
+    has_article: true
+    article_slug: building-slidebench-to-evaluate-ai-generated-slides
+    has_public_demo: false
+    last_repo_sync_ref: 25124463ccbd31633a60cbd40d672c947e0e92f9
+    last_website_sync: 2026-03-26
+
+  - repo: sqizzo/ntuc-workforce-intel
+    local_clone: repos/ntuc-workforce-intel
+    visibility: private
+    tier: supporting
+    has_project_page: true
+    project_slug: workforce-risk-intelligence
+    has_article: true
+    article_slug: building-operational-workforce-risk-intelligence-from-public-signals
+    has_public_demo: false
+    last_repo_sync_ref: 3296a46cb692bd82b8c86db9cc3c3a3354ed5ffb
+    last_website_sync: 2026-03-26

@@ -35,3 +35,8 @@
 - `assets/js/*`
 - `assets/images/*` when images, branding, or project thumbnails change
 - `.gitignore` when local workflow files or source inputs need to stay untracked
+
+## Automation Contracts
+- Repo-intake and drift-sync prompts live in `.codex/automations/`.
+- `repo-registry.yml` is the source of truth for which backing repos have project pages, articles, demos, and private-case-study handling.
+- Use those files as review-first automation specs; they are meant to drive Codex background runs that draft changes for review, not direct auto-publish flows.
