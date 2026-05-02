@@ -1,0 +1,4 @@
+interface:
+  display_name: "Portfolio Asset Refresh"
+  short_description: "Refresh generated portfolio imagery and validate image surfaces."
+  default_prompt: "Refresh and validate portfolio image assets."

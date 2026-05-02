@@ -1,0 +1,4 @@
+interface:
+  display_name: "Portfolio Visual QA"
+  short_description: "Verify portfolio layout with browser screenshots."
+  default_prompt: "Run visual regression QA for the portfolio site."

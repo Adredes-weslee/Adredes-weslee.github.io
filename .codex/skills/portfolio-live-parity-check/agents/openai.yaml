@@ -1,0 +1,4 @@
+interface:
+  display_name: "Portfolio Live Parity"
+  short_description: "Compare local Jekyll output against the live GitHub Pages site."
+  default_prompt: "Check live portfolio parity against the local build."

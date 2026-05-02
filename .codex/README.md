@@ -49,3 +49,6 @@
   - `portfolio-drift-sync`
   - `portfolio-demo-health`
   - `portfolio-backlog-rotation`
+  - `portfolio-visual-regression-qa`
+  - `portfolio-asset-pipeline-refresh`
+  - `portfolio-live-parity-check`
