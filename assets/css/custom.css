@@ -822,7 +822,7 @@ html.home-landing-page body {
 
 .home-hero__frame img {
   width: 100%;
-  aspect-ratio: 1.08;
+  aspect-ratio: 1.2;
   object-fit: cover;
   border-radius: 18px;
   display: block;
@@ -856,7 +856,7 @@ html.home-landing-page body {
   display: grid;
   align-content: start;
   gap: 0.35rem;
-  min-height: 10.5rem;
+  min-height: 8.7rem;
   padding: 1rem;
   border-radius: 20px;
   background: rgba(248, 244, 237, 0.08);
@@ -879,23 +879,39 @@ html.home-landing-page body {
 }
 
 .home-section-heading {
-  max-width: 44rem;
+  display: grid;
+  gap: 0.7rem;
+  max-width: none;
+  width: 100%;
 }
 
 .home-section-kicker {
   color: var(--home-accent-strong);
-  margin-bottom: 0.9rem;
+  margin: 0;
 }
 
 .home-section-heading h2,
 .home-band__intro h2,
 .home-cta h2 {
-  margin: 0 0 0.8rem;
+  margin: 0;
   font-family: "Fraunces", Georgia, serif;
   font-size: clamp(2rem, 4vw, 3.2rem);
   line-height: 1.05;
   letter-spacing: -0.04em;
   color: var(--home-ink);
+  text-wrap: balance;
+}
+
+.home-section-heading > p:not(.home-section-kicker) {
+  max-width: 76rem;
+  margin: 0;
+}
+
+.home-work .home-section-heading,
+.home-journal .home-section-heading,
+.home-cta {
+  border-top: 1px solid rgba(16, 34, 36, 0.12);
+  padding-top: clamp(1.25rem, 2.4vw, 2.2rem);
 }
 
 .home-feature-grid {
@@ -1280,13 +1296,14 @@ html.home-landing-page body {
 .editorial-cta h2,
 .project-page .page-title,
 .post-page .page-title {
-  margin: 0 0 0.8rem;
+  margin: 0;
   font-family: "Fraunces", Georgia, serif;
   font-size: clamp(2.1rem, 4vw, 3.5rem);
   line-height: 1.03;
   letter-spacing: -0.045em;
   color: var(--home-ink);
   max-inline-size: 100%;
+  text-wrap: balance;
 }
 
 .editorial-kicker,
@@ -1297,7 +1314,7 @@ html.home-landing-page body {
   font-family: "Space Grotesk", sans-serif;
   font-size: 0.76rem;
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
@@ -1349,11 +1366,46 @@ html.home-landing-page body {
 
 .editorial-section {
   display: grid;
-  gap: 1.5rem;
+  gap: clamp(1.6rem, 2.8vw, 2.3rem);
 }
 
 .editorial-section__header {
-  max-width: 46rem;
+  display: grid;
+  gap: 0.75rem;
+  max-width: none;
+  width: 100%;
+}
+
+.editorial-section__header > p,
+.editorial-cta > p {
+  margin: 0;
+}
+
+.editorial-section__header > p:not(.editorial-kicker),
+.editorial-cta > p:not(.editorial-kicker) {
+  max-width: 76rem;
+}
+
+.editorial-section__header .editorial-kicker,
+.editorial-cta > .editorial-kicker {
+  margin: 0;
+}
+
+.projects-section-index + .projects-section-index,
+.blog-featured-section + .blog-index-section,
+.editorial-section + .editorial-cta {
+  padding-top: clamp(1.75rem, 3.8vw, 3.4rem);
+}
+
+.projects-section-index + .projects-section-index .editorial-section__header,
+.blog-featured-section + .blog-index-section .editorial-section__header,
+.editorial-section + .editorial-cta {
+  border-top: 1px solid rgba(16, 34, 36, 0.12);
+}
+
+.projects-section-index + .projects-section-index .editorial-section__header,
+.blog-featured-section + .blog-index-section .editorial-section__header {
+  padding-top: clamp(1.25rem, 2.4vw, 2.2rem);
 }
 
 .editorial-richtext,
@@ -1915,12 +1967,14 @@ html.home-landing-page body {
   }
 
   main.content[class*="layout-"] {
-    width: min(1660px, calc(100vw - clamp(400px, 23vw, 440px) - clamp(28px, 2.8vw, 56px) - clamp(28px, 2.8vw, 56px))) !important;
+    --portfolio-rail-width: 21rem;
+    --portfolio-page-gutter: clamp(2rem, 3.2vw, 4.5rem);
+    width: min(calc(100vw - var(--portfolio-rail-width) - (var(--portfolio-page-gutter) * 2)), 88rem) !important;
     max-width: none !important;
-    margin-left: clamp(400px, 23vw, 440px) !important;
-    margin-right: clamp(28px, 2.8vw, 56px) !important;
-    padding-left: clamp(18px, 1.6vw, 28px) !important;
-    padding-right: clamp(18px, 1.6vw, 28px) !important;
+    margin-left: calc(var(--portfolio-rail-width) + var(--portfolio-page-gutter)) !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 
   .home-hero {
@@ -1973,7 +2027,12 @@ html.home-landing-page body {
   }
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 1664px) {
+  main.content[class*="layout-"] {
+    --portfolio-rail-width: calc(50vw - 31rem);
+    --portfolio-page-gutter: clamp(2.75rem, 3.5vw, 5.25rem);
+  }
+
   .home-hero {
     gap: clamp(2.5rem, 4vw, 4rem);
     padding: clamp(2rem, 3vw, 3rem);
