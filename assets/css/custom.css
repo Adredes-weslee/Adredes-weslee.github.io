@@ -1334,6 +1334,10 @@ html.home-landing-page body {
   line-height: 1.75;
 }
 
+.editorial-hero__copy h1 + .editorial-lead {
+  margin-top: clamp(1rem, 1.5vw, 1.4rem);
+}
+
 .editorial-hero__aside,
 .editorial-card-stack {
   display: grid;
@@ -1511,6 +1515,10 @@ html.home-landing-page body {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
+}
+
+.editorial-cta .editorial-contact-grid {
+  margin-top: clamp(1.15rem, 1.8vw, 1.7rem);
 }
 
 .editorial-contact-grid a {

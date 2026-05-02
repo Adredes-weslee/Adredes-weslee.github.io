@@ -60,7 +60,7 @@ permalink: /contact/
     <div>
       <div class="editorial-section__header">
         <p class="editorial-kicker">Best-fit work</p>
-        <h2>The problems I am most useful on.</h2>
+        <h2>Where my work fits best.</h2>
       </div>
       <div class="editorial-list">
         <div class="editorial-list__item">
