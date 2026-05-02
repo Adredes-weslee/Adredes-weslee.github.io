@@ -12,6 +12,7 @@ from generate_project_covers import (
     font,
     hex_to_rgb,
     paste_panel,
+    project_image_panel,
     repo_panel,
 )
 
@@ -60,7 +61,7 @@ def image_panel(path_like: str | None, size: tuple[int, int], project: dict, *, 
     if path_like:
         path = ROOT / path_like
         if path.exists():
-            return crop_cover(path, size)
+            return project_image_panel(path, size, project)
     return repo_panel(project, size, compact=compact)
 
 

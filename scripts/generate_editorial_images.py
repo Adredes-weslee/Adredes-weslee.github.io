@@ -13,6 +13,7 @@ from generate_project_covers import (
     font,
     hex_to_rgb,
     paste_panel,
+    project_image_panel,
     repo_panel,
     rounded_image,
     shadow_box,
@@ -49,10 +50,10 @@ ARTICLE_HEROES = [
     {
         "filename": "2026-03-24-building-slidebench-to-evaluate-ai-generated-slides.jpg",
         "project_slug": "slidebench",
-        "label": "Evaluation systems / multimodal",
-        "headline": "Benchmarking AI-generated slides with retrieval and provenance checks",
-        "summary": "A durable evaluation workflow that combines deterministic analytics, benchmark retrieval, and optional judge-assisted review.",
-        "chips": ["Deterministic metrics", "Retrieval + judge", "Provenance"],
+        "label": "Artifact evaluation / multimodal",
+        "headline": "Benchmarking AI-generated artifacts with retrieval and provenance checks",
+        "summary": "A durable evaluation workflow for decks, curricula, PDFs, and code bundles with benchmark retrieval and judge-assisted review.",
+        "chips": ["PPTX / PDF / code", "Retrieval + judge", "Provenance"],
     },
     {
         "filename": "2026-03-24-building-service-oriented-document-intelligence.jpg",
@@ -67,8 +68,16 @@ ARTICLE_HEROES = [
         "project_slug": "agentive-inventory",
         "label": "Operations systems / planning",
         "headline": "Human-in-the-loop inventory planning with guardrails",
-        "summary": "A planning workflow that combines forecasting, approvals, procurement policy, and explainable operator review.",
-        "chips": ["Approvals", "Forecasting", "Audit trails"],
+        "summary": "A planning workflow that combines forecasting, approvals, budget-aware procurement policy, and explainable operator review.",
+        "chips": ["Budget guardrails", "Approvals", "Audit trails"],
+    },
+    {
+        "filename": "2026-05-02-building-longevity-lab-for-health-risk-scenario-modeling.jpg",
+        "project_slug": "longevity-lab",
+        "label": "Health AI / risk communication",
+        "headline": "Health-risk scenario modeling with evidence surfaces",
+        "summary": "A local-first FastAPI and React platform separating scenarios, model cards, data provenance, and causal-analysis boundaries.",
+        "chips": ["Model cards", "Public data", "Causal workbench"],
     },
     {
         "filename": "2026-03-22-building-leakage-safe-graph-ml-for-illicit-transaction-detection.jpg",
@@ -114,9 +123,9 @@ ARTICLE_HEROES = [
         "filename": "2025-05-09-nlp-earnings-report-analysis.jpg",
         "project_slug": "nlp-earnings-analyzer",
         "label": "Financial NLP",
-        "headline": "Earnings report intelligence from sentiment to topic signals",
-        "summary": "An analysis workflow for extracting sentiment, themes, and financial disclosure patterns from earnings reports.",
-        "chips": ["BERTopic", "FinBERT-style methods", "Experiment tracking"],
+        "headline": "Financial disclosure NLP with reproducible review surfaces",
+        "summary": "An analysis workflow for preprocessing earnings text, exploring sentiment and topics, and reviewing artifacts in Streamlit.",
+        "chips": ["Loughran-McDonald", "Topic models", "Conda dashboard"],
     },
     {
         "filename": "2024-12-15-building-youtube-comment-sentiment-analyzer.jpg",
@@ -275,7 +284,7 @@ def image_panel(path_like: str | None, size: tuple[int, int], project: dict, *, 
     if path_like:
         path = ROOT / path_like
         if path.exists():
-            return crop_cover(path, size)
+            return project_image_panel(path, size, project)
     return repo_panel(project, size, compact=compact)
 
 

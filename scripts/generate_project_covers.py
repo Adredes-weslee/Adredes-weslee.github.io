@@ -18,10 +18,10 @@ RNG = random.Random(42)
 PROJECTS = [
     {
         "slug": "agentive-inventory",
-        "title": "Agentive Inventory",
+        "title": "Agentive Inventory Planning",
         "label": "AI ops / decision support",
-        "tagline": "Forecast-driven planning with approvals, guardrails, and audit trails.",
-        "chips": ["Human review", "FastAPI + Streamlit", "EOQ / ROP logic"],
+        "tagline": "Forecast-driven recommendations with approvals, budget guardrails, and audit trails.",
+        "chips": ["Human review", "Budget guardrails", "Audit trail"],
         "palette": ["#0f2022", "#1d3e38", "#d4aa2a", "#f5eee1"],
         "motif": "bars",
         "repo_dir": "agentive-inventory",
@@ -107,10 +107,10 @@ PROJECTS = [
     },
     {
         "slug": "slidebench",
-        "title": "SlideBench",
-        "label": "Evaluation / multimodal",
-        "tagline": "Benchmarking AI-generated slides with retrieval, provenance, and judge-assisted scoring.",
-        "chips": ["Deterministic metrics", "Retrieval + judge", "Provenance"],
+        "title": "ArtifactBench",
+        "label": "Artifact evaluation / multimodal",
+        "tagline": "Benchmarking AI-generated artifacts with retrieval, provenance, and judge-assisted scoring.",
+        "chips": ["PPTX / PDF / code", "Retrieval + judge", "Provenance"],
         "palette": ["#151a24", "#25404f", "#f18c52", "#f5eee4"],
         "motif": "grid",
         "repo_dir": "Benchmarking-AI-Generated-Slides",
@@ -133,8 +133,8 @@ PROJECTS = [
         "slug": "nlp-earnings-analyzer",
         "title": "Earnings Report Intelligence",
         "label": "Financial NLP",
-        "tagline": "Sentiment, topic, and disclosure analysis across earnings reports.",
-        "chips": ["FinBERT-style methods", "BERTopic", "Versioned experiments"],
+        "tagline": "Financial-disclosure NLP with a lean demo and full local research stack.",
+        "chips": ["Loughran-McDonald", "Topic models", "Conda dashboard"],
         "palette": ["#16202b", "#223f4a", "#ff8e4b", "#f5efe3"],
         "motif": "docs",
         "repo_dir": "NLP_earnings_report",
@@ -197,6 +197,19 @@ PROJECTS = [
         "repo_dir": "Data-Analysis-of-Wet-Bulb-Temperature",
         "primary": "output/project-sources/wet-bulb-temperature-github.png",
         "secondary": "repos/Data-Analysis-of-Wet-Bulb-Temperature/data/output/wet_bulb_time_series.png",
+    },
+    {
+        "slug": "longevity-lab",
+        "title": "Longevity Lab",
+        "label": "Health AI / scenario modeling",
+        "tagline": "Public-health risk communication with artifact-backed scoring and evidence surfaces.",
+        "chips": ["FastAPI + React", "Model cards", "Causal workbench"],
+        "palette": ["#102325", "#204b46", "#7ecb8f", "#f5eee4"],
+        "motif": "rings",
+        "repo_dir": "longevity-lab",
+        "image_fit": "contain",
+        "primary": "assets/images/project-sources/longevity-lab-body-heatmap.png",
+        "secondary": "assets/images/project-sources/longevity-lab-model-cards.png",
     },
 ]
 
@@ -347,6 +360,20 @@ def crop_cover(image_path: Path, size: tuple[int, int]) -> Image.Image:
     return ImageOps.fit(image, size, method=Image.LANCZOS)
 
 
+def contain_cover(image_path: Path, size: tuple[int, int], fill: tuple[int, int, int]) -> Image.Image:
+    image = Image.open(image_path).convert("RGBA")
+    image.thumbnail(size, Image.LANCZOS)
+    panel = Image.new("RGBA", size, fill + (255,))
+    panel.alpha_composite(image, ((size[0] - image.width) // 2, (size[1] - image.height) // 2))
+    return panel
+
+
+def project_image_panel(image_path: Path, size: tuple[int, int], project: dict) -> Image.Image:
+    if project.get("image_fit") == "contain":
+        return contain_cover(image_path, size, hex_to_rgb(project["palette"][0]))
+    return crop_cover(image_path, size)
+
+
 def rounded_image(image: Image.Image, radius: int) -> Image.Image:
     mask = Image.new("L", image.size, 0)
     ImageDraw.Draw(mask).rounded_rectangle((0, 0, image.size[0], image.size[1]), radius=radius, fill=255)
@@ -454,7 +481,7 @@ def optional_panel(path_like: str | None, size: tuple[int, int], project: dict) 
     path = ROOT / path_like
     if not path.exists():
         return repo_panel(project, size, compact=size[0] < 400)
-    return crop_cover(path, size)
+    return project_image_panel(path, size, project)
 
 
 def compose(project: dict) -> None:
