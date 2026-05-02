@@ -61,6 +61,12 @@ The repo’s roadmap and implementation notes make this especially clear. The sy
 
 That is a stronger product than "forecast page over here, scraping page over there." It makes the prediction explainable by adjacency.
 
+## Provider migration is implementation detail, not the product story
+
+The latest repo drift updates the direct OpenAI path to the Responses API and refreshes model defaults. That matters operationally because provider wiring, request metadata, and tests need to keep pace with current API behavior. It does not change the public product claim.
+
+The stable claim is that model calls sit behind a service boundary and observability layer. Summaries and hypotheses are support surfaces for stored evidence, incidents, forecasts, and operator review. The provider can change without changing the product architecture.
+
 ## Observability and replay are what make the pipeline trustworthy
 
 Another strong choice is that the repo treats observability as part of the product, not just infrastructure. Langfuse tracing is wired into request paths, provider calls, and pipeline evaluation. Replay and experiment harnesses are part of the system shape.

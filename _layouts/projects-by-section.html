@@ -14,7 +14,7 @@ layout: base
   {% assign flagship_slugs = "creator-ai|intelligent-content-analyzer|slidebench|robo-advisor-project" | split: "|" %}
   {% assign supporting_slugs = "workforce-risk-intelligence|dspy-automotive-extractor|rag-engine-project" | split: "|" %}
   {% assign platform_support_slugs = "nlp-earnings-analyzer|sentiment-analysis" | split: "|" %}
-  {% assign decision_support_slugs = "dengue-forecasting|agentive-inventory|customer-segmentation" | split: "|" %}
+  {% assign decision_support_slugs = "longevity-lab|dengue-forecasting|agentive-inventory|customer-segmentation" | split: "|" %}
   {% assign applied_support_slugs = "elliptic-gnn-project|ml-trading-strategist|hdb-resale-prices|wet-bulb-temperature" | split: "|" %}
 
   <section class="editorial-section projects-section-index" data-reveal>
@@ -40,7 +40,7 @@ layout: base
                 {% when 'creator-ai' %}
                   <p>Backend-first orchestration platform for AI-generated learning assets with quality gates, retrieval, and human review.</p>
                 {% when 'slidebench' %}
-                  <p>Evaluation workbench for AI-generated slides and learning artifacts using retrieval, provenance checks, and judge-assisted scoring.</p>
+                  <p>Artifact evaluation workbench for AI-generated decks, learning assets, PDFs, and code bundles using retrieval, provenance checks, and judge-assisted scoring.</p>
                 {% when 'robo-advisor-project' %}
                   <p>Foundation-model risk profiling and objective-aware portfolio optimization in one advisory surface.</p>
                 {% when 'intelligent-content-analyzer' %}
@@ -157,8 +157,10 @@ layout: base
               {% case project_slug %}
                 {% when 'dengue-forecasting' %}
                   <p>Time-series forecasting and health economics for intervention planning.</p>
+                {% when 'longevity-lab' %}
+                  <p>Public-health scenario modeling with data provenance, artifact-backed scoring, model cards, and causal-analysis boundaries.</p>
                 {% when 'agentive-inventory' %}
-                  <p>Forecast-driven inventory planning with approvals, procurement guardrails, and auditability.</p>
+                  <p>Forecast-driven inventory planning with approvals, budget guardrails, and auditability.</p>
                 {% when 'customer-segmentation' %}
                   <p>Segmentation, price elasticity, and commercial strategy analysis for revenue optimization.</p>
               {% endcase %}

@@ -20,13 +20,13 @@ Workforce teams need early warning on layoffs, retrenchment risk, and labor-mark
 - Built a full-stack prototype with operator dashboards, incident views, and company-level monitoring.
 - Implemented a DB-backed pipeline that ingests, normalizes, screens, clusters, scores, and alerts on workforce-risk signals.
 - Added retrenchment forecasting and early-warning views for industry and company monitoring.
-- Integrated Langfuse tracing, replay artifacts, and deterministic evaluation paths for pipeline review.
+- Integrated Langfuse tracing, replay artifacts, deterministic evaluation paths, and refreshed Responses API provider wiring for pipeline review.
 
 ## Key decisions
 
 - Shifted the system from raw scraped rows to documents, incidents, and company risk snapshots.
 - Used same-origin Next.js API proxies so the frontend stays behind a controlled BFF boundary.
-- Kept LLMs focused on grounded summaries and hypothesis support instead of row-level classification.
+- Kept LLMs focused on grounded summaries and hypothesis support instead of row-level classification, with the direct OpenAI path migrated to the Responses API.
 - Added auth gates, bounded concurrency, SSRF guardrails, and timeout controls before treating the prototype as operator-ready.
 
 ## System design

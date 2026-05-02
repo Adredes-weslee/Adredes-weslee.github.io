@@ -11,7 +11,7 @@ Inventory teams need reorder guidance that balances service level, stockout risk
 ## Outcome and Evidence
 
 - Ships a working FastAPI backend, Streamlit collaboration UI, and n8n orchestration layer.
-- Supports EOQ/ROP procurement logic, GMROI guardrails, approvals, audit logging, and batch recommendation flows.
+- Supports EOQ/ROP procurement logic, GMROI guardrails, approvals, audit logging, and batch recommendation flows under optional cash-budget constraints.
 - Includes production-oriented features such as auth, rate limiting, structured logs, `/metrics`, Docker Compose, CI, and Render deployment config.
 
 ## Key Decision Choices
@@ -33,7 +33,7 @@ Inventory teams need reorder guidance that balances service level, stockout risk
 
 ## Architecture Snapshot
 
-Demand history feeds forecasting and inventory services, which expose recommendation APIs. The Streamlit UI handles review, approval, and settings management. n8n automates recurring runs, while config files define thresholds and business context.
+Demand history feeds forecasting and inventory services, which expose recommendation APIs. The Streamlit UI handles review, approval, settings, backtests, and audit-log review. n8n automates recurring runs, while config files define thresholds and business context. Inventory state remains local and file-backed; the repo demonstrates a planning workflow rather than a live purchasing integration.
 
 ## Portfolio Content Angle
 
@@ -43,4 +43,3 @@ Frame this as an AI operations system, not just a forecasting app: agentic plann
 
 - Later content pass should verify which forecast model performs best in practice.
 - Good candidate for a portfolio angle around “trustworthy AI recommendations for operations teams.”
-

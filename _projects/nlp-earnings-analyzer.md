@@ -1,7 +1,7 @@
 ---
 layout: project
 title: "Earnings Report Intelligence Platform"
-description: "A financial NLP pipeline for sentiment, topic, and disclosure analysis across earnings reports."
+description: "A financial NLP pipeline for earnings-report preprocessing, sentiment, topic exploration, and dashboard review."
 date: 2025-05-09
 categories: [nlp, finance, machine-learning, data-science]
 image: /assets/images/project-covers/nlp-earnings-analyzer.jpg
@@ -17,10 +17,10 @@ Earnings reports are dense, repetitive, and full of signals that are hard to com
 
 ## Outcome
 
-- Built an end-to-end workflow from data processing to embeddings, sentiment, topic modeling, feature extraction, and modeling.
-- Combined finance-specific lexicons with transformer-based methods instead of relying on generic sentiment tooling.
-- Added an interactive dashboard for exploratory analysis and model review, with a lean public demo surface and a heavier local research stack.
-- Included data and experiment versioning so the analysis can be reproduced.
+- Built an end-to-end workflow from data processing to embeddings, sentiment, topic modeling, feature extraction, and dashboard review.
+- Combined finance-specific lexicons with heavier NLP methods where the local environment supports them, instead of relying only on generic sentiment tooling.
+- Added an interactive dashboard for exploratory analysis and model review, with a lean public demo surface and a heavier Conda-based local stack.
+- Included data and experiment versioning utilities so preprocessing and model artifacts can be traced.
 
 ## Key decisions
 
@@ -31,7 +31,7 @@ Earnings reports are dense, repetitive, and full of signals that are hard to com
 
 ## System design
 
-Reports are collected, cleaned, and transformed into multiple analysis paths for lexicon-based sentiment, transformer inference, topic discovery, feature extraction, and modeling. Those outputs are then surfaced through the dashboard for comparison and exploratory review. The public Streamlit surface stays lightweight, while the verified full local dashboard path uses the repo's Conda environment to support the heavier NLP stack cleanly.
+Reports are collected, cleaned, and transformed into multiple analysis paths for lexicon-based sentiment, transformer inference where available, topic discovery, feature extraction, and modeling. Those outputs are then surfaced through the dashboard for comparison and exploratory review. The public Streamlit surface stays lightweight, while the verified full local dashboard path uses the repo's Conda environment to support the heavier NLP stack cleanly.
 
 ## Stack
 

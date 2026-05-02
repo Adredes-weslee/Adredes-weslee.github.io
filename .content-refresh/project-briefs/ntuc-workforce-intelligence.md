@@ -13,13 +13,13 @@ Workforce and policy teams need early warning on layoffs, retrenchment risk, and
 - Delivers a full-stack prototype with a Next.js frontend and FastAPI backend.
 - Implements a DB-backed incident pipeline: ingest, normalize, screen, deduplicate, cluster, score, and alert.
 - Adds retrenchment forecasting and early-warning workflows, including industry dashboards, company prediction endpoints, and replay/debug artifacts.
-- Supports Langfuse observability, experiment harnesses, and deterministic replay/evaluation paths.
+- Supports Langfuse observability, experiment harnesses, deterministic replay/evaluation paths, and refreshed direct OpenAI Responses API wiring.
 - Includes runtime hardening such as auth gates, bounded concurrency, admin-key controls, timeout handling, SSRF guardrails, and 5xx sanitization.
 
 ## Key Decision Choices
 
 - Shifted the unit of analysis from raw scraped rows to documents, incidents, and company risk snapshots.
-- Kept LLM usage focused on grounded summaries and hypothesis generation rather than row-level filtering.
+- Kept LLM usage focused on grounded summaries and hypothesis generation rather than row-level filtering, with provider details kept behind a service boundary.
 - Used a same-origin Next.js BFF boundary so the frontend never calls the backend directly.
 - Added deterministic scoring, anomaly detection, and replay tooling before attempting more ambitious supervised modeling.
 - Chose a VM-friendly architecture with Docker Compose, Postgres, raw artifact storage, and controlled source expansion.

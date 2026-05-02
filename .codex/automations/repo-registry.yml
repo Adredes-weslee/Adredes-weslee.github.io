@@ -1,5 +1,5 @@
 version: 1
-last_updated: 2026-03-26
+last_updated: 2026-05-02
 
 defaults:
   review_required: true
@@ -96,7 +96,7 @@ repos:
     has_public_demo: true
     public_demo_url: https://adredes-weslee-nlp-earnings-report-streamlit-app-0uttcu.streamlit.app/
     last_repo_sync_ref: a0e1b022b839c5a61754d9a21346f43c0960b6a8
-    last_website_sync: 2026-03-26
+    last_website_sync: 2026-05-02
 
   - repo: Adredes-weslee/Sentiment-Analysis-and-NLP-for-a-Youtube-Video
     local_clone: repos/Sentiment-Analysis-and-NLP-for-a-Youtube-Video
@@ -163,6 +163,18 @@ repos:
     last_repo_sync_ref: 02c615799589b0fd0dfa63347181f954ba53eb0d
     last_website_sync: 2026-03-26
 
+  - repo: Adredes-weslee/longevity-lab
+    local_clone: repos/longevity-lab
+    visibility: public
+    tier: secondary
+    has_project_page: true
+    project_slug: longevity-lab
+    has_article: true
+    article_slug: building-longevity-lab-for-health-risk-scenario-modeling
+    has_public_demo: false
+    last_repo_sync_ref: 49b4018aeb2f9865f77459ad82f03a0fe4dec21b
+    last_website_sync: 2026-05-02
+
   - repo: Adredes-weslee/elliptic-gnn-project
     local_clone: repos/elliptic-gnn-project
     visibility: private
@@ -185,7 +197,7 @@ repos:
     article_slug: human-in-the-loop-inventory-planning
     has_public_demo: false
     last_repo_sync_ref: f7cf7ce7c1afbb1442df522c8425265b0715fc95
-    last_website_sync: 2026-03-26
+    last_website_sync: 2026-05-02
 
   - repo: Adredes-weslee/creator-ai
     local_clone: repos/creator-ai
@@ -208,8 +220,8 @@ repos:
     has_article: true
     article_slug: building-slidebench-to-evaluate-ai-generated-slides
     has_public_demo: false
-    last_repo_sync_ref: 25124463ccbd31633a60cbd40d672c947e0e92f9
-    last_website_sync: 2026-03-26
+    last_repo_sync_ref: 7b9625aa78193b7f383a2cf32ba0e84477c1c131
+    last_website_sync: 2026-05-02
 
   - repo: sqizzo/ntuc-workforce-intel
     local_clone: repos/ntuc-workforce-intel
@@ -220,5 +232,5 @@ repos:
     has_article: true
     article_slug: building-operational-workforce-risk-intelligence-from-public-signals
     has_public_demo: false
-    last_repo_sync_ref: 3296a46cb692bd82b8c86db9cc3c3a3354ed5ffb
-    last_website_sync: 2026-03-26
+    last_repo_sync_ref: ab72593514e3756d2d966364333ca63414baea30
+    last_website_sync: 2026-05-02

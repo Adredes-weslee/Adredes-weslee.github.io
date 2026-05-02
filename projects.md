@@ -16,7 +16,7 @@ show_collection: projects
       <p class="editorial-kicker">Projects</p>
       <h1>Flagship systems first, then supporting work by problem shape.</h1>
       <p class="editorial-lead">
-        This page focuses on case studies across document intelligence, finance, forecasting,
+        This page focuses on case studies across document intelligence, finance, health-risk modeling, forecasting,
         pricing, evaluation systems, and workforce intelligence. Most projects link to public code, articles,
         or demos; a small number are documented case studies where the source repo is private.
       </p>

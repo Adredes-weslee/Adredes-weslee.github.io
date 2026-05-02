@@ -87,6 +87,8 @@ That is the right level of seriousness for an ops-facing AI system. If a plannin
 
 The same realism shows up in the UI design. The frontend is not just a dashboard. It has specific pages for forecasts, recommendations, settings, backtests, and audit logs. That means the product is trying to support the operator's workflow, not just visualize model output.
 
+The refresh caveat is also important: this is a local, file-backed planning prototype using M5-style data, not a live purchasing system connected to an ERP. That limitation actually strengthens the portfolio framing because it makes the boundary clear. The repo demonstrates forecast-to-recommendation workflow design, approval handling, budget-aware prioritization, and auditability without pretending to automate real procurement.
+
 ## n8n makes the system feel more like a workflow product than a model demo
 
 The orchestration layer is a meaningful part of the architecture here. Daily scheduling and approval-loop flows move the system from "tool an analyst clicks when they remember" toward "workflow that can participate in regular operations."

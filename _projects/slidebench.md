@@ -1,26 +1,26 @@
 ---
 layout: project
-title: "SlideBench AI Evaluation Workbench"
-description: "Benchmarking system for AI-generated slides and learning artifacts with retrieval, provenance checks, and judge-assisted evaluation."
+title: "ArtifactBench AI Evaluation Workbench"
+description: "Benchmarking system for AI-generated artifacts, learning assets, slide decks, PDFs, and code bundles with retrieval, provenance checks, and judge-assisted evaluation."
 date: 2026-03-24
 categories: [evaluation-systems, edtech, multimodal, benchmarking, ai-platforms]
 image: /assets/images/project-covers/slidebench.jpg
 technologies: [FastAPI, React, TypeScript, SQLite, FAISS, python-pptx, Playwright]
 repo_private: true
-repo_note: "Source code is private. The public case study and article focus on evaluation design, provenance controls, and product workflow."
+repo_note: "Source code is private. The public case study and article focus on artifact evaluation design, provenance controls, and product workflow."
 blog_post: /evaluation-systems/multimodal/edtech/2026/03/24/building-slidebench-to-evaluate-ai-generated-slides.html
 ---
 
 ## Business context
 
-As teams generate more slide decks and learning artifacts with AI, quality review becomes subjective, slow, and hard to reproduce. A useful benchmark product needs extraction, deterministic metrics, benchmark comparison, retrieval-backed evidence, and durable reports rather than a single judging prompt.
+As teams generate more learning assets, slide decks, project documents, PDFs, and code-supported artifacts with AI, quality review becomes subjective, slow, and hard to reproduce. A useful benchmark product needs extraction, deterministic metrics, benchmark comparison, retrieval-backed evidence, and durable reports rather than a single judging prompt.
 
 ## Outcome
 
-- Built a FastAPI backend and React frontend for uploading, indexing, evaluating, and reviewing decks.
+- Built a FastAPI backend and React frontend for uploading, indexing, evaluating, and reviewing generated artifacts.
 - Supports multiple artifact types including PPTX, markdown curriculum files, PDFs, and optional project-code inputs.
 - Runs a modular evaluation flow across extraction, deterministic metrics, retrieval, and LLM judging.
-- Adds provenance guardrails, evaluation profiles, per-run model budgets, and resumable checkpoints for long evaluations.
+- Adds provenance guardrails, evaluation profiles, per-run model budgets, resumable checkpoints, and refreshed GPT-5.5 provider defaults for long evaluations.
 
 ## Key decisions
 
@@ -37,5 +37,5 @@ Artifacts are uploaded into a local evaluation workspace, extracted into typed i
 
 - FastAPI, Python, SQLite, Pydantic
 - React, Vite, TypeScript, Playwright
-- python-pptx, pypdf, FAISS
+- python-pptx, pypdf, FAISS, project-code checks
 - Optional OpenAI, Gemini, and MLAPI provider adapters

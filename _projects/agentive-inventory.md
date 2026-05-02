@@ -1,7 +1,7 @@
 ---
 layout: project
 title: "Agentive Inventory Management System"
-description: "Human-in-the-loop inventory planning with forecasts, procurement guardrails, and auditable approvals."
+description: "Human-in-the-loop inventory planning with forecasts, procurement guardrails, budget-aware recommendations, and auditable approvals."
 date: 2026-03-22
 categories: [ai-ops, forecasting, inventory-optimization, decision-support, operations]
 image: /assets/images/project-covers/agentive-inventory.jpg
@@ -17,7 +17,7 @@ Inventory teams need reorder guidance that balances service level, stockout risk
 ## Outcome
 
 - Ships a working FastAPI backend, Streamlit collaboration UI, and n8n orchestration layer.
-- Supports EOQ and reorder-point logic, GMROI guardrails, approvals, audit logging, and batch recommendation flows.
+- Supports EOQ and reorder-point logic, GMROI guardrails, approval queues, audit logging, and batch recommendation flows under optional cash-budget constraints.
 - Includes production-oriented features such as auth, rate limiting, structured logs, `/metrics`, Docker Compose, CI, and Render deployment config.
 - Uses the M5 dataset as a realistic planning backbone for forecast-driven inventory decisions.
 
@@ -30,7 +30,7 @@ Inventory teams need reorder guidance that balances service level, stockout risk
 
 ## System design
 
-Demand history feeds forecasting and inventory services, which expose recommendation APIs for reorder planning. The Streamlit UI handles review, approvals, and settings management, while n8n orchestrates recurring runs and configuration-driven planning workflows.
+Demand history feeds forecasting and inventory services, which expose recommendation APIs for reorder planning. The Streamlit UI handles review, approvals, settings, backtests, and audit-log review, while n8n orchestrates recurring runs and configuration-driven planning workflows. The repo is honest about its limits: inventory state is file-backed, the live-ordering path is not connected to an external ERP, and LLM explanations are optional rather than foundational.
 
 ## Stack
 
