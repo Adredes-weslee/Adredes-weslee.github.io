@@ -1,7 +1,7 @@
 ---
 layout: streamlit-apps
 title: Live Demos
-description: Secondary index of public demos showing how selected portfolio systems behave as actual products.
+description: Public demo library for selected portfolio systems with deployed interactive interfaces.
 permalink: /streamlit-apps/
 ---
 
@@ -13,10 +13,10 @@ permalink: /streamlit-apps/
   <section class="editorial-hero" data-reveal>
     <div class="editorial-hero__copy">
       <p class="editorial-kicker">Live demos</p>
-      <h1>A secondary index for browsing the portfolio's public interactive surfaces.</h1>
+      <h1>Browse the public demos behind selected projects.</h1>
       <p class="editorial-lead">
-        Use this page when you want to browse the deployed interfaces only. The canonical portfolio layer is still
-        the Projects page, which links to demos where available.
+        Use this page to open deployed interfaces directly. For problem framing, system choices, and article links,
+        start from the related project page.
       </p>
     </div>
     <div class="editorial-hero__aside">

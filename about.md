@@ -84,7 +84,7 @@ permalink: /about/
         </div>
         <div class="editorial-list__item">
           <h3>Backend and operator surfaces</h3>
-          <p>Python, FastAPI, Pydantic, PostgreSQL, Next.js, Streamlit, internal dashboards, and explainable review workflows.</p>
+          <p>Python, FastAPI, Pydantic, PostgreSQL, Next.js, Streamlit, operator dashboards, and explainable review workflows.</p>
         </div>
         <div class="editorial-list__item">
           <h3>Decision-support systems</h3>
@@ -131,13 +131,13 @@ permalink: /about/
       </div>
       <div class="editorial-richtext">
         <p>
-          This site focuses on public case studies plus a small number of documented private-code systems across
+          This site focuses on public case studies plus selected private-code systems documented through public writeups across
           finance, document intelligence, evaluation, workforce intelligence, forecasting, pricing, and graph ML.
           The common thread is not the library stack. It is the translation from technical experimentation into a
           workflow, interface, or decision surface someone can actually use.
         </p>
         <p>
-          Each project page is intentionally concise: the business problem, outcome, key decisions, system design,
+          Each project page gives the business problem, outcome, key decisions, system design,
           and links to code, technical articles, or demos where available.
         </p>
       </div>

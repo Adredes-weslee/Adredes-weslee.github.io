@@ -64,7 +64,7 @@ permalink: /contact/
       </div>
       <div class="editorial-list">
         <div class="editorial-list__item">
-          <h3>AI platforms and internal tools</h3>
+          <h3>AI platforms and operator tools</h3>
           <p>Backend services, orchestration, review workflows, operator dashboards, and usable product surfaces.</p>
         </div>
         <div class="editorial-list__item">

@@ -18,17 +18,17 @@ show_collection: projects
       <p class="editorial-lead">
         This page focuses on case studies across document intelligence, finance, health-risk modeling, forecasting,
         pricing, evaluation systems, and workforce intelligence. Most projects link to public code, articles,
-        or demos; a small number are documented case studies where the source repo is private.
+        or demos; selected private-code work is presented through public case studies and technical articles.
       </p>
     </div>
     <div class="editorial-hero__aside">
       <div class="editorial-note">
         <span class="editorial-note__label">Through-line</span>
-        <p>Each page stays short: business problem, outcome, key decisions, system design, and links to code or demos.</p>
+        <p>Each case study highlights the problem, the system choices, the outcome, and where to explore code, articles, or demos.</p>
       </div>
       <div class="editorial-note">
-        <span class="editorial-note__label">Navigation rule</span>
-        <p>Projects are the canonical portfolio layer. Articles and demos are secondary surfaces linked from each project where available.</p>
+        <span class="editorial-note__label">How to browse</span>
+        <p>Start from the project overview, then follow article, demo, or repository links when you want more detail.</p>
       </div>
     </div>
   </section>
@@ -36,16 +36,16 @@ show_collection: projects
   <section class="editorial-section" data-reveal>
     <div class="editorial-section__header">
       <p class="editorial-kicker">How to use the page</p>
-      <h2>Start with the flagship set, then use the sections below for breadth.</h2>
+      <h2>Start with the flagship systems, then browse by problem area.</h2>
     </div>
     <div class="editorial-richtext editorial-grid-two">
       <div>
         <p><strong>The flagship set</strong> is the clearest signal for platform architecture, evaluation rigor, and operator-facing product work.</p>
-        <p><strong>The supporting sections</strong> broaden the portfolio across private platform work, narrower NLP systems, decision tools, planning workflows, and applied ML studies.</p>
+        <p><strong>The supporting sections</strong> show adjacent systems across workforce intelligence, language workflows, decision support, and applied ML.</p>
       </div>
       <div>
-        <p>The ordering is intentional: platform work first, then planning and decision systems, then the broader modeling range.</p>
-        <p>Cards marked <strong>Live demo</strong>, <strong>Article</strong>, or <strong>Repo</strong> have deeper public surfaces. A <strong>Private repo</strong> label means the case study is public but the source code is not.</p>
+        <p>The page begins with platform and evaluation work, then moves into planning, decision support, and applied ML.</p>
+        <p>Use the badges to see what is available: live demo, article, repository, or public case study for private-code work.</p>
       </div>
     </div>
   </section>
