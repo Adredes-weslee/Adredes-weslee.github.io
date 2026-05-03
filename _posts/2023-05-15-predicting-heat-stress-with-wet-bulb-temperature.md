@@ -6,6 +6,7 @@ categories: [data-science, climate, public-health]
 tags: [wet-bulb-temperature, climate-change, regression-analysis, python, pandas, scikit-learn, data-integration, time-series]
 author: Wes Lee
 feature_image: /assets/images/article-heroes/2023-05-15-predicting-heat-stress-with-wet-bulb-temperature.jpg
+project_page: /projects/wet-bulb-temperature/
 display_title: "Wet-Bulb Temperature Analysis for Heat Stress"
 archive_title: "Wet-Bulb Temperature Analysis"
 ---

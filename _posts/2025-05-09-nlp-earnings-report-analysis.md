@@ -6,6 +6,7 @@ categories: [nlp, finance, machine-learning, data-science]
 tags: [nlp, finance, machine-learning, data-science, text-analysis, python]
 author: Wes Lee
 feature_image: /assets/images/article-heroes/2025-05-09-nlp-earnings-report-analysis.jpg
+project_page: /projects/nlp-earnings-analyzer/
 display_title: "Engineering NLP for Financial Disclosures"
 archive_title: "NLP for Financial Disclosures"
 ---

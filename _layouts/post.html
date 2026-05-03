@@ -27,6 +27,14 @@ layout: base
     </div>
   </header>
 
+  {% if page.project_page %}
+    <div class="post-project-link-row" data-reveal>
+      <a href="{{ page.project_page | relative_url }}" class="editorial-project-chip editorial-project-chip--project project-link-chip">
+        Project page
+      </a>
+    </div>
+  {% endif %}
+
   {% if page.feature_image %}
     <figure class="post-feature-panel" data-reveal>
       <img src="{{ page.feature_image | relative_url }}" alt="{{ page.title }}">

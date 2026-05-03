@@ -6,6 +6,7 @@ categories: [ai-platforms, edtech, orchestration]
 tags: [fastapi, orchestration, retrieval, evaluation, workflows, azure, governance, bff]
 author: Wes Lee
 feature_image: /assets/images/article-heroes/2026-03-24-designing-creator-ai-as-a-backend-first-content-generation-platform.jpg
+project_page: /projects/creator-ai/
 display_title: "Designing Creator AI as a Backend-First Platform"
 archive_title: "Creator AI as a Backend-First Platform"
 ---

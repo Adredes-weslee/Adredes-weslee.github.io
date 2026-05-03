@@ -6,6 +6,7 @@ categories: [ai, nlp, dspy]
 tags: [dspy, prompt-optimization, llms, structured-extraction, ollama, langfuse, automotive, nhtsa, meta-optimization, reasoning-fields]
 author: Wes Lee
 feature_image: /assets/images/article-heroes/2025-06-13-dspy-prompt-optimization-automotive-intelligence.jpg
+project_page: /projects/dspy-automotive-extractor/
 display_title: "DSPy Prompt Optimization for Automotive Extraction"
 archive_title: "DSPy Prompt Optimization for Extraction"
 ---

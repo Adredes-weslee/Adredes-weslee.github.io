@@ -6,6 +6,7 @@ categories: [epidemiology, forecasting, health-economics]
 tags: [prophet, streamlit, time-series, production-ml, health-analytics, cost-benefit-analysis, singapore, dengue, public-health]
 author: Wes Lee
 feature_image: /assets/images/article-heroes/2025-06-18-forecasting-dengue-cases-and-cost-benefit-analysis.jpg
+project_page: /projects/dengue-forecasting/
 display_title: "Production Dengue Forecasting for Policy Planning"
 archive_title: "Production Dengue Forecasting for Policy Planning"
 ---

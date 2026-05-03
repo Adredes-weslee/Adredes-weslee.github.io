@@ -6,6 +6,7 @@ categories: [ai, rag, document-intelligence]
 tags: [fastapi, streamlit, faiss, redis, langfuse, hybrid-retrieval, reranking, multilingual, system-design]
 author: Wes Lee
 feature_image: /assets/images/article-heroes/2026-03-24-building-service-oriented-document-intelligence.jpg
+project_page: /projects/intelligent-content-analyzer/
 ---
 
 ## Introduction: Why this needed more than a single QA app

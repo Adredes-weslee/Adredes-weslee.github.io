@@ -6,6 +6,7 @@ categories: [health-ai, public-health, model-evaluation]
 tags: [fastapi, react, public-health, model-cards, calibration, provenance, causal-inference]
 author: Wes Lee
 feature_image: /assets/images/article-heroes/2026-05-02-building-longevity-lab-for-health-risk-scenario-modeling.jpg
+project_page: /projects/longevity-lab/
 display_title: "Building Longevity Lab for Health Scenario Modeling"
 archive_title: "Longevity Lab Health Scenario Modeling"
 ---
@@ -23,6 +24,8 @@ The system has to answer several questions at once:
 - where predictive associations stop and causal claims would require a separate analysis
 
 > Related: for the shorter case-study version, see the [Longevity Lab project page](/projects/longevity-lab/).
+
+> Demo: the public Render deployment is available at [longevity-lab-frontend.onrender.com](https://longevity-lab-frontend.onrender.com/). Initial load can take about a minute while the service wakes and loads sample data.
 
 ## The key product decision was separating evidence surfaces
 

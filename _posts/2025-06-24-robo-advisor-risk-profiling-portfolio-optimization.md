@@ -6,6 +6,7 @@ categories: [ai, finance, foundation-models, reinforcement-learning]
 tags: [tabpfn, foundation-models, robo-advisor, portfolio-optimization, pytorch, streamlit, production-ml, multi-objective-rl, market-regime-detection]
 author: Wes Lee
 feature_image: /assets/images/article-heroes/2025-06-24-robo-advisor-risk-profiling-portfolio-optimization.jpg
+project_page: /projects/robo-advisor-project/
 display_title: "Production AI Robo-Advisor with TabPFN"
 archive_title: "Production AI Robo-Advisor with TabPFN"
 ---

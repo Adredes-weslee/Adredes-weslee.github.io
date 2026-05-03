@@ -6,6 +6,7 @@ categories: [ai-ops, forecasting, operations]
 tags: [fastapi, streamlit, inventory-planning, prophet, xgboost, gmroi, approvals, n8n, docker, observability]
 author: Wes Lee
 feature_image: /assets/images/article-heroes/2026-03-23-human-in-the-loop-inventory-planning.jpg
+project_page: /projects/agentive-inventory/
 ---
 
 ## Introduction: Inventory systems fail when they optimize for automation instead of trust

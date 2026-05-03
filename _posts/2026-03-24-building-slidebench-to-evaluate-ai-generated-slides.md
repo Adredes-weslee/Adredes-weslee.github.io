@@ -6,6 +6,7 @@ categories: [evaluation-systems, multimodal, edtech]
 tags: [fastapi, react, faiss, llm-judge, provenance, benchmarking, artifact-evaluation]
 author: Wes Lee
 feature_image: /assets/images/article-heroes/2026-03-24-building-slidebench-to-evaluate-ai-generated-slides.jpg
+project_page: /projects/slidebench/
 display_title: "Building ArtifactBench for AI-Generated Artifacts"
 archive_title: "ArtifactBench for AI Artifact Evaluation"
 ---

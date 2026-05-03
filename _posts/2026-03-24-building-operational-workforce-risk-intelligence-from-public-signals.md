@@ -6,6 +6,7 @@ categories: [ai-ops, workforce-intelligence, public-signals]
 tags: [nextjs, fastapi, postgres, langfuse, incident-pipeline, retrenchment, forecasting, dashboards]
 author: Wes Lee
 feature_image: /assets/images/article-heroes/2026-03-24-building-operational-workforce-risk-intelligence-from-public-signals.jpg
+project_page: /projects/workforce-risk-intelligence/
 display_title: "Operational Workforce Risk Intelligence from Public Signals"
 archive_title: "Workforce Risk Intelligence from Public Signals"
 ---

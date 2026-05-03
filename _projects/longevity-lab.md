@@ -8,6 +8,7 @@ image: /assets/images/project-covers/longevity-lab.jpg
 technologies: [FastAPI, React, TypeScript, DuckDB, scikit-learn, XGBoost, Playwright, Render, Vercel]
 github: https://github.com/Adredes-weslee/longevity-lab
 blog_post: /health-ai/public-health/model-evaluation/2026/05/02/building-longevity-lab-for-health-risk-scenario-modeling.html
+streamlit_app: https://longevity-lab-frontend.onrender.com/
 ---
 
 ## Business context
@@ -17,6 +18,7 @@ Health-risk interfaces can become misleading when they compress data provenance,
 ## Outcome
 
 - Built a local-first FastAPI backend and React frontend with Explorer, Data Evidence, Model Cards, and Scenario Lab surfaces.
+- Published a public Render demo for the React interface; first load can take about a minute while the service wakes and fetches sample data.
 - Added public-data pipelines for BRFSS, EPA AirData, ACS, SVI, and CDC PLACES-oriented context, with schema and provenance documentation.
 - Implemented artifact-backed scoring paths, benchmark harnesses, subgroup metrics, model-card manifests, typed explanations, and uncertainty metadata.
 - Kept causal analysis in a separate workbench so predictive risk scores are not presented as causal or diagnostic output.

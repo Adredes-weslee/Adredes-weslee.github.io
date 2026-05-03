@@ -1,5 +1,5 @@
 version: 1
-last_updated: 2026-05-02
+last_updated: 2026-05-03
 
 defaults:
   review_required: true
@@ -171,9 +171,22 @@ repos:
     project_slug: longevity-lab
     has_article: true
     article_slug: building-longevity-lab-for-health-risk-scenario-modeling
-    has_public_demo: false
+    has_public_demo: true
+    public_demo_url: https://longevity-lab-frontend.onrender.com/
     last_repo_sync_ref: 49b4018aeb2f9865f77459ad82f03a0fe4dec21b
-    last_website_sync: 2026-05-02
+    last_website_sync: 2026-05-03
+
+  - repo: Adredes-weslee/learning-personalization-engine
+    local_clone: repos/learning-personalization-engine
+    visibility: private
+    tier: secondary
+    has_project_page: true
+    project_slug: learning-personalization-engine
+    has_article: true
+    article_slug: building-learning-personalization-engine
+    has_public_demo: false
+    last_repo_sync_ref: 5cd2e11de3d3cfbdcfa3871182c4796ce867a69e
+    last_website_sync: 2026-05-03
 
   - repo: Adredes-weslee/elliptic-gnn-project
     local_clone: repos/elliptic-gnn-project

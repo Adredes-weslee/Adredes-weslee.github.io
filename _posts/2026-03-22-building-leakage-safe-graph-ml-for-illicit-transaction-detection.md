@@ -6,6 +6,7 @@ categories: [graph-ml, fintech, fraud-detection]
 tags: [pytorch-geometric, xgboost, logistic-regression, graphsage, gat, calibration, precision-at-k, temporal-splits, robustness]
 author: Wes Lee
 feature_image: /assets/images/article-heroes/2026-03-22-building-leakage-safe-graph-ml-for-illicit-transaction-detection.jpg
+project_page: /projects/elliptic-gnn-project/
 ---
 
 ## Introduction: Fraud modeling gets overstated when evaluation is weak

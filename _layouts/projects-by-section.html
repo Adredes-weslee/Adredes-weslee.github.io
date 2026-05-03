@@ -13,7 +13,7 @@ layout: base
   {% assign collection = site[page.show_collection] | sort: "date" | reverse %}
   {% assign flagship_slugs = "creator-ai|intelligent-content-analyzer|slidebench|robo-advisor-project" | split: "|" %}
   {% assign supporting_slugs = "workforce-risk-intelligence|dspy-automotive-extractor|rag-engine-project" | split: "|" %}
-  {% assign platform_support_slugs = "nlp-earnings-analyzer|sentiment-analysis" | split: "|" %}
+  {% assign platform_support_slugs = "learning-personalization-engine|nlp-earnings-analyzer|sentiment-analysis" | split: "|" %}
   {% assign decision_support_slugs = "longevity-lab|dengue-forecasting|agentive-inventory|customer-segmentation" | split: "|" %}
   {% assign applied_support_slugs = "elliptic-gnn-project|ml-trading-strategist|hdb-resale-prices|wet-bulb-temperature" | split: "|" %}
 
@@ -102,7 +102,7 @@ layout: base
   <section class="editorial-section projects-section-index" data-reveal>
     <div class="editorial-section__header">
       <p class="editorial-kicker">Supporting platform and language systems</p>
-      <h2>Narrower NLP and language applications beyond the flagship and supporting sets.</h2>
+      <h2>Additional platform and language systems beyond the flagship and supporting sets.</h2>
     </div>
     <div class="editorial-project-grid">
       {% for desired_slug in platform_support_slugs %}
@@ -115,9 +115,11 @@ layout: base
                   <img src="{{ project.image | relative_url }}" alt="{{ project.title }}">
                 </div>
               {% endif %}
-              <p class="editorial-project-card__label">Language systems</p>
+              <p class="editorial-project-card__label">Platform system</p>
               <h3>{{ project.title }}</h3>
               {% case project_slug %}
+                {% when 'learning-personalization-engine' %}
+                  <p>Learning-event normalization, mastery tracing, and recommendation review built from platform evidence.</p>
                 {% when 'nlp-earnings-analyzer' %}
                   <p>Financial earnings report intelligence using traditional NLP and transformer-based analysis.</p>
                 {% when 'sentiment-analysis' %}
