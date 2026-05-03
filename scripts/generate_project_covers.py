@@ -106,6 +106,17 @@ PROJECTS = [
         "primary": "output/project-sources/intelligent-content-analyzer-github.png",
     },
     {
+        "slug": "learning-personalization-engine",
+        "title": "Learning Personalization",
+        "label": "Edtech / personalization",
+        "tagline": "Probe-backed learning-event normalization, mastery tracing, and recommendation surfaces.",
+        "evidence_focus": "Probe-backed events, mastery tracing, and teacher review.",
+        "chips": ["BKT mastery", "Teacher view", "Probe-backed"],
+        "palette": ["#10263a", "#1d3f52", "#7bd88f", "#f2f7ed"],
+        "motif": "docs",
+        "repo_dir": "learning-personalization-engine",
+    },
+    {
         "slug": "slidebench",
         "title": "ArtifactBench",
         "label": "Artifact evaluation / multimodal",
@@ -213,6 +224,8 @@ PROJECTS = [
     },
 ]
 
+SENSITIVE_UI_SLUGS = {"creator-ai", "slidebench"}
+
 
 def font(size: int, *, bold: bool = False, serif: bool = False) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
     candidates: list[str]
@@ -251,6 +264,8 @@ BODY_FONT = lambda: font(28)
 CHIP_FONT = lambda: font(22, bold=True)
 META_FONT = lambda: font(18, serif=True)
 CODE_FONT = lambda: font(20)
+CHIP_HEIGHT = 36
+CHIP_PAD_X = 18
 
 
 def hex_to_rgb(value: str) -> tuple[int, int, int]:
@@ -370,8 +385,43 @@ def contain_cover(image_path: Path, size: tuple[int, int], fill: tuple[int, int,
 
 def project_image_panel(image_path: Path, size: tuple[int, int], project: dict) -> Image.Image:
     if project.get("image_fit") == "contain":
-        return contain_cover(image_path, size, hex_to_rgb(project["palette"][0]))
-    return crop_cover(image_path, size)
+        panel = contain_cover(image_path, size, hex_to_rgb(project["palette"][0]))
+    else:
+        panel = crop_cover(image_path, size)
+    return redact_sensitive_ui(panel, project)
+
+
+def redact_sensitive_ui(panel: Image.Image, project: dict) -> Image.Image:
+    """Mask product/company branding inside embedded UI screenshots."""
+    if project.get("slug") not in SENSITIVE_UI_SLUGS:
+        return panel
+
+    scrubbed = panel.copy()
+    draw = ImageDraw.Draw(scrubbed)
+    width, height = scrubbed.size
+    radius = max(8, int(width * 0.018))
+    light_fill = (246, 248, 252, 246)
+
+    # Most app screenshots carry tenant/product branding in the upper-left
+    # chrome. Keep the UI composition but remove client/company labels.
+    regions = [
+        (
+            0,
+            0,
+            int(width * 0.46),
+            int(height * 0.18),
+        ),
+        (
+            0,
+            int(height * 0.13),
+            int(width * 0.38),
+            int(height * 0.28),
+        ),
+    ]
+    for region in regions:
+        draw.rounded_rectangle(region, radius=radius, fill=light_fill)
+
+    return scrubbed
 
 
 def rounded_image(image: Image.Image, radius: int) -> Image.Image:
@@ -390,12 +440,17 @@ def shadow_box(size: tuple[int, int], radius: int) -> Image.Image:
 
 
 def draw_chip(draw: ImageDraw.ImageDraw, xy: tuple[int, int], text: str, fill: tuple[int, int, int], text_fill: tuple[int, int, int]) -> int:
-    bbox = draw.textbbox((0, 0), text, font=CHIP_FONT())
-    width = bbox[2] - bbox[0] + 36
-    height = bbox[3] - bbox[1] + 20
+    chip_font = CHIP_FONT()
+    bbox = draw.textbbox((0, 0), text, font=chip_font)
+    text_width = bbox[2] - bbox[0]
+    text_height = bbox[3] - bbox[1]
+    width = text_width + CHIP_PAD_X * 2
+    height = CHIP_HEIGHT
     x, y = xy
-    draw.rounded_rectangle((x, y, x + width, y + height), radius=16, fill=fill)
-    draw.text((x + 18, y + 9), text, font=CHIP_FONT(), fill=text_fill)
+    draw.rounded_rectangle((x, y, x + width, y + height), radius=height // 2, fill=fill)
+    text_x = x + (width - text_width) // 2 - bbox[0]
+    text_y = y + (height - text_height) // 2 - bbox[1]
+    draw.text((text_x, text_y), text, font=chip_font, fill=text_fill)
     return width
 
 

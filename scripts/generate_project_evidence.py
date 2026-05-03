@@ -68,10 +68,14 @@ def image_panel(path_like: str | None, size: tuple[int, int], project: dict, *, 
 def chip(draw: ImageDraw.ImageDraw, x: int, y: int, text: str, accent: tuple[int, int, int]) -> int:
     chip_font = font(18, bold=True)
     bbox = draw.textbbox((0, 0), text, font=chip_font)
-    width = bbox[2] - bbox[0] + 28
-    height = bbox[3] - bbox[1] + 16
-    draw.rounded_rectangle((x, y, x + width, y + height), radius=15, fill=accent + (255,))
-    draw.text((x + 14, y + 8), text, font=chip_font, fill=(16, 25, 30))
+    text_width = bbox[2] - bbox[0]
+    text_height = bbox[3] - bbox[1]
+    width = text_width + 28
+    height = 30
+    draw.rounded_rectangle((x, y, x + width, y + height), radius=height // 2, fill=accent + (255,))
+    text_x = x + (width - text_width) // 2 - bbox[0]
+    text_y = y + (height - text_height) // 2 - bbox[1]
+    draw.text((text_x, text_y), text, font=chip_font, fill=(16, 25, 30))
     return width
 
 
@@ -92,11 +96,12 @@ def insight_panel(project: dict, size: tuple[int, int]) -> Image.Image:
     panel_draw.rounded_rectangle((16, 16, size[0] - 16, size[1] - 16), radius=24, outline=(255, 255, 255, 26), width=2)
     panel_draw.text((30, 28), "System focus", font=font(16, bold=True), fill=light)
     panel_draw.text((30, 58), project["label"].upper(), font=font(12, serif=True), fill=(224, 230, 235))
-    panel_draw.multiline_text((30, 94), wrap(project["tagline"], 24), font=font(22, bold=True, serif=True), fill=(255, 255, 255), spacing=8)
+    focus_text = project.get("evidence_focus", project["tagline"])
+    panel_draw.multiline_text((30, 94), wrap(focus_text, 24), font=font(22, bold=True, serif=True), fill=(255, 255, 255), spacing=8)
 
     chip_x = 30
     for entry in project["chips"][:2]:
-        chip_x += chip(panel_draw, chip_x, size[1] - 60, entry, accent) + 10
+        chip_x += chip(panel_draw, chip_x, size[1] - 48, entry, accent) + 10
 
     return panel
 

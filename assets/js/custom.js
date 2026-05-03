@@ -39,4 +39,8 @@ function observeRevealElements() {
   });
 
   revealNodes.forEach((node) => observer.observe(node));
+
+  window.setTimeout(() => {
+    revealNodes.forEach((node) => node.classList.add('is-visible'));
+  }, 1400);
 }

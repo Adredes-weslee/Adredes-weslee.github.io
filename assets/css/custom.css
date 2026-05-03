@@ -1776,17 +1776,22 @@ html.home-landing-page body {
 .editorial-project-chip {
   display: inline-flex;
   align-items: center;
-  min-height: 1.7rem;
-  padding: 0.2rem 0.6rem;
+  justify-content: center;
+  height: 1.7rem;
+  padding: 0 0.72rem;
+  box-sizing: border-box;
   border-radius: 999px;
   background: rgba(16, 34, 36, 0.08);
   border: 1px solid rgba(16, 34, 36, 0.1);
   color: var(--home-ink);
+  line-height: 1;
   font-family: "Space Grotesk", sans-serif;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+  white-space: nowrap;
+  vertical-align: middle;
 }
 
 .editorial-project-chip--demo {
@@ -1837,10 +1842,13 @@ html.home-landing-page body {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.25rem;
+  align-items: start;
 }
 
 .blog-archive-year {
   display: grid;
+  align-content: start;
+  grid-auto-rows: max-content;
   gap: 0.95rem;
   padding: 1.15rem 1.2rem;
   border-radius: 22px;
@@ -1934,13 +1942,10 @@ html.home-landing-page body {
 .project-evidence-panel img,
 .post-feature-panel img {
   width: 100%;
+  height: auto;
   display: block;
-  max-height: 32rem;
-  object-fit: cover;
-}
-
-.project-evidence-panel img {
   max-height: none;
+  object-fit: contain;
 }
 
 .project-page .page-title,
@@ -1963,6 +1968,13 @@ html.home-landing-page body {
 
 .post-page__meta-row a:hover {
   color: var(--home-accent-strong);
+}
+
+.post-project-link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 0.1rem 0 0.2rem;
 }
 
 .project-footer-nav,

@@ -80,6 +80,14 @@ ARTICLE_HEROES = [
         "chips": ["Model cards", "Public data", "Causal workbench"],
     },
     {
+        "filename": "2026-04-19-building-learning-personalization-engine.jpg",
+        "project_slug": "learning-personalization-engine",
+        "label": "Edtech / personalization",
+        "headline": "Learning personalization built from platform evidence",
+        "summary": "A probe-backed engine for normalizing learning events, tracing mastery, and turning recommendations into teacher-facing review surfaces.",
+        "chips": ["BKT mastery", "Teacher view", "Probe-backed"],
+    },
+    {
         "filename": "2026-03-22-building-leakage-safe-graph-ml-for-illicit-transaction-detection.jpg",
         "project_slug": "elliptic-gnn-project",
         "label": "Graph ML / fraud detection",
@@ -184,6 +192,7 @@ DEMO_IMAGE_SLUGS = [
     "elliptic-gnn-project",
     "hdb-resale-prices",
     "intelligent-content-analyzer",
+    "longevity-lab",
     "ml-trading-strategist",
     "nlp-earnings-analyzer",
     "rag-engine-project",
@@ -293,10 +302,14 @@ def draw_chip_row(draw: ImageDraw.ImageDraw, origin: tuple[int, int], chips: lis
     chip_font = font(22, bold=True)
     for chip in chips:
         box = draw.textbbox((0, 0), chip, font=chip_font)
-        width = box[2] - box[0] + 34
-        height = box[3] - box[1] + 18
-        draw.rounded_rectangle((x, y, x + width, y + height), radius=16, fill=accent + (255,))
-        draw.text((x + 17, y + 8), chip, font=chip_font, fill=(15, 24, 31))
+        text_width = box[2] - box[0]
+        text_height = box[3] - box[1]
+        width = text_width + 36
+        height = 36
+        draw.rounded_rectangle((x, y, x + width, y + height), radius=height // 2, fill=accent + (255,))
+        text_x = x + (width - text_width) // 2 - box[0]
+        text_y = y + (height - text_height) // 2 - box[1]
+        draw.text((text_x, text_y), chip, font=chip_font, fill=(15, 24, 31))
         x += width + 14
 
 
