@@ -65,20 +65,6 @@ def image_panel(path_like: str | None, size: tuple[int, int], project: dict, *, 
     return repo_panel(project, size, compact=compact)
 
 
-def chip(draw: ImageDraw.ImageDraw, x: int, y: int, text: str, accent: tuple[int, int, int]) -> int:
-    chip_font = font(18, bold=True)
-    bbox = draw.textbbox((0, 0), text, font=chip_font)
-    text_width = bbox[2] - bbox[0]
-    text_height = bbox[3] - bbox[1]
-    width = text_width + 28
-    height = 30
-    draw.rounded_rectangle((x, y, x + width, y + height), radius=height // 2, fill=accent + (255,))
-    text_x = x + (width - text_width) // 2 - bbox[0]
-    text_y = y + (height - text_height) // 2 - bbox[1]
-    draw.text((text_x, text_y), text, font=chip_font, fill=(16, 25, 30))
-    return width
-
-
 def insight_panel(project: dict, size: tuple[int, int]) -> Image.Image:
     panel = Image.new("RGBA", size, (13, 31, 36, 255))
     panel_draw = ImageDraw.Draw(panel)
@@ -98,10 +84,6 @@ def insight_panel(project: dict, size: tuple[int, int]) -> Image.Image:
     panel_draw.text((30, 58), project["label"].upper(), font=font(12, serif=True), fill=(224, 230, 235))
     focus_text = project.get("evidence_focus", project["tagline"])
     panel_draw.multiline_text((30, 94), wrap(focus_text, 24), font=font(22, bold=True, serif=True), fill=(255, 255, 255), spacing=8)
-
-    chip_x = 30
-    for entry in project["chips"][:2]:
-        chip_x += chip(panel_draw, chip_x, size[1] - 48, entry, accent) + 10
 
     return panel
 
@@ -133,11 +115,6 @@ def compose(project: dict) -> None:
     add_caption(draw, 76, 752, "Product surface", "Representative UI or repo artifact from the actual implementation.")
     add_caption(draw, 1054, 752, "Supporting evidence", "Chart, system note, or artifact grounding the technical story.")
     add_caption(draw, 1054, 816, "Repo surface", "Top-level structure from the cloned repository.")
-
-    chip_x = 76
-    chip_y = 816
-    for entry in project["chips"][:3]:
-        chip_x += chip(draw, chip_x, chip_y, entry, accent) + 12
 
     save_rgb(canvas, EVIDENCE_DIR / f"{project['slug']}.jpg")
 

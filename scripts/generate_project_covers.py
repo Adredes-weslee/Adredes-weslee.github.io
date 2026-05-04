@@ -439,21 +439,6 @@ def shadow_box(size: tuple[int, int], radius: int) -> Image.Image:
     return shadow.filter(ImageFilter.GaussianBlur(18))
 
 
-def draw_chip(draw: ImageDraw.ImageDraw, xy: tuple[int, int], text: str, fill: tuple[int, int, int], text_fill: tuple[int, int, int]) -> int:
-    chip_font = CHIP_FONT()
-    bbox = draw.textbbox((0, 0), text, font=chip_font)
-    text_width = bbox[2] - bbox[0]
-    text_height = bbox[3] - bbox[1]
-    width = text_width + CHIP_PAD_X * 2
-    height = CHIP_HEIGHT
-    x, y = xy
-    draw.rounded_rectangle((x, y, x + width, y + height), radius=height // 2, fill=fill)
-    text_x = x + (width - text_width) // 2 - bbox[0]
-    text_y = y + (height - text_height) // 2 - bbox[1]
-    draw.text((text_x, text_y), text, font=chip_font, fill=text_fill)
-    return width
-
-
 def draw_text_block(base: Image.Image, project: dict) -> None:
     draw = ImageDraw.Draw(base)
     light = hex_to_rgb(project["palette"][3])
@@ -468,13 +453,6 @@ def draw_text_block(base: Image.Image, project: dict) -> None:
 
     tagline = textwrap.fill(project["tagline"], width=38)
     draw.multiline_text((90, 432), tagline, font=BODY_FONT(), fill=(229, 231, 235), spacing=10)
-
-    chip_y = 630
-    chip_x = 90
-    chip_fill = accent + (255,)
-    chip_text = (15, 24, 31)
-    for chip in project["chips"]:
-        chip_x += draw_chip(draw, (chip_x, chip_y), chip, chip_fill, chip_text) + 16
 
 
 def paste_panel(base: Image.Image, panel: Image.Image, xy: tuple[int, int], radius: int) -> None:
@@ -522,11 +500,9 @@ def repo_panel(project: dict, size: tuple[int, int], *, compact: bool = False) -
         draw.text((pad_x, start_y + idx * step), entry, font=entry_font, fill=(250, 250, 250))
 
     footer_y = size[1] - (58 if compact else 88)
-    chip_line = " | ".join(project["chips"][:2])
-    draw.text((pad_x, footer_y), chip_line, font=(font(12, bold=True) if compact else font(18, bold=True)), fill=(255, 255, 255))
     remainder = len(entries) - min(len(entries), max_items)
-    footer_text = f"+ {remainder} more top-level entries" if remainder > 0 else project["label"].title()
-    draw.text((pad_x, footer_y + (16 if compact else 30)), footer_text, font=(font(10, serif=True) if compact else font(14, serif=True)), fill=(220, 225, 231))
+    footer_text = f"+ {remainder} more top-level entries" if remainder > 0 else "Repository structure"
+    draw.text((pad_x, footer_y), footer_text, font=(font(10, serif=True) if compact else font(14, serif=True)), fill=(220, 225, 231))
     return panel
 
 

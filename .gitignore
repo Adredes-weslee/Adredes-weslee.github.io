@@ -30,3 +30,11 @@ serve-out.log
 serve-err.log
 __pycache__/
 *.pyc
+
+# Local image-generation run artifacts
+.content-refresh/image-prompts/accepted-png/
+.content-refresh/image-prompts/codex-exec-reports/
+.content-refresh/image-prompts/*.log
+.content-refresh/image-prompts/*.err.log
+.content-refresh/image-prompts/*test*.txt
+.content-refresh/image-prompts/retry-rejected.ps1

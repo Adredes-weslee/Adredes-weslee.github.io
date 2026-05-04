@@ -297,22 +297,6 @@ def image_panel(path_like: str | None, size: tuple[int, int], project: dict, *, 
     return repo_panel(project, size, compact=compact)
 
 
-def draw_chip_row(draw: ImageDraw.ImageDraw, origin: tuple[int, int], chips: list[str], accent: tuple[int, int, int]) -> None:
-    x, y = origin
-    chip_font = font(22, bold=True)
-    for chip in chips:
-        box = draw.textbbox((0, 0), chip, font=chip_font)
-        text_width = box[2] - box[0]
-        text_height = box[3] - box[1]
-        width = text_width + 36
-        height = 36
-        draw.rounded_rectangle((x, y, x + width, y + height), radius=height // 2, fill=accent + (255,))
-        text_x = x + (width - text_width) // 2 - box[0]
-        text_y = y + (height - text_height) // 2 - box[1]
-        draw.text((text_x, text_y), chip, font=chip_font, fill=(15, 24, 31))
-        x += width + 14
-
-
 def compose_article(hero: dict) -> None:
     project = PROJECT_BY_SLUG[hero["project_slug"]]
     palette = project["palette"]
@@ -356,8 +340,6 @@ def compose_article(hero: dict) -> None:
         line_spacing=10,
         width_chars=25,
     )
-    chip_y = min(max(summary_bottom + 28, 676), 690)
-    draw_chip_row(draw, (98, chip_y), hero["chips"][:2], accent)
 
     primary = image_panel(project.get("primary"), (840, 610), project)
     paste_panel(canvas, primary, (684, 88), radius=30)
