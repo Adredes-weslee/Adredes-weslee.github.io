@@ -1405,18 +1405,21 @@ html.home-landing-page body {
 
 .projects-section-index + .projects-section-index,
 .blog-featured-section + .blog-index-section,
+.demos-featured-section + .demos-grid-section,
 .editorial-section + .editorial-cta {
   padding-top: clamp(1.75rem, 3.8vw, 3.4rem);
 }
 
 .projects-section-index + .projects-section-index .editorial-section__header,
 .blog-featured-section + .blog-index-section .editorial-section__header,
+.demos-featured-section + .demos-grid-section .editorial-section__header,
 .editorial-section + .editorial-cta {
   border-top: 1px solid rgba(16, 34, 36, 0.12);
 }
 
 .projects-section-index + .projects-section-index .editorial-section__header,
-.blog-featured-section + .blog-index-section .editorial-section__header {
+.blog-featured-section + .blog-index-section .editorial-section__header,
+.demos-featured-section + .demos-grid-section .editorial-section__header {
   padding-top: clamp(1.25rem, 2.4vw, 2.2rem);
 }
 
