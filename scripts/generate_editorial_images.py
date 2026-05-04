@@ -297,6 +297,14 @@ def image_panel(path_like: str | None, size: tuple[int, int], project: dict, *, 
     return repo_panel(project, size, compact=compact)
 
 
+def generated_cover_panel(slug: str, size: tuple[int, int]) -> Image.Image:
+    project = PROJECT_BY_SLUG[slug]
+    cover_path = PROJECT_COVERS_DIR / f"{slug}.jpg"
+    if cover_path.exists():
+        return crop_cover(cover_path, size)
+    return image_panel(project.get("primary"), size, project)
+
+
 def compose_article(hero: dict) -> None:
     project = PROJECT_BY_SLUG[hero["project_slug"]]
     palette = project["palette"]
@@ -354,42 +362,39 @@ def compose_article(hero: dict) -> None:
 
 def compose_home_hero() -> None:
     palette = ["#0d4148", "#082b31", "#ff8b2b", "#f5eee1"]
-    accent = hex_to_rgb(palette[2])
     canvas = make_gradient(HOME_SIZE, palette)
     draw = ImageDraw.Draw(canvas)
 
-    soft_panel = Image.new("RGBA", (580, 480), (8, 16, 24, 94))
-    panel_draw = ImageDraw.Draw(soft_panel)
-    panel_draw.rounded_rectangle((0, 0, 579, 479), radius=34, fill=(8, 16, 24, 94), outline=(255, 255, 255, 18), width=2)
-    paste_panel(canvas, soft_panel, (84, 122), radius=34)
-
-    draw.text((124, 170), "SELECTED SYSTEMS", font=font(24, bold=True), fill=(244, 239, 229))
-    draw.line((124, 206, 350, 206), fill=accent + (255,), width=4)
-    draw.multiline_text(
-        (124, 248),
-        "Selected\nsystems",
-        font=font(98, bold=True, serif=True),
-        fill=(255, 255, 255),
-        spacing=6,
+    frame = Image.new("RGBA", (1240, 1050), (6, 22, 27, 88))
+    frame_draw = ImageDraw.Draw(frame)
+    frame_draw.rounded_rectangle(
+        (0, 0, 1239, 1049),
+        radius=56,
+        fill=(6, 22, 27, 88),
+        outline=(255, 255, 255, 18),
+        width=2,
     )
-    draw.multiline_text(
-        (124, 488),
-        "Case studies across foundation models,\nretrieval, evaluation, and operator-facing tools.",
-        font=font(28),
-        fill=(228, 236, 239),
-        spacing=10,
-    )
+    paste_panel(canvas, frame, (80, 126), radius=56)
 
     positions = [
-        ((720, 118), (420, 270), HOME_FLAGSHIPS[0]),
-        ((914, 348), (360, 230), HOME_FLAGSHIPS[1]),
-        ((676, 676), (420, 270), HOME_FLAGSHIPS[2]),
-        ((940, 872), (330, 210), HOME_FLAGSHIPS[3]),
+        ((132, 178), (520, 332), "creator-ai"),
+        ((702, 178), (520, 332), "intelligent-content-analyzer"),
+        ((132, 560), (520, 332), "slidebench"),
+        ((702, 560), (520, 332), "robo-advisor-project"),
+        ((236, 952), (250, 154), "workforce-risk-intelligence"),
+        ((548, 952), (250, 154), "dspy-automotive-extractor"),
+        ((860, 952), (250, 154), "rag-engine-project"),
     ]
     for (x, y), size, slug in positions:
-        project = PROJECT_BY_SLUG[slug]
-        panel = image_panel(project.get("primary"), size, project)
-        paste_panel(canvas, panel, (x, y), radius=28)
+        panel = generated_cover_panel(slug, size)
+        shadow = shadow_box(size, 30)
+        canvas.alpha_composite(shadow, (x - 18, y - 14))
+        paste_panel(canvas, panel, (x, y), radius=30)
+
+    wash = Image.new("RGBA", HOME_SIZE, (0, 0, 0, 0))
+    wash_draw = ImageDraw.Draw(wash)
+    wash_draw.rounded_rectangle((80, 126, 1320, 1176), radius=56, outline=(255, 255, 255, 30), width=2)
+    canvas.alpha_composite(wash)
 
     save_rgb(canvas, ASSETS_DIR / "home-hero-flagship.jpg")
 
@@ -407,17 +412,16 @@ def compose_sidebar_background() -> None:
     canvas.alpha_composite(overlay)
 
     muted_covers = [
-        PROJECT_COVERS_DIR / "robo-advisor-project.jpg",
-        PROJECT_COVERS_DIR / "dspy-automotive-extractor.jpg",
-        PROJECT_COVERS_DIR / "rag-engine-project.jpg",
+        "creator-ai",
+        "intelligent-content-analyzer",
+        "slidebench",
+        "longevity-lab",
     ]
-    positions = [(164, 1010), (300, 1170), (132, 1330)]
-    sizes = [(900, 392), (820, 352), (880, 372)]
+    positions = [(156, 955), (360, 1115), (104, 1282), (310, 1450)]
+    sizes = [(900, 390), (840, 360), (900, 390), (780, 340)]
 
-    for path, position, size in zip(muted_covers, positions, sizes):
-        if not path.exists():
-            continue
-        panel = crop_cover(path, size).filter(ImageFilter.GaussianBlur(1.5))
+    for slug, position, size in zip(muted_covers, positions, sizes):
+        panel = generated_cover_panel(slug, size).filter(ImageFilter.GaussianBlur(1.4))
         dimmed = Image.new("RGBA", panel.size, (0, 0, 0, 0))
         dimmed.paste(panel, mask=rounded_image(panel, 32))
         tint = Image.new("RGBA", panel.size, (7, 20, 24, 132))
