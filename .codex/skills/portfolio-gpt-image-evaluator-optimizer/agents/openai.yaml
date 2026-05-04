@@ -1,0 +1,4 @@
+interface:
+  display_name: "Portfolio GPT Image Optimizer"
+  short_description: "Evaluate and regenerate portfolio GPT images."
+  default_prompt: "Use this skill to evaluate portfolio GPT image assets against the rubric, regenerate failures with Codex exec, and verify the website image set."
