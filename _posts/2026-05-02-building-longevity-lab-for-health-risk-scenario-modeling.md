@@ -20,7 +20,7 @@ The system has to answer several questions at once:
 - which public data sources were used
 - whether the app is running in demo or artifact-backed mode
 - how a current scenario differs from a what-if scenario
-- what the active model artifacts can and cannot support
+- what the active model artifacts and evidence endpoint can and cannot support
 - where predictive associations stop and causal claims would require a separate analysis
 
 > Related: for the shorter case-study version, see the [Longevity Lab project page](/projects/longevity-lab/).
@@ -32,7 +32,7 @@ The system has to answer several questions at once:
 Many risk tools collapse everything into one interface. Longevity Lab deliberately separates the surfaces:
 
 - Explorer for scenario comparison
-- Data Evidence for source status and provenance
+- Data Evidence for active scoring inputs, source status, provenance, report evidence, and inactive gaps
 - Model Cards for active artifact behavior and limitations
 - Scenario Lab for structured comparison summaries
 - a separate causal workbench for explicit causal questions
@@ -41,11 +41,11 @@ That separation is the main design lesson. It makes the product more inspectable
 
 ## Artifact-backed scoring changes the app from demo to system
 
-The backend can run in demo mode, but the stronger path is artifact-backed scoring. Training and benchmark scripts produce calibrated bundles with manifests, metrics, subgroup slices, explanation records, and model-card-ready summaries.
+The backend can run in demo mode, but the stronger path is artifact-backed scoring. Training and benchmark scripts produce calibrated bundles with manifests, metrics, subgroup slices, pollutant ablations, explanation records, and model-card-ready summaries. The current artifact-backed scope covers eight BRFSS-derived conditions: heart disease, chronic lung disease, asthma, stroke, depression, diabetes, chronic kidney disease, and arthritis.
 
 That matters because the frontend is not only consuming a prediction endpoint. It is consuming a runtime state and evidence model. The user should know when the app is serving a real artifact, what model family produced it, whether uncertainty is declared, and what caveats apply.
 
-The architecture supports that by keeping preprocessing, artifact loading, API schemas, and frontend contracts aligned. This is the difference between a working prototype and a product surface that can be reviewed.
+The architecture supports that by keeping preprocessing, artifact loading, API schemas, the evidence-status endpoint, and frontend contracts aligned. This is the difference between a working prototype and a product surface that can be reviewed.
 
 ## Public-data provenance is treated as product infrastructure
 
@@ -73,7 +73,7 @@ The strongest part of Longevity Lab is not any single model family. It is the wa
 
 The takeaway is straightforward:
 
-- public-health models need evidence surfaces, not just predictions
+- public-health models need evidence-status surfaces, not just predictions
 - model-card metadata should be part of the product interface
 - causal language needs explicit assumptions and separate workflows
 - deployment mode should be visible to users

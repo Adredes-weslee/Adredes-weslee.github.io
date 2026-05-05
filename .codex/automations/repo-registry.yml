@@ -173,8 +173,8 @@ repos:
     article_slug: building-longevity-lab-for-health-risk-scenario-modeling
     has_public_demo: true
     public_demo_url: https://longevity-lab-frontend.onrender.com/
-    last_repo_sync_ref: 49b4018aeb2f9865f77459ad82f03a0fe4dec21b
-    last_website_sync: 2026-05-03
+    last_repo_sync_ref: 1ddbe223c535967f18836da3c6953cd6cd3b1f4e
+    last_website_sync: 2026-05-05
 
   - repo: Adredes-weslee/learning-personalization-engine
     local_clone: repos/learning-personalization-engine
