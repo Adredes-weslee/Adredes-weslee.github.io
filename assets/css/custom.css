@@ -1199,7 +1199,8 @@ html.home-landing-page body {
   }
 
   .home-feature__media {
-    min-height: 15rem;
+    aspect-ratio: 16 / 9;
+    min-height: 0;
   }
 
   .home-capability-grid,
@@ -1209,18 +1210,59 @@ html.home-landing-page body {
 }
 
 @media (max-width: 780px) {
+  html.home-landing-page,
+  html.home-landing-page body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  html.home-landing-page main.content[class*="layout-"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: clamp(1rem, 4vw, 1.5rem) !important;
+    padding-right: clamp(1rem, 4vw, 1.5rem) !important;
+    box-sizing: border-box;
+    overflow-x: clip;
+  }
+
   .home-shell {
     gap: 2.25rem;
     padding-top: 0.25rem;
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .home-hero {
+    width: 100%;
     padding: 1.25rem;
     border-radius: 24px;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .home-display {
     max-width: none;
+    overflow-wrap: break-word;
+  }
+
+  .home-hero__copy,
+  .home-hero__visual,
+  .home-hero__frame,
+  .home-feature__body,
+  .home-metric,
+  .home-feature-grid {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .home-signal-list {
+    grid-template-columns: 1fr;
   }
 
   .home-metric-grid,
@@ -1232,6 +1274,7 @@ html.home-landing-page body {
 
   .home-button {
     width: 100%;
+    box-sizing: border-box;
   }
 
   .home-feature,
@@ -1243,6 +1286,24 @@ html.home-landing-page body {
 
   .home-feature {
     padding: 1rem;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .home-feature__media {
+    padding: 0.65rem;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .home-feature__media img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
   }
 }
 
