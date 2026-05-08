@@ -21,6 +21,7 @@ The system has to answer several questions at once:
 - whether the app is running in demo or artifact-backed mode
 - how a current scenario differs from a what-if scenario
 - what the active model artifacts and evidence endpoint can and cannot support
+- which background community context is available without turning that context into a personal diagnosis
 - where predictive associations stop and causal claims would require a separate analysis
 
 > Related: for the shorter case-study version, see the [Longevity Lab project page](/projects/longevity-lab/).
@@ -33,6 +34,7 @@ Many risk tools collapse everything into one interface. Longevity Lab deliberate
 
 - Explorer for scenario comparison
 - Data Evidence for active scoring inputs, source status, provenance, report evidence, and inactive gaps
+- Community Context for ACS/SVI context, PLACES comparison rows, and non-serving causal report cards
 - Model Cards for active artifact behavior and limitations
 - Scenario Lab for structured comparison summaries
 - a separate causal workbench for explicit causal questions
@@ -41,11 +43,19 @@ That separation is the main design lesson. It makes the product more inspectable
 
 ## Artifact-backed scoring changes the app from demo to system
 
-The backend can run in demo mode, but the stronger path is artifact-backed scoring. Training and benchmark scripts produce calibrated bundles with manifests, metrics, subgroup slices, pollutant ablations, explanation records, and model-card-ready summaries. The current artifact-backed scope covers eight BRFSS-derived conditions: heart disease, chronic lung disease, asthma, stroke, depression, diabetes, chronic kidney disease, and arthritis.
+The backend can run in demo mode, but the stronger path is artifact-backed scoring. Training and benchmark scripts produce calibrated bundles with manifests, metrics, subgroup slices, pollutant ablations, SHAP explanation records, calibration intervals, and model-card-ready summaries. The current production artifact path uses a verified `real-20260508-xgboost-shap` release bundle and covers eight BRFSS-derived conditions: heart disease, chronic lung disease, asthma, stroke, depression, diabetes, chronic kidney disease, and arthritis.
 
 That matters because the frontend is not only consuming a prediction endpoint. It is consuming a runtime state and evidence model. The user should know when the app is serving a real artifact, what model family produced it, whether uncertainty is declared, and what caveats apply.
 
 The architecture supports that by keeping preprocessing, artifact loading, API schemas, the evidence-status endpoint, and frontend contracts aligned. This is the difference between a working prototype and a product surface that can be reviewed.
+
+## Community context became an evidence layer, not a hidden model input
+
+The newest repo pass adds a Community Context page and API around state/county ACS and SVI context, CDC PLACES comparison rows, aggregate validation records, and causal workbench report cards. That layer is intentionally separate from the Explorer score.
+
+This matters because public-health products often blur the difference between a person's scenario inputs and the broader environment around them. Longevity Lab now keeps those boundaries explicit: background context can help explain what evidence exists, where geography is ready, and how aggregate indicators compare, but it does not silently change the personal what-if scoring workflow.
+
+The public deployment also treats evidence as a release artifact. The Render build can download and verify a public evidence bundle, then expose those panels without committing raw or processed datasets into the repository.
 
 ## Public-data provenance is treated as product infrastructure
 
@@ -58,6 +68,7 @@ The roadmap sets clear boundaries:
 - feasible geography and time joins
 - bias and ecological-fallacy review
 - local development and free-tier deployment constraints
+- checksum-verified public release bundles for model and evidence assets
 
 That is a pragmatic approach for a public-health portfolio project. It keeps the system useful without pretending that a row-joined public dataset can answer every clinical or causal question.
 
@@ -74,6 +85,7 @@ The strongest part of Longevity Lab is not any single model family. It is the wa
 The takeaway is straightforward:
 
 - public-health models need evidence-status surfaces, not just predictions
+- community context should be visible without being confused for personal scoring
 - model-card metadata should be part of the product interface
 - causal language needs explicit assumptions and separate workflows
 - deployment mode should be visible to users
