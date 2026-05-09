@@ -49,6 +49,8 @@ That matters because the frontend is not only consuming a prediction endpoint. I
 
 The architecture supports that by keeping preprocessing, artifact loading, API schemas, the evidence-status endpoint, and frontend contracts aligned. This is the difference between a working prototype and a product surface that can be reviewed.
 
+The latest interaction pass also separates the runtime paths behind the Explorer. Live slider edits use a fast compare request that returns probabilities, deltas, metadata, and uncertainty without recomputing every explanation. The selected organ or condition then loads SHAP and rule-path details through a lazy explanation endpoint. That keeps scenario exploration responsive without removing the evidence needed for drill-down review.
+
 ## Community context became an evidence layer, not a hidden model input
 
 The newest repo pass adds a Community Context page and API around state/county ACS and SVI context, CDC PLACES comparison rows, aggregate validation records, and causal workbench report cards. That layer is intentionally separate from the Explorer score.
@@ -87,6 +89,7 @@ The takeaway is straightforward:
 - public-health models need evidence-status surfaces, not just predictions
 - community context should be visible without being confused for personal scoring
 - model-card metadata should be part of the product interface
+- expensive explanations should be lazy-loaded around the selected drill-down, not recomputed on every scenario slider movement
 - causal language needs explicit assumptions and separate workflows
 - deployment mode should be visible to users
 - local-first artifacts make development and review more defensible

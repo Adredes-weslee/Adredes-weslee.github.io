@@ -23,6 +23,7 @@ Health-risk interfaces can become misleading when they compress data provenance,
 - Added evidence and community-context APIs that separate active scoring inputs from background state-year context, county context, PLACES validation, causal reports, and local-only assets.
 - Promoted an artifact-backed production path with verified GitHub Release bundles for calibrated XGBoost scoring, SHAP explanation artifacts, uncertainty metadata, and public evidence panels.
 - Implemented artifact-backed scoring paths for eight BRFSS-derived conditions, benchmark harnesses, subgroup metrics, model-card manifests, typed explanations, and calibration intervals.
+- Split live slider scoring from selected-condition explanation loading so scenario updates stay responsive while SHAP and rule-path details hydrate only where the user is inspecting.
 - Kept causal analysis in a separate workbench so predictive risk scores are not presented as causal or diagnostic output.
 
 ## Key decisions
@@ -31,11 +32,12 @@ Health-risk interfaces can become misleading when they compress data provenance,
 - Kept the repo local-first and artifact-aware so large public datasets and trained bundles are not committed into source control.
 - Used build-time bundle download and checksum verification so public deployment can run artifact-backed scoring without storing raw datasets in git.
 - Used model-card and provenance surfaces to make model behavior inspectable rather than hiding it behind a polished dashboard.
+- Used a fast no-explanation compare path for live slider edits, then a lazy explanation endpoint for the selected organ or condition.
 - Added deployment guidance for demo/sample-artifact modes without implying that the public surface is a clinical decision system.
 
 ## System design
 
-Source downloaders and feature builders create public-health tables and derived context features. Training and benchmark scripts produce calibrated model artifacts, metrics, subgroup slices, SHAP explanation metadata, pollutant ablations, uncertainty payloads, and model-card manifests. The FastAPI API exposes health, metadata, scenario, evidence, community, context, pipeline, and model-card contracts, while the React frontend turns those contracts into scenario comparison, data evidence, community context, model-card, and scenario-lab views.
+Source downloaders and feature builders create public-health tables and derived context features. Training and benchmark scripts produce calibrated model artifacts, metrics, subgroup slices, SHAP explanation metadata, pollutant ablations, uncertainty payloads, and model-card manifests. The FastAPI API exposes health, metadata, scenario, evidence, community, context, pipeline, and model-card contracts, including separate compare and explain paths so score refreshes are not blocked by explanation generation. The React frontend turns those contracts into scenario comparison, data evidence, community context, model-card, and scenario-lab views.
 
 ## Stack
 
