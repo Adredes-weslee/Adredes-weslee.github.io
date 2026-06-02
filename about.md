@@ -46,7 +46,7 @@ permalink: /about/
       <p>
         At Elice, I lead AI feature delivery from scoping through technical framing and delivery coordination. Recent
         systems include Creator AI, a multi-service platform for course, lab, and quiz-bank generation across Discovery,
-        Strategy, Retrieval, Generation, Validation, and HITL review; SlideBench, a multimodal benchmarking platform for
+        Strategy, Retrieval, Generation, Validation, and HITL review; ArtifactBench, a multimodal benchmarking platform for
         AI-generated learning artifacts; and model-integration work that standardized Azure OpenAI, OpenAI Responses,
         Gemini, and MLAPI behind service-level controls and hardened configuration.
       </p>
